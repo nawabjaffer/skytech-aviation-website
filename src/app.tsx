@@ -12,7 +12,7 @@ import Contacts from './pages/Contacts';
 const App = () => {
   return (
     <DarkModeProvider>
-      <Router>
+      <Router basename="/skytech-aviation-website">
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />

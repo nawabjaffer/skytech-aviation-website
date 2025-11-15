@@ -48,7 +48,17 @@
     "learnMore": "Learn More",
     "getStarted": "Get Started",
     "contactUs": "Contact Us",
-    "requestQuote": "Request Quote"
+    "requestQuote": "Request Quote",
+    "readMore": "Read More",
+    "showMore": "Show More",
+    "showLess": "Show Less",
+    "download": "Download",
+    "upload": "Upload",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "required": "Required",
+    "optional": "Optional"
   },
   "home": {
     "title": "Skytech Aviation - Authorized Aircraft Parts Supplier",
@@ -56,99 +66,436 @@
     "hero": {
       "title": "Authorized Civil Aircraft Parts Supplier",
       "subtitle": "Your Trusted Partner for Authentic Aviation Components",
+      "description": "Providing premium quality aircraft parts and components to airlines, MROs, and distributors across the Middle East, Africa, and beyond.",
       "cta1": "View Products",
-      "cta2": "Become a Distributor"
+      "cta2": "Become a Distributor",
+      "trustBadge": "ASA Member Since 2015"
     },
     "features": {
       "title": "Why Choose Skytech Aviation",
+      "subtitle": "Excellence in Aviation Parts Supply",
       "authentic": {
         "title": "Authentic Parts",
-        "description": "100% genuine OEM parts with full traceability and certification"
+        "description": "100% genuine OEM parts with full traceability and certification documentation"
       },
       "global": {
         "title": "Global Distribution",
-        "description": "Serving airlines and MROs across the Middle East, Africa, and beyond"
+        "description": "Serving airlines and MROs across the Middle East, Africa, and beyond with reliable delivery"
       },
       "support": {
         "title": "Expert Support",
-        "description": "24/7 technical assistance and AOG support for critical needs"
+        "description": "24/7 technical assistance and AOG support for critical aircraft needs"
       },
       "pricing": {
         "title": "Competitive Pricing",
-        "description": "Best market rates with flexible payment terms for partners"
+        "description": "Best market rates with flexible payment terms for our valued partners"
       }
+    },
+    "stats": {
+      "title": "Our Track Record",
+      "years": "Years in Business",
+      "parts": "Parts Supplied",
+      "countries": "Countries Served",
+      "airlines": "Partner Airlines"
+    },
+    "about": {
+      "title": "About Skytech Aviation",
+      "description": "We are a certified aviation parts supplier specializing in authentic OEM components for civil aircraft. As proud members of the Aviation Suppliers Association (ASA), we maintain the highest standards of quality and reliability.",
+      "cta": "Learn More About Us"
+    },
+    "cta": {
+      "title": "Ready to Partner with Us?",
+      "description": "Join our growing network of satisfied distributors and airlines worldwide.",
+      "button": "Get in Touch"
     }
   },
   "products": {
     "title": "Aircraft Parts & Components",
-    "description": "Browse our extensive catalog of certified aircraft parts and components.",
+    "description": "Browse our extensive catalog of certified aircraft parts and components for all major aircraft types.",
+    "subtitle": "Premium Quality Aviation Components",
+    "searchPlaceholder": "Search for parts, part numbers, or categories...",
+    "filterBy": "Filter By",
+    "sortBy": "Sort By",
+    "noResults": "No products found matching your criteria",
     "categories": {
+      "all": "All Categories",
       "engines": "Aircraft Engines",
-      "avionics": "Avionics",
-      "landing": "Landing Gear",
+      "avionics": "Avionics & Electronics",
+      "landing": "Landing Gear Systems",
       "flight": "Flight Control Systems",
       "fuel": "Fuel Systems",
-      "interior": "Interior Components"
+      "interior": "Interior Components",
+      "hydraulic": "Hydraulic Systems",
+      "pneumatic": "Pneumatic Systems",
+      "electrical": "Electrical Systems"
+    },
+    "sort": {
+      "newest": "Newest First",
+      "oldest": "Oldest First",
+      "nameAZ": "Name (A-Z)",
+      "nameZA": "Name (Z-A)",
+      "category": "Category"
+    },
+    "card": {
+      "partNumber": "Part Number",
+      "category": "Category",
+      "availability": "Availability",
+      "inStock": "In Stock",
+      "onRequest": "On Request",
+      "requestQuote": "Request Quote",
+      "viewDetails": "View Details"
+    },
+    "details": {
+      "specifications": "Specifications",
+      "description": "Description",
+      "compatibility": "Compatible Aircraft",
+      "certification": "Certifications",
+      "relatedProducts": "Related Products",
+      "inquire": "Inquire About This Part"
     }
   },
   "services": {
     "title": "Our Services",
-    "description": "Comprehensive aviation parts and support services tailored to your needs.",
+    "description": "Comprehensive aviation parts and support services tailored to your specific needs.",
+    "subtitle": "Full-Spectrum Aviation Support",
     "sourcing": {
       "title": "Parts Sourcing & Procurement",
-      "description": "Expert sourcing of hard-to-find parts from trusted suppliers"
+      "description": "Expert sourcing of hard-to-find parts from trusted suppliers worldwide",
+      "details": "Our extensive network enables us to locate and procure rare and obsolete parts quickly and efficiently.",
+      "benefits": [
+        "Access to global supplier network",
+        "Competitive pricing",
+        "Fast turnaround times",
+        "Quality verification"
+      ]
     },
     "technical": {
       "title": "Technical Support",
-      "description": "Expert guidance on part selection and compatibility"
+      "description": "Expert guidance on part selection, compatibility, and installation",
+      "details": "Our certified technicians provide comprehensive support to ensure you get the right parts for your aircraft.",
+      "benefits": [
+        "Certified technical experts",
+        "Compatibility verification",
+        "Installation guidance",
+        "Documentation support"
+      ]
     },
     "aog": {
       "title": "AOG Support",
-      "description": "24/7 aircraft on ground emergency support"
+      "description": "24/7 aircraft on ground emergency support to minimize downtime",
+      "details": "When every minute counts, our AOG team works around the clock to get your aircraft back in service.",
+      "benefits": [
+        "24/7 availability",
+        "Expedited shipping",
+        "Priority processing",
+        "Global coverage"
+      ]
     },
     "logistics": {
       "title": "Logistics & Delivery",
-      "description": "Fast, secure worldwide shipping and customs handling"
+      "description": "Fast, secure worldwide shipping and customs handling",
+      "details": "We handle all aspects of logistics to ensure your parts arrive safely and on time.",
+      "benefits": [
+        "Worldwide shipping",
+        "Customs clearance",
+        "Real-time tracking",
+        "Secure packaging"
+      ]
+    },
+    "quality": {
+      "title": "Quality Assurance",
+      "description": "Rigorous inspection and certification of all parts",
+      "details": "Every part undergoes thorough quality checks to ensure it meets aviation standards.",
+      "benefits": [
+        "FAA/EASA certified",
+        "Traceability documentation",
+        "Quality certificates",
+        "Warranty coverage"
+      ]
+    },
+    "documentation": {
+      "title": "Documentation Support",
+      "description": "Complete airworthiness and certification documentation",
+      "details": "We provide all necessary paperwork for regulatory compliance and traceability.",
+      "benefits": [
+        "Airworthiness certificates",
+        "Chain of custody",
+        "Compliance documentation",
+        "Digital records"
+      ]
+    },
+    "process": {
+      "title": "How We Work",
+      "step1": {
+        "title": "Inquiry",
+        "description": "Submit your parts request with specifications"
+      },
+      "step2": {
+        "title": "Quote",
+        "description": "Receive detailed pricing and availability"
+      },
+      "step3": {
+        "title": "Order",
+        "description": "Confirm order with secure payment"
+      },
+      "step4": {
+        "title": "Delivery",
+        "description": "Fast, tracked shipping to your location"
+      }
     }
   },
   "distributors": {
     "title": "Become a Distributor",
     "description": "Partner with Skytech Aviation to expand your business opportunities in the aviation industry.",
-    "benefits": "Partnership Benefits",
-    "requirements": "Requirements",
-    "application": "Apply Now"
+    "subtitle": "Join Our Global Network",
+    "hero": {
+      "title": "Distributor Partnership Program",
+      "description": "Grow your aviation business with exclusive access to premium aircraft parts and dedicated support.",
+      "cta": "Apply Now"
+    },
+    "benefits": {
+      "title": "Partnership Benefits",
+      "subtitle": "What You Gain",
+      "exclusive": {
+        "title": "Exclusive Territory Rights",
+        "description": "Protected geographic areas for market development"
+      },
+      "pricing": {
+        "title": "Competitive Pricing",
+        "description": "Volume discounts and special distributor rates"
+      },
+      "support": {
+        "title": "Marketing Support",
+        "description": "Co-branded materials and promotional assistance"
+      },
+      "training": {
+        "title": "Training & Education",
+        "description": "Product training and technical certification"
+      },
+      "priority": {
+        "title": "Priority Service",
+        "description": "Dedicated account manager and expedited processing"
+      },
+      "inventory": {
+        "title": "Inventory Access",
+        "description": "Real-time access to our extensive parts inventory"
+      }
+    },
+    "requirements": {
+      "title": "Requirements",
+      "subtitle": "What We Look For",
+      "registration": {
+        "title": "Business Registration",
+        "description": "Valid business license and aviation industry registration"
+      },
+      "experience": {
+        "title": "Industry Experience",
+        "description": "Proven track record in aviation parts distribution"
+      },
+      "financial": {
+        "title": "Financial Stability",
+        "description": "Demonstrated financial capability and creditworthiness"
+      },
+      "facilities": {
+        "title": "Proper Facilities",
+        "description": "Adequate storage and handling capabilities"
+      },
+      "coverage": {
+        "title": "Geographic Coverage",
+        "description": "Established market presence in target region"
+      },
+      "compliance": {
+        "title": "Regulatory Compliance",
+        "description": "Knowledge of aviation regulations and standards"
+      }
+    },
+    "process": {
+      "title": "Application Process",
+      "step1": "Submit Application",
+      "step2": "Initial Review",
+      "step3": "Interview & Assessment",
+      "step4": "Agreement Signing",
+      "step5": "Onboarding & Training"
+    },
+    "testimonials": {
+      "title": "What Our Partners Say",
+      "testimonial1": {
+        "text": "Partnering with Skytech Aviation has been transformative for our business. Their support and product quality are unmatched.",
+        "author": "Ahmed Al-Mansouri",
+        "company": "Middle East Aviation Services"
+      }
+    },
+    "cta": {
+      "title": "Ready to Partner?",
+      "description": "Take the first step towards a profitable partnership.",
+      "button": "Submit Application"
+    },
+    "form": {
+      "title": "Distributor Application Form",
+      "companyName": "Company Name",
+      "contactPerson": "Contact Person",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "website": "Company Website",
+      "country": "Country",
+      "city": "City",
+      "yearsInBusiness": "Years in Business",
+      "currentRevenue": "Annual Revenue",
+      "targetMarket": "Target Market/Region",
+      "references": "Business References",
+      "license": "Business License",
+      "uploadLicense": "Upload License Document",
+      "comments": "Additional Comments",
+      "submit": "Submit Application",
+      "successMessage": "Application submitted successfully! We'll review and contact you within 5 business days."
+    }
   },
   "about": {
     "title": "About Skytech Aviation",
     "description": "Learn about our commitment to excellence in aviation parts supply and distribution.",
-    "mission": "Our Mission",
-    "vision": "Our Vision",
-    "values": "Core Values",
-    "certifications": "Certifications & Memberships"
+    "subtitle": "Excellence Since 2015",
+    "intro": {
+      "title": "Who We Are",
+      "text": "Skytech Aviation is a leading provider of authentic OEM aircraft parts and components, serving airlines, MROs, and distributors across the globe. As proud members of the Aviation Suppliers Association (ASA), we uphold the highest standards of quality, safety, and customer service."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "text": "To provide the aviation industry with authentic, certified aircraft parts while delivering exceptional service and building long-term partnerships based on trust and reliability."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "text": "To be the most trusted and preferred aviation parts supplier in the Middle East and Africa, recognized for our commitment to quality, innovation, and customer satisfaction."
+    },
+    "values": {
+      "title": "Core Values",
+      "quality": {
+        "title": "Quality First",
+        "description": "Never compromise on the authenticity and quality of parts"
+      },
+      "integrity": {
+        "title": "Integrity",
+        "description": "Honest, transparent business practices in all dealings"
+      },
+      "customer": {
+        "title": "Customer Focus",
+        "description": "Dedicated to exceeding customer expectations"
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Continuously improving processes and services"
+      },
+      "reliability": {
+        "title": "Reliability",
+        "description": "Consistent delivery on promises and commitments"
+      },
+      "safety": {
+        "title": "Safety",
+        "description": "Uncompromising commitment to aviation safety"
+      }
+    },
+    "history": {
+      "title": "Our Journey",
+      "2015": "Company founded in Dubai, UAE",
+      "2016": "Became ASA member",
+      "2018": "Expanded to African markets",
+      "2020": "Opened regional distribution center",
+      "2022": "Achieved ISO 9001 certification",
+      "2024": "Serving 50+ countries worldwide"
+    },
+    "certifications": {
+      "title": "Certifications & Memberships",
+      "asa": {
+        "title": "ASA Member",
+        "description": "Aviation Suppliers Association membership since 2016"
+      },
+      "iso": {
+        "title": "ISO 9001:2015",
+        "description": "Quality Management System certification"
+      },
+      "faa": {
+        "title": "FAA Approved",
+        "description": "Federal Aviation Administration approval"
+      },
+      "easa": {
+        "title": "EASA Certified",
+        "description": "European Aviation Safety Agency certification"
+      }
+    },
+    "team": {
+      "title": "Leadership Team",
+      "description": "Meet the experts behind Skytech Aviation"
+    },
+    "locations": {
+      "title": "Our Locations",
+      "headquarters": "Headquarters",
+      "regional": "Regional Offices"
+    }
   },
   "contact": {
     "title": "Contact Us",
     "description": "Get in touch with our team for inquiries, quotes, or support.",
+    "subtitle": "We're Here to Help",
     "form": {
+      "title": "Send Us a Message",
       "name": "Full Name",
       "email": "Email Address",
       "phone": "Phone Number",
       "subject": "Subject",
-      "message": "Message",
+      "message": "Your Message",
+      "attachment": "Attach File (Optional)",
       "send": "Send Message",
+      "sending": "Sending...",
       "subjects": {
         "general": "General Inquiry",
         "sales": "Sales & Quotes",
         "support": "Technical Support",
-        "partnership": "Partnership Opportunity"
-      }
+        "partnership": "Partnership Opportunity",
+        "aog": "AOG Emergency"
+      },
+      "validation": {
+        "nameRequired": "Please enter your name",
+        "emailRequired": "Please enter your email",
+        "emailInvalid": "Please enter a valid email address",
+        "phoneRequired": "Please enter your phone number",
+        "phoneInvalid": "Please enter a valid phone number",
+        "subjectRequired": "Please select a subject",
+        "messageRequired": "Please enter your message",
+        "messageMin": "Message must be at least 10 characters"
+      },
+      "success": "Thank you! Your message has been sent successfully. We'll respond within 24 hours.",
+      "error": "Sorry, there was an error sending your message. Please try again or contact us directly."
     },
     "info": {
       "title": "Contact Information",
+      "headquarters": "Headquarters",
       "address": "Address",
+      "addressLine1": "Skytech Aviation LLC",
+      "addressLine2": "Dubai International Airport Free Zone",
+      "addressLine3": "Building 5E, Office 201",
+      "addressLine4": "Dubai, United Arab Emirates",
       "phone": "Phone",
+      "phoneMain": "+971 4 XXX XXXX",
+      "phoneSales": "+971 4 XXX XXXX (Sales)",
+      "phoneSupport": "+971 4 XXX XXXX (Support)",
+      "phoneAOG": "+971 50 XXX XXXX (AOG 24/7)",
       "email": "Email",
-      "hours": "Business Hours"
+      "emailGeneral": "info@skytechaviation.com",
+      "emailSales": "sales@skytechaviation.com",
+      "emailSupport": "support@skytechaviation.com",
+      "hours": "Business Hours",
+      "hoursWeekday": "Sunday - Thursday: 9:00 AM - 6:00 PM GST",
+      "hoursClosed": "Friday - Saturday: Closed",
+      "hoursAOG": "AOG Support: 24/7/365"
+    },
+    "map": {
+      "title": "Find Us",
+      "directions": "Get Directions"
+    },
+    "social": {
+      "title": "Follow Us",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "facebook": "Facebook"
     }
   },
   "chat": {
@@ -157,11 +504,46 @@
     "send": "Send",
     "minimize": "Minimize chat",
     "maximize": "Open chat",
+    "welcome": "Hello! How can I help you today?",
     "quickActions": {
       "products": "What products do you offer?",
       "distributor": "How can I become a distributor?",
       "location": "Where are you located?",
       "asa": "Tell me about ASA membership"
+    },
+    "typing": "Typing...",
+    "offline": "Chat is currently offline. Please contact us via email.",
+    "error": "Sorry, I encountered an error. Please try again."
+  },
+  "errors": {
+    "404": {
+      "title": "Page Not Found",
+      "description": "The page you're looking for doesn't exist.",
+      "home": "Go to Homepage"
+    },
+    "500": {
+      "title": "Server Error",
+      "description": "Something went wrong on our end.",
+      "retry": "Try Again"
+    },
+    "network": {
+      "title": "Network Error",
+      "description": "Please check your internet connection."
+    },
+    "validation": {
+      "required": "This field is required",
+      "email": "Please enter a valid email address",
+      "phone": "Please enter a valid phone number",
+      "min": "Minimum {{count}} characters required",
+      "max": "Maximum {{count}} characters allowed",
+      "numeric": "Please enter numbers only",
+      "alphanumeric": "Please enter letters and numbers only"
     }
+  },
+  "notifications": {
+    "success": "Success!",
+    "error": "Error!",
+    "warning": "Warning!",
+    "info": "Information"
   }
 }

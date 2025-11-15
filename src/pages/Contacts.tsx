@@ -10,10 +10,11 @@ const Contacts: React.FC = () => {
   };
 
   return (
-    <div className="contacts-container">
-      <h1>Contact Us</h1>
-      <p>If you have any questions or inquiries, please fill out the form below:</p>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="container-custom py-8">
+      <div className="contacts-container">
+        <h1>Contact Us</h1>
+        <p>If you have any questions or inquiries, please fill out the form below:</p>
+        <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="name">Name:</label>
           <input
@@ -42,6 +43,7 @@ const Contacts: React.FC = () => {
         </div>
         <button type="submit">Submit</button>
       </form>
+      </div>
     </div>
   );
 };

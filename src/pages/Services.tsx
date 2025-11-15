@@ -2,7 +2,7 @@ import React from 'react';
 
 const Services: React.FC = () => {
   return (
-    <>
+    <div className="container-custom py-8">
       <h1>Our Services</h1>
       <p>
         At Skytech Aviation, we offer a range of services to support our clients in the aviation industry. Our services include:
@@ -17,7 +17,7 @@ const Services: React.FC = () => {
       <p>
         We are committed to providing high-quality services and ensuring customer satisfaction. Contact us for more information about how we can assist you.
       </p>
-    </>
+    </div>
   );
 };
 

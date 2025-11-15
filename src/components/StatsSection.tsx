@@ -70,12 +70,12 @@ const StatItem: React.FC<StatItemProps> = ({
 
   return (
     <div ref={elementRef} className="text-center">
-      <div className="text-5xl md:text-6xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+      <div className="text-5xl md:text-6xl font-bold text-blue-100 dark:text-blue-300 mb-2">
         {prefix}
         {formatNumber(count)}
         {suffix}
       </div>
-      <div className="text-lg md:text-xl text-gray-600 dark:text-gray-300 font-medium">
+      <div className="text-lg md:text-xl text-cyan-100 dark:text-cyan-300 font-medium">
         {label}
       </div>
     </div>

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { DarkModeProvider } from './contexts/DarkModeContext';
 import Layout from './components/Layout';
 import Home from './pages/Home';
-import Distributors from './pages/Distributors';
+import Distributors from './pages/DistributorsEnhanced';
 import About from './pages/About';
 import Products from './pages/Products';
 import Services from './pages/Services';

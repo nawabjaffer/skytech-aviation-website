@@ -76,6 +76,11 @@ const TestimonialsCarousel: React.FC = () => {
 
   const currentTestimonial = testimonials[currentIndex];
 
+  // Safety check - if currentTestimonial is undefined, don't render
+  if (!currentTestimonial) {
+    return null;
+  }
+
   return (
     <section className="py-20 bg-white dark:bg-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

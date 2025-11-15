@@ -353,107 +353,262 @@
   "about": {
     "title": "About Skytech Aviation",
     "description": "Learn about our commitment to excellence in aviation parts supply and distribution.",
-    "subtitle": "Excellence Since 2015",
-    "intro": {
-      "title": "Who We Are",
-      "text": "Skytech Aviation is a leading provider of authentic OEM aircraft parts and components, serving airlines, MROs, and distributors across the globe. As proud members of the Aviation Suppliers Association (ASA), we uphold the highest standards of quality, safety, and customer service."
+    "hero": {
+      "title": "About Skytech Aviation",
+      "subtitle": "Your Trusted Partner in Aviation Excellence"
     },
     "mission": {
       "title": "Our Mission",
-      "text": "To provide the aviation industry with authentic, certified aircraft parts while delivering exceptional service and building long-term partnerships based on trust and reliability."
+      "description": "To provide the aviation industry with authentic, certified aircraft parts while delivering exceptional service and building long-term partnerships based on trust and reliability."
     },
     "vision": {
       "title": "Our Vision",
-      "text": "To be the most trusted and preferred aviation parts supplier in the Middle East and Africa, recognized for our commitment to quality, innovation, and customer satisfaction."
+      "description": "To be the most trusted and preferred aviation parts supplier in the Middle East and Africa, recognized for our commitment to quality, innovation, and customer satisfaction."
     },
-    "values": {
-      "title": "Core Values",
-      "quality": {
-        "title": "Quality First",
-        "description": "Never compromise on the authenticity and quality of parts"
-      },
-      "integrity": {
-        "title": "Integrity",
-        "description": "Honest, transparent business practices in all dealings"
-      },
-      "customer": {
-        "title": "Customer Focus",
-        "description": "Dedicated to exceeding customer expectations"
-      },
-      "innovation": {
-        "title": "Innovation",
-        "description": "Continuously improving processes and services"
-      },
-      "reliability": {
-        "title": "Reliability",
-        "description": "Consistent delivery on promises and commitments"
-      },
-      "safety": {
-        "title": "Safety",
-        "description": "Uncompromising commitment to aviation safety"
+    "introduction": {
+      "title": "Who We Are",
+      "paragraph1": "Skytech Aviation is a leading provider of authentic OEM aircraft parts and components, serving airlines, MROs, and distributors across the globe. Founded in 2010, we have built a reputation for excellence in quality, reliability, and customer service.",
+      "paragraph2": "As proud members of the Aviation Suppliers Association (ASA) since 2015, we uphold the highest standards of quality, safety, and ethical business practices. Our commitment to authenticity ensures that every part we supply meets or exceeds aviation industry standards.",
+      "paragraph3": "With our extensive global network and deep industry expertise, we provide comprehensive solutions for all your aviation parts needs, from routine maintenance to AOG emergencies."
+    },
+    "asa": {
+      "title": "ASA Membership",
+      "description": "We are proud members of the Aviation Suppliers Association, the leading trade association for companies providing products and services to the global aviation and aerospace industries.",
+      "memberSince": "Member Since 2015"
+    },
+    "timeline": {
+      "title": "Company Milestones",
+      "milestones": {
+        "founded": {
+          "title": "Company Founded",
+          "description": "Skytech Aviation was established in Dubai, UAE with a vision to become the region's premier aircraft parts supplier"
+        },
+        "expansion": {
+          "title": "Regional Expansion",
+          "description": "Expanded operations across Middle East and opened our first international office in Sharjah"
+        },
+        "asa": {
+          "title": "ASA Membership",
+          "description": "Became proud members of the Aviation Suppliers Association, demonstrating our commitment to industry standards"
+        },
+        "certification": {
+          "title": "ISO 9001 Certification",
+          "description": "Achieved ISO 9001:2015 Quality Management System certification, reinforcing our dedication to quality"
+        },
+        "global": {
+          "title": "Global Network",
+          "description": "Expanded our distributor network to 50+ countries across Middle East, Africa, Europe, and Asia"
+        },
+        "innovation": {
+          "title": "Technology Innovation",
+          "description": "Launched advanced digital inventory management and real-time parts tracking systems"
+        }
       }
     },
-    "history": {
-      "title": "Our Journey",
-      "2015": "Company founded in Dubai, UAE",
-      "2016": "Became ASA member",
-      "2018": "Expanded to African markets",
-      "2020": "Opened regional distribution center",
-      "2022": "Achieved ISO 9001 certification",
-      "2024": "Serving 50+ countries worldwide"
-    },
     "certifications": {
-      "title": "Certifications & Memberships",
-      "asa": {
-        "title": "ASA Member",
-        "description": "Aviation Suppliers Association membership since 2016"
-      },
-      "iso": {
-        "title": "ISO 9001:2015",
-        "description": "Quality Management System certification"
-      },
-      "faa": {
-        "title": "FAA Approved",
-        "description": "Federal Aviation Administration approval"
-      },
-      "easa": {
-        "title": "EASA Certified",
-        "description": "European Aviation Safety Agency certification"
+      "title": "Certifications & Accreditations",
+      "subtitle": "Industry-Leading Standards",
+      "items": {
+        "iso9001": {
+          "name": "ISO 9001:2015",
+          "description": "Quality Management System"
+        },
+        "as9120": {
+          "name": "AS9120",
+          "description": "Aerospace Quality Management"
+        },
+        "easa": {
+          "name": "EASA Part-145",
+          "description": "European Aviation Safety Agency"
+        },
+        "faa": {
+          "name": "FAA Approved",
+          "description": "Federal Aviation Administration"
+        }
+      }
+    },
+    "values": {
+      "title": "Our Core Values",
+      "subtitle": "The Principles That Guide Us",
+      "items": {
+        "integrity": {
+          "title": "Integrity",
+          "description": "Honest, transparent business practices in all our dealings with customers and partners"
+        },
+        "quality": {
+          "title": "Quality Excellence",
+          "description": "Never compromise on the authenticity and quality of parts we supply"
+        },
+        "reliability": {
+          "title": "Reliability",
+          "description": "Consistent delivery on our promises and commitments to customers"
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Continuously improving our processes, services, and technology"
+        },
+        "customer": {
+          "title": "Customer Focus",
+          "description": "Dedicated to exceeding customer expectations in every interaction"
+        },
+        "safety": {
+          "title": "Safety First",
+          "description": "Uncompromising commitment to aviation safety standards"
+        }
       }
     },
     "team": {
       "title": "Leadership Team",
-      "description": "Meet the experts behind Skytech Aviation"
+      "subtitle": "Meet the Experts Behind Skytech Aviation",
+      "members": {
+        "ceo": {
+          "name": "Mohammed Al-Hashimi",
+          "position": "Chief Executive Officer",
+          "bio": "With over 25 years in aviation industry, Mohammed leads Skytech Aviation's strategic vision and global expansion."
+        },
+        "cto": {
+          "name": "Sarah Williams",
+          "position": "Chief Technology Officer",
+          "bio": "Sarah oversees our technology infrastructure and digital transformation initiatives, ensuring cutting-edge solutions."
+        },
+        "sales": {
+          "name": "John Peterson",
+          "position": "VP of Sales & Business Development",
+          "bio": "John leads our global sales team and manages key partnerships with airlines and distributors worldwide."
+        }
+      }
     },
     "locations": {
-      "title": "Our Locations",
-      "headquarters": "Headquarters",
-      "regional": "Regional Offices"
+      "title": "Office Locations",
+      "subtitle": "Find Us Worldwide",
+      "main": {
+        "title": "Main Office - Dubai",
+        "address": {
+          "label": "Address",
+          "street": "Building 5E, Office 201, Dubai International Airport Free Zone",
+          "city": "Dubai, United Arab Emirates"
+        },
+        "phone": {
+          "label": "Phone",
+          "number": "+971 4 XXX XXXX"
+        },
+        "email": {
+          "label": "Email",
+          "address": "info@skytechaviation.com"
+        }
+      },
+      "regional": {
+        "title": "Regional Office - Sharjah",
+        "address": {
+          "label": "Address",
+          "street": "Sharjah Airport International Free Zone",
+          "city": "Sharjah, United Arab Emirates"
+        },
+        "phone": {
+          "label": "Phone",
+          "number": "+971 6 XXX XXXX"
+        },
+        "email": {
+          "label": "Email",
+          "address": "sharjah@skytechaviation.com"
+        }
+      }
+    },
+    "awards": {
+      "title": "Awards & Recognition",
+      "subtitle": "Celebrating Excellence",
+      "items": {
+        "excellence": {
+          "title": "Aviation Excellence Award",
+          "year": "2023",
+          "issuer": "Middle East Aviation Summit"
+        },
+        "supplier": {
+          "title": "Best Supplier of the Year",
+          "year": "2022",
+          "issuer": "UAE Aviation Awards"
+        },
+        "innovation": {
+          "title": "Innovation in Logistics",
+          "year": "2022",
+          "issuer": "Aviation Suppliers Association"
+        },
+        "safety": {
+          "title": "Safety Excellence Award",
+          "year": "2021",
+          "issuer": "International Air Transport Association"
+        },
+        "service": {
+          "title": "Outstanding Customer Service",
+          "year": "2021",
+          "issuer": "Customer Choice Awards"
+        },
+        "growth": {
+          "title": "Fastest Growing Supplier",
+          "year": "2020",
+          "issuer": "Gulf Aviation Magazine"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Work with Us?",
+      "subtitle": "Let's build a successful partnership together",
+      "contact": "Contact Us",
+      "products": "View Products"
     }
   },
   "contact": {
     "title": "Contact Us",
     "description": "Get in touch with our team for inquiries, quotes, or support.",
-    "subtitle": "We're Here to Help",
+    "hero": {
+      "title": "Contact Us",
+      "subtitle": "We're Here to Help 24/7"
+    },
+    "info": {
+      "office": {
+        "title": "Office Address",
+        "address": "Building 5E, Office 201\nDubai International Airport Free Zone\nDubai, United Arab Emirates"
+      },
+      "sales": {
+        "title": "Sales",
+        "phone": "+971 4 XXX XXXX"
+      },
+      "email": {
+        "title": "Email",
+        "address": "info@skytechaviation.com"
+      },
+      "hours": {
+        "title": "Business Hours",
+        "schedule": "Sun-Thu: 9:00 AM - 6:00 PM GST"
+      }
+    },
     "form": {
       "title": "Send Us a Message",
-      "name": "Full Name",
-      "email": "Email Address",
-      "phone": "Phone Number",
-      "subject": "Subject",
-      "message": "Your Message",
-      "attachment": "Attach File (Optional)",
-      "send": "Send Message",
-      "sending": "Sending...",
+      "subtitle": "Fill out the form below and we'll get back to you within 24 hours",
+      "fields": {
+        "name": "Full Name",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "subject": "Subject",
+        "message": "Your Message",
+        "file": "Attach File"
+      },
+      "placeholders": {
+        "name": "Enter your full name",
+        "email": "your@email.com",
+        "phone": "+971 XX XXX XXXX",
+        "subject": "Select a subject",
+        "message": "Tell us how we can help you..."
+      },
       "subjects": {
         "general": "General Inquiry",
         "sales": "Sales & Quotes",
         "support": "Technical Support",
-        "partnership": "Partnership Opportunity",
-        "aog": "AOG Emergency"
+        "partnership": "Partnership Opportunity"
       },
       "validation": {
         "nameRequired": "Please enter your name",
+        "nameMin": "Name must be at least 2 characters",
         "emailRequired": "Please enter your email",
         "emailInvalid": "Please enter a valid email address",
         "phoneRequired": "Please enter your phone number",
@@ -462,40 +617,20 @@
         "messageRequired": "Please enter your message",
         "messageMin": "Message must be at least 10 characters"
       },
+      "fileHint": "Accepted formats: PDF, DOC, DOCX, TXT (Max 5MB)",
+      "recaptchaNotice": "This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.",
+      "submit": "Send Message",
+      "submitting": "Sending...",
       "success": "Thank you! Your message has been sent successfully. We'll respond within 24 hours.",
       "error": "Sorry, there was an error sending your message. Please try again or contact us directly."
     },
-    "info": {
-      "title": "Contact Information",
-      "headquarters": "Headquarters",
-      "address": "Address",
-      "addressLine1": "Skytech Aviation LLC",
-      "addressLine2": "Dubai International Airport Free Zone",
-      "addressLine3": "Building 5E, Office 201",
-      "addressLine4": "Dubai, United Arab Emirates",
-      "phone": "Phone",
-      "phoneMain": "+971 4 XXX XXXX",
-      "phoneSales": "+971 4 XXX XXXX (Sales)",
-      "phoneSupport": "+971 4 XXX XXXX (Support)",
-      "phoneAOG": "+971 50 XXX XXXX (AOG 24/7)",
-      "email": "Email",
-      "emailGeneral": "info@skytechaviation.com",
-      "emailSales": "sales@skytechaviation.com",
-      "emailSupport": "support@skytechaviation.com",
-      "hours": "Business Hours",
-      "hoursWeekday": "Sunday - Thursday: 9:00 AM - 6:00 PM GST",
-      "hoursClosed": "Friday - Saturday: Closed",
-      "hoursAOG": "AOG Support: 24/7/365"
-    },
-    "map": {
-      "title": "Find Us",
-      "directions": "Get Directions"
-    },
     "social": {
-      "title": "Follow Us",
-      "linkedin": "LinkedIn",
-      "twitter": "Twitter",
-      "facebook": "Facebook"
+      "title": "Connect With Us"
+    },
+    "downloads": {
+      "title": "Download Resources",
+      "productCatalog": "Product Catalog (PDF)",
+      "companyBrochure": "Company Brochure (PDF)"
     }
   },
   "chat": {

@@ -62,11 +62,57 @@ export interface Testimonial {
 export interface Product {
   id: string;
   name: string;
+  partNumber?: string; // e.g., "CFM56-7B-001"
   category: string;
   description: string;
   imageUrl: string;
   availability: 'In Stock' | 'On Request' | 'Limited';
   link?: string;
+  specifications?: string; // JSON string or comma-separated specs
+  manufacturer?: string; // e.g., "CFM International", "Honeywell"
+  aircraftModel?: string; // e.g., "Boeing 737", "Airbus A320"
+  active: boolean;
+}
+
+export interface DistributorApplication {
+  id: string;
+  companyName: string;
+  contactPerson: string;
+  email: string;
+  phone: string;
+  country: string;
+  city: string;
+  address: string;
+  website?: string;
+  yearEstablished: string;
+  numberOfEmployees: string;
+  annualRevenue?: string;
+  businessLicense: string; // URL or file reference
+  taxId: string;
+  industryExperience: string; // Years
+  currentAircraftClients?: string; // Comma-separated list
+  territoryPreferences: string; // Comma-separated countries/regions
+  warehouseFacilities: string; // Yes/No
+  certifications?: string; // Comma-separated (ISO, AS9120, etc.)
+  references: string; // JSON string or pipe-separated references
+  businessPlan?: string; // URL or file reference
+  status: 'Pending' | 'Under Review' | 'Approved' | 'Rejected';
+  submittedDate: string;
+  notes?: string;
+}
+
+export interface ExistingDistributor {
+  id: string;
+  companyName: string;
+  country: string;
+  city: string;
+  region: string; // e.g., "Middle East", "Europe", "Asia"
+  latitude: number;
+  longitude: number;
+  yearsPartner: number;
+  specializations: string; // Comma-separated categories
+  website?: string;
+  logo?: string;
   active: boolean;
 }
 
@@ -103,7 +149,9 @@ export const SHEET_RANGES = {
   heroSlides: 'HeroSlides!A2:L100',
   stats: 'Stats!A2:F100',
   testimonials: 'Testimonials!A2:H100',
-  products: 'Products!A2:H100',
+  products: 'Products!A2:L100', // Extended to L for new fields
+  distributorApplications: 'DistributorApplications!A2:Z100', // Application submissions
+  existingDistributors: 'ExistingDistributors!A2:L100', // Current distributors for map
 };
 
 // Fallback hero slides when Google Sheets is not configured
@@ -229,43 +277,254 @@ export const DEFAULT_PRODUCTS: Product[] = [
   {
     id: '1',
     name: 'CFM56-7B Engine Components',
-    category: 'Engines',
-    description: 'Genuine CFM56-7B engine parts and components with full certification',
+    partNumber: 'CFM56-7B-27',
+    category: 'Aircraft Engines',
+    manufacturer: 'CFM International',
+    aircraftModel: 'Boeing 737NG',
+    description: 'Genuine CFM56-7B engine parts and components with full certification and traceability documentation',
     imageUrl: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80',
     availability: 'In Stock',
-    link: '/products',
+    specifications: 'Thrust: 20,000-27,300 lbf | Weight: 5,216 lb | Length: 98.9 in',
+    link: '/products/cfm56-7b',
     active: true,
   },
   {
     id: '2',
-    name: 'Boeing 737 Landing Gear',
+    name: 'Boeing 737 Landing Gear Assembly',
+    partNumber: 'B737-LG-001',
     category: 'Landing Gear',
-    description: 'OEM landing gear components for Boeing 737 series aircraft',
+    manufacturer: 'Boeing',
+    aircraftModel: 'Boeing 737',
+    description: 'OEM landing gear components and assemblies for Boeing 737 series aircraft with complete inspection records',
     imageUrl: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
     availability: 'On Request',
-    link: '/products',
+    specifications: 'Material: High-strength steel | Certification: FAA/EASA approved',
+    link: '/products/b737-landing-gear',
     active: true,
   },
   {
     id: '3',
-    name: 'Honeywell Avionics Systems',
+    name: 'Honeywell Primus Epic Avionics Suite',
+    partNumber: 'HON-PE-2000',
     category: 'Avionics',
-    description: 'Advanced avionics and navigation systems from Honeywell',
+    manufacturer: 'Honeywell',
+    aircraftModel: 'Various Business Jets',
+    description: 'Advanced integrated avionics system with flight management, navigation, and communication capabilities',
     imageUrl: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80',
     availability: 'In Stock',
-    link: '/products',
+    specifications: 'Display: 15" LCD | Features: WAAS GPS, TCAS, TAWS',
+    link: '/products/honeywell-primus',
     active: true,
   },
   {
     id: '4',
     name: 'Airbus A320 Hydraulic Pump',
-    category: 'Hydraulics',
-    description: 'Certified hydraulic pumps and systems for Airbus A320 family',
+    partNumber: 'A320-HYD-4500',
+    category: 'Flight Control Systems',
+    manufacturer: 'Airbus',
+    aircraftModel: 'Airbus A320 Family',
+    description: 'Certified hydraulic pumps and systems for Airbus A320 family with zero-time warranty',
     imageUrl: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80',
     availability: 'Limited',
-    link: '/products',
+    specifications: 'Pressure: 3000 PSI | Flow Rate: 30 GPM | Type: Variable Displacement',
+    link: '/products/a320-hydraulic',
+    active: true,
+  },
+  {
+    id: '5',
+    name: 'Pratt & Whitney PW4000 Components',
+    partNumber: 'PW4000-112',
+    category: 'Aircraft Engines',
+    manufacturer: 'Pratt & Whitney',
+    aircraftModel: 'Boeing 747/767/777',
+    description: 'Genuine PW4000 engine components including turbine blades, combustion chambers, and fuel nozzles',
+    imageUrl: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80',
+    availability: 'In Stock',
+    specifications: 'Thrust: 52,000-99,040 lbf | Applications: Wide-body aircraft',
+    link: '/products/pw4000',
+    active: true,
+  },
+  {
+    id: '6',
+    name: 'Airbus A380 Fuel Management System',
+    partNumber: 'A380-FMS-7800',
+    category: 'Fuel Systems',
+    manufacturer: 'Airbus',
+    aircraftModel: 'Airbus A380',
+    description: 'Complete fuel management and distribution system with electronic controls and monitoring',
+    imageUrl: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
+    availability: 'On Request',
+    specifications: 'Capacity: 320,000 liters | Tanks: 11 fuel tanks | Control: Digital FADEC',
+    link: '/products/a380-fuel',
+    active: true,
+  },
+  {
+    id: '7',
+    name: 'Collins Aerospace Pro Line Fusion',
+    partNumber: 'COL-PLF-5000',
+    category: 'Avionics',
+    manufacturer: 'Collins Aerospace',
+    aircraftModel: 'Business Jets',
+    description: 'Next-generation integrated avionics suite with touchscreen controls and synthetic vision',
+    imageUrl: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80',
+    availability: 'In Stock',
+    specifications: 'Display: Multi-touch 15" | Features: SVS, XM Weather, ADS-B',
+    link: '/products/proline-fusion',
+    active: true,
+  },
+  {
+    id: '8',
+    name: 'Boeing 787 Dreamliner Cabin Interior',
+    partNumber: 'B787-INT-2100',
+    category: 'Interior Components',
+    manufacturer: 'Boeing',
+    aircraftModel: 'Boeing 787',
+    description: 'Premium cabin interior components including seats, galleys, lavatories, and overhead bins',
+    imageUrl: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
+    availability: 'Limited',
+    specifications: 'Configuration: Business/Economy | Material: Lightweight composites',
+    link: '/products/b787-interior',
+    active: true,
+  },
+  {
+    id: '9',
+    name: 'GE90-115B Engine Parts',
+    partNumber: 'GE90-115B-45',
+    category: 'Aircraft Engines',
+    manufacturer: 'GE Aviation',
+    aircraftModel: 'Boeing 777',
+    description: 'World\'s most powerful jet engine components with complete documentation and certification',
+    imageUrl: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80',
+    availability: 'On Request',
+    specifications: 'Thrust: 115,000 lbf | Bypass Ratio: 8.7:1 | Fan Diameter: 128 in',
+    link: '/products/ge90-115b',
+    active: true,
+  },
+  {
+    id: '10',
+    name: 'Airbus A350 Carbon Brakes',
+    partNumber: 'A350-BRK-9000',
+    category: 'Landing Gear',
+    manufacturer: 'Safran Landing Systems',
+    aircraftModel: 'Airbus A350',
+    description: 'Advanced carbon brake system with anti-skid technology and wear monitoring',
+    imageUrl: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
+    availability: 'In Stock',
+    specifications: 'Material: Carbon-carbon composite | Weight: 40% lighter | Life: 2000 landings',
+    link: '/products/a350-brakes',
+    active: true,
+  },
+  {
+    id: '11',
+    name: 'Thales TopFlight Avionics',
+    partNumber: 'THA-TF-3500',
+    category: 'Avionics',
+    manufacturer: 'Thales',
+    aircraftModel: 'Regional Jets',
+    description: 'Integrated avionics solution for regional aircraft with full IFR capability',
+    imageUrl: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80',
+    availability: 'In Stock',
+    specifications: 'Display: Dual 12" screens | Navigation: Multi-sensor GPS/IRS',
+    link: '/products/thales-topflight',
+    active: true,
+  },
+  {
+    id: '12',
+    name: 'Boeing 737 MAX APU',
+    partNumber: 'B737MAX-APU-7200',
+    category: 'Aircraft Engines',
+    manufacturer: 'Honeywell',
+    aircraftModel: 'Boeing 737 MAX',
+    description: 'Auxiliary Power Unit providing electrical power and compressed air for aircraft systems',
+    imageUrl: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80',
+    availability: 'Limited',
+    specifications: 'Power Output: 90 kVA | Operating Altitude: Up to 43,000 ft',
+    link: '/products/b737max-apu',
+    active: true,
+  },
+];
+
+// Default existing distributors for world map
+export const DEFAULT_DISTRIBUTORS: ExistingDistributor[] = [
+  {
+    id: '1',
+    companyName: 'Gulf Aviation Parts LLC',
+    country: 'United Arab Emirates',
+    city: 'Dubai',
+    region: 'Middle East',
+    latitude: 25.2048,
+    longitude: 55.2708,
+    yearsPartner: 8,
+    specializations: 'Aircraft Engines, Avionics, Landing Gear',
+    website: 'https://example.com',
+    active: true,
+  },
+  {
+    id: '2',
+    companyName: 'Euro Aero Supply',
+    country: 'Germany',
+    city: 'Frankfurt',
+    region: 'Europe',
+    latitude: 50.1109,
+    longitude: 8.6821,
+    yearsPartner: 5,
+    specializations: 'Flight Control Systems, Fuel Systems',
+    website: 'https://example.com',
+    active: true,
+  },
+  {
+    id: '3',
+    companyName: 'Asia Pacific Aviation Parts',
+    country: 'Singapore',
+    city: 'Singapore',
+    region: 'Asia Pacific',
+    latitude: 1.3521,
+    longitude: 103.8198,
+    yearsPartner: 6,
+    specializations: 'Avionics, Interior Components',
+    website: 'https://example.com',
+    active: true,
+  },
+  {
+    id: '4',
+    companyName: 'African Aviation Solutions',
+    country: 'South Africa',
+    city: 'Johannesburg',
+    region: 'Africa',
+    latitude: -26.2041,
+    longitude: 28.0473,
+    yearsPartner: 4,
+    specializations: 'Aircraft Engines, Landing Gear',
+    website: 'https://example.com',
+    active: true,
+  },
+  {
+    id: '5',
+    companyName: 'Americas Aviation Group',
+    country: 'United States',
+    city: 'Miami',
+    region: 'Americas',
+    latitude: 25.7617,
+    longitude: -80.1918,
+    yearsPartner: 7,
+    specializations: 'All Categories',
+    website: 'https://example.com',
+    active: true,
+  },
+  {
+    id: '6',
+    companyName: 'Middle East Aero Trading',
+    country: 'Saudi Arabia',
+    city: 'Riyadh',
+    region: 'Middle East',
+    latitude: 24.7136,
+    longitude: 46.6753,
+    yearsPartner: 3,
+    specializations: 'Aircraft Engines, Fuel Systems',
+    website: 'https://example.com',
     active: true,
   },
 ];
 
 export default config;
+

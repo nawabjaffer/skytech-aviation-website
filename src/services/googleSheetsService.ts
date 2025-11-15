@@ -4,10 +4,13 @@ import googleSheetsConfig, {
   StatItem,
   Testimonial,
   Product,
+  ExistingDistributor,
+  DistributorApplication,
   DEFAULT_HERO_SLIDES,
   DEFAULT_STATS,
   DEFAULT_TESTIMONIALS,
   DEFAULT_PRODUCTS,
+  DEFAULT_DISTRIBUTORS,
   SHEET_RANGES,
 } from '../config/googleSheets';
 
@@ -27,6 +30,7 @@ class GoogleSheetsService {
   private statsCache: CacheItem<StatItem> | null = null;
   private testimonialsCache: CacheItem<Testimonial> | null = null;
   private productsCache: CacheItem<Product> | null = null;
+  private distributorsCache: CacheItem<ExistingDistributor> | null = null;
   private cacheDuration = 5 * 60 * 1000; // 5 minutes
 
   /**
@@ -326,7 +330,22 @@ class GoogleSheetsService {
     for (const row of rows) {
       if (!row || row.length === 0) continue;
 
-      const [id, name, category, description, imageUrl, availability, link, active] = row;
+      // Updated column mapping to match extended Product interface
+      // A-L: id, name, partNumber, category, manufacturer, aircraftModel, description, imageUrl, availability, specifications, link, active
+      const [
+        id,
+        name,
+        partNumber,
+        category,
+        manufacturer,
+        aircraftModel,
+        description,
+        imageUrl,
+        availability,
+        specifications,
+        link,
+        active
+      ] = row;
 
       if (active?.toLowerCase() !== 'true') continue;
       if (!id || !name || !imageUrl) continue;
@@ -338,16 +357,141 @@ class GoogleSheetsService {
       products.push({
         id: String(id),
         name: String(name),
+        partNumber: partNumber ? String(partNumber) : undefined,
         category: String(category || ''),
+        manufacturer: manufacturer ? String(manufacturer) : undefined,
+        aircraftModel: aircraftModel ? String(aircraftModel) : undefined,
         description: String(description || ''),
         imageUrl: String(imageUrl),
         availability: validAvailability as 'In Stock' | 'On Request' | 'Limited',
+        specifications: specifications ? String(specifications) : undefined,
         link: link ? String(link) : undefined,
         active: true,
       });
     }
 
     return products.length > 0 ? products : DEFAULT_PRODUCTS;
+  }
+
+  /**
+   * Fetch existing distributors for world map display
+   */
+  async getExistingDistributors(): Promise<ExistingDistributor[]> {
+    // Return cached data if still valid
+    if (this.distributorsCache && Date.now() - this.distributorsCache.timestamp < this.cacheDuration) {
+      return this.distributorsCache.data;
+    }
+
+    if (!googleSheetsConfig.sheetId) {
+      return DEFAULT_DISTRIBUTORS;
+    }
+
+    try {
+      const url = this.buildUrl(SHEET_RANGES.existingDistributors);
+      const response = await axios.get(url, { timeout: 10000 });
+      const distributors = this.parseExistingDistributors(response.data.values);
+      
+      this.distributorsCache = {
+        data: distributors,
+        timestamp: Date.now(),
+      };
+
+      return distributors;
+    } catch (error) {
+      console.error('Error fetching distributors:', error);
+      if (this.distributorsCache) {
+        return this.distributorsCache.data;
+      }
+      return DEFAULT_DISTRIBUTORS;
+    }
+  }
+
+  /**
+   * Submit distributor application to Google Sheets
+   * This requires Google Apps Script Web App endpoint
+   */
+  async submitDistributorApplication(application: Omit<DistributorApplication, 'id' | 'status' | 'submittedDate'>): Promise<{ success: boolean; message: string }> {
+    const webAppUrl = googleSheetsConfig.webhookUrl || import.meta.env.VITE_GOOGLE_WEBAPP_URL;
+    
+    if (!webAppUrl) {
+      console.error('Google Apps Script Web App URL not configured');
+      return {
+        success: false,
+        message: 'Form submission endpoint not configured. Please contact support.',
+      };
+    }
+
+    try {
+      const submissionData = {
+        ...application,
+        id: `APP-${Date.now()}`,
+        status: 'Pending',
+        submittedDate: new Date().toISOString(),
+      };
+
+      const response = await axios.post(webAppUrl, submissionData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        timeout: 15000, // 15 second timeout
+      });
+
+      if (response.data.success) {
+        return {
+          success: true,
+          message: 'Application submitted successfully! We will review your application and contact you within 5 business days.',
+        };
+      } else {
+        return {
+          success: false,
+          message: response.data.message || 'Submission failed. Please try again.',
+        };
+      }
+    } catch (error) {
+      console.error('Error submitting distributor application:', error);
+      return {
+        success: false,
+        message: 'Failed to submit application. Please try again or contact support.',
+      };
+    }
+  }
+
+  /**
+   * Parse existing distributors data from sheets
+   */
+  private parseExistingDistributors(rows: any[][]): ExistingDistributor[] {
+    if (!rows || rows.length === 0) {
+      return DEFAULT_DISTRIBUTORS;
+    }
+
+    const distributors: ExistingDistributor[] = [];
+
+    for (const row of rows) {
+      if (!row || row.length === 0) continue;
+
+      // A-L: id, companyName, country, city, region, latitude, longitude, yearsPartner, specializations, website, logo, active
+      const [id, companyName, country, city, region, latitude, longitude, yearsPartner, specializations, website, logo, active] = row;
+
+      if (active?.toLowerCase() !== 'true') continue;
+      if (!id || !companyName || !country) continue;
+
+      distributors.push({
+        id: String(id),
+        companyName: String(companyName),
+        country: String(country),
+        city: String(city || ''),
+        region: String(region || ''),
+        latitude: parseFloat(latitude) || 0,
+        longitude: parseFloat(longitude) || 0,
+        yearsPartner: parseInt(yearsPartner) || 0,
+        specializations: String(specializations || ''),
+        website: website ? String(website) : undefined,
+        logo: logo ? String(logo) : undefined,
+        active: true,
+      });
+    }
+
+    return distributors.length > 0 ? distributors : DEFAULT_DISTRIBUTORS;
   }
 
   /**
@@ -358,6 +502,7 @@ class GoogleSheetsService {
     this.statsCache = null;
     this.testimonialsCache = null;
     this.productsCache = null;
+    this.distributorsCache = null;
   }
 
   /**
@@ -370,6 +515,7 @@ class GoogleSheetsService {
       this.getStats(),
       this.getTestimonials(),
       this.getProducts(),
+      this.getExistingDistributors(),
     ]);
   }
 }

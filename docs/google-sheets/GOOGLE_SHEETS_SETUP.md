@@ -114,12 +114,16 @@ testimonial1 | Ahmed Al-Mansouri | Procurement Manager | Gulf Airlines | Excepti
 |--------|--------|------|---------|----------|
 | A | id | text | "product1" | ✅ |
 | B | name | text | "CFM56-7B Engine" | ✅ |
-| C | category | text | "Engines" | ✅ |
-| D | description | text | "High-performance turbofan engine..." | ✅ |
-| E | imageUrl | url | https://... | ✅ |
-| F | availability | text | "In Stock", "On Request", or "Limited" | ✅ |
-| G | link | url | /products/cfm56 | ✅ |
-| H | active | boolean | "TRUE" or "FALSE" | ✅ |
+| C | partNumber | text | "CFM56-7B-27" | ❌ |
+| D | category | text | "Aircraft Engines" | ✅ |
+| E | manufacturer | text | "CFM International" | ❌ |
+| F | aircraftModel | text | "Boeing 737NG" | ❌ |
+| G | description | text | "High-performance turbofan engine..." | ✅ |
+| H | imageUrl | url | https://... | ✅ |
+| I | availability | text | "In Stock", "On Request", or "Limited" | ✅ |
+| J | specifications | text | "Thrust: 20,000 lbf \| Weight: 5,216 lb" | ❌ |
+| K | link | url | /products/cfm56 | ❌ |
+| L | active | boolean | "TRUE" or "FALSE" | ✅ |
 
 **Availability Badge Colors:**
 - "In Stock" → Green badge
@@ -128,7 +132,7 @@ testimonial1 | Ahmed Al-Mansouri | Procurement Manager | Gulf Airlines | Excepti
 
 **Example Row 2:**
 ```
-product1 | CFM56-7B Engine | Engines | High-performance turbofan engine for Boeing 737NG series | https://... | In Stock | /products/cfm56 | TRUE
+product1 | CFM56-7B Engine Components | CFM56-7B-27 | Aircraft Engines | CFM International | Boeing 737NG | High-performance turbofan engine for Boeing 737NG series | https://... | In Stock | Thrust: 20,000-27,300 lbf | Weight: 5,216 lb | Length: 98.9 in | /products/cfm56 | TRUE
 ```
 
 ### Step 3: Make Sheet Public

@@ -3,12 +3,17 @@ import { Helmet } from 'react-helmet';
 
 interface SEOHeadProps {
   title: string;
-  description: string;
+  description?: string;
   keywords?: string;
   author?: string;
 }
 
-const SEOHead: React.FC<SEOHeadProps> = ({ title, description, keywords, author }) => {
+const SEOHead: React.FC<SEOHeadProps> = ({ 
+  title, 
+  description = 'Skytech Aviation - Authorized civil aircraft parts supplier and proud member of ASA', 
+  keywords, 
+  author 
+}) => {
   return (
     <Helmet>
       <title>{title}</title>

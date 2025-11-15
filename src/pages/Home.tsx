@@ -20,7 +20,8 @@ const Home: React.FC = () => {
       />
 
       {/* Hero Carousel - Full-screen with Google Sheets integration */}
-      <HeroCarousel autoPlayInterval={5000} />
+      {/* Auto-advance timing configured in src/config/googleSheets.ts (CAROUSEL_TIMING) */}
+      <HeroCarousel />
 
       {/* Features Section - Why Choose Skytech Aviation */}
       <FeaturesSection />

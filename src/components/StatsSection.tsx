@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { StatItem as StatData } from '../config/googleSheets';
+import googleSheetsService from '../services/googleSheetsService';
 
 interface StatItemProps {
   end: number;
@@ -84,29 +86,33 @@ const StatItem: React.FC<StatItemProps> = ({
 
 const StatsSection: React.FC = () => {
   const { t } = useTranslation();
+  const [stats, setStats] = useState<StatData[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const stats = [
-    {
-      key: 'years',
-      end: 15,
-      suffix: '+',
-    },
-    {
-      key: 'parts',
-      end: 10000,
-      suffix: '+',
-    },
-    {
-      key: 'countries',
-      end: 25,
-      suffix: '+',
-    },
-    {
-      key: 'airlines',
-      end: 50,
-      suffix: '+',
-    },
-  ];
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const data = await googleSheetsService.getStats();
+        setStats(data);
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-700 dark:from-blue-950 dark:to-blue-900">
+        <div className="container mx-auto px-4 text-center">
+          <div className="animate-pulse text-white">Loading stats...</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-700 dark:from-blue-950 dark:to-blue-900">
@@ -122,10 +128,11 @@ const StatsSection: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           {stats.map((stat) => (
             <StatItem
-              key={stat.key}
-              end={stat.end}
-              label={t(`home.stats.${stat.key}`)}
+              key={stat.id}
+              end={stat.value}
+              label={stat.label}
               suffix={stat.suffix}
+              prefix={stat.prefix}
             />
           ))}
         </div>

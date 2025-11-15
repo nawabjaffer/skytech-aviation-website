@@ -1,17 +1,26 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { HeroSlide } from '../config/googleSheets';
+import { HeroSlide, CAROUSEL_TIMING } from '../config/googleSheets';
 import googleSheetsService from '../services/googleSheetsService';
 
 interface HeroCarouselProps {
-  autoPlayInterval?: number; // milliseconds
+  autoPlayInterval?: number; // milliseconds (deprecated - use CAROUSEL_TIMING config instead)
 }
 
-const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) => {
+const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
   const [slides, setSlides] = useState<HeroSlide[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Get the current slide's auto-advance interval based on media type
+  const getCurrentSlideInterval = useCallback(() => {
+    if (slides.length === 0) return CAROUSEL_TIMING.imageSlideInterval;
+    const currentSlide = slides[currentIndex];
+    return currentSlide.mediaType === 'video' 
+      ? CAROUSEL_TIMING.videoSlideInterval 
+      : CAROUSEL_TIMING.imageSlideInterval;
+  }, [slides, currentIndex]);
 
   // Fetch slides from Google Sheets
   useEffect(() => {
@@ -29,23 +38,12 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) 
     fetchSlides();
   }, []);
 
-  // Auto-advance slides
-  useEffect(() => {
-    if (slides.length <= 1) return;
-
-    const interval = setInterval(() => {
-      nextSlide();
-    }, autoPlayInterval);
-
-    return () => clearInterval(interval);
-  }, [currentIndex, slides.length, autoPlayInterval]);
-
   const nextSlide = useCallback(() => {
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
       setIsTransitioning(false);
-    }, 300);
+    }, CAROUSEL_TIMING.transitionDuration);
   }, [slides.length]);
 
   const prevSlide = useCallback(() => {
@@ -53,7 +51,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) 
     setTimeout(() => {
       setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
       setIsTransitioning(false);
-    }, 300);
+    }, CAROUSEL_TIMING.transitionDuration);
   }, [slides.length]);
 
   const goToSlide = (index: number) => {
@@ -62,8 +60,19 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) 
     setTimeout(() => {
       setCurrentIndex(index);
       setIsTransitioning(false);
-    }, 300);
+    }, CAROUSEL_TIMING.transitionDuration);
   };
+
+  // Auto-advance slides with different timing for videos and images
+  useEffect(() => {
+    if (slides.length <= 1) return;
+
+    const interval = setInterval(() => {
+      nextSlide();
+    }, getCurrentSlideInterval());
+
+    return () => clearInterval(interval);
+  }, [currentIndex, slides.length, getCurrentSlideInterval, nextSlide]);
 
   if (loading) {
     return (

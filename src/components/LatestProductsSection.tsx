@@ -1,54 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
-interface Product {
-  id: string;
-  name: string;
-  partNumber: string;
-  category: string;
-  image: string;
-  availability: 'inStock' | 'onRequest';
-}
+import { Product } from '../config/googleSheets';
+import googleSheetsService from '../services/googleSheetsService';
 
 const LatestProductsSection: React.FC = () => {
   const { t } = useTranslation();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Sample products (in a real app, this would come from an API)
-  const featuredProducts: Product[] = [
-    {
-      id: '1',
-      name: 'CFM56-7B Engine',
-      partNumber: 'CFM56-7B27',
-      category: 'Aircraft Engines',
-      image: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80',
-      availability: 'inStock',
-    },
-    {
-      id: '2',
-      name: 'Boeing 737 Landing Gear',
-      partNumber: 'B737-LG-001',
-      category: 'Landing Gear Systems',
-      image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
-      availability: 'onRequest',
-    },
-    {
-      id: '3',
-      name: 'Honeywell Avionics Suite',
-      partNumber: 'HW-AV-2024',
-      category: 'Avionics & Electronics',
-      image: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&q=80',
-      availability: 'inStock',
-    },
-    {
-      id: '4',
-      name: 'Airbus A320 Hydraulic Pump',
-      partNumber: 'A320-HP-456',
-      category: 'Hydraulic Systems',
-      image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80',
-      availability: 'inStock',
-    },
-  ];
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await googleSheetsService.getProducts();
+        // Show only first 4 products
+        setProducts(data.slice(0, 4));
+      } catch (error) {
+        console.error('Error loading products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="py-20 bg-white dark:bg-gray-800">
+        <div className="container mx-auto px-4 text-center">
+          <div className="animate-pulse">Loading products...</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-20 bg-white dark:bg-gray-800">
@@ -65,7 +50,7 @@ const LatestProductsSection: React.FC = () => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {featuredProducts.map((product) => (
+          {products.map((product) => (
             <div
               key={product.id}
               className="group bg-gray-50 dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
@@ -73,7 +58,7 @@ const LatestProductsSection: React.FC = () => {
               {/* Product Image */}
               <div className="relative h-48 overflow-hidden">
                 <img
-                  src={product.image}
+                  src={product.imageUrl}
                   alt={product.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
@@ -81,14 +66,14 @@ const LatestProductsSection: React.FC = () => {
                 <div className="absolute top-4 right-4">
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      product.availability === 'inStock'
+                      product.availability === 'In Stock'
                         ? 'bg-green-500 text-white'
+                        : product.availability === 'Limited'
+                        ? 'bg-yellow-500 text-white'
                         : 'bg-orange-500 text-white'
                     }`}
                   >
-                    {product.availability === 'inStock'
-                      ? t('products.card.inStock')
-                      : t('products.card.onRequest')}
+                    {product.availability}
                   </span>
                 </div>
               </div>
@@ -105,29 +90,33 @@ const LatestProductsSection: React.FC = () => {
                   {product.name}
                 </h3>
 
-                {/* Part Number */}
-                <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                  <span className="font-semibold">{t('products.card.partNumber')}:</span>{' '}
-                  {product.partNumber}
-                </div>
+                {/* Description */}
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+                  {product.description}
+                </p>
 
                 {/* CTA Button */}
-                <button className="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-300 flex items-center justify-center group">
-                  {t('products.card.requestQuote')}
-                  <svg
-                    className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </button>
+                <Link
+                  to={product.link || '/products'}
+                  className="block w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-300 text-center group"
+                >
+                  <span className="flex items-center justify-center">
+                    {t('products.card.requestQuote')}
+                    <svg
+                      className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                      />
+                    </svg>
+                  </span>
+                </Link>
               </div>
             </div>
           ))}

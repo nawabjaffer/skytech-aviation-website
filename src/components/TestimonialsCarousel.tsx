@@ -1,56 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-
-interface Testimonial {
-  id: string;
-  text: string;
-  author: string;
-  company: string;
-  role?: string;
-  avatar?: string;
-  rating?: number;
-}
+import { Testimonial } from '../config/googleSheets';
+import googleSheetsService from '../services/googleSheetsService';
 
 const TestimonialsCarousel: React.FC = () => {
   const { t } = useTranslation();
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  // Sample testimonials (can be expanded or loaded from API)
-  const testimonials: Testimonial[] = [
-    {
-      id: '1',
-      text: 'Partnering with Skytech Aviation has been transformative for our business. Their support and product quality are unmatched.',
-      author: 'Ahmed Al-Mansouri',
-      company: 'Middle East Aviation Services',
-      role: 'CEO',
-      rating: 5,
-    },
-    {
-      id: '2',
-      text: 'Excellent service and authentic parts. The AOG support team responded within minutes and saved us critical downtime.',
-      author: 'Sarah Johnson',
-      company: 'Global Airlines MRO',
-      role: 'Procurement Manager',
-      rating: 5,
-    },
-    {
-      id: '3',
-      text: 'Their technical expertise and product traceability documentation are outstanding. A reliable partner for all our aircraft parts needs.',
-      author: 'Mohamed Hassan',
-      company: 'Emirates Aviation Solutions',
-      role: 'Technical Director',
-      rating: 5,
-    },
-    {
-      id: '4',
-      text: 'Fast delivery, competitive pricing, and exceptional customer service. Skytech Aviation is our go-to supplier for OEM parts.',
-      author: 'Elena Volkov',
-      company: 'Eastern European Airlines',
-      role: 'Supply Chain Manager',
-      rating: 5,
-    },
-  ];
+  // Fetch testimonials from Google Sheets
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const data = await googleSheetsService.getTestimonials();
+        setTestimonials(data);
+      } catch (error) {
+        console.error('Error loading testimonials:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
 
   // Auto-advance carousel
   useEffect(() => {
@@ -85,6 +59,20 @@ const TestimonialsCarousel: React.FC = () => {
       setIsTransitioning(false);
     }, 300);
   };
+
+  if (loading) {
+    return (
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4 text-center">
+          <div className="animate-pulse">Loading testimonials...</div>
+        </div>
+      </section>
+    );
+  }
+
+  if (testimonials.length === 0) {
+    return null;
+  }
 
   const currentTestimonial = testimonials[currentIndex];
 
@@ -132,13 +120,13 @@ const TestimonialsCarousel: React.FC = () => {
 
               {/* Testimonial Text */}
               <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-200 text-center mb-8 leading-relaxed italic">
-                "{currentTestimonial.text}"
+                "{currentTestimonial.content}"
               </p>
 
               {/* Author Info */}
               <div className="text-center">
                 <div className="font-bold text-xl text-gray-900 dark:text-white">
-                  {currentTestimonial.author}
+                  {currentTestimonial.name}
                 </div>
                 <div className="text-blue-600 dark:text-blue-400 font-medium">
                   {currentTestimonial.role}

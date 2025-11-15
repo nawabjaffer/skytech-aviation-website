@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gradient-aviation text-white mt-auto">
+    <footer className="bg-gradient-aviation dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 text-white mt-auto transition-colors duration-300">
       <div className="container-custom py-12">
         {/* Footer Grid */}
         <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-8 mb-8">

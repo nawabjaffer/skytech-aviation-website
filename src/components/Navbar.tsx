@@ -1,9 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import DarkModeToggle from './DarkModeToggle';
+import LanguageSelector from './LanguageSelector';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  // Handle scroll for backdrop blur effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -17,21 +30,27 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-aviation-blue shadow-lg backdrop-blur-sm bg-opacity-95">
+    <nav 
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-aviation-blue/95 dark:bg-gray-900/95 backdrop-blur-md shadow-xl' 
+          : 'bg-aviation-blue dark:bg-gray-900 shadow-lg'
+      }`}
+    >
       <div className="container-custom">
         <div className="flex justify-between items-center py-4">
           {/* Logo/Brand */}
           <div className="flex-shrink-0">
             <Link 
               to="/" 
-              className="text-white text-2xl font-bold font-heading hover:text-sky-blue transition-colors duration-300"
+              className="text-white text-2xl font-bold font-heading hover:text-sky-blue dark:hover:text-sky-blue-400 transition-colors duration-300"
             >
               Skytech Aviation
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <ul className="hidden desktop:flex items-center space-x-8">
+          <ul className="hidden desktop:flex items-center space-x-6">
             {navLinks.map((link) => (
               <li key={link.path}>
                 <Link
@@ -47,16 +66,28 @@ const Navbar: React.FC = () => {
                 </Link>
               </li>
             ))}
+            {/* Language Selector */}
+            <li>
+              <LanguageSelector />
+            </li>
+            {/* Dark Mode Toggle */}
+            <li>
+              <DarkModeToggle />
+            </li>
           </ul>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="desktop:hidden text-white focus:outline-none focus:ring-2 focus:ring-sky-blue rounded-lg p-2"
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
+          {/* Right side controls for mobile */}
+          <div className="flex items-center gap-3 desktop:hidden">
+            <LanguageSelector />
+            <DarkModeToggle />
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-white focus:outline-none focus:ring-2 focus:ring-sky-blue rounded-lg p-2"
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="w-6 h-6"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -71,6 +102,7 @@ const Navbar: React.FC = () => {
               )}
             </svg>
           </button>
+        </div>
         </div>
 
         {/* Mobile Navigation */}

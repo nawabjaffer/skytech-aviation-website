@@ -8,12 +8,21 @@
     @apply m-0 p-0 font-sans leading-relaxed;
   }
 
+  html {
+    @apply scroll-smooth;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply m-0 font-heading;
   }
 
   a {
     @apply no-underline;
+  }
+
+  /* Dark mode improvements */
+  .dark {
+    color-scheme: dark;
   }
 }
 
@@ -36,19 +45,19 @@
   }
 
   .card {
-    @apply bg-white rounded-xl shadow-lg p-6 transition-transform duration-300 hover:scale-105;
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-transform duration-300 hover:scale-105;
   }
 
   .input-field {
-    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-blue focus:border-transparent transition-all;
+    @apply w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-blue focus:border-transparent transition-all;
   }
 
   .section-title {
-    @apply text-3xl tablet:text-4xl desktop:text-5xl font-bold text-aviation-blue mb-6;
+    @apply text-3xl tablet:text-4xl desktop:text-5xl font-bold text-aviation-blue dark:text-sky-blue-400 mb-6;
   }
 
   .section-subtitle {
-    @apply text-lg tablet:text-xl text-gray-600 mb-8;
+    @apply text-lg tablet:text-xl text-gray-600 dark:text-gray-300 mb-8;
   }
 }
 

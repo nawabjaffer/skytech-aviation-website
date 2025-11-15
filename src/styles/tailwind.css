@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  html, body {
+    @apply m-0 p-0 font-sans leading-relaxed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply m-0 font-heading;
+  }
+
+  a {
+    @apply no-underline;
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-5 tablet:px-8 desktop:px-12;
+  }
+
+  .btn-primary {
+    @apply bg-sky-blue hover:bg-sky-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-aviation-blue hover:bg-aviation-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+
+  .btn-outline {
+    @apply border-2 border-sky-blue text-sky-blue hover:bg-sky-blue hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-lg p-6 transition-transform duration-300 hover:scale-105;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-blue focus:border-transparent transition-all;
+  }
+
+  .section-title {
+    @apply text-3xl tablet:text-4xl desktop:text-5xl font-bold text-aviation-blue mb-6;
+  }
+
+  .section-subtitle {
+    @apply text-lg tablet:text-xl text-gray-600 mb-8;
+  }
+}
+
+/* Custom utility styles */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-gradient-aviation {
+    background: linear-gradient(135deg, #1e40af 0%, #0ea5e9 100%);
+  }
+
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-md;
+  }
+}

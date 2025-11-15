@@ -63,8 +63,8 @@ const Footer: React.FC = () => {
                 </li>
               ))}
               <li className="pt-2">
-                <p className="text-sm">{t('footer.email')}: info@skytechaviation.com</p>
-                <p className="text-sm">{t('footer.phone')}: +971 XXX XXXX</p>
+                <p className="text-sm">{t('footer.email')}: info@skytech.ae</p>
+                <p className="text-sm">{t('footer.phone')}: +971 561 611 002</p>
                 <p className="text-sm mt-2">{t('footer.address')}</p>
               </li>
             </ul>

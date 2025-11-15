@@ -9,10 +9,10 @@
   },
   "footer": {
     "companyInfo": "Company Information",
-    "companyDesc": "Skytech Aviation is an authorized civil aircraft parts supplier and proud member of the Aviation Suppliers Association (ASA).",
+    "companyDesc": "Skytech Aviation is a trusted aviation company based in UAE, serving as an authorized civil aircraft parts supplier and proud member of the Aviation Suppliers Association (ASA).",
     "quickLinks": "Quick Links",
     "contactInfo": "Contact Information",
-    "address": "Dubai, United Arab Emirates",
+    "address": "Meydan Free Zone, The Meydan Hotel, Dubai, UAE",
     "phone": "Phone",
     "email": "Email",
     "businessHours": "Business Hours",
@@ -155,93 +155,180 @@
     }
   },
   "services": {
-    "title": "Our Services",
-    "description": "Comprehensive aviation parts and support services tailored to your specific needs.",
-    "subtitle": "Full-Spectrum Aviation Support",
-    "sourcing": {
-      "title": "Parts Sourcing & Procurement",
-      "description": "Expert sourcing of hard-to-find parts from trusted suppliers worldwide",
-      "details": "Our extensive network enables us to locate and procure rare and obsolete parts quickly and efficiently.",
-      "benefits": [
-        "Access to global supplier network",
-        "Competitive pricing",
-        "Fast turnaround times",
-        "Quality verification"
-      ]
+    "title": "Our Services | Skytech Aviation",
+    "description": "Comprehensive aviation parts and services including Brakes & Wheels, Airframe Components, Engine Parts, Aircraft Tools, Lubricants, Adhesives, and Aviation Fuel Supply.",
+    "hero": {
+      "title": "Professional Aviation Services",
+      "subtitle": "Complete solutions from nose to tail - supplying OEM & PMA parts for commercial and business aircraft",
+      "cta1": "Explore Services",
+      "cta2": "Get a Quote"
     },
-    "technical": {
-      "title": "Technical Support",
-      "description": "Expert guidance on part selection, compatibility, and installation",
-      "details": "Our certified technicians provide comprehensive support to ensure you get the right parts for your aircraft.",
-      "benefits": [
-        "Certified technical experts",
-        "Compatibility verification",
-        "Installation guidance",
-        "Documentation support"
-      ]
-    },
-    "aog": {
-      "title": "AOG Support",
-      "description": "24/7 aircraft on ground emergency support to minimize downtime",
-      "details": "When every minute counts, our AOG team works around the clock to get your aircraft back in service.",
-      "benefits": [
-        "24/7 availability",
-        "Expedited shipping",
-        "Priority processing",
-        "Global coverage"
-      ]
-    },
-    "logistics": {
-      "title": "Logistics & Delivery",
-      "description": "Fast, secure worldwide shipping and customs handling",
-      "details": "We handle all aspects of logistics to ensure your parts arrive safely and on time.",
-      "benefits": [
-        "Worldwide shipping",
-        "Customs clearance",
-        "Real-time tracking",
-        "Secure packaging"
-      ]
-    },
-    "quality": {
-      "title": "Quality Assurance",
-      "description": "Rigorous inspection and certification of all parts",
-      "details": "Every part undergoes thorough quality checks to ensure it meets aviation standards.",
-      "benefits": [
-        "FAA/EASA certified",
-        "Traceability documentation",
-        "Quality certificates",
-        "Warranty coverage"
-      ]
-    },
-    "documentation": {
-      "title": "Documentation Support",
-      "description": "Complete airworthiness and certification documentation",
-      "details": "We provide all necessary paperwork for regulatory compliance and traceability.",
-      "benefits": [
-        "Airworthiness certificates",
-        "Chain of custody",
-        "Compliance documentation",
-        "Digital records"
-      ]
+    "cards": {
+      "title": "Our Service Categories",
+      "subtitle": "Comprehensive aviation parts supply and professional services",
+      "keyFeatures": "Key Offerings",
+      "learnMore": "Learn More",
+      "items": {
+        "sourcing": {
+          "title": "Brakes & Wheels",
+          "description": "High-quality braking systems and wheels for both helicopters and airplanes from reputed manufacturers. Complete brake assemblies, wheel assemblies, and related components.",
+          "benefits": {
+            "0": "OEM and PMA certified brake systems",
+            "1": "Helicopter and airplane applications",
+            "2": "Complete assemblies and spare parts"
+          }
+        },
+        "technical": {
+          "title": "Airframe Components",
+          "description": "Structural parts, landing gear assemblies, wing components, fuselage sections, and all airframe-related parts to keep your aircraft structurally sound.",
+          "benefits": {
+            "0": "Landing gear systems and components",
+            "1": "Wing and fuselage assemblies",
+            "2": "Structural repair parts and accessories"
+          }
+        },
+        "aog": {
+          "title": "Engine Parts",
+          "description": "Comprehensive engine components for both helicopter and airplane engines. From complete engine assemblies to individual parts and accessories.",
+          "benefits": {
+            "0": "Helicopter engine components",
+            "1": "Airplane engine parts and assemblies",
+            "2": "Engine accessories and related systems"
+          }
+        },
+        "logistics": {
+          "title": "Aircraft Tools",
+          "description": "Professional-grade tools for aircraft maintenance and repair operations. Complete range of specialized aviation tools and equipment.",
+          "benefits": {
+            "0": "Maintenance and repair tools",
+            "1": "Specialized aviation equipment",
+            "2": "Calibrated and certified tools"
+          }
+        },
+        "quality": {
+          "title": "Lubricants & Chemicals",
+          "description": "Aviation-grade lubricants including engine oils, greases, hydraulic fluids, and specialty chemicals approved for aviation use.",
+          "benefits": {
+            "0": "Engine oils and aviation greases",
+            "1": "Hydraulic fluids and specialty lubricants",
+            "2": "Aviation-approved chemical products"
+          }
+        },
+        "documentation": {
+          "title": "Adhesives & Fuel Supply",
+          "description": "Structural adhesives, epoxy sealants suitable for aviation applications, plus aviation fuel supply and logistics services.",
+          "benefits": {
+            "0": "Structural adhesives and sealants",
+            "1": "Aviation-grade epoxy products",
+            "2": "Aviation fuel supply and logistics"
+          }
+        }
+      }
     },
     "process": {
       "title": "How We Work",
-      "step1": {
-        "title": "Inquiry",
-        "description": "Submit your parts request with specifications"
+      "subtitle": "Professional service process with quick response times",
+      "note": {
+        "title": "Fast Response",
+        "description": "Our professional team responds quickly to inquiries and resolves issues efficiently"
       },
-      "step2": {
-        "title": "Quote",
-        "description": "Receive detailed pricing and availability"
-      },
-      "step3": {
-        "title": "Order",
-        "description": "Confirm order with secure payment"
-      },
-      "step4": {
-        "title": "Delivery",
-        "description": "Fast, tracked shipping to your location"
+      "steps": {
+        "inquiry": {
+          "title": "Submit Inquiry",
+          "description": "Contact us with your parts requirement and specifications"
+        },
+        "quote": {
+          "title": "Expert Advice",
+          "description": "Receive expert consultation and competitive pricing from our team"
+        },
+        "order": {
+          "title": "Place Order",
+          "description": "Confirm your order with flexible payment options"
+        },
+        "delivery": {
+          "title": "Fast Delivery",
+          "description": "Receive authentic OEM/PMA parts with full documentation"
+        }
       }
+    },
+    "benefits": {
+      "title": "Why Choose Skytech Aviation",
+      "subtitle": "Professional service backed by industry expertise",
+      "items": {
+        "certified": {
+          "title": "ASA Member",
+          "description": "Proud member of Aviation Suppliers Association with commitment to quality standards"
+        },
+        "network": {
+          "title": "OEM & PMA Parts",
+          "description": "Global links with major manufacturers for authentic parts supply"
+        },
+        "support": {
+          "title": "Professional Team",
+          "description": "Expert advice on parts selection and quick issue resolution"
+        },
+        "pricing": {
+          "title": "Competitive Rates",
+          "description": "Regular pricing reviews to offer good value and competitive rates"
+        }
+      }
+    },
+    "support": {
+      "title": "Contact Our Team",
+      "subtitle": "Multiple ways to reach our professional team",
+      "channels": {
+        "hotline": {
+          "title": "Phone Support",
+          "description": "Call us for inquiries and expert parts consultation",
+          "number": "+971 561 611 002",
+          "availability": "Business Hours"
+        },
+        "email": {
+          "title": "Email Support",
+          "description": "Send detailed inquiries for expert advice and quotations",
+          "address": "info@skytech.ae",
+          "responseTime": "Quick response guaranteed"
+        },
+        "chat": {
+          "title": "Sales Inquiries",
+          "description": "Contact our sales team for parts requirements and pricing",
+          "button": "Contact Sales",
+          "availability": "sales@skytech.ae"
+        }
+      }
+    },
+    "downloads": {
+      "title": "Additional Services",
+      "subtitle": "Comprehensive professional capabilities and support",
+      "downloadButton": "Learn More",
+      "items": {
+        "catalog": {
+          "title": "Maintenance Support",
+          "description": "Professional maintenance support services and technical assistance",
+          "size": "Service Available"
+        },
+        "brochure": {
+          "title": "Pre-Purchase Inspections",
+          "description": "Comprehensive aircraft pre-purchase inspection services",
+          "size": "Service Available"
+        },
+        "certifications": {
+          "title": "Aircraft Delivery",
+          "description": "Professional aircraft delivery and positioning services",
+          "size": "Service Available"
+        },
+        "capabilities": {
+          "title": "MRO Representation",
+          "description": "Representation in Maintenance, Repair, and Overhaul markets",
+          "size": "Service Available"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Contact us today for expert advice on your aviation parts requirements",
+      "contact": "Contact Us Today",
+      "products": "View All Parts"
     }
   },
   "distributors": {
@@ -359,22 +446,22 @@
     },
     "mission": {
       "title": "Our Mission",
-      "description": "To provide the aviation industry with authentic, certified aircraft parts while delivering exceptional service and building long-term partnerships based on trust and reliability."
+      "description": "To deliver top-quality aircraft spare parts and accessories with expert advice and outstanding service, maintaining a broad product range at competitive rates while building lasting customer relationships."
     },
     "vision": {
       "title": "Our Vision",
-      "description": "To be the most trusted and preferred aviation parts supplier in the Middle East and Africa, recognized for our commitment to quality, innovation, and customer satisfaction."
+      "description": "To be the premier provider of aircraft spare parts and accessories in the region, recognized for high standards in quality, reliability, and customer satisfaction."
     },
     "introduction": {
       "title": "Who We Are",
-      "paragraph1": "Skytech Aviation is a leading provider of authentic OEM aircraft parts and components, serving airlines, MROs, and distributors across the globe. Founded in 2010, we have built a reputation for excellence in quality, reliability, and customer service.",
-      "paragraph2": "As proud members of the Aviation Suppliers Association (ASA) since 2015, we uphold the highest standards of quality, safety, and ethical business practices. Our commitment to authenticity ensures that every part we supply meets or exceeds aviation industry standards.",
-      "paragraph3": "With our extensive global network and deep industry expertise, we provide comprehensive solutions for all your aviation parts needs, from routine maintenance to AOG emergencies."
+      "paragraph1": "Skytech Aviation is a trusted aviation company based in UAE, specializing as an authorized civil aircraft parts supplier. We are proud members of the Aviation Suppliers Association (ASA), providing high-quality, reliable aircraft spare parts and accessories from nose to tail.",
+      "paragraph2": "Our strong professional team supports customers quickly, resolves issues efficiently, and provides expert advice on parts selection and compatibility. We emphasize quality, honesty, safety, integrity, and building strong customer relationships in everything we do.",
+      "paragraph3": "We trade in mid-life narrow-body business and commercial passenger/freighter aircraft, supplying OEM & PMA parts across multiple categories including avionics, tools, consumables, components, chemicals, life support systems, electricals, and lubricants. With global links to major manufacturers and immediate stock availability, we help reduce customer waiting times significantly."
     },
     "asa": {
       "title": "ASA Membership",
       "description": "We are proud members of the Aviation Suppliers Association, the leading trade association for companies providing products and services to the global aviation and aerospace industries.",
-      "memberSince": "Member Since 2015"
+      "memberSince": "ASA Member"
     },
     "timeline": {
       "title": "Company Milestones",
@@ -432,28 +519,28 @@
       "subtitle": "The Principles That Guide Us",
       "items": {
         "integrity": {
-          "title": "Integrity",
-          "description": "Honest, transparent business practices in all our dealings with customers and partners"
+          "title": "Integrity & Honesty",
+          "description": "Honest, transparent business practices with customers and partners, maintaining ethical standards in all dealings"
         },
         "quality": {
           "title": "Quality Excellence",
-          "description": "Never compromise on the authenticity and quality of parts we supply"
-        },
-        "reliability": {
-          "title": "Reliability",
-          "description": "Consistent delivery on our promises and commitments to customers"
-        },
-        "innovation": {
-          "title": "Innovation",
-          "description": "Continuously improving our processes, services, and technology"
-        },
-        "customer": {
-          "title": "Customer Focus",
-          "description": "Dedicated to exceeding customer expectations in every interaction"
+          "description": "Uncompromising commitment to high-quality, reliable aircraft parts that meet aviation industry standards"
         },
         "safety": {
           "title": "Safety First",
-          "description": "Uncompromising commitment to aviation safety standards"
+          "description": "Uncompromising commitment to aviation safety standards in every part we supply"
+        },
+        "customer": {
+          "title": "Customer Relationships",
+          "description": "Building strong, lasting relationships with customers through exceptional service and support"
+        },
+        "value": {
+          "title": "Competitive Value",
+          "description": "Regular pricing reviews to offer competitive rates and good value to our customers"
+        },
+        "reliability": {
+          "title": "Reliability",
+          "description": "Consistent delivery on promises with quick response times and issue resolution"
         }
       }
     },
@@ -479,38 +566,38 @@
       }
     },
     "locations": {
-      "title": "Office Locations",
-      "subtitle": "Find Us Worldwide",
+      "title": "Office Location",
+      "subtitle": "Visit Our Dubai Office",
       "main": {
-        "title": "Main Office - Dubai",
+        "title": "Skytech Aviation - Dubai Office",
         "address": {
           "label": "Address",
-          "street": "Building 5E, Office 201, Dubai International Airport Free Zone",
+          "street": "Meydan Free Zone, The Meydan Hotel",
           "city": "Dubai, United Arab Emirates"
         },
         "phone": {
           "label": "Phone",
-          "number": "+971 4 XXX XXXX"
+          "number": "+971 561 611 002"
         },
         "email": {
           "label": "Email",
-          "address": "info@skytechaviation.com"
+          "address": "info@skytech.ae"
         }
       },
       "regional": {
-        "title": "Regional Office - Sharjah",
+        "title": "Alternative Contact",
         "address": {
           "label": "Address",
-          "street": "Sharjah Airport International Free Zone",
-          "city": "Sharjah, United Arab Emirates"
+          "street": "Meydan Free Zone, The Meydan Hotel",
+          "city": "Dubai, United Arab Emirates"
         },
         "phone": {
           "label": "Phone",
-          "number": "+971 6 XXX XXXX"
+          "number": "+971 508 640 842"
         },
         "email": {
           "label": "Email",
-          "address": "sharjah@skytechaviation.com"
+          "address": "sales@skytech.ae"
         }
       }
     },
@@ -567,19 +654,19 @@
     "info": {
       "office": {
         "title": "Office Address",
-        "address": "Building 5E, Office 201\nDubai International Airport Free Zone\nDubai, United Arab Emirates"
+        "address": "Meydan Free Zone\nThe Meydan Hotel\nDubai, United Arab Emirates"
       },
       "sales": {
-        "title": "Sales",
-        "phone": "+971 4 XXX XXXX"
+        "title": "Sales & Inquiries",
+        "phone": "+971 561 611 002"
       },
       "email": {
         "title": "Email",
-        "address": "info@skytechaviation.com"
+        "address": "info@skytech.ae"
       },
       "hours": {
-        "title": "Business Hours",
-        "schedule": "Sun-Thu: 9:00 AM - 6:00 PM GST"
+        "title": "Alternative Contact",
+        "schedule": "+971 508 640 842 | sales@skytech.ae"
       }
     },
     "form": {
@@ -682,3 +769,4 @@
     "info": "Information"
   }
 }
+

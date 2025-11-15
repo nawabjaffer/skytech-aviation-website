@@ -1,12 +1,13 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface LanguageSelectorProps {
   className?: string;
 }
 
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className = '' }) => {
+  const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = React.useState(false);
-  const [currentLanguage, setCurrentLanguage] = React.useState('en');
 
   const languages = [
     { code: 'en', name: 'English', flag: '🇬🇧' },
@@ -15,12 +16,11 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className = '' }) =
   ];
 
   const handleLanguageChange = (code: string) => {
-    setCurrentLanguage(code);
+    i18n.changeLanguage(code);
     setIsOpen(false);
-    // TODO: This will be integrated with i18next in Phase 2
-    console.log('Language changed to:', code);
   };
 
+  const currentLanguage = i18n.language || 'en';
   const currentLang = languages.find((lang) => lang.code === currentLanguage);
 
   return (

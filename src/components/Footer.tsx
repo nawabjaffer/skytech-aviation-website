@@ -1,18 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     company: [
-      { path: '/about', label: 'About Us' },
-      { path: '/products', label: 'Products' },
-      { path: '/services', label: 'Services' },
+      { path: '/about', label: t('nav.about') },
+      { path: '/products', label: t('nav.products') },
+      { path: '/services', label: t('nav.services') },
     ],
     support: [
-      { path: '/distributors', label: 'Distributors' },
-      { path: '/contacts', label: 'Contact Us' },
+      { path: '/distributors', label: t('nav.distributors') },
+      { path: '/contacts', label: t('nav.contact') },
     ],
   };
 
@@ -25,16 +27,13 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-2xl font-bold font-heading mb-4">Skytech Aviation</h3>
             <p className="text-gray-200 mb-4">
-              Authorized civil aircraft parts supplier and proud member of ASA.
-            </p>
-            <p className="text-gray-200">
-              Providing quality aviation parts with excellence and reliability.
+              {t('footer.companyDesc')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.path}>
@@ -51,7 +50,7 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.contactInfo')}</h4>
             <ul className="space-y-2 text-gray-200">
               {footerLinks.support.map((link) => (
                 <li key={link.path}>
@@ -64,8 +63,9 @@ const Footer: React.FC = () => {
                 </li>
               ))}
               <li className="pt-2">
-                <p className="text-sm">Email: info@skytechaviation.com</p>
-                <p className="text-sm">Phone: +971 XXX XXXX</p>
+                <p className="text-sm">{t('footer.email')}: info@skytechaviation.com</p>
+                <p className="text-sm">{t('footer.phone')}: +971 XXX XXXX</p>
+                <p className="text-sm mt-2">{t('footer.address')}</p>
               </li>
             </ul>
           </div>
@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-white/20 pt-6">
           <div className="flex flex-col tablet:flex-row justify-between items-center gap-4">
             <p className="text-gray-200 text-sm">
-              &copy; {currentYear} Skytech Aviation. All rights reserved.
+              &copy; {currentYear} Skytech Aviation. {t('footer.rights')}
             </p>
             <div className="flex gap-6">
               <a href="#" className="text-gray-200 hover:text-sky-blue-200 transition-colors duration-300">

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import DarkModeToggle from './DarkModeToggle';
 import LanguageSelector from './LanguageSelector';
 
 const Navbar: React.FC = () => {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
@@ -21,12 +23,12 @@ const Navbar: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/distributors', label: 'Distributors' },
-    { path: '/about', label: 'About' },
-    { path: '/products', label: 'Products' },
-    { path: '/services', label: 'Services' },
-    { path: '/contacts', label: 'Contacts' },
+    { path: '/', label: t('nav.home') },
+    { path: '/products', label: t('nav.products') },
+    { path: '/services', label: t('nav.services') },
+    { path: '/distributors', label: t('nav.distributors') },
+    { path: '/about', label: t('nav.about') },
+    { path: '/contacts', label: t('nav.contact') },
   ];
 
   return (

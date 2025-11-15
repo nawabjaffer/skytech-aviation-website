@@ -1,0 +1,167 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "services": "Services",
+    "distributors": "Distributors",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "companyInfo": "Company Information",
+    "companyDesc": "Skytech Aviation is an authorized civil aircraft parts supplier and proud member of the Aviation Suppliers Association (ASA).",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Information",
+    "address": "Dubai, United Arab Emirates",
+    "phone": "Phone",
+    "email": "Email",
+    "businessHours": "Business Hours",
+    "hours": "Sun - Thu: 9:00 AM - 6:00 PM",
+    "rights": "All rights reserved."
+  },
+  "language": {
+    "select": "Select Language",
+    "en": "English",
+    "ar": "Arabic",
+    "ru": "Russian"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light mode",
+    "dark": "Dark mode"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "close": "Close",
+    "open": "Open",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "viewAll": "View All",
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us",
+    "requestQuote": "Request Quote"
+  },
+  "home": {
+    "title": "Skytech Aviation - Authorized Aircraft Parts Supplier",
+    "description": "Your trusted partner for authentic civil aircraft parts and components. ASA member serving airlines worldwide.",
+    "hero": {
+      "title": "Authorized Civil Aircraft Parts Supplier",
+      "subtitle": "Your Trusted Partner for Authentic Aviation Components",
+      "cta1": "View Products",
+      "cta2": "Become a Distributor"
+    },
+    "features": {
+      "title": "Why Choose Skytech Aviation",
+      "authentic": {
+        "title": "Authentic Parts",
+        "description": "100% genuine OEM parts with full traceability and certification"
+      },
+      "global": {
+        "title": "Global Distribution",
+        "description": "Serving airlines and MROs across the Middle East, Africa, and beyond"
+      },
+      "support": {
+        "title": "Expert Support",
+        "description": "24/7 technical assistance and AOG support for critical needs"
+      },
+      "pricing": {
+        "title": "Competitive Pricing",
+        "description": "Best market rates with flexible payment terms for partners"
+      }
+    }
+  },
+  "products": {
+    "title": "Aircraft Parts & Components",
+    "description": "Browse our extensive catalog of certified aircraft parts and components.",
+    "categories": {
+      "engines": "Aircraft Engines",
+      "avionics": "Avionics",
+      "landing": "Landing Gear",
+      "flight": "Flight Control Systems",
+      "fuel": "Fuel Systems",
+      "interior": "Interior Components"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "description": "Comprehensive aviation parts and support services tailored to your needs.",
+    "sourcing": {
+      "title": "Parts Sourcing & Procurement",
+      "description": "Expert sourcing of hard-to-find parts from trusted suppliers"
+    },
+    "technical": {
+      "title": "Technical Support",
+      "description": "Expert guidance on part selection and compatibility"
+    },
+    "aog": {
+      "title": "AOG Support",
+      "description": "24/7 aircraft on ground emergency support"
+    },
+    "logistics": {
+      "title": "Logistics & Delivery",
+      "description": "Fast, secure worldwide shipping and customs handling"
+    }
+  },
+  "distributors": {
+    "title": "Become a Distributor",
+    "description": "Partner with Skytech Aviation to expand your business opportunities in the aviation industry.",
+    "benefits": "Partnership Benefits",
+    "requirements": "Requirements",
+    "application": "Apply Now"
+  },
+  "about": {
+    "title": "About Skytech Aviation",
+    "description": "Learn about our commitment to excellence in aviation parts supply and distribution.",
+    "mission": "Our Mission",
+    "vision": "Our Vision",
+    "values": "Core Values",
+    "certifications": "Certifications & Memberships"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Get in touch with our team for inquiries, quotes, or support.",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "subjects": {
+        "general": "General Inquiry",
+        "sales": "Sales & Quotes",
+        "support": "Technical Support",
+        "partnership": "Partnership Opportunity"
+      }
+    },
+    "info": {
+      "title": "Contact Information",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Business Hours"
+    }
+  },
+  "chat": {
+    "title": "Chat Assistant",
+    "placeholder": "Type your message...",
+    "send": "Send",
+    "minimize": "Minimize chat",
+    "maximize": "Open chat",
+    "quickActions": {
+      "products": "What products do you offer?",
+      "distributor": "How can I become a distributor?",
+      "location": "Where are you located?",
+      "asa": "Tell me about ASA membership"
+    }
+  }
+}

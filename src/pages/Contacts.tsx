@@ -43,7 +43,13 @@ const Contacts: React.FC = () => {
 
   return (
     <>
-      <SEOHead title={t('contact.title')} description={t('contact.description')} />
+      <SEOHead 
+        page="contact"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Contact', url: '/contacts' }
+        ]}
+      />
       
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-gray-900">
         

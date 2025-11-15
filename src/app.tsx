@@ -1,28 +1,44 @@
 
+import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { DarkModeProvider } from './contexts/DarkModeContext';
 import Layout from './components/Layout';
-import Home from './pages/Home';
-import Distributors from './pages/DistributorsEnhanced';
-import About from './pages/About';
-import Products from './pages/Products';
-import Services from './pages/Services';
-import Contacts from './pages/Contacts';
+
+// Code splitting: Lazy load pages for better performance
+const Home = lazy(() => import('./pages/Home'));
+const Distributors = lazy(() => import('./pages/DistributorsEnhanced'));
+const About = lazy(() => import('./pages/About'));
+const Products = lazy(() => import('./pages/Products'));
+const Services = lazy(() => import('./pages/Services'));
+const Contacts = lazy(() => import('./pages/Contacts'));
+const ChatbotWidget = lazy(() => import('./components/ChatbotWidget'));
+
+// Loading fallback component
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-500"></div>
+  </div>
+);
 
 const App = () => {
   return (
     <DarkModeProvider>
-      <Router basename="/skytech-aviation-website">
+      <Router basename="/">
         <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/distributors" element={<Distributors />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/contacts" element={<Contacts />} />
-          </Routes>
+          <Suspense fallback={<LoadingFallback />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/distributors" element={<Distributors />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/contacts" element={<Contacts />} />
+            </Routes>
+          </Suspense>
         </Layout>
+        <Suspense fallback={null}>
+          <ChatbotWidget />
+        </Suspense>
       </Router>
     </DarkModeProvider>
   );

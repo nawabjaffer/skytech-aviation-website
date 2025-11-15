@@ -34,6 +34,9 @@ jobs:
       - name: Build React App
         run: npm run build
 
+      - name: Add CNAME for custom domain
+        run: echo "aviation.skytech.ae" > ./dist/CNAME
+
       - name: Disable Jekyll
         run: echo "" > dist/.nojekyll
         

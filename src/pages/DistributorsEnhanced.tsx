@@ -68,7 +68,13 @@ const DistributorsEnhanced: React.FC = () => {
 
   return (
     <>
-      <SEOHead title="Become a Distributor - Skytech Aviation" />
+      <SEOHead 
+        page="distributors"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Distributors', url: '/distributors' }
+        ]}
+      />
       
       {/* Embedded Styles for Animations */}
       <style>{`

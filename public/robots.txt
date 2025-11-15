@@ -1,0 +1,36 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow admin or private areas (add if needed)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap
+Sitemap: https://aviation.skytech.ae/sitemap.xml
+
+# Crawl-delay (optional, be careful with this)
+# Crawl-delay: 10
+
+# Specific rules for popular crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block bad bots (optional)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

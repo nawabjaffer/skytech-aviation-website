@@ -12,9 +12,13 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@langchain/community": "^1.0.3",
+    "@langchain/core": "^1.0.5",
     "axios": "^1.13.2",
     "i18next": "^25.6.2",
     "i18next-browser-languagedetector": "^8.2.0",
+    "langchain": "^1.0.4",
+    "ollama": "^0.6.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-helmet": "^6.1.0",
@@ -25,13 +29,17 @@
   "devDependencies": {
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
+    "@types/react-helmet": "^6.1.11",
     "@vitejs/plugin-react": "^5.1.0",
     "autoprefixer": "^10.4.22",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.18",
     "typescript": "^5.9.3",
     "vite": "^7.2.2",
-    "vitest": "^4.0.8"
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-pwa": "^1.1.0",
+    "vitest": "^4.0.8",
+    "workbox-window": "^7.3.0"
   },
   "keywords": [
     "react",

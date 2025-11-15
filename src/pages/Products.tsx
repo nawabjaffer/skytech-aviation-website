@@ -101,7 +101,14 @@ const Products: React.FC = () => {
   if (loading) {
     return (
       <>
-        <SEOHead title="Products - Skytech Aviation" />
+        <SEOHead 
+          page="products"
+          includeProductCatalog={true}
+          breadcrumbs={[
+            { name: 'Home', url: '/' },
+            { name: 'Products', url: '/products' }
+          ]}
+        />
         <div className="min-h-screen flex items-center justify-center">
           <div className="animate-pulse text-xl text-gray-600 dark:text-gray-300">
             Loading products...
@@ -113,7 +120,14 @@ const Products: React.FC = () => {
 
   return (
     <>
-      <SEOHead title="Products - Skytech Aviation" />
+      <SEOHead 
+        page="products"
+        includeProductCatalog={true}
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'Products', url: '/products' }
+        ]}
+      />
       
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Hero Section */}

@@ -15,8 +15,10 @@ const Home: React.FC = () => {
     <>
       {/* SEO Meta Tags */}
       <SEOHead
-        title={t('home.title')}
-        description={t('home.description')}
+        page="home"
+        breadcrumbs={[
+          { name: 'Home', url: '/' }
+        ]}
       />
 
       {/* Hero Carousel - Full-screen with Google Sheets integration */}

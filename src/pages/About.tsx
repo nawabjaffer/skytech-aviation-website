@@ -7,7 +7,13 @@ const About: React.FC = () => {
 
   return (
     <>
-      <SEOHead title={t('about.title')} description={t('about.description')} />
+      <SEOHead 
+        page="about"
+        breadcrumbs={[
+          { name: 'Home', url: '/' },
+          { name: 'About', url: '/about' }
+        ]}
+      />
       
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-gray-900">
         
@@ -78,9 +84,9 @@ const About: React.FC = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <div className="flex flex-col md:flex-row items-center gap-12">
               <div className="flex-1">
-                <div className="bg-white rounded-2xl p-8 flex items-center justify-center shadow-2xl">
+                <div className="rounded-2xl p-8 flex items-center justify-center shadow-2xl">
                   <img 
-                    src="https://www.aviationsuppliers.org/sites/default/files/asa_logo.png" 
+                    src="https://www.aviationsuppliers.org/images/ASA-logo-wt.png" 
                     alt="ASA Logo" 
                     className="w-full max-w-xs"
                   />

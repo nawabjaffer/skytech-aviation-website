@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font loading optimization with font-display: swap */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: local('Inter');
+}
+
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: local('Cairo');
+}
+
 /* Custom base styles */
 @layer base {
   html, body {
@@ -28,6 +45,11 @@
   /* Dark mode improvements */
   .dark {
     color-scheme: dark;
+  }
+  
+  /* Prevent layout shift for images */
+  img {
+    @apply max-w-full h-auto;
   }
 }
 

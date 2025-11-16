@@ -160,9 +160,10 @@ export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
     id: '1',
     title: 'Authorized Civil Aircraft Parts Supplier',
     subtitle: 'Your Trusted Partner for Authentic Aviation Components',
-    description: 'Providing premium quality aircraft parts and components to airlines, MROs, and distributors across the Middle East, Africa, and beyond.',
+    description:
+      'Providing premium quality aircraft parts and components to airlines, MROs, and distributors across the Middle East, Africa, and beyond.',
     mediaType: 'video',
-    mediaUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    mediaUrl: 'https://www.pexels.com/download/video/4207979/',
     ctaText1: 'View Products',
     ctaLink1: '/products',
     ctaText2: 'Become a Distributor',
@@ -173,10 +174,11 @@ export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
   {
     id: '2',
     title: '24/7 AOG Support',
-    subtitle: 'Aircraft on Ground? We\'re Here to Help',
-    description: 'Emergency parts sourcing and delivery with our dedicated AOG support team. Fast response times and global logistics network.',
+    subtitle: "Aircraft on Ground? We're Here to Help",
+    description:
+      'Emergency parts sourcing and delivery with our dedicated AOG support team. Fast response times and global logistics network.',
     mediaType: 'video',
-    mediaUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    mediaUrl: 'https://www.pexels.com/download/video/11451049/',
     ctaText1: 'Contact AOG Team',
     ctaLink1: '/contact',
     ctaText2: 'View Services',
@@ -188,9 +190,11 @@ export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
     id: '3',
     title: 'Global Distribution Network',
     subtitle: 'Serving Airlines Worldwide',
-    description: 'Partner with us to access authentic OEM parts with full traceability and certification documentation.',
+    description:
+      'Partner with us to access authentic OEM parts with full traceability and certification documentation.',
     mediaType: 'image',
-    mediaUrl: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1920&q=80',
+    mediaUrl:
+      'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1920&q=80',
     ctaText1: 'Become a Partner',
     ctaLink1: '/distributors',
     ctaText2: 'Learn More',

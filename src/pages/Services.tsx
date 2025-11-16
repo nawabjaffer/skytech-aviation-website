@@ -1,5 +1,25 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { 
+  Award, 
+  Globe, 
+  MessageCircle, 
+  DollarSign, 
+  Book, 
+  FileText, 
+  BarChart3, 
+  Download,
+  Search,
+  Wrench,
+  AlertTriangle,
+  Truck,
+  CheckCircle,
+  FileCheck,
+  ClipboardList,
+  CircleDollarSign,
+  Check,
+  Rocket
+} from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 
 const Services: React.FC = () => {
@@ -7,37 +27,37 @@ const Services: React.FC = () => {
 
   const services = [
     {
-      icon: '🔍',
+      IconComponent: Search,
       key: 'sourcing',
       gradient: 'from-blue-500 to-blue-700',
       iconBg: 'bg-blue-100 dark:bg-blue-900'
     },
     {
-      icon: '🛠️',
+      IconComponent: Wrench,
       key: 'technical',
       gradient: 'from-green-500 to-green-700',
       iconBg: 'bg-green-100 dark:bg-green-900'
     },
     {
-      icon: '🚨',
+      IconComponent: AlertTriangle,
       key: 'aog',
       gradient: 'from-red-500 to-red-700',
       iconBg: 'bg-red-100 dark:bg-red-900'
     },
     {
-      icon: '🚚',
+      IconComponent: Truck,
       key: 'logistics',
       gradient: 'from-purple-500 to-purple-700',
       iconBg: 'bg-purple-100 dark:bg-purple-900'
     },
     {
-      icon: '✅',
+      IconComponent: CheckCircle,
       key: 'quality',
       gradient: 'from-indigo-500 to-indigo-700',
       iconBg: 'bg-indigo-100 dark:bg-indigo-900'
     },
     {
-      icon: '📄',
+      IconComponent: FileCheck,
       key: 'documentation',
       gradient: 'from-orange-500 to-orange-700',
       iconBg: 'bg-orange-100 dark:bg-orange-900'
@@ -45,10 +65,10 @@ const Services: React.FC = () => {
   ];
 
   const processSteps = [
-    { number: 1, key: 'inquiry', icon: '📝', color: 'blue' },
-    { number: 2, key: 'quote', icon: '💰', color: 'green' },
-    { number: 3, key: 'order', icon: '✓', color: 'purple' },
-    { number: 4, key: 'delivery', icon: '🚀', color: 'orange' }
+    { number: 1, key: 'inquiry', IconComponent: ClipboardList, color: 'blue' },
+    { number: 2, key: 'quote', IconComponent: CircleDollarSign, color: 'green' },
+    { number: 3, key: 'order', IconComponent: Check, color: 'purple' },
+    { number: 4, key: 'delivery', IconComponent: Rocket, color: 'orange' }
   ];
 
   return (
@@ -105,21 +125,23 @@ const Services: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {services.map((service, index) => (
-                <div
-                  key={service.key}
-                  className="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className={`w-20 h-20 ${service.iconBg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <span className="text-5xl">{service.icon}</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                    {t(`services.cards.items.${service.key}.title`)}
-                  </h3>
-                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                    {t(`services.cards.items.${service.key}.description`)}
-                  </p>
+              {services.map((service, index) => {
+                const IconComponent = service.IconComponent;
+                return (
+                  <div
+                    key={service.key}
+                    className="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <div className={`w-20 h-20 ${service.iconBg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                      <IconComponent className="w-10 h-10 text-gray-700 dark:text-gray-200" strokeWidth={2} />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                      {t(`services.cards.items.${service.key}.title`)}
+                    </h3>
+                    <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                      {t(`services.cards.items.${service.key}.description`)}
+                    </p>
                   
                   {/* Benefits List */}
                   <div className="space-y-3 mb-6">
@@ -142,7 +164,8 @@ const Services: React.FC = () => {
                     {t('services.cards.learnMore')}
                   </button>
                 </div>
-              ))}
+              );
+              })}
             </div>
           </div>
         </section>
@@ -160,38 +183,43 @@ const Services: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              {processSteps.map((step, index) => (
-                <div key={step.key} className="relative">
-                  <div className="flex flex-col items-center text-center">
-                    {/* Step Number */}
-                    <div className={`w-20 h-20 bg-gradient-to-br from-${step.color}-600 to-${step.color}-700 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg mb-4 relative z-10`}>
-                      {step.number}
+              {processSteps.map((step, index) => {
+                const StepIcon = step.IconComponent;
+                return (
+                  <div key={step.key} className="relative">
+                    <div className="flex flex-col items-center text-center">
+                      {/* Step Number */}
+                      <div className={`w-20 h-20 bg-gradient-to-br from-${step.color}-600 to-${step.color}-700 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg mb-4 relative z-10`}>
+                        {step.number}
+                      </div>
+                      
+                      {/* Icon */}
+                      <div className="mb-6 p-4 bg-gray-100 dark:bg-gray-700 rounded-2xl">
+                        <StepIcon className="w-12 h-12 text-gray-700 dark:text-gray-200" strokeWidth={2} />
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                        {t(`services.process.steps.${step.key}.title`)}
+                      </h3>
+                      
+                      {/* Description */}
+                      <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                        {t(`services.process.steps.${step.key}.description`)}
+                      </p>
                     </div>
-                    
-                    {/* Icon */}
-                    <div className="text-5xl mb-4">{step.icon}</div>
-                    
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                      {t(`services.process.steps.${step.key}.title`)}
-                    </h3>
-                    
-                    {/* Description */}
-                    <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                      {t(`services.process.steps.${step.key}.description`)}
-                    </p>
-                  </div>
 
-                  {/* Arrow Connector (except last item) */}
-                  {index < processSteps.length - 1 && (
-                    <div className="hidden md:block absolute top-10 left-full w-full -ml-4">
+                    {/* Arrow Connector (except last item) */}
+                    {index < processSteps.length - 1 && (
+                      <div className="hidden md:block absolute top-10 left-full w-full -ml-4">
                       <svg className="w-8 h-8 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>
                     </div>
                   )}
                 </div>
-              ))}
+              );
+              })}
             </div>
 
             {/* Timeline Note */}
@@ -220,22 +248,26 @@ const Services: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-              {['certified', 'network', 'support', 'pricing'].map((benefit, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto">
+              {[
+                { benefit: 'certified', IconComponent: Award, color: 'amber' },
+                { benefit: 'network', IconComponent: Globe, color: 'blue' },
+                { benefit: 'support', IconComponent: MessageCircle, color: 'green' },
+                { benefit: 'pricing', IconComponent: DollarSign, color: 'purple' }
+              ].map(({ benefit, IconComponent, color }, index) => (
                 <div
                   key={benefit}
-                  className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                  className="bg-white dark:bg-gray-800 rounded-3xl p-8 text-center shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
                 >
-                  <div className="text-5xl mb-4">
-                    {benefit === 'certified' && '🏆'}
-                    {benefit === 'network' && '🌍'}
-                    {benefit === 'support' && '💬'}
-                    {benefit === 'pricing' && '💰'}
+                  <div className="flex justify-center mb-6">
+                    <div className={`p-5 bg-${color}-100 dark:bg-${color}-900/30 rounded-2xl`}>
+                      <IconComponent className={`w-10 h-10 text-${color}-600 dark:text-${color}-400`} strokeWidth={2} />
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                     {t(`services.benefits.items.${benefit}.title`)}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                     {t(`services.benefits.items.${benefit}.description`)}
                   </p>
                 </div>
@@ -335,33 +367,35 @@ const Services: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-6xl mx-auto">
               {[
-                { key: 'catalog', icon: '📕', color: 'red' },
-                { key: 'brochure', icon: '📘', color: 'blue' },
-                { key: 'certifications', icon: '🏆', color: 'yellow' },
-                { key: 'capabilities', icon: '📊', color: 'green' }
-              ].map((doc) => (
+                { key: 'catalog', IconComponent: Book, color: 'red' },
+                { key: 'brochure', IconComponent: FileText, color: 'blue' },
+                { key: 'certifications', IconComponent: Award, color: 'amber' },
+                { key: 'capabilities', IconComponent: BarChart3, color: 'green' }
+              ].map(({ key, IconComponent, color }) => (
                 <a
-                  key={doc.key}
+                  key={key}
                   href="#"
-                  className="group bg-white dark:bg-gray-800 rounded-2xl p-6 text-center hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
+                  className="group bg-white dark:bg-gray-800 rounded-3xl p-8 text-center hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
                 >
-                  <div className="text-6xl mb-4">{doc.icon}</div>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                    {t(`services.downloads.items.${doc.key}.title`)}
+                  <div className="flex justify-center mb-6">
+                    <div className={`p-5 bg-${color}-100 dark:bg-${color}-900/30 rounded-2xl group-hover:scale-110 transition-transform duration-300`}>
+                      <IconComponent className={`w-12 h-12 text-${color}-600 dark:text-${color}-400`} strokeWidth={2} />
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+                    {t(`services.downloads.items.${key}.title`)}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                    {t(`services.downloads.items.${doc.key}.description`)}
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                    {t(`services.downloads.items.${key}.description`)}
                   </p>
                   <div className="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400 font-semibold group-hover:gap-3 transition-all">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+                    <Download className="w-5 h-5" strokeWidth={2} />
                     <span>{t('services.downloads.downloadButton')}</span>
                   </div>
-                  <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
-                    {t(`services.downloads.items.${doc.key}.size`)}
+                  <p className="text-xs text-gray-500 dark:text-gray-500 mt-3">
+                    {t(`services.downloads.items.${key}.size`)}
                   </p>
                 </a>
               ))}

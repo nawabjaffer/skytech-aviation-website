@@ -52,12 +52,12 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <ul className="hidden desktop:flex items-center space-x-6">
+          <ul className="hidden desktop:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
               <li key={link.path}>
                 <Link
                   to={link.path}
-                  className={`text-white font-medium transition-all duration-300 hover:text-sky-blue relative group ${
+                  className={`text-white font-medium transition-all duration-300 hover:text-sky-blue relative group px-1 ${
                     isActive(link.path) ? 'text-sky-blue' : ''
                   }`}
                 >
@@ -113,14 +113,14 @@ const Navbar: React.FC = () => {
             isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <ul className="pb-4 space-y-2">
+          <ul className="pb-4 space-y-3">
             {navLinks.map((link) => (
               <li key={link.path}>
                 <Link
                   to={link.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`block py-2 px-4 text-white font-medium rounded-lg transition-all duration-300 hover:bg-sky-blue hover:pl-6 ${
-                    isActive(link.path) ? 'bg-sky-blue pl-6' : ''
+                  className={`block py-3 px-4 text-white font-medium rounded-lg transition-all duration-300 hover:bg-sky-blue hover:px-6 ${
+                    isActive(link.path) ? 'bg-sky-blue px-6' : ''
                   }`}
                 >
                   {link.label}

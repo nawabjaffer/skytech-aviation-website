@@ -7,6 +7,9 @@
     "about": "About",
     "contact": "Contact"
   },
+  "company": {
+    "tagline": "Your trusted partner in aircraft parts and services"
+  },
   "footer": {
     "companyInfo": "Company Information",
     "companyDesc": "Skytech Aviation is a trusted aviation company based in UAE, serving as an authorized civil aircraft parts supplier and proud member of the Aviation Suppliers Association (ASA).",
@@ -58,7 +61,9 @@
     "next": "Next",
     "previous": "Previous",
     "required": "Required",
-    "optional": "Optional"
+    "optional": "Optional",
+    "or": "or",
+    "for_help": " for help"
   },
   "home": {
     "title": "Skytech Aviation - Authorized Aircraft Parts Supplier",
@@ -739,9 +744,14 @@
   },
   "errors": {
     "404": {
-      "title": "Page Not Found",
-      "description": "The page you're looking for doesn't exist.",
-      "home": "Go to Homepage"
+      "title": "Flight Path Not Found",
+      "message": "Looks like this page took a detour! Our aircraft parts and services are still available on the main flight path.",
+      "aviation_message": "Even the best pilots need course corrections. Let us help you navigate back to your destination!",
+      "suggestions": "Popular Destinations",
+      "go_home": "Return to Home Base",
+      "go_back": "Go Back",
+      "search_help": "Looking for something specific? Try our",
+      "contact_us": "contact us"
     },
     "500": {
       "title": "Server Error",

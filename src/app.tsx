@@ -11,6 +11,7 @@ const About = lazy(() => import('./pages/About'));
 const Products = lazy(() => import('./pages/Products'));
 const Services = lazy(() => import('./pages/Services'));
 const Contacts = lazy(() => import('./pages/Contacts'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 const ChatbotWidget = lazy(() => import('./components/ChatbotWidget'));
 
 // Loading fallback component
@@ -33,6 +34,8 @@ const App = () => {
               <Route path="/products" element={<Products />} />
               <Route path="/services" element={<Services />} />
               <Route path="/contacts" element={<Contacts />} />
+              {/* Catch-all route for 404 pages */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </Layout>

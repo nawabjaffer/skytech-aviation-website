@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Skytech Aviation Logo - Clipping Mask Demo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 60px;
+      background: linear-gradient(135deg, #0369a1 0%, #1e293b 100%);
+      font-family: 'Inter', Arial, sans-serif;
+      color: white;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.5rem;
+    }
+    .description {
+      text-align: center;
+      margin-bottom: 60px;
+      opacity: 0.9;
+      font-size: 1.1rem;
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    .demo-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .demo-card h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+      color: #0ea5e9;
+    }
+    .logo-container {
+      background: rgba(3, 105, 161, 0.3);
+      border-radius: 15px;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 120px;
+    }
+    .feature-list {
+      margin-top: 20px;
+      padding-left: 20px;
+    }
+    .feature-list li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    .highlight {
+      color: #0ea5e9;
+      font-weight: 600;
+    }
+    svg {
+      transition: all 0.3s ease;
+    }
+    svg:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Skytech Aviation Logo</h1>
+    <p class="description">
+      Hover over the logos below to see the <span class="highlight">clipping mask effect</span> in action.<br>
+      The gradient color splash is <strong>constrained within the logo shape</strong>.
+    </p>
+
+    <div class="demo-grid">
+      <!-- Before: Without Clipping Mask -->
+      <div class="demo-card">
+        <h2>❌ Before: Without Clipping Mask</h2>
+        <div class="logo-container">
+          <svg viewBox="0 0 200 60" width="300" height="90">
+            <defs>
+              <radialGradient id="noClipGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#0ea5e9" stopOpacity="1">
+                  <animate attributeName="stopColor" values="#0ea5e9;#8b5cf6;#ec4899;#f59e0b;#0ea5e9" dur="3s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.6">
+                  <animate attributeName="stopColor" values="#8b5cf6;#ec4899;#f59e0b;#0ea5e9;#8b5cf6" dur="3s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            
+            <!-- Logo elements -->
+            <g transform="translate(10, 10)">
+              <path d="M 5 20 L 30 15 L 35 15 L 28 20 L 35 20 L 38 23 L 35 25 L 28 25 L 35 30 L 30 30 L 5 25 Z" fill="#ffffff" />
+              <path d="M 15 20 L 10 10 L 15 12 Z M 15 25 L 10 35 L 15 33 Z" fill="#ffffff" />
+            </g>
+            <text x="55" y="28" fontFamily="Arial" fontSize="18" fontWeight="700" fill="#ffffff">SKYTECH</text>
+            <text x="55" y="44" fontFamily="Arial" fontSize="11" fontWeight="400" fill="#e0e7ff" letterSpacing="2">AVIATION</text>
+            
+            <!-- Overlay WITHOUT clipping - bleeds outside -->
+            <rect x="0" y="0" width="200" height="60" fill="url(#noClipGradient)" opacity="0.5" />
+          </svg>
+        </div>
+        <ul class="feature-list">
+          <li>❌ Gradient bleeds <strong>outside</strong> logo boundaries</li>
+          <li>❌ Creates unwanted glow around the logo</li>
+          <li>❌ Not confined to logo shape</li>
+        </ul>
+      </div>
+
+      <!-- After: With Clipping Mask -->
+      <div class="demo-card">
+        <h2>✅ After: With Clipping Mask</h2>
+        <div class="logo-container">
+          <svg viewBox="0 0 200 60" width="300" height="90">
+            <defs>
+              <!-- CLIPPING PATH - defines logo shape boundary -->
+              <clipPath id="logoClip">
+                <path d="M 15 30 L 40 25 L 45 25 L 38 30 L 45 30 L 48 33 L 45 35 L 38 35 L 45 40 L 40 40 L 15 35 Z" />
+                <path d="M 25 30 L 20 20 L 25 22 Z M 25 35 L 20 45 L 25 43 Z" />
+                <text x="55" y="28" fontFamily="Arial" fontSize="18" fontWeight="700">SKYTECH</text>
+                <text x="55" y="44" fontFamily="Arial" fontSize="11" fontWeight="400" letterSpacing="2">AVIATION</text>
+              </clipPath>
+              
+              <radialGradient id="clipGradient" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stopColor="#0ea5e9" stopOpacity="1">
+                  <animate attributeName="stopColor" values="#0ea5e9;#8b5cf6;#ec4899;#f59e0b;#10b981;#0ea5e9" dur="4s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="30%" stopColor="#8b5cf6" stopOpacity="0.8">
+                  <animate attributeName="stopColor" values="#8b5cf6;#ec4899;#f59e0b;#10b981;#0ea5e9;#8b5cf6" dur="4s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="60%" stopColor="#ec4899" stopOpacity="0.4">
+                  <animate attributeName="stopColor" values="#ec4899;#f59e0b;#10b981;#0ea5e9;#8b5cf6;#ec4899" dur="4s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            
+            <!-- Logo elements -->
+            <g transform="translate(10, 10)">
+              <path d="M 5 20 L 30 15 L 35 15 L 28 20 L 35 20 L 38 23 L 35 25 L 28 25 L 35 30 L 30 30 L 5 25 Z" fill="#ffffff" />
+              <path d="M 15 20 L 10 10 L 15 12 Z M 15 25 L 10 35 L 15 33 Z" fill="#ffffff" />
+            </g>
+            <text x="55" y="28" fontFamily="Arial" fontSize="18" fontWeight="700" fill="#ffffff">SKYTECH</text>
+            <text x="55" y="44" fontFamily="Arial" fontSize="11" fontWeight="400" fill="#e0e7ff" letterSpacing="2">AVIATION</text>
+            
+            <!-- Overlay WITH clipping - constrained to logo shape -->
+            <rect x="0" y="0" width="200" height="60" fill="url(#clipGradient)" clipPath="url(#logoClip)" />
+          </svg>
+        </div>
+        <ul class="feature-list">
+          <li>✅ Gradient <strong>clipped inside</strong> logo boundaries</li>
+          <li>✅ Colors blend within the logo shape only</li>
+          <li>✅ Clean, professional masking effect</li>
+          <li>✅ Follows mouse cursor (in React component)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="demo-card" style="max-width: 800px; margin: 0 auto;">
+      <h2>🎯 Implementation Details</h2>
+      <ul class="feature-list">
+        <li><strong>Clipping Path:</strong> Defines the exact logo shape using SVG <code>&lt;clipPath&gt;</code></li>
+        <li><strong>Gradient Overlay:</strong> Full-size rectangle with radial gradient applied</li>
+        <li><strong>Mask Application:</strong> <code>clipPath="url(#logoClipPath)"</code> constrains gradient to logo shape</li>
+        <li><strong>Mouse Tracking:</strong> Gradient center (cx, cy) follows cursor position in real-time</li>
+        <li><strong>Color Cycle:</strong> 5 colors (Sky Blue → Purple → Pink → Orange → Green) over 4 seconds</li>
+        <li><strong>Smooth Blending:</strong> Multiple gradient stops create natural color transitions</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    console.log('✅ Clipping mask demo loaded');
+    console.log('Hover over the logos to see the difference!');
+  </script>
+</body>
+</html>

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import DarkModeToggle from './DarkModeToggle';
 import LanguageSelector from './LanguageSelector';
+import Logo from './Logo';
 
 const Navbar: React.FC = () => {
   const { t } = useTranslation();
@@ -45,9 +46,9 @@ const Navbar: React.FC = () => {
           <div className="flex-shrink-0">
             <Link 
               to="/" 
-              className="text-white text-2xl font-bold font-heading hover:text-sky-blue dark:hover:text-sky-blue-400 transition-colors duration-300"
+              className="block transition-transform duration-300 hover:scale-105"
             >
-              Skytech Aviation
+              <Logo className="h-12 w-auto" />
             </Link>
           </div>
 

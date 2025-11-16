@@ -1,0 +1,27 @@
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradientFav" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0369a1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0284c7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="planeGradientFav" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="32" height="32" fill="url(#bgGradientFav)" rx="5"/>
+
+  <!-- Plane Icon - Simplified for favicon -->
+  <g transform="translate(7, 10) scale(0.4)">
+    <path
+      d="M 5 20 L 30 15 L 35 15 L 28 20 L 35 20 L 38 23 L 35 25 L 28 25 L 35 30 L 30 30 L 5 25 Z"
+      fill="url(#planeGradientFav)"
+    />
+    <path
+      d="M 15 20 L 10 10 L 15 12 Z M 15 25 L 10 35 L 15 33 Z"
+      fill="url(#planeGradientFav)"
+    />
+  </g>
+</svg>

@@ -13,7 +13,23 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
   const [loading, setLoading] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [videosLoaded, setVideosLoaded] = useState<Set<number>>(new Set());
+  const [firstVideoReady, setFirstVideoReady] = useState(false);
   const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
+  
+  // Static fallback to show instantly while loading (eliminates gray flash)
+  const fallbackSlide: HeroSlide = {
+    id: 'fallback',
+    title: 'Skytech Aviation',
+    subtitle: 'Authorized Civil Aircraft Parts Supplier',
+    description: 'ASA Member - Trusted by airlines and distributors worldwide',
+    mediaType: 'image',
+    mediaUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"%3E%3Cdefs%3E%3ClinearGradient id="g" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%230369a1;stop-opacity:1" /%3E%3Cstop offset="100%25" style="stop-color:%231e293b;stop-opacity:1" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="1920" height="1080" fill="url(%23g)" /%3E%3C/svg%3E',
+    active: true,
+    ctaText1: 'View Products',
+    ctaLink1: '/products',
+    ctaText2: 'Contact Us',
+    ctaLink2: '/contacts'
+  };
 
   // Get the current slide's auto-advance interval based on media type
   const getCurrentSlideInterval = useCallback(() => {
@@ -29,27 +45,41 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
     const fetchSlides = async () => {
       try {
         const data = await googleSheetsService.getHeroSlides();
-        setSlides(data);
         
-        // Preload first video immediately for instant playback
-        if (data.length > 0 && data[0].mediaType === 'video') {
-          const firstVideo = document.createElement('video');
-          firstVideo.src = data[0].mediaUrl;
-          firstVideo.preload = 'auto';
-          firstVideo.muted = true;
-          firstVideo.playsInline = true;
+        if (data.length > 0) {
+          setSlides(data);
           
-          // Start loading immediately
-          firstVideo.load();
-          
-          // Mark as loaded when ready
-          firstVideo.addEventListener('loadeddata', () => {
-            setVideosLoaded(prev => new Set(prev).add(0));
-          }, { once: true });
+          // Preload first video immediately for instant playback
+          if (data[0].mediaType === 'video') {
+            const firstVideo = document.createElement('video');
+            firstVideo.src = data[0].mediaUrl;
+            firstVideo.preload = 'auto';
+            firstVideo.muted = true;
+            firstVideo.playsInline = true;
+            
+            // Start loading immediately
+            firstVideo.load();
+            
+            // Mark as ready when enough data is loaded
+            firstVideo.addEventListener('canplay', () => {
+              setVideosLoaded(prev => new Set(prev).add(0));
+              setFirstVideoReady(true);
+              setLoading(false); // Hide skeleton as soon as first video can play
+            }, { once: true });
+            
+            // Fallback: show after 2s even if video isn't ready
+            setTimeout(() => {
+              setLoading(false);
+            }, 2000);
+          } else {
+            // For images, no wait needed
+            setLoading(false);
+          }
+        } else {
+          setLoading(false);
         }
       } catch (error) {
         console.error('Error loading hero slides:', error);
-      } finally {
         setLoading(false);
       }
     };
@@ -170,27 +200,50 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
   }, [currentIndex, slides, videosLoaded]);
 
   if (loading) {
+    // Show an engaging skeleton with gradient animation instead of blank screen
     return (
-      <div className="relative w-full h-screen bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
-        <div className="text-center text-white">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-white mx-auto mb-4"></div>
-          <p className="text-xl">Loading...</p>
+      <div className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-sky-900 via-blue-900 to-slate-900">
+        {/* Animated gradient background - no flash, smooth from start */}
+        <div className="absolute inset-0 bg-gradient-to-br from-sky-900/90 via-blue-900/90 to-slate-900/90 animate-pulse"></div>
+        
+        {/* Skeleton content - mirrors actual carousel layout */}
+        <div className="relative z-10 h-full flex items-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl space-y-6">
+              {/* Skeleton title */}
+              <div className="h-16 w-3/4 bg-white/20 rounded-lg animate-pulse"></div>
+              {/* Skeleton subtitle */}
+              <div className="h-10 w-2/3 bg-white/15 rounded-lg animate-pulse"></div>
+              {/* Skeleton description */}
+              <div className="space-y-3">
+                <div className="h-6 w-full bg-white/10 rounded animate-pulse"></div>
+                <div className="h-6 w-5/6 bg-white/10 rounded animate-pulse"></div>
+              </div>
+              {/* Skeleton buttons */}
+              <div className="flex gap-4 pt-4">
+                <div className="h-14 w-40 bg-blue-500/30 rounded-lg animate-pulse"></div>
+                <div className="h-14 w-40 bg-white/20 rounded-lg animate-pulse"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 
-  if (slides.length === 0) {
+  if (slides.length === 0 && !loading) {
     return null;
   }
 
-  const currentSlide = slides[currentIndex];
+  // Use fallback slide while loading, then switch to actual slides
+  const displaySlides = loading || slides.length === 0 ? [fallbackSlide] : slides;
+  const currentSlide = displaySlides[currentIndex];
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
       {/* Background Media - Render all videos hidden for preloading */}
       <div className="absolute inset-0 z-0">
-        {slides.map((slide, index) => {
+        {displaySlides.map((slide, index) => {
           const isActive = index === currentIndex;
           
           if (slide.mediaType === 'video') {
@@ -216,6 +269,13 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
                     if (videoEl) {
                       videoEl.play().catch(err => console.log('Video autoplay prevented:', err));
                     }
+                  }
+                }}
+                onCanPlay={() => {
+                  // Hide loading skeleton as soon as video can play
+                  if (index === 0 && loading) {
+                    setLoading(false);
+                    setFirstVideoReady(true);
                   }
                 }}
               >
@@ -339,8 +399,8 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
         </div>
       </div>
 
-      {/* Navigation Controls */}
-      {slides.length > 1 && (
+      {/* Navigation Controls - Only show when not loading and multiple slides */}
+      {!loading && displaySlides.length > 1 && (
         <>
           {/* Previous Button */}
           <button

@@ -47,6 +47,12 @@
     color-scheme: dark;
   }
   
+  /* Prevent flash of unstyled content (FOUC) */
+  #root {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0369a1 0%, #1e293b 100%);
+  }
+  
   /* Prevent layout shift for images */
   img {
     @apply max-w-full h-auto;

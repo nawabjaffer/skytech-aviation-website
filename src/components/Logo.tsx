@@ -33,9 +33,11 @@ const Logo: React.FC<LogoProps> = ({ className = '' }) => {
     <svg
       ref={logoRef}
       viewBox="0 0 200 60"
+      preserveAspectRatio="xMidYMid meet"
       className={`transition-all duration-300 ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      style={{ overflow: 'visible' }}
     >
       <defs>
         {/* Clipping mask - defines the logo shape boundary */}

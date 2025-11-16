@@ -43,12 +43,12 @@ const Navbar: React.FC = () => {
       <div className="container-custom">
         <div className="flex justify-between items-center py-4">
           {/* Logo/Brand */}
-          <div className="flex-shrink-0 rtl:order-last">
+          <div className="flex-shrink-0">
             <Link 
               to="/" 
               className="block transition-transform duration-300 hover:scale-105"
             >
-              <Logo className="h-12 w-auto min-w-[180px]" />
+              <Logo className="h-12 w-auto" />
             </Link>
           </div>
 

@@ -40,10 +40,6 @@ const Logo: React.FC<LogoProps> = ({ className = '' }) => {
       <defs>
         {/* Clipping mask - defines the logo shape boundary */}
         <clipPath id="logoClipPath">
-          {/* Plane body */}
-          <path d="M 15 30 L 40 25 L 45 25 L 38 30 L 45 30 L 48 33 L 45 35 L 38 35 L 45 40 L 40 40 L 15 35 Z" />
-          {/* Plane wings */}
-          <path d="M 25 30 L 20 20 L 25 22 Z M 25 35 L 20 45 L 25 43 Z" />
           {/* Text "SKYTECH" */}
           <text x="55" y="28" fontFamily="'Inter', sans-serif" fontSize="18" fontWeight="700">SKYTECH</text>
           {/* Text "AVIATION" */}
@@ -96,30 +92,6 @@ const Logo: React.FC<LogoProps> = ({ className = '' }) => {
           <stop offset="100%" stopColor="#e0e7ff" />
         </linearGradient>
       </defs>
-
-      {/* Plane Icon - Stylized Aviation Symbol */}
-      <g transform="translate(10, 10)">
-        {/* Plane body */}
-        <path
-          d="M 5 20 L 30 15 L 35 15 L 28 20 L 35 20 L 38 23 L 35 25 L 28 25 L 35 30 L 30 30 L 5 25 Z"
-          fill="url(#planeGradient)"
-          className="transition-all duration-500"
-          style={{
-            transform: isHovered ? 'translateX(3px) scale(1.05)' : 'translateX(0) scale(1)',
-            transformOrigin: 'center',
-          }}
-        />
-        {/* Plane wings */}
-        <path
-          d="M 15 20 L 10 10 L 15 12 Z M 15 25 L 10 35 L 15 33 Z"
-          fill="url(#planeGradient)"
-          className="transition-all duration-500"
-          style={{
-            transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-            transformOrigin: 'center',
-          }}
-        />
-      </g>
 
       {/* Company Text */}
       <text

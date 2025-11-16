@@ -24,7 +24,7 @@ const LoadingFallback = () => (
 const App = () => {
   return (
     <DarkModeProvider>
-      <Router basename="/skytech-aviation-website">
+      <Router basename="/">
         <Layout>
           <Suspense fallback={<LoadingFallback />}>
             <Routes>

@@ -96,7 +96,7 @@ export default defineConfig({
       deleteOriginFile: false,
     }),
   ],
-  base: '/skytech-aviation-website/', // GitHub Pages base path
+  base: '/', // GitHub Pages base path
   server: {
     port: 3000,
     open: true,

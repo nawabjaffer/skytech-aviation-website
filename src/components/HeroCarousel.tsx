@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { HeroSlide, CAROUSEL_TIMING } from '../config/googleSheets';
 import googleSheetsService from '../services/googleSheetsService';
@@ -12,6 +12,8 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [videosLoaded, setVideosLoaded] = useState<Set<number>>(new Set());
+  const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
 
   // Get the current slide's auto-advance interval based on media type
   const getCurrentSlideInterval = useCallback(() => {
@@ -28,6 +30,23 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
       try {
         const data = await googleSheetsService.getHeroSlides();
         setSlides(data);
+        
+        // Preload first video immediately for instant playback
+        if (data.length > 0 && data[0].mediaType === 'video') {
+          const firstVideo = document.createElement('video');
+          firstVideo.src = data[0].mediaUrl;
+          firstVideo.preload = 'auto';
+          firstVideo.muted = true;
+          firstVideo.playsInline = true;
+          
+          // Start loading immediately
+          firstVideo.load();
+          
+          // Mark as loaded when ready
+          firstVideo.addEventListener('loadeddata', () => {
+            setVideosLoaded(prev => new Set(prev).add(0));
+          }, { once: true });
+        }
       } catch (error) {
         console.error('Error loading hero slides:', error);
       } finally {
@@ -40,26 +59,73 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
 
   const nextSlide = useCallback(() => {
     setIsTransitioning(true);
+    const nextIndex = (currentIndex + 1) % slides.length;
+    
+    // Preload next video before transition
+    if (slides[nextIndex]?.mediaType === 'video' && !videosLoaded.has(nextIndex)) {
+      const videoEl = videoRefs.current.get(nextIndex);
+      if (videoEl) {
+        videoEl.load();
+      }
+    }
+    
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % slides.length);
+      setCurrentIndex(nextIndex);
       setIsTransitioning(false);
+      
+      // Auto-play video when it becomes active
+      const videoEl = videoRefs.current.get(nextIndex);
+      if (videoEl && slides[nextIndex]?.mediaType === 'video') {
+        videoEl.play().catch(err => console.log('Video autoplay prevented:', err));
+      }
     }, CAROUSEL_TIMING.transitionDuration);
-  }, [slides.length]);
+  }, [slides, currentIndex, videosLoaded]);
 
   const prevSlide = useCallback(() => {
     setIsTransitioning(true);
+    const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+    
+    // Preload previous video before transition
+    if (slides[prevIndex]?.mediaType === 'video' && !videosLoaded.has(prevIndex)) {
+      const videoEl = videoRefs.current.get(prevIndex);
+      if (videoEl) {
+        videoEl.load();
+      }
+    }
+    
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+      setCurrentIndex(prevIndex);
       setIsTransitioning(false);
+      
+      // Auto-play video when it becomes active
+      const videoEl = videoRefs.current.get(prevIndex);
+      if (videoEl && slides[prevIndex]?.mediaType === 'video') {
+        videoEl.play().catch(err => console.log('Video autoplay prevented:', err));
+      }
     }, CAROUSEL_TIMING.transitionDuration);
-  }, [slides.length]);
+  }, [slides, currentIndex, videosLoaded]);
 
   const goToSlide = (index: number) => {
     if (index === currentIndex) return;
+    
+    // Preload target video before transition
+    if (slides[index]?.mediaType === 'video' && !videosLoaded.has(index)) {
+      const videoEl = videoRefs.current.get(index);
+      if (videoEl) {
+        videoEl.load();
+      }
+    }
+    
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentIndex(index);
       setIsTransitioning(false);
+      
+      // Auto-play video when it becomes active
+      const videoEl = videoRefs.current.get(index);
+      if (videoEl && slides[index]?.mediaType === 'video') {
+        videoEl.play().catch(err => console.log('Video autoplay prevented:', err));
+      }
     }, CAROUSEL_TIMING.transitionDuration);
   };
 
@@ -67,12 +133,41 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
   useEffect(() => {
     if (slides.length <= 1) return;
 
+    // Only auto-advance if current video is loaded or it's an image
+    const currentSlide = slides[currentIndex];
+    if (currentSlide?.mediaType === 'video' && !videosLoaded.has(currentIndex)) {
+      return; // Wait for video to load before auto-advancing
+    }
+
     const interval = setInterval(() => {
       nextSlide();
     }, getCurrentSlideInterval());
 
     return () => clearInterval(interval);
-  }, [currentIndex, slides.length, getCurrentSlideInterval, nextSlide]);
+  }, [currentIndex, slides, getCurrentSlideInterval, nextSlide, videosLoaded]);
+  
+  // Preload adjacent videos for smooth transitions
+  useEffect(() => {
+    if (slides.length === 0) return;
+    
+    const preloadAdjacentVideos = () => {
+      const nextIndex = (currentIndex + 1) % slides.length;
+      const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+      
+      [nextIndex, prevIndex].forEach(index => {
+        const slide = slides[index];
+        if (slide?.mediaType === 'video' && !videosLoaded.has(index)) {
+          const videoEl = videoRefs.current.get(index);
+          if (videoEl) {
+            videoEl.preload = 'auto';
+            videoEl.load();
+          }
+        }
+      });
+    };
+    
+    preloadAdjacentVideos();
+  }, [currentIndex, slides, videosLoaded]);
 
   if (loading) {
     return (
@@ -93,33 +188,57 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* Background Media */}
+      {/* Background Media - Render all videos hidden for preloading */}
       <div className="absolute inset-0 z-0">
-        {currentSlide.mediaType === 'video' ? (
-          <video
-            key={currentSlide.id}
-            className={`w-full h-full object-cover transition-opacity duration-700 ${
-              isTransitioning ? 'opacity-0' : 'opacity-100'
-            }`}
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src={currentSlide.mediaUrl} type="video/mp4" />
-          </video>
-        ) : (
-          <img
-            key={currentSlide.id}
-            src={currentSlide.mediaUrl}
-            alt={currentSlide.title}
-            className={`w-full h-full object-cover transition-opacity duration-700 ${
-              isTransitioning ? 'opacity-0' : 'opacity-100'
-            }`}
-          />
-        )}
+        {slides.map((slide, index) => {
+          const isActive = index === currentIndex;
+          
+          if (slide.mediaType === 'video') {
+            return (
+              <video
+                key={slide.id}
+                ref={(el) => {
+                  if (el) videoRefs.current.set(index, el);
+                }}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                  isActive && !isTransitioning ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                }`}
+                autoPlay={isActive}
+                muted
+                loop
+                playsInline
+                preload={index === 0 ? 'auto' : 'metadata'} // Aggressive preload for first video
+                onLoadedData={() => {
+                  setVideosLoaded(prev => new Set(prev).add(index));
+                  // Auto-play first video immediately when loaded
+                  if (index === currentIndex) {
+                    const videoEl = videoRefs.current.get(index);
+                    if (videoEl) {
+                      videoEl.play().catch(err => console.log('Video autoplay prevented:', err));
+                    }
+                  }
+                }}
+              >
+                <source src={slide.mediaUrl} type="video/mp4" />
+              </video>
+            );
+          } else {
+            return (
+              <img
+                key={slide.id}
+                src={slide.mediaUrl}
+                alt={slide.title}
+                loading={index === 0 ? 'eager' : 'lazy'} // Eager load first image
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                  isActive && !isTransitioning ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                }`}
+              />
+            );
+          }
+        })}
+        
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-50 z-20"></div>
       </div>
 
       {/* Content */}

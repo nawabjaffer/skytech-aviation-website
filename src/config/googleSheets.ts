@@ -116,6 +116,15 @@ export interface ExistingDistributor {
   active: boolean;
 }
 
+export interface FAQ {
+  id: string;
+  question: string;
+  answer: string;
+  keywords?: string; // Comma-separated keywords for better matching
+  category?: string; // e.g., "Products", "Services", "Company", "Support"
+  active: boolean;
+}
+
 export interface GoogleSheetsConfig {
   sheetId: string;
   apiKey?: string;
@@ -152,6 +161,7 @@ export const SHEET_RANGES = {
   products: 'Products!A2:L100', // Extended to L for new fields
   distributorApplications: 'DistributorApplications!A2:Z100', // Application submissions
   existingDistributors: 'ExistingDistributors!A2:L100', // Current distributors for map
+  faq: 'FAQ!A2:F100', // FAQ entries for chatbot
 };
 
 // Fallback hero slides when Google Sheets is not configured
@@ -542,6 +552,90 @@ export const DEFAULT_DISTRIBUTORS: ExistingDistributor[] = [
     yearsPartner: 3,
     specializations: 'Aircraft Engines, Fuel Systems',
     website: 'https://example.com',
+    active: true,
+  },
+];
+
+// Default FAQs when Google Sheets is not configured
+export const DEFAULT_FAQ: FAQ[] = [
+  {
+    id: '1',
+    question: "What types of aircraft parts do you supply?",
+    answer: "We supply a comprehensive range of aircraft parts from nose to tail, including Brakes & Wheels, Airframe Components, Engine Parts, Aircraft Tools, Lubricants, Adhesives, Avionics, and more. We specialize in OEM & PMA parts for mid-life narrow-body business and commercial aircraft.",
+    keywords: "parts, supply, OEM, PMA, brakes, wheels, airframe, engine, tools, lubricants, adhesives, avionics",
+    category: "Products",
+    active: true,
+  },
+  {
+    id: '2',
+    question: "Are you ASA certified?",
+    answer: "Yes, Skytech Aviation is a proud member of the Aviation Suppliers Association (ASA), demonstrating our commitment to quality, safety, and ethical business practices in the aviation industry.",
+    keywords: "ASA, certification, certified, member, quality, safety",
+    category: "Company",
+    active: true,
+  },
+  {
+    id: '3',
+    question: "How can I request a quote?",
+    answer: "You can request a quote by contacting us at +971 561 611 002, emailing info@skytech.ae or sales@skytech.ae, or filling out the contact form on our website. Our professional team will respond quickly with expert advice and competitive pricing.",
+    keywords: "quote, request, contact, email, phone, pricing, RFQ",
+    category: "Support",
+    active: true,
+  },
+  {
+    id: '4',
+    question: "Where are you located?",
+    answer: "We are located at Meydan Free Zone, The Meydan Hotel, Dubai, United Arab Emirates. Our business hours are Sunday to Thursday, 9:00 AM - 6:00 PM GST.",
+    keywords: "location, address, Dubai, UAE, office, hours, business hours",
+    category: "Company",
+    active: true,
+  },
+  {
+    id: '5',
+    question: "Do you offer AOG (Aircraft on Ground) support?",
+    answer: "Yes, we provide emergency support to get your aircraft back in service quickly with priority handling and expedited shipping for critical situations.",
+    keywords: "AOG, emergency, support, aircraft on ground, urgent, priority",
+    category: "Services",
+    active: true,
+  },
+  {
+    id: '6',
+    question: "What are your payment terms?",
+    answer: "We offer flexible payment options. Please contact our sales team at sales@skytech.ae or +971 561 611 002 to discuss specific payment terms for your order.",
+    keywords: "payment, terms, pricing, cost, invoice, billing",
+    category: "Support",
+    active: true,
+  },
+  {
+    id: '7',
+    question: "How can I become a distributor?",
+    answer: "To become a distributor, you need to meet requirements including business registration, industry experience, financial stability, proper facilities, and regulatory compliance. Visit our Distributors page or contact us for more information about partnership opportunities.",
+    keywords: "distributor, partner, partnership, become, apply, requirements",
+    category: "Distributors",
+    active: true,
+  },
+  {
+    id: '8',
+    question: "Do you ship internationally?",
+    answer: "Yes, we provide worldwide shipping with real-time tracking and customs clearance support. We have global links with major manufacturers to ensure efficient delivery.",
+    keywords: "shipping, international, worldwide, global, delivery, logistics",
+    category: "Services",
+    active: true,
+  },
+  {
+    id: '9',
+    question: "What certifications do your parts have?",
+    answer: "We supply authentic OEM (Original Equipment Manufacturer) and PMA (Parts Manufacturer Approval) certified parts with full traceability and documentation.",
+    keywords: "certification, certified, OEM, PMA, traceability, documentation, authentic",
+    category: "Products",
+    active: true,
+  },
+  {
+    id: '10',
+    question: "What are your contact details?",
+    answer: "Phone: +971 561 611 002 (primary), +971 508 640 842 (secondary). Email: info@skytech.ae, sales@skytech.ae. Address: Meydan Free Zone, The Meydan Hotel, Dubai, UAE. Business Hours: Sunday to Thursday, 9:00 AM - 6:00 PM GST.",
+    keywords: "contact, phone, email, address, hours, reach, communicate",
+    category: "Support",
     active: true,
   },
 ];

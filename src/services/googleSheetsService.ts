@@ -6,11 +6,13 @@ import googleSheetsConfig, {
   Product,
   ExistingDistributor,
   DistributorApplication,
+  FAQ,
   DEFAULT_HERO_SLIDES,
   DEFAULT_STATS,
   DEFAULT_TESTIMONIALS,
   DEFAULT_PRODUCTS,
   DEFAULT_DISTRIBUTORS,
+  DEFAULT_FAQ,
   SHEET_RANGES,
 } from '../config/googleSheets';
 
@@ -31,6 +33,7 @@ class GoogleSheetsService {
   private testimonialsCache: CacheItem<Testimonial> | null = null;
   private productsCache: CacheItem<Product> | null = null;
   private distributorsCache: CacheItem<ExistingDistributor> | null = null;
+  private faqCache: CacheItem<FAQ> | null = null;
   private cacheDuration = 5 * 60 * 1000; // 5 minutes
 
   /**
@@ -162,6 +165,35 @@ class GoogleSheetsService {
     } catch (error) {
       console.error('Error fetching products:', error);
       return this.productsCache?.data || DEFAULT_PRODUCTS;
+    }
+  }
+
+  /**
+   * Fetch FAQs from Google Sheets
+   */
+  async getFAQs(): Promise<FAQ[]> {
+    if (this.faqCache && Date.now() - this.faqCache.timestamp < this.cacheDuration) {
+      return this.faqCache.data;
+    }
+
+    if (!googleSheetsConfig.sheetId) {
+      return DEFAULT_FAQ;
+    }
+
+    try {
+      const url = this.buildUrl(SHEET_RANGES.faq);
+      const response = await axios.get(url, { timeout: 10000 });
+      const faqs = this.parseFAQs(response.data.values);
+      
+      this.faqCache = {
+        data: faqs,
+        timestamp: Date.now(),
+      };
+
+      return faqs;
+    } catch (error) {
+      console.error('Error fetching FAQs:', error);
+      return this.faqCache?.data || DEFAULT_FAQ;
     }
   }
 
@@ -371,6 +403,38 @@ class GoogleSheetsService {
     }
 
     return products.length > 0 ? products : DEFAULT_PRODUCTS;
+  }
+
+  /**
+   * Parse raw sheet data into FAQ objects
+   * Expected columns: id, question, answer, keywords, category, active
+   */
+  private parseFAQs(rows: any[][]): FAQ[] {
+    if (!rows || rows.length === 0) {
+      return DEFAULT_FAQ;
+    }
+
+    const faqs: FAQ[] = [];
+
+    for (const row of rows) {
+      if (!row || row.length === 0) continue;
+
+      const [id, question, answer, keywords, category, active] = row;
+
+      if (active?.toLowerCase() !== 'true') continue;
+      if (!id || !question || !answer) continue;
+
+      faqs.push({
+        id: String(id),
+        question: String(question),
+        answer: String(answer),
+        keywords: keywords ? String(keywords) : undefined,
+        category: category ? String(category) : undefined,
+        active: true,
+      });
+    }
+
+    return faqs.length > 0 ? faqs : DEFAULT_FAQ;
   }
 
   /**

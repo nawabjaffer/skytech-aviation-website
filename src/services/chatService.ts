@@ -4,6 +4,8 @@
  */
 
 import { systemPrompt, chatbotKnowledge } from '../data/chatbotKnowledge';
+import googleSheetsService from './googleSheetsService';
+import type { FAQ } from '../config/googleSheets';
 
 export interface Message {
   id: string;
@@ -26,10 +28,62 @@ class ChatService {
   private rateLimitMap: Map<string, number> = new Map();
   private readonly RATE_LIMIT_WINDOW = 60000; // 1 minute
   private readonly MAX_REQUESTS_PER_WINDOW = 10;
+  private mergedFAQs: FAQ[] = [];
 
   constructor() {
     // Initialize memory lazily to avoid import errors
     this.memory = null;
+    this.loadMergedFAQs();
+  }
+
+  /**
+   * Load and merge FAQs from Google Sheets and static knowledge base
+   */
+  private async loadMergedFAQs(): Promise<void> {
+    try {
+      // Get FAQs from Google Sheets (with caching and fallback to defaults)
+      const sheetFAQs = await googleSheetsService.getFAQs();
+      
+      // Convert static FAQ to the same format
+      const staticFAQs: FAQ[] = chatbotKnowledge.faq.map((faq, index) => ({
+        id: `static-${index + 1}`,
+        question: faq.question,
+        answer: faq.answer,
+        keywords: undefined,
+        category: undefined,
+        active: true,
+      }));
+
+      // Merge: Google Sheets FAQs take priority, then add static FAQs that aren't duplicates
+      const mergedMap = new Map<string, FAQ>();
+      
+      // Add Google Sheets FAQs first
+      sheetFAQs.forEach(faq => {
+        mergedMap.set(faq.question.toLowerCase(), faq);
+      });
+
+      // Add static FAQs if not already present
+      staticFAQs.forEach(faq => {
+        const key = faq.question.toLowerCase();
+        if (!mergedMap.has(key)) {
+          mergedMap.set(key, faq);
+        }
+      });
+
+      this.mergedFAQs = Array.from(mergedMap.values());
+      console.log(`✅ Loaded ${this.mergedFAQs.length} FAQs (${sheetFAQs.length} from Sheets, ${staticFAQs.length} static)`);
+    } catch (error) {
+      console.error('❌ Error loading FAQs:', error);
+      // Fallback to static FAQs only
+      this.mergedFAQs = chatbotKnowledge.faq.map((faq, index) => ({
+        id: `static-${index + 1}`,
+        question: faq.question,
+        answer: faq.answer,
+        keywords: undefined,
+        category: undefined,
+        active: true,
+      }));
+    }
   }
 
   /**
@@ -237,15 +291,37 @@ class ChatService {
   }
 
   /**
-   * Get suggested responses for common queries
+   * Get suggested responses for common queries using merged FAQs
    */
   async getSuggestedResponse(query: string): Promise<string | null> {
     const lowerQuery = query.toLowerCase();
 
+    // Ensure FAQs are loaded
+    if (this.mergedFAQs.length === 0) {
+      await this.loadMergedFAQs();
+    }
+
     // Check FAQ for exact or close matches
-    for (const faq of chatbotKnowledge.faq) {
+    for (const faq of this.mergedFAQs) {
+      // Check if query matches question (partial match)
       if (lowerQuery.includes(faq.question.toLowerCase().substring(0, 20))) {
         return faq.answer;
+      }
+
+      // Check if query matches keywords (if available)
+      if (faq.keywords) {
+        const keywords = faq.keywords.toLowerCase().split(',').map(k => k.trim());
+        const matchesKeyword = keywords.some(keyword => lowerQuery.includes(keyword));
+        if (matchesKeyword && lowerQuery.length > 5) {
+          // Additional check: ensure query has some overlap with question or answer
+          const questionWords = faq.question.toLowerCase().split(' ');
+          const hasQuestionMatch = questionWords.some(word => 
+            word.length > 3 && lowerQuery.includes(word)
+          );
+          if (hasQuestionMatch) {
+            return faq.answer;
+          }
+        }
       }
     }
 

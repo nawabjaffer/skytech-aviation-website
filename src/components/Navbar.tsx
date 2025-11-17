@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
               to="/" 
               className="block transition-transform duration-300 hover:scale-105"
             >
-              <Logo className="h-12 w-auto" />
+              <Logo className="h-8 w-auto" />
             </Link>
           </div>
 

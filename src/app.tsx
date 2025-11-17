@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import { DarkModeProvider } from './contexts/DarkModeContext';
 import Layout from './components/Layout';
 import LoadingAnimation from './components/LoadingAnimation';
+import PageLoadingFallback from './components/PageLoadingFallback';
 
 // Code splitting: Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
@@ -14,13 +15,6 @@ const Services = lazy(() => import('./pages/Services'));
 const Contacts = lazy(() => import('./pages/Contacts'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const ChatbotWidget = lazy(() => import('./components/ChatbotWidget'));
-
-// Loading fallback component
-const LoadingFallback = () => (
-  <div className="flex items-center justify-center min-h-screen">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-500"></div>
-  </div>
-);
 
 // Component to handle loading animation on home page
 const AppContent = () => {
@@ -60,7 +54,7 @@ const AppContent = () => {
         opacity: showLoading && location.pathname === '/' ? 0 : 1
       }}>
         <Layout>
-          <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={<PageLoadingFallback />}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/distributors" element={<Distributors />} />

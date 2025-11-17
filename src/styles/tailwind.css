@@ -107,4 +107,63 @@
   .glass-effect {
     @apply bg-white/80 backdrop-blur-md;
   }
+
+  /* Page Loading Animations */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes fly-left {
+    0%, 100% {
+      transform: translateX(0) translateY(-50%);
+      opacity: 0.4;
+    }
+    50% {
+      transform: translateX(-8px) translateY(-50%);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fly-right {
+    0%, 100% {
+      transform: translateX(0) translateY(-50%);
+      opacity: 0.4;
+    }
+    50% {
+      transform: translateX(8px) translateY(-50%);
+      opacity: 1;
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
+  }
+
+  .animate-fly-left {
+    animation: fly-left 2s ease-in-out infinite;
+  }
+
+  .animate-fly-right {
+    animation: fly-right 2s ease-in-out infinite;
+  }
 }

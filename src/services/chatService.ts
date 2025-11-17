@@ -40,12 +40,6 @@ class ChatService {
       return;
     }
 
-    // For now, use fallback responses until Ollama packages are properly configured
-    this.isInitialized = true;
-    console.log('✅ Chatbot initialized with fallback responses (Ollama integration pending)');
-    
-    /* 
-    // TODO: Re-enable when LangChain packages are properly installed
     try {
       // Check if Ollama is available first
       const isAvailable = await this.checkOllamaStatus();
@@ -55,54 +49,23 @@ class ChatService {
         return;
       }
 
-      // Dynamically import LangChain modules
-      const { Ollama } = await import('@langchain/community');
-      const { ConversationChain } = await import('langchain');
-      const { BufferMemory } = await import('langchain');
-      const { PromptTemplate } = await import('@langchain/core/prompts');
-
-      // Initialize memory
-      this.memory = new BufferMemory({
-        returnMessages: true,
-        memoryKey: 'chat_history',
-      });
-
-      // Initialize Ollama with llama3.2 model (3B parameters for speed)
+      // Initialize Ollama browser client
+      const { Ollama } = await import('ollama/browser');
+      
       this.ollama = new Ollama({
-        baseUrl: 'http://localhost:11434',
-        model: 'llama3.2',
-        temperature: 0.7,
-        topP: 0.9,
-        numCtx: 2048,
+        host: 'http://localhost:11434'
       });
 
-      // Create custom prompt template
-      const promptTemplate = new PromptTemplate({
-        template: `${systemPrompt}
-
-Current conversation:
-{chat_history}
-
-User: {input}
-Assistant:`,
-        inputVariables: ['chat_history', 'input'],
-      });
-
-      // Create conversation chain with memory
-      this.chain = new ConversationChain({
-        llm: this.ollama,
-        memory: this.memory,
-        prompt: promptTemplate,
-      });
+      // Initialize simple message history
+      this.memory = [];
 
       this.isInitialized = true;
-      console.log('✅ Ollama chatbot initialized successfully');
+      console.log('✅ Ollama chatbot initialized successfully with llama3.2');
     } catch (error) {
       console.error('❌ Failed to initialize Ollama:', error);
       this.isInitialized = true;
       console.warn('⚠️ Chatbot will use fallback responses');
     }
-    */
   }
 
   /**
@@ -192,8 +155,8 @@ Assistant:`,
       return suggestedResponse;
     }
 
-    // If Ollama chain is not available, use enhanced knowledge base response
-    if (!this.chain) {
+    // If Ollama is not available, use enhanced knowledge base response
+    if (!this.ollama) {
       return this.getKnowledgeBaseResponse(message);
     }
 
@@ -201,12 +164,34 @@ Assistant:`,
       // Enhance query with relevant context
       const enhancedQuery = this.enhanceQueryWithContext(message);
 
-      // Get response from LLM
-      const response = await this.chain.call({
-        input: enhancedQuery,
+      // Build message history
+      const messages = [
+        { role: 'system', content: systemPrompt },
+        ...(Array.isArray(this.memory) ? this.memory : []),
+        { role: 'user', content: enhancedQuery }
+      ];
+
+      // Get response from Ollama
+      const response = await this.ollama.chat({
+        model: 'llama3.2',
+        messages: messages,
+        stream: false,
       });
 
-      return response.response || 'I apologize, but I could not generate a response. Please try again.';
+      const aiMessage = response.message.content;
+
+      // Store conversation in memory
+      if (Array.isArray(this.memory)) {
+        this.memory.push({ role: 'user', content: message });
+        this.memory.push({ role: 'assistant', content: aiMessage });
+        
+        // Keep only last 10 messages to prevent context overflow
+        if (this.memory.length > 20) {
+          this.memory = this.memory.slice(-20);
+        }
+      }
+
+      return aiMessage || 'I apologize, but I could not generate a response. Please try again.';
     } catch (error: any) {
       console.error('Error getting chatbot response:', error);
       
@@ -280,7 +265,9 @@ Assistant:`,
    * Clear conversation memory
    */
   async clearConversation(): Promise<void> {
-    await this.memory.clear();
+    if (Array.isArray(this.memory)) {
+      this.memory = [];
+    }
   }
 
   /**
@@ -299,8 +286,10 @@ Assistant:`,
    * Get conversation history
    */
   async getConversationHistory(): Promise<string> {
-    const history = await this.memory.loadMemoryVariables({});
-    return JSON.stringify(history, null, 2);
+    if (Array.isArray(this.memory)) {
+      return JSON.stringify(this.memory, null, 2);
+    }
+    return '[]';
   }
 }
 

@@ -54,16 +54,18 @@ function isTechnicalTerm(text) {
  * Falls back to placeholder on failure.
  */
 async function translateText(text, targetLocale) {
-  if (!text || typeof text !== 'string' || isTechnicalTerm(text)) {
-    return text.replace(/^\[MISSING\]\s*/, '');
+  const textToTranslate = text.replace(/^\[MISSING\]\s*/, '').trim();
+
+  if (!textToTranslate || typeof textToTranslate !== 'string' || isTechnicalTerm(textToTranslate)) {
+    return textToTranslate;
   }
 
   try {
-    const translation = await translate(text, { from: SOURCE_LOCALE, to: targetLocale });
+    const translation = await translate(textToTranslate, { from: SOURCE_LOCALE, to: targetLocale });
     return translation;
   } catch (error) {
-    console.error(`   - ❌ Translation Error for "${text.substring(0, 20)}...": ${error.message}`);
-    return `${MISSING_TRANSLATION_PREFIX} ${text}`;
+    console.error(`   - ❌ Translation Error for "${textToTranslate.substring(0, 20)}...": ${error.message}`);
+    return `${MISSING_TRANSLATION_PREFIX} ${textToTranslate}`;
   }
 }
 

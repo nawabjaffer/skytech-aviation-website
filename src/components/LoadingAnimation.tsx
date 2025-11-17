@@ -41,7 +41,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
     timers.push(setTimeout(() => setPhase(4), 4100));
 
     // Enable skip button after 2 seconds
-    timers.push(setTimeout(() => setCanSkip(true), 2000));
+    timers.push(setTimeout(() => setCanSkip(false), 2000));
 
     // Complete animation after minDuration - remove loading screen completely
     timers.push(setTimeout(() => {

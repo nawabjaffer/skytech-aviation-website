@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Globe, Plane, BookOpen, Truck, Briefcase, TrendingUp } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { ExistingDistributor, DistributorApplication } from '../config/googleSheets';
 import googleSheetsService from '../services/googleSheetsService';

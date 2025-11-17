@@ -15,6 +15,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Globe, Plane, BookOpen, Truck, Briefcase, TrendingUp, FileText, Clock, CheckCircle, Users, MapPin, Map } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { ExistingDistributor, DistributorApplication } from '../config/googleSheets';
 import googleSheetsService from '../services/googleSheetsService';
@@ -208,37 +209,37 @@ const DistributorsEnhanced: React.FC = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
               <BenefitCard
-                icon="🌍"
+                icon={<Globe className="w-12 h-12" />}
                 title="Global Network"
                 description="Access to our worldwide supplier network and exclusive pricing"
                 delay="stagger-1"
               />
               <BenefitCard
-                icon="✈️"
+                icon={<Plane className="w-12 h-12" />}
                 title="Authentic OEM Parts"
                 description="100% genuine parts with full certification and traceability"
                 delay="stagger-2"
               />
               <BenefitCard
-                icon="📚"
+                icon={<BookOpen className="w-12 h-12" />}
                 title="Training & Support"
                 description="Comprehensive training programs and technical support"
                 delay="stagger-3"
               />
               <BenefitCard
-                icon="🚚"
+                icon={<Truck className="w-12 h-12" />}
                 title="Logistics Support"
                 description="Worldwide shipping and AOG emergency support"
                 delay="stagger-4"
               />
               <BenefitCard
-                icon="💼"
+                icon={<Briefcase className="w-12 h-12" />}
                 title="Marketing Materials"
                 description="Co-branded marketing materials and promotional support"
                 delay="stagger-5"
               />
               <BenefitCard
-                icon="📈"
+                icon={<TrendingUp className="w-12 h-12" />}
                 title="Business Growth"
                 description="Territory protection and business development assistance"
                 delay="stagger-6"
@@ -253,7 +254,7 @@ const DistributorsEnhanced: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {/* Requirements Card */}
               <InteractiveCard
-                icon="📋"
+                icon={<FileText className="w-12 h-12" />}
                 title="Requirements"
                 description="Essential criteria to become our distributor partner"
                 gradient="from-blue-500 to-blue-700"
@@ -262,7 +263,7 @@ const DistributorsEnhanced: React.FC = () => {
 
               {/* Process Card */}
               <InteractiveCard
-                icon="🔄"
+                icon={<Clock className="w-12 h-12" />}
                 title="Application Process"
                 description="Step-by-step journey to partnership"
                 gradient="from-purple-500 to-purple-700"
@@ -271,7 +272,7 @@ const DistributorsEnhanced: React.FC = () => {
 
               {/* Network Map Card */}
               <InteractiveCard
-                icon="🗺️"
+                icon={<Map className="w-12 h-12" />}
                 title="Global Network"
                 description="Our distributors around the world"
                 gradient="from-green-500 to-green-700"
@@ -377,7 +378,7 @@ const DistributorsEnhanced: React.FC = () => {
 
 // Benefit Card Component
 interface BenefitCardProps {
-  icon: string;
+  icon: React.ReactNode;
   title: string;
   description: string;
   delay?: string;
@@ -385,7 +386,7 @@ interface BenefitCardProps {
 
 const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, description, delay = '' }) => (
   <div className={`benefit-card glass-effect rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl scroll-animate ${delay}`}>
-    <div className="text-6xl mb-6 transform hover:scale-125 transition-transform duration-300">{icon}</div>
+    <div className="text-blue-600 dark:text-blue-400 mb-6 flex justify-center transform hover:scale-125 transition-transform duration-300">{icon}</div>
     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">{title}</h3>
     <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{description}</p>
   </div>
@@ -393,7 +394,7 @@ const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, description, del
 
 // Interactive Card Component
 interface InteractiveCardProps {
-  icon: string;
+  icon: React.ReactNode;
   title: string;
   description: string;
   gradient: string;
@@ -405,7 +406,7 @@ const InteractiveCard: React.FC<InteractiveCardProps> = ({ icon, title, descript
     onClick={onClick}
     className={`group cursor-pointer bg-gradient-to-br ${gradient} rounded-2xl p-8 text-white transform hover:scale-105 transition-all duration-300 hover:shadow-2xl`}
   >
-    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">{icon}</div>
+    <div className="mb-4 group-hover:scale-110 transition-transform">{icon}</div>
     <h3 className="text-2xl font-bold mb-3">{title}</h3>
     <p className="text-blue-100 mb-4">{description}</p>
     <div className="flex items-center gap-2 text-sm font-semibold">

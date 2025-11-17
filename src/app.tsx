@@ -1,8 +1,9 @@
 
-import { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Suspense, lazy, useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { DarkModeProvider } from './contexts/DarkModeContext';
 import Layout from './components/Layout';
+import LoadingAnimation from './components/LoadingAnimation';
 
 // Code splitting: Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
@@ -21,10 +22,43 @@ const LoadingFallback = () => (
   </div>
 );
 
-const App = () => {
+// Component to handle loading animation on home page
+const AppContent = () => {
+  const location = useLocation();
+  const [showLoading, setShowLoading] = useState(true); // Start with true to prevent flash
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+  useEffect(() => {
+    // Show loading animation on first visit to home page only
+    if (location.pathname === '/' && isFirstLoad) {
+      setShowLoading(true);
+      setIsFirstLoad(false);
+    } else if (isFirstLoad) {
+      // If first page is not home, don't show loading
+      setShowLoading(false);
+      setIsFirstLoad(false);
+    }
+  }, [location.pathname, isFirstLoad]);
+
+  const handleLoadingComplete = () => {
+    setShowLoading(false);
+  };
+
   return (
-    <DarkModeProvider>
-      <Router basename="/">
+    <>
+      {/* Show loading animation on initial home page load */}
+      {showLoading && location.pathname === '/' && (
+        <LoadingAnimation 
+          onComplete={handleLoadingComplete}
+          minDuration={5500}
+        />
+      )}
+
+      {/* Main app content - hide during loading */}
+      <div style={{ 
+        visibility: showLoading && location.pathname === '/' ? 'hidden' : 'visible',
+        opacity: showLoading && location.pathname === '/' ? 0 : 1
+      }}>
         <Layout>
           <Suspense fallback={<LoadingFallback />}>
             <Routes>
@@ -42,9 +76,21 @@ const App = () => {
         <Suspense fallback={null}>
           <ChatbotWidget />
         </Suspense>
+      </div>
+    </>
+  );
+};
+
+const App = () => {
+  return (
+    <DarkModeProvider>
+      <Router basename="/">
+        <AppContent />
       </Router>
     </DarkModeProvider>
   );
 };
 
 export default App;
+
+

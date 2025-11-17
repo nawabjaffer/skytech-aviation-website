@@ -162,91 +162,178 @@
   "services": {
     "title": "Наши услуги",
     "description": "Комплексные услуги по поставке авиационных запчастей и поддержке, адаптированные под ваши потребности.",
-    "subtitle": "Полный спектр авиационной поддержки",
-    "sourcing": {
-      "title": "Поиск и закупка запчастей",
-      "description": "Экспертный поиск труднодоступных запчастей у надежных поставщиков по всему миру",
-      "details": "Наша обширная сеть позволяет нам быстро и эффективно находить и закупать редкие и устаревшие запчасти.",
-      "benefits": [
-        "Доступ к глобальной сети поставщиков",
-        "Конкурентные цены",
-        "Быстрые сроки выполнения",
-        "Проверка качества"
-      ]
+    "hero": {
+      "title": "Профессиональные авиационные услуги",
+      "subtitle": "Комплексные решения от носа до хвоста - поставка OEM и PMA запчастей для коммерческих и бизнес-самолетов",
+      "cta1": "Explore Services",
+      "cta2": "Get a Quote"
     },
-    "technical": {
-      "title": "Техническая поддержка",
-      "description": "Экспертные рекомендации по выбору запчастей, совместимости и установке",
-      "details": "Наши сертифицированные технические специалисты предоставляют комплексную поддержку, чтобы вы получили правильные запчасти для вашего самолета.",
-      "benefits": [
-        "Сертифицированные технические эксперты",
-        "Проверка совместимости",
-        "Руководство по установке",
-        "Поддержка документации"
-      ]
-    },
-    "aog": {
-      "title": "Поддержка AOG",
-      "description": "Круглосуточная экстренная поддержка при простое самолета для минимизации времени простоя",
-      "details": "Когда важна каждая минута, наша команда AOG работает круглосуточно, чтобы вернуть ваш самолет в эксплуатацию.",
-      "benefits": [
-        "Доступность 24/7",
-        "Ускоренная доставка",
-        "Приоритетная обработка",
-        "Глобальное покрытие"
-      ]
-    },
-    "logistics": {
-      "title": "Логистика и доставка",
-      "description": "Быстрая, безопасная доставка по всему миру и таможенное оформление",
-      "details": "Мы обрабатываем все аспекты логистики, чтобы ваши запчасти прибыли безопасно и вовремя.",
-      "benefits": [
-        "Доставка по всему миру",
-        "Таможенное оформление",
-        "Отслеживание в реальном времени",
-        "Надежная упаковка"
-      ]
-    },
-    "quality": {
-      "title": "Контроль качества",
-      "description": "Строгий контроль и сертификация всех запчастей",
-      "details": "Каждая запчасть проходит тщательную проверку качества, чтобы убедиться, что она соответствует авиационным стандартам.",
-      "benefits": [
-        "Сертифицировано FAA/EASA",
-        "Документация отслеживаемости",
-        "Сертификаты качества",
-        "Гарантийное покрытие"
-      ]
-    },
-    "documentation": {
-      "title": "Поддержка документации",
-      "description": "Полная документация о летной годности и сертификации",
-      "details": "Мы предоставляем все необходимые документы для соответствия нормативным требованиям и отслеживаемости.",
-      "benefits": [
-        "Сертификаты летной годности",
-        "Цепь хранения",
-        "Документация о соответствии",
-        "Цифровые записи"
-      ]
+    "cards": {
+      "title": "Категории наших услуг",
+      "subtitle": "Комплексные поставки авиационных запчастей и профессиональные услуги",
+      "keyFeatures": "Ключевые предложения",
+      "learnMore": "Learn More",
+      "items": {
+        "sourcing": {
+          "title": "Brakes & Wheels",
+          "description": "High-quality braking systems и wheels for both helicopters и airplanes from reputed manufacturers. Complete brake assemblies, wheel assemblies, и relпоed components.",
+          "benefits": {
+            "0": "OEM и PMA certified brake systems",
+            "1": "Helicopter и airplane applicпоions",
+            "2": "Complete assemblies и запасные части"
+          }
+        },
+        "technical": {
+          "title": "Airframe Components",
+          "description": "Structural parts, lиing gear assemblies, wing components, fuselage sections, и all airframe-relпоed parts to keep your авиационные structurally sound.",
+          "benefits": {
+            "0": "Lиing gear systems и components",
+            "1": "Wing и fuselage assemblies",
+            "2": "Structural repair parts и аксессуары"
+          }
+        },
+        "aog": {
+          "title": "Engine Parts",
+          "description": "Comprehensive engine components for both helicopter и airplane engines. From complete engine assemblies to individual parts и аксессуары.",
+          "benefits": {
+            "0": "Helicopter engine components",
+            "1": "Airplane engine parts и assemblies",
+            "2": "Engine аксессуары и relпоed systems"
+          }
+        },
+        "logistics": {
+          "title": "авиационные Tools",
+          "description": "Professional-grade tools for авиационные maintenance и repair operпоions. Complete range of specialized aviпоion tools и equipment.",
+          "benefits": {
+            "0": "Maintenance и repair tools",
+            "1": "Specialized aviпоion equipment",
+            "2": "Calibrпоed и certified tools"
+          }
+        },
+        "quality": {
+          "title": "Lubricants & Chemicals",
+          "description": "Aviпоion-grade lubricants including engine oils, greases, hydraulic fluids, и specialty chemicals approved for aviпоion use.",
+          "benefits": {
+            "0": "Engine oils и aviпоion greases",
+            "1": "Hydraulic fluids и specialty lubricants",
+            "2": "Aviпоion-approved chemical products"
+          }
+        },
+        "documentation": {
+          "title": "Adhesives & Fuel Supply",
+          "description": "Structural adhesives, epoxy sealants suitable for aviпоion applicпоions, plus aviпоion fuel supply и logistics services.",
+          "benefits": {
+            "0": "Structural adhesives и sealants",
+            "1": "Aviпоion-grade epoxy products",
+            "2": "Aviпоion fuel supply и logistics"
+          }
+        }
+      }
     },
     "process": {
       "title": "Как мы работаем",
-      "step1": {
-        "title": "Запрос",
-        "description": "Отправьте запрос на запчасти с техническими характеристиками"
+      "subtitle": "Professional service process с quick response times",
+      "note": {
+        "title": "Fast Response",
+        "description": "Our professional team responds quickly to inquiries и resolves issues efficiently"
       },
-      "step2": {
-        "title": "Расчет",
-        "description": "Получите подробную информацию о ценах и наличии"
-      },
-      "step3": {
-        "title": "Заказ",
-        "description": "Подтвердите заказ с безопасной оплатой"
-      },
-      "step4": {
-        "title": "Доставка",
-        "description": "Быстрая доставка с отслеживанием в ваше местоположение"
+      "steps": {
+        "inquiry": {
+          "title": "Submit Inquiry",
+          "description": "Contact us с your parts requirement и specificпоions"
+        },
+        "quote": {
+          "title": "экспертные консультации",
+          "description": "Receive expert consultпоion и competitive pricing from our team"
+        },
+        "order": {
+          "title": "Place Order",
+          "description": "Confirm your order с flexible payment options"
+        },
+        "delivery": {
+          "title": "Fast Delivery",
+          "description": "Receive authentic OEM/PMA parts с full documentпоion"
+        }
       }
+    },
+    "benefits": {
+      "title": "Why Choose Skytech Aviпоion",
+      "subtitle": "Professional service backed by industry expertise",
+      "items": {
+        "certified": {
+          "title": "ASA Member",
+          "description": "Proud member of Aviпоion Suppliers Associпоion с commitment to quality stиards"
+        },
+        "network": {
+          "title": "OEM & PMA Parts",
+          "description": "Global links с major manufacturers for authentic parts supply"
+        },
+        "support": {
+          "title": "Professional Team",
+          "description": "экспертные консультации on parts selection и quick issue resolution"
+        },
+        "pricing": {
+          "title": "конкурентные цены",
+          "description": "Regular pricing reviews to offer good value и конкурентные цены"
+        }
+      }
+    },
+    "support": {
+      "title": "Contact Our Team",
+      "subtitle": "Multiple ways to reach our professional team",
+      "channels": {
+        "hotline": {
+          "title": "Phone Support",
+          "description": "Call us for inquiries и expert parts consultпоion",
+          "number": "+971 561 611 002",
+          "availability": "Business Hours"
+        },
+        "email": {
+          "title": "Email Support",
+          "description": "Send detailed inquiries for экспертные консультации и quotпоions",
+          "address": "info@skytech.ae",
+          "responseTime": "Quick response guaranteed"
+        },
+        "chat": {
+          "title": "Sales Inquiries",
+          "description": "Contact our sales team for parts requirements и pricing",
+          "button": "Contact Sales",
+          "availability": "sales@skytech.ae"
+        }
+      }
+    },
+    "downloads": {
+      "title": "Additional Services",
+      "subtitle": "Comprehensive professional capabilities и support",
+      "downloadButton": "Learn More",
+      "items": {
+        "catalog": {
+          "title": "Maintenance Support",
+          "description": "Professional maintenance support services и technical assistance",
+          "size": "Service Available"
+        },
+        "brochure": {
+          "title": "Pre-Purchase Inspections",
+          "description": "Comprehensive авиационные pre-purchase inspection services",
+          "size": "Service Available"
+        },
+        "certifications": {
+          "title": "авиационные Delivery",
+          "description": "Professional авиационные delivery и positioning services",
+          "size": "Service Available"
+        },
+        "capabilities": {
+          "title": "MRO Representпоion",
+          "description": "Representпоion in Maintenance, Repair, и Overhaul markets",
+          "size": "Service Available"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Contact us today for экспертные консультации on your aviпоion parts requirements",
+      "contact": "Contact Us Today",
+      "products": "View All Parts"
     }
   },
   "distributors": {
@@ -358,107 +445,266 @@
   "about": {
     "title": "О Skytech Aviation",
     "description": "Узнайте о нашей приверженности к совершенству в поставке и распространении авиационных запчастей.",
-    "subtitle": "Совершенство с 2015 года",
-    "intro": {
-      "title": "Кто мы",
-      "text": "Skytech Aviation - ведущий поставщик подлинных запчастей и компонентов OEM для самолетов, обслуживающий авиакомпании, ремонтные центры и дистрибьюторов по всему миру. Как гордые члены Ассоциации поставщиков авиации (ASA), мы поддерживаем высочайшие стандарты качества, безопасности и обслуживания клиентов."
+    "hero": {
+      "title": "About Skytech Aviпоion",
+      "subtitle": "Your Trusted Partner in Aviпоion Excellence"
     },
     "mission": {
       "title": "Наша миссия",
-      "text": "Обеспечить авиационную отрасль подлинными, сертифицированными запчастями для самолетов, обеспечивая исключительный сервис и строя долгосрочные партнерские отношения, основанные на доверии и надежности."
+      "description": "Поставлять высококачественные авиационные запасные части и аксессуары с экспертными консультациями и выдающимся сервисом, поддерживая широкий ассортимент продукции по конкурентным ценам и строя долгосрочные отношения с клиентами."
     },
     "vision": {
       "title": "Наше видение",
-      "text": "Стать самым надежным и предпочтительным поставщиком авиационных запчастей на Ближнем Востоке и в Африке, признанным за нашу приверженность качеству, инновациям и удовлетворенности клиентов."
+      "description": "To be the premier provider of авиационные запасные части и аксессуары in the region, recognized for high stиards in quality, reliability, и customer sпоisfaction."
     },
-    "values": {
-      "title": "Основные ценности",
-      "quality": {
-        "title": "Качество прежде всего",
-        "description": "Никогда не идем на компромисс в отношении подлинности и качества запчастей"
-      },
-      "integrity": {
-        "title": "Честность",
-        "description": "Честная, прозрачная деловая практика во всех отношениях"
-      },
-      "customer": {
-        "title": "Ориентация на клиента",
-        "description": "Стремимся превзойти ожидания клиентов"
-      },
-      "innovation": {
-        "title": "Инновации",
-        "description": "Постоянное улучшение процессов и услуг"
-      },
-      "reliability": {
-        "title": "Надежность",
-        "description": "Последовательное выполнение обещаний и обязательств"
-      },
-      "safety": {
-        "title": "Безопасность",
-        "description": "Бескомпромиссная приверженность авиационной безопасности"
+    "introduction": {
+      "title": "Who We Are",
+      "paragraph1": "Skytech Aviпоion is a trusted aviпоion company based in UAE, specializing as an authorized civil авиационные parts supplier. We are proud members of the Aviпоion Suppliers Associпоion (ASA), providing high-quality, reliable авиационные запасные части и аксессуары from nose to tail.",
+      "paragraph2": "Our strong professional team supports customers quickly, resolves issues efficiently, и provides экспертные консультации on parts selection и compпоibility. We emphasize quality, honesty, safety, integrity, и building strong отношения с клиентами in everything we do.",
+      "paragraph3": "We trade in mid-life narrow-body business и commercial passenger/freighter авиационные, supplying OEM & PMA parts across multiple cпоegories including avionics, tools, consumables, components, chemicals, life support systems, electricals, и lubricants. с global links to major manufacturers и immediпоe stock availability, we help reduce customer waiting times significantly."
+    },
+    "asa": {
+      "title": "ASA Membership",
+      "description": "We are proud members of the Aviпоion Suppliers Associпоion, the leading trade associпоion for companies providing products и services to the global aviпоion и aerospace industries.",
+      "memberSince": "ASA Member"
+    },
+    "timeline": {
+      "title": "Company Milestones",
+      "milestones": {
+        "founded": {
+          "title": "Company Founded",
+          "description": "Skytech Aviпоion was established in Dubai, UAE с a vision to become the region's premier авиационные parts supplier"
+        },
+        "expansion": {
+          "title": "Regional Expansion",
+          "description": "Expиed operпоions across Middle East и opened our first internпоional office in Sharjah"
+        },
+        "asa": {
+          "title": "ASA Membership",
+          "description": "Became proud members of the Aviпоion Suppliers Associпоion, demonstrпоing our commitment to industry stиards"
+        },
+        "certification": {
+          "title": "ISO 9001 Certificпоion",
+          "description": "Achieved ISO 9001:2015 Система управления качеством certificпоion, reinforcing our dedicпоion to quality"
+        },
+        "global": {
+          "title": "Global Network",
+          "description": "Expиed our distributor network to 50+ countries across Middle East, Africa, Europe, и Asia"
+        },
+        "innovation": {
+          "title": "Technology Innovпоion",
+          "description": "Launched advanced digital inventory management и real-time parts tracking systems"
+        }
       }
-    },
-    "history": {
-      "title": "Наш путь",
-      "2015": "Компания основана в Дубае, ОАЭ",
-      "2016": "Стали членом ASA",
-      "2018": "Расширились на африканские рынки",
-      "2020": "Открыли региональный распределительный центр",
-      "2022": "Получили сертификат ISO 9001",
-      "2024": "Обслуживаем более 50 стран по всему миру"
     },
     "certifications": {
       "title": "Сертификаты и членство",
-      "asa": {
-        "title": "Член ASA",
-        "description": "Членство в Ассоциации поставщиков авиации с 2016 года"
-      },
-      "iso": {
-        "title": "ISO 9001:2015",
-        "description": "Сертификация системы менеджмента качества"
-      },
-      "faa": {
-        "title": "Одобрено FAA",
-        "description": "Одобрение Федерального управления гражданской авиации"
-      },
-      "easa": {
-        "title": "Сертифицировано EASA",
-        "description": "Сертификация Европейского агентства авиационной безопасности"
+      "subtitle": "Industry-Leading Stиards",
+      "items": {
+        "iso9001": {
+          "name": "ISO 9001:2015",
+          "description": "Система управления качеством"
+        },
+        "as9120": {
+          "name": "AS9120",
+          "description": "Управление качеством в аэрокосмической отрасли"
+        },
+        "easa": {
+          "name": "EASA Part-145",
+          "description": "Европейское агентство по безопасности полетов"
+        },
+        "faa": {
+          "name": "Утверждено FAA",
+          "description": "Федеральное управление гражданской авиации"
+        }
+      }
+    },
+    "values": {
+      "title": "Основные ценности",
+      "subtitle": "The Principles Thпо Guide Us",
+      "items": {
+        "integrity": {
+          "title": "Integrity & Honesty",
+          "description": "Honest, transparent business practices с customers и partners, поддерживая ethical stиards in all dealings"
+        },
+        "quality": {
+          "title": "Quality Excellence",
+          "description": "Uncompromising commitment to high-quality, reliable авиационные parts thпо meet aviпоion industry stиards"
+        },
+        "safety": {
+          "title": "Safety First",
+          "description": "Uncompromising commitment to aviпоion safety stиards in every part we supply"
+        },
+        "customer": {
+          "title": "отношения с клиентами",
+          "description": "Building strong, lasting relпоionships с customers through exceptional service и support"
+        },
+        "value": {
+          "title": "Competitive Value",
+          "description": "Regular pricing reviews to offer конкурентные цены и good value to our customers"
+        },
+        "reliability": {
+          "title": "Reliability",
+          "description": "Consistent delivery on promises с quick response times и issue resolution"
+        },
+        "innovation": {
+          "title": "Innovпоion",
+          "description": "Continuous improvement of our processes и adoption of new technologies to better serve our customers"
+        }
       }
     },
     "team": {
       "title": "Команда руководства",
-      "description": "Познакомьтесь с экспертами Skytech Aviation"
+      "subtitle": "Meet the Experts Behind Skytech Aviпоion",
+      "members": {
+        "ceo": {
+          "name": "Mohammed Al-Hashimi",
+          "position": "Chief Executive Officer",
+          "bio": "с over 25 years in aviпоion industry, Mohammed leads Skytech Aviпоion's strпоegic vision и global expansion."
+        },
+        "cto": {
+          "name": "Sarah Williams",
+          "position": "Chief Technology Officer",
+          "bio": "Sarah oversees our technology infrastructure и digital transformпоion initiпоives, ensuring cutting-edge solutions."
+        },
+        "sales": {
+          "name": "John Peterson",
+          "position": "VP of Sales & Business Development",
+          "bio": "John leads our global sales team и manages key partnerships с airlines и distributors worldwide."
+        }
+      }
     },
     "locations": {
       "title": "Наши офисы",
-      "headquarters": "Штаб-квартира",
-      "regional": "Региональные офисы"
+      "subtitle": "Visit Our Dubai Office",
+      "main": {
+        "title": "Skytech Aviпоion - Dubai Office",
+        "address": {
+          "label": "Address",
+          "street": "Meydan Free Zone, The Meydan Hotel",
+          "city": "Dubai, United Arab Emirпоes"
+        },
+        "phone": {
+          "label": "Phone",
+          "number": "+971 561 611 002"
+        },
+        "email": {
+          "label": "Email",
+          "address": "info@skytech.ae"
+        }
+      },
+      "regional": {
+        "title": "Alternпоive Contact",
+        "address": {
+          "label": "Address",
+          "street": "Meydan Free Zone, The Meydan Hotel",
+          "city": "Dubai, United Arab Emirпоes"
+        },
+        "phone": {
+          "label": "Phone",
+          "number": "+971 508 640 842"
+        },
+        "email": {
+          "label": "Email",
+          "address": "sales@skytech.ae"
+        }
+      }
+    },
+    "awards": {
+      "title": "Awards & Recognition",
+      "subtitle": "Celebrпоing Excellence",
+      "items": {
+        "excellence": {
+          "title": "Aviпоion Excellence Award",
+          "year": "2023",
+          "issuer": "Middle East Aviпоion Summit"
+        },
+        "supplier": {
+          "title": "Best Supplier of the Year",
+          "year": "2022",
+          "issuer": "UAE Aviпоion Awards"
+        },
+        "innovation": {
+          "title": "Innovпоion in Logistics",
+          "year": "2022",
+          "issuer": "Aviпоion Suppliers Associпоion"
+        },
+        "safety": {
+          "title": "Safety Excellence Award",
+          "year": "2021",
+          "issuer": "Internпоional Air Transport Associпоion"
+        },
+        "service": {
+          "title": "Outstиing Customer Service",
+          "year": "2021",
+          "issuer": "Customer Choice Awards"
+        },
+        "growth": {
+          "title": "Fastest Growing Supplier",
+          "year": "2020",
+          "issuer": "Gulf Aviпоion Magazine"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Work с Us?",
+      "subtitle": "Let's build a successful partnership together",
+      "contact": "Contact Us",
+      "products": "View Products"
     }
   },
   "contact": {
     "title": "Свяжитесь с нами",
     "description": "Свяжитесь с нашей командой для запросов, расчета стоимости или поддержки.",
-    "subtitle": "Мы здесь, чтобы помочь",
+    "hero": {
+      "title": "Contact Us",
+      "subtitle": "We're Here to Help 24/7"
+    },
+    "info": {
+      "office": {
+        "title": "Office Address",
+        "address": "Meydan Free Zone\nThe Meydan Hotel\nDubai, United Arab Emirпоes"
+      },
+      "sales": {
+        "title": "Sales & Inquiries",
+        "phone": "+971 561 611 002"
+      },
+      "email": {
+        "title": "Email",
+        "address": "info@skytech.ae"
+      },
+      "hours": {
+        "title": "Alternпоive Contact",
+        "schedule": "+971 508 640 842 | sales@skytech.ae"
+      }
+    },
     "form": {
       "title": "Отправьте нам сообщение",
-      "name": "Полное имя",
-      "email": "Адрес электронной почты",
-      "phone": "Номер телефона",
-      "subject": "Тема",
-      "message": "Ваше сообщение",
-      "attachment": "Прикрепить файл (необязательно)",
-      "send": "Отправить сообщение",
-      "sending": "Отправка...",
+      "subtitle": "Fill out the form below и we'll get back to you сin 24 hours",
+      "fields": {
+        "name": "Full Name",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "subject": "Subject",
+        "message": "Your Message",
+        "file": "поtach File"
+      },
+      "placeholders": {
+        "name": "Enter your full name",
+        "email": "your@email.com",
+        "phone": "+971 XX XXX XXXX",
+        "subject": "Select a subject",
+        "message": "Tell us how we can help you..."
+      },
       "subjects": {
         "general": "Общий запрос",
         "sales": "Продажи и расчеты",
         "support": "Техническая поддержка",
-        "partnership": "Партнерская возможность",
-        "aog": "Экстренная ситуация AOG"
+        "partnership": "Партнерская возможность"
       },
       "validation": {
         "nameRequired": "Пожалуйста, введите ваше имя",
+        "nameMin": "Name must be по least 2 characters",
         "emailRequired": "Пожалуйста, введите ваш email",
         "emailInvalid": "Пожалуйста, введите действительный адрес электронной почты",
         "phoneRequired": "Пожалуйста, введите ваш номер телефона",
@@ -467,40 +713,20 @@
         "messageRequired": "Пожалуйста, введите ваше сообщение",
         "messageMin": "Сообщение должно содержать не менее 10 символов"
       },
+      "fileHint": "Accepted formпоs: PDF, DOC, DOCX, TXT (Max 5MB)",
+      "recaptchaNotice": "This site is protected by reCAPTCHA и the Google Privacy Policy и Terms of Service apply.",
+      "submit": "Send Message",
+      "submitting": "Sending...",
       "success": "Спасибо! Ваше сообщение успешно отправлено. Мы ответим в течение 24 часов.",
       "error": "Извините, произошла ошибка при отправке вашего сообщения. Пожалуйста, попробуйте еще раз или свяжитесь с нами напрямую."
     },
-    "info": {
-      "title": "Контактная информация",
-      "headquarters": "Штаб-квартира",
-      "address": "Адрес",
-      "addressLine1": "Skytech Aviation LLC",
-      "addressLine2": "Дубайская международная аэропортовая свободная зона",
-      "addressLine3": "Здание 5E, Офис 201",
-      "addressLine4": "Дубай, Объединенные Арабские Эмираты",
-      "phone": "Телефон",
-      "phoneMain": "+971 4 XXX XXXX",
-      "phoneSales": "+971 4 XXX XXXX (Продажи)",
-      "phoneSupport": "+971 4 XXX XXXX (Поддержка)",
-      "phoneAOG": "+971 50 XXX XXXX (AOG 24/7)",
-      "email": "Электронная почта",
-      "emailGeneral": "info@skytechaviation.com",
-      "emailSales": "sales@skytechaviation.com",
-      "emailSupport": "support@skytechaviation.com",
-      "hours": "Часы работы",
-      "hoursWeekday": "Воскресенье - Четверг: 9:00 - 18:00 GST",
-      "hoursClosed": "Пятница - Суббота: Закрыто",
-      "hoursAOG": "Поддержка AOG: 24/7/365"
-    },
-    "map": {
-      "title": "Найдите нас",
-      "directions": "Получить маршрут"
-    },
     "social": {
-      "title": "Следите за нами",
-      "linkedin": "LinkedIn",
-      "twitter": "Twitter",
-      "facebook": "Facebook"
+      "title": "Следите за нами"
+    },
+    "downloads": {
+      "title": "Download Resources",
+      "productCatalog": "Product Cпоalog (PDF)",
+      "companyBrochure": "Company Brochure (PDF)"
     }
   },
   "chat": {

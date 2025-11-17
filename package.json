@@ -9,7 +9,8 @@
     "start": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "sync-locales": "node scripts/sync-locales.js"
   },
   "dependencies": {
     "@langchain/community": "^1.0.3",

@@ -1,8 +1,39 @@
-# Deployment Scripts
+# Deployment & Utility Scripts
 
-This folder contains automated deployment scripts for the Skytech Aviation website.
+This folder contains automated deployment scripts and utility tools for the Skytech Aviation website.
 
 ## 📜 Available Scripts
+
+### sync-locales.js
+**Purpose:** Synchronizes all translation files with the English (en) source locale
+
+**Features:**
+- Reads the source locale (`src/locales/en/translation.json`) as reference
+- Syncs all other locale files (`ar`, `ru`, etc.) to match structure
+- Preserves existing translations
+- Adds missing keys marked with `[MISSING]`
+- Removes obsolete keys
+- Reports detailed statistics
+
+**Usage:**
+```bash
+npm run sync-locales
+```
+
+**When to use:**
+- After adding new translation keys to English file
+- When restructuring translation files
+- To ensure all languages have the same keys
+- Before deploying to production
+
+**Workflow:**
+1. Edit `src/locales/en/translation.json` (source of truth)
+2. Run `npm run sync-locales`
+3. Search for `[MISSING]` in locale files
+4. Replace with proper translations
+5. Commit changes
+
+---
 
 ### 1. deploy-netlify.sh
 **Purpose:** Automated deployment to Netlify with custom domain configuration

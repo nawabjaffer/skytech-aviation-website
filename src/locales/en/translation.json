@@ -546,6 +546,10 @@
         "reliability": {
           "title": "Reliability",
           "description": "Consistent delivery on promises with quick response times and issue resolution"
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Continuous improvement of our processes and adoption of new technologies to better serve our customers"
         }
       }
     },

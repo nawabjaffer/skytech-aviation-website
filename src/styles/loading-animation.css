@@ -25,6 +25,16 @@ body:has(.loading-animation-container:not(.exiting)) {
   height: 100%;
 }
 
+/* Animation tuning variables - sensible defaults for desktop */
+:root {
+  --gear-rotation-duration: 1s;
+  --gear-rotation-fast-duration: 0.833s;
+  --plane-arc-duration: 3s;
+  --particle-float-duration: 10s;
+  --progress-ring-duration: 5s;
+  --portal-glow-duration: 0.8s;
+}
+
 .loading-animation-container {
   position: fixed;
   top: 0;
@@ -102,7 +112,7 @@ body:has(.loading-animation-container:not(.exiting)) {
   height: 4px;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
-  animation: float 10s infinite ease-in-out;
+  animation: float var(--particle-float-duration) infinite ease-in-out;
   will-change: transform, opacity;
 }
 
@@ -160,7 +170,7 @@ body:has(.loading-animation-container:not(.exiting)) {
   left: 10%;
   top: auto;
   right: auto;
-  transform: rotate(-45deg);
+  transform: rotate(15deg);
 }
 
 .airplane-right.phase-1 {
@@ -168,13 +178,13 @@ body:has(.loading-animation-container:not(.exiting)) {
   right: 10%;
   top: auto;
   left: auto;
-  transform: scaleX(-1) rotate(45deg);
+  transform: scaleX(-1) rotate(15deg);
 }
 
 /* Phase 2: Airplanes fly along Bézier curve */
 .airplane-left.phase-2,
 .airplane-right.phase-2 {
-  animation-duration: 3s;
+  animation-duration: var(--plane-arc-duration);
   animation-timing-function: linear; /* Constant speed - uniform motion */
   animation-fill-mode: forwards;
 }
@@ -216,7 +226,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     stroke: rgba(14, 165, 233, 0.3);
   }
   50% {
-    opacity: 0.6;
+    opacity: 0.2;
     stroke: rgba(14, 165, 233, 0.6);
   }
 }
@@ -261,7 +271,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     left: 10%;
     top: auto;
     right: auto;
-    transform: rotate(35deg) scale(1);
+    transform: rotate(15deg) scale(1);
     opacity: 1;
   }
   
@@ -271,7 +281,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     left: 12%;
     top: auto;
     right: auto;
-    transform: rotate(37deg) scale(1.02);
+    transform: rotate(17deg) scale(1.02);
     opacity: 1;
   }
   
@@ -281,7 +291,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     left: 14.4%;
     top: auto;
     right: auto;
-    transform: rotate(39deg) scale(1.04);
+    transform: rotate(19deg) scale(1.04);
     opacity: 1;
   }
   
@@ -291,7 +301,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     left: 17.2%;
     top: auto;
     right: auto;
-    transform: rotate(41deg) scale(1.06);
+    transform: rotate(21deg) scale(1.06);
     opacity: 1;
   }
   
@@ -301,7 +311,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     left: 20.4%;
     top: auto;
     right: auto;
-    transform: rotate(43deg) scale(1.08);
+    transform: rotate(23deg) scale(1.08);
     opacity: 1;
   }
   
@@ -311,7 +321,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     left: 24%;
     top: auto;
     right: auto;
-    transform: rotate(45deg) scale(1.1);
+    transform: rotate(25deg) scale(1.1);
     opacity: 1;
   }
   
@@ -321,7 +331,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     left: 28%;
     top: auto;
     right: auto;
-    transform: rotate(45deg) scale(1.08);
+    transform: rotate(25deg) scale(1.08);
     opacity: 1;
   }
   
@@ -331,37 +341,42 @@ body:has(.loading-animation-container:not(.exiting)) {
     left: 32.4%;
     top: auto;
     right: auto;
-    transform: rotate(45deg) scale(1.06);
+    transform: rotate(25deg) scale(1.06);
     opacity: 1;
   }
   
   80% {
-    /* t=0.8 */
+    /* t=0.8 - keep using bottom (avoid switching to top which causes a jump) */
     bottom: 42%;
     left: 37.2%;
     top: auto;
     right: auto;
-    transform: rotate(45deg) scale(1.04);
+    /* GPU-friendly transform, continuous rotation/scale */
+    transform: translate3d(0, 0, 0) rotate(25deg) scale(1.04);
     opacity: 1;
   }
-  
+
   90% {
-    /* t=0.9 - approaching gear center */
-    bottom: auto;
-    top: 52%;
+    /* t=0.9 - approach center using bottom instead of top
+       (top ≈ 52% → bottom = 100% - 52% = 48%) */
+    bottom: 48%;
     left: 46%;
+    top: auto;
     right: auto;
-    transform: translate(0, 0) rotate(45deg) scale(0.6);
+    /* small translate to start centering while keeping rotation/scale continuity */
+    transform: translate3d(-6%, -6%, 0) rotate(25deg) scale(0.6);
     opacity: 0.7;
   }
-  
+
   100% {
-    /* t=1.0: P₂ final position - center of gear */
-    bottom: auto;
-    top: 50%;
+    /* t=1.0 - final center. Keep bottom to remain continuous:
+       bottom:50% equals top:50% positionally, so using bottom avoids layout jumps */
+    bottom: 50%;
     left: 50%;
+    top: auto;
     right: auto;
-    transform: translate(-50%, -50%) rotate(45deg) scale(0.3);
+    /* translate(-50%,-50%) truly centers the element */
+    transform: translate3d(-50%, -50%, 0) rotate(25deg) scale(0.3);
     opacity: 0;
   }
 }
@@ -382,7 +397,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     right: 10%;
     top: auto;
     left: auto;
-    transform: scaleX(-1) rotate(35deg) scale(1);
+    transform: scaleX(-1) rotate(11deg) scale(1);
     opacity: 1;
   }
   
@@ -392,7 +407,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     right: 12%;
     top: auto;
     left: auto;
-    transform: scaleX(-1) rotate(37deg) scale(1.02);
+    transform: scaleX(-1) rotate(13deg) scale(1.02);
     opacity: 1;
   }
   
@@ -402,7 +417,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     right: 14.4%;
     top: auto;
     left: auto;
-    transform: scaleX(-1) rotate(39deg) scale(1.04);
+    transform: scaleX(-1) rotate(15deg) scale(1.04);
     opacity: 1;
   }
   
@@ -412,7 +427,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     right: 17.2%;
     top: auto;
     left: auto;
-    transform: scaleX(-1) rotate(41deg) scale(1.06);
+    transform: scaleX(-1) rotate(17deg) scale(1.06);
     opacity: 1;
   }
   
@@ -422,7 +437,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     right: 20.4%;
     top: auto;
     left: auto;
-    transform: scaleX(-1) rotate(43deg) scale(1.08);
+    transform: scaleX(-1) rotate(19deg) scale(1.08);
     opacity: 1;
   }
   
@@ -432,7 +447,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     right: 24%;
     top: auto;
     left: auto;
-    transform: scaleX(-1) rotate(45deg) scale(1.1);
+    transform: scaleX(-1) rotate(19deg) scale(1.1);
     opacity: 1;
   }
   
@@ -442,7 +457,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     right: 28%;
     top: auto;
     left: auto;
-    transform: scaleX(-1) rotate(45deg) scale(1.08);
+    transform: scaleX(-1) rotate(21deg) scale(1.08);
     opacity: 1;
   }
   
@@ -452,7 +467,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     right: 32.4%;
     top: auto;
     left: auto;
-    transform: scaleX(-1) rotate(45deg) scale(1.06);
+    transform: scaleX(-1) rotate(23deg) scale(1.06);
     opacity: 1;
   }
   
@@ -462,7 +477,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     right: 37.2%;
     top: auto;
     left: auto;
-    transform: scaleX(-1) rotate(45deg) scale(1.04);
+    transform: scaleX(-1) rotate(23deg) scale(1.04);
     opacity: 1;
   }
   
@@ -472,7 +487,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     top: 52%;
     right: 46%;
     left: auto;
-    transform: scaleX(-1) rotate(45deg) scale(0.6);
+    transform: scaleX(-1) rotate(23deg) scale(0.6);
     opacity: 0.7;
   }
   
@@ -482,7 +497,77 @@ body:has(.loading-animation-container:not(.exiting)) {
     top: 50%;
     left: 50%;
     right: auto;
-    transform: translate(-50%, -50%) scaleX(-1) rotate(45deg) scale(0.3);
+    transform: translate(-50%, -50%) scaleX(-1) rotate(23deg) scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* Mobile-specific (gentler) Bézier keyframes - reduced rotation and scale */
+@keyframes bezierArcLeftMobile {
+  0% {
+    bottom: 10%;
+    left: 10%;
+    transform: rotate(8deg) scale(1);
+    opacity: 1;
+  }
+  30% {
+    bottom: 18%;
+    left: 17%;
+    transform: rotate(10deg) scale(1.03);
+    opacity: 1;
+  }
+  60% {
+    bottom: 32%;
+    left: 28%;
+    transform: rotate(12deg) scale(1.04);
+    opacity: 1;
+  }
+  90% {
+    bottom: 46%;
+    left: 44%;
+    transform: translate3d(-4%, -4%, 0) rotate(12deg) scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    bottom: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0) rotate(12deg) scale(0.45);
+    opacity: 0;
+  }
+}
+
+@keyframes bezierArcRightMobile {
+  0% {
+    bottom: 10%;
+    right: 10%;
+    transform: scaleX(-1) rotate(8deg) scale(1);
+    opacity: 1;
+  }
+  30% {
+    bottom: 18%;
+    right: 17%;
+    transform: scaleX(-1) rotate(10deg) scale(1.03);
+    opacity: 1;
+  }
+  60% {
+    bottom: 32%;
+    right: 28%;
+    transform: scaleX(-1) rotate(12deg) scale(1.04);
+    opacity: 1;
+  }
+  90% {
+    bottom: auto;
+    top: 52%;
+    right: 44%;
+    transform: scaleX(-1) rotate(12deg) scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    bottom: auto;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%) scaleX(-1) rotate(12deg) scale(0.45);
     opacity: 0;
   }
 }
@@ -549,14 +634,14 @@ body:has(.loading-animation-container:not(.exiting)) {
 .gear-icon {
   color: #ffffff;
   filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4));
-  animation: gearRotate 1s linear infinite;
+  animation: gearRotate var(--gear-rotation-duration) linear infinite;
   will-change: transform;
   z-index: 5;
   position: relative;
 }
 
 .gear-icon.opening {
-  animation: gearRotateFast 0.833s linear infinite;
+  animation: gearRotateFast var(--gear-rotation-fast-duration) linear infinite;
 }
 
 @keyframes gearRotate {
@@ -585,7 +670,7 @@ body:has(.loading-animation-container:not(.exiting)) {
     inset 0 0 20px rgba(255, 255, 255, 0.5);
   z-index: 25;
   will-change: transform, width, height;
-  animation: portalGlow 0.8s ease-in-out infinite;
+  animation: portalGlow var(--portal-glow-duration) ease-in-out infinite;
 }
 
 .portal-inner {
@@ -676,7 +761,7 @@ body:has(.loading-animation-container:not(.exiting)) {
   stroke: rgba(255, 255, 255, 0.3);
   stroke-dasharray: 339.292;
   stroke-dashoffset: 0;
-  animation: progressRing 5s ease-out forwards;
+  animation: progressRing var(--progress-ring-duration) ease-out forwards;
 }
 
 @keyframes progressRing {
@@ -859,6 +944,67 @@ body:has(.loading-animation-container:not(.exiting)) {
   .loading-text {
     position: static;
     margin-top: 2rem;
+  }
+}
+
+/* Responsive overrides - slower and gentler on small screens, faster and more dynamic on large */
+@media (max-width: 639px) {
+  :root {
+    /* Mobile: gentler, slower animations */
+    --gear-rotation-duration: 1.6s;
+    --gear-rotation-fast-duration: 1.2s;
+    --plane-arc-duration: 4.2s;
+    --particle-float-duration: 14s;
+    --progress-ring-duration: 7s;
+    --portal-glow-duration: 1.2s;
+  }
+
+  /* Reduce initial rotation/scale on mobile for smoother motion */
+  .airplane-left.phase-1 {
+    transform: rotate(8deg);
+    bottom: 8%;
+    left: 8%;
+  }
+
+  .airplane-right.phase-1 {
+    transform: scaleX(-1) rotate(8deg);
+    bottom: 8%;
+    right: 8%;
+  }
+
+  /* Use mobile-specific Bézier animations */
+  .airplane-left.phase-2 {
+    animation-name: bezierArcLeftMobile;
+    animation-duration: calc(var(--plane-arc-duration) * 1.1);
+  }
+
+  .airplane-right.phase-2 {
+    animation-name: bezierArcRightMobile;
+    animation-duration: calc(var(--plane-arc-duration) * 1.1);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  :root {
+    /* Tablet: moderate speed */
+    --gear-rotation-duration: 1.2s;
+    --gear-rotation-fast-duration: 1s;
+    --plane-arc-duration: 3.6s;
+    --particle-float-duration: 11s;
+    --progress-ring-duration: 6s;
+    --portal-glow-duration: 1s;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    /* Desktop: snappier animations */
+    --gear-rotation-duration: 0.9s;
+    --gear-rotation-fast-duration: 0.75s;
+    --plane-arc-duration: 3s;
+    --particle-float-duration: 9s;
+    --progress-ring-duration: 4.2s;
+    --portal-glow-duration: 0.75s;
   }
 }
 

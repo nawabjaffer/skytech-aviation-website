@@ -20,37 +20,44 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gradient-aviation dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 text-white mt-auto transition-colors duration-300">
-      <div className="container-custom py-12">
+    <footer className='bg-gradient-aviation dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 text-white mt-auto transition-colors duration-300'>
+      <div className='container-custom py-12'>
         {/* Footer Grid */}
-        <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-8 mb-8">
+        <div className='grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-[1fr_0.6fr_1fr_1fr] gap-8 mb-8 items-stretch'>
           {/* Company Info with Logo */}
-          <div className="flex flex-row gap-4">
-            {/* Skytech Logo */}
-            <div className={`flex-shrink-0 ${isArabic ? 'ltr' : ''}`}>
-              <img 
-                src="/icon-192.png" 
-                alt="Skytech Aviation Logo" 
-                className="h-20 w-auto object-contain"
+          <div
+            className={`flex flex-col h-full p-2 ${
+              isArabic ? 'items-end text-right' : 'items-start text-left'
+            }`}
+          >
+            <h4 className='text-lg font-semibold mb-2 w-full'>
+              {t('footer.companyInfo')}
+            </h4>
+            <div className='w-full h-full'>
+              <img
+              src='/icon-192.png'
+              alt='Skytech Aviation Logo'
+              className='w-auto h-auto max-h-24 md:max-h-32 lg:max-h-[12rem] object-contain filter invert brightness-0 hover:invert-0 hover:brightness-100 transition-all duration-300'
               />
             </div>
-            <div className="flex flex-col items-start">
-              <h3 className="text-xl font-bold font-heading mb-2">Skytech Aviation</h3>
-              <p className="text-gray-200 text-sm">
-                {t('footer.companyDesc')}
-              </p>
-            </div>
+            <p className='text-gray-200 text-sm'>{t('footer.companyDesc')}</p>
           </div>
 
-          {/* Quick Links */}
-          <div className={`${isArabic ? 'text-right' : 'text-left'}`}>
-            <h4 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h4>
-            <ul className="space-y-2">
+          {/* Quick Links (narrower) */}
+          <div
+            className={`flex flex-col h-full gap-3 p-2 ${
+              isArabic ? 'text-right' : 'items-start text-left'
+            }`}
+          >
+            <h4 className='text-lg font-semibold mb-2 w-full'>
+              {t('footer.quickLinks')}
+            </h4>
+            <ul className='flex-1 flex flex-col justify-start space-y-2'>
               {footerLinks.company.map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-gray-200 hover:text-sky-blue-200 transition-colors duration-300"
+                    className='text-gray-200 hover:text-sky-blue-200 transition-colors duration-300'
                   >
                     {link.label}
                   </Link>
@@ -59,54 +66,72 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Contact Info and ASA Logo */}
-          <div className={"flex flex-col items-start"}>
-            <h4 className={`text-lg font-semibold mb-4 ${isArabic ? 'text-right' : 'text-left'} w-full`}>
+          {/* Contact Info */}
+          <div
+            className={`flex flex-col h-full gap-3 p-2 ${
+              isArabic ? 'items-end text-right' : 'items-start text-left'
+            }`}
+          >
+            <h4 className='text-lg font-semibold mb-2 w-full'>
               {t('footer.contactInfo')}
             </h4>
-            <ul className={`space-y-2 text-gray-200 mb-6 ${isArabic ? 'text-right' : 'text-left'}`}>
+            <ul className='flex-1 flex flex-col justify-start space-y-2 text-gray-200'>
               {footerLinks.support.map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="hover:text-sky-blue-200 transition-colors duration-300"
+                    className='hover:text-sky-blue-200 transition-colors duration-300'
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
-              <li className="pt-2">
-                <p className="text-sm">{t('footer.email')}: info@skytech.ae</p>
-                <p className="text-sm">{t('footer.phone')}: +971 561 611 002</p>
-                <p className="text-sm mt-2">{t('footer.address')}</p>
+              <li className='pt-2'>
+                <p className='text-sm'>info@skytech.ae</p>
+                <p className='text-sm'>+971 561 611 002</p>
+                <p className='text-sm mt-2'>{t('footer.address')}</p>
               </li>
             </ul>
-            
-            {/* ASA Member Badge */}
-            <div className={`mt-auto ${isArabic ? 'ltr' : ''}`}>
-              <div className="bg-blue-900/30 rounded-lg p-3 border border-blue-500/30">
-                <p className={`text-sm font-semibold text-yellow-300 mb-2 ${isArabic ? 'text-right' : 'text-left'}`}>
-                  ✓ ASA Member Since 2015
-                </p>
-                <p className={`text-xs text-gray-300 ${isArabic ? 'text-right' : 'text-left'}`}>
-                  Aviation Suppliers Association
-                </p>
-              </div>
+          </div>
+
+          {/* ASA Member Badge */}
+          <div
+            className={`flex flex-col h-full items-center justify-center text-center p-2`}
+          >
+            <h4 className='text-lg font-semibold w-full'>
+              {t('footer.asaMember')}
+            </h4>
+            <div className='w-full flex-1 flex items-center justify-center h-full'>
+              <img
+                src='/ASALogo.png'
+                alt='ASA Logo'
+                className='w-full h-full object-contain'
+              />
             </div>
           </div>
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t border-white/20 pt-6">
-          <div className={`flex flex-col ${isArabic ? 'tablet:flex-row-reverse' : 'tablet:flex-row'} justify-between items-center gap-4`}>
-            <p className="text-gray-200 text-sm">
+        <div className='border-t border-white/20 pt-6'>
+          <div
+            className={`flex flex-col ${
+              isArabic ? 'tablet:flex-row-reverse' : 'tablet:flex-row'
+            } justify-between items-center gap-4`}
+          >
+            <p className='text-gray-200 text-sm'>
               &copy; {currentYear} Skytech Aviation. {t('footer.rights')}
             </p>
             <div className={`flex gap-6 ${isArabic ? 'flex-row-reverse' : ''}`}>
-              <a href="#" className="text-gray-200 hover:text-sky-blue-200 transition-colors duration-300">
+              <a
+                href='#'
+                className='text-gray-200 hover:text-sky-blue-200 transition-colors duration-300'
+              >
                 Privacy Policy
               </a>
-              <a href="#" className="text-gray-200 hover:text-sky-blue-200 transition-colors duration-300">
+              <a
+                href='#'
+                className='text-gray-200 hover:text-sky-blue-200 transition-colors duration-300'
+              >
                 Terms of Service
               </a>
             </div>

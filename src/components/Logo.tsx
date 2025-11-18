@@ -38,7 +38,7 @@ const Logo: React.FC<LogoProps> = ({ className = '' }) => {
       <img
         src="/skytech-logo.png"
         alt="Skytech Aviation Logo"
-        className="h-14 w-auto flex-shrink-0 object-contain"
+        className="h-14 w-auto flex-shrink-0 object-contain filter invert brightness-0 hover:invert-0 hover:brightness-100 transition-all duration-300"
         style={{ maxWidth: '60px' }}
       />
       

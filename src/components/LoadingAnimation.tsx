@@ -25,6 +25,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
   const [phase, setPhase] = useState<1 | 2 | 3 | 4>(1);
   const [canSkip, setCanSkip] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     // Phase transitions - continuous flow without pauses
@@ -34,28 +35,36 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
     // Immediately start Phase 2 (no delay)
     timers.push(setTimeout(() => setPhase(2), 100));
 
-    // Phase 2 → 3: Planes reach center (after 3 seconds of flight)
-    timers.push(setTimeout(() => setPhase(3), 3100));
+    // // Phase 2 → 3: Planes reach center (after 3 seconds of flight)
+    // timers.push(setTimeout(() => setPhase(3), 3100));
 
-    // Phase 3 → 4: Gear opens and circular mask starts (after 1 second)
-    timers.push(setTimeout(() => setPhase(4), 4100));
+    // // Phase 3 → 4: Gear opens and circular mask starts (after 1 second)
+    // timers.push(setTimeout(() => setPhase(4), 4100));
 
-    // Enable skip button after 2 seconds
-    timers.push(setTimeout(() => setCanSkip(false), 2000));
+    // // Enable skip button after 2 seconds
+    // timers.push(setTimeout(() => setCanSkip(false), 2000));
 
-    // Complete animation after minDuration - remove loading screen completely
-    timers.push(setTimeout(() => {
-      setIsExiting(true);
-      setTimeout(onComplete, 100); // Remove immediately after mask completes
-    }, minDuration));
+    // // Complete animation after minDuration - remove loading screen completely
+    // timers.push(setTimeout(() => {
+    //   setIsExiting(true);
+    //   setTimeout(onComplete, 100); // Remove immediately after mask completes
+    // }, minDuration));
 
     return () => timers.forEach(clearTimeout);
   }, [minDuration, onComplete]);
 
-  // Handle keyboard skip
+  // Handle keyboard pause (space key) and skip
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (canSkip && (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape')) {
+      // Space key: pause/resume animation
+      if (e.code === 'Space') {
+        e.preventDefault();
+        setIsPaused(prev => !prev);
+        return;
+      }
+
+      // Other keys: skip animation (if enabled)
+      if (canSkip && (e.key === 'Enter' || e.key === 'Escape')) {
         setIsExiting(true);
         setTimeout(onComplete, 800);
       }
@@ -67,7 +76,7 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
 
   return (
     <div 
-      className={`loading-animation-container phase-${phase} ${isExiting ? 'exiting' : ''}`}
+      className={`loading-animation-container phase-${phase} ${isExiting ? 'exiting' : ''} ${isPaused ? 'paused' : ''}`}
       role="progressbar"
       aria-label="Loading Skytech Aviation website"
       aria-live="polite"
@@ -188,6 +197,18 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
           >
             Press any key to continue
           </button>
+        )}
+
+        {/* Pause indicator */}
+        {isPaused && (
+          <div className="pause-indicator">
+            <div className="pause-overlay"></div>
+            <div className="pause-text">
+              <div className="pause-icon">⏸</div>
+              <div className="pause-label">PAUSED</div>
+              <div className="pause-hint">Press SPACE to resume</div>
+            </div>
+          </div>
         )}
       </div>
 

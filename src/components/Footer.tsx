@@ -33,11 +33,12 @@ const Footer: React.FC = () => {
             <h4 className='text-lg font-semibold mb-2 w-full'>
               {t('footer.companyInfo')}
             </h4>
-            <div className='w-full h-full'>
+            <div className="relative w-full h-full flex items-center justify-center group">
+              {/* drop-shadow element placed behind the image */}
               <img
-              src='/icon-192.png'
-              alt='Skytech Aviation Logo'
-              className='w-auto h-auto max-h-24 md:max-h-32 lg:max-h-[12rem] object-contain filter invert brightness-0 hover:invert-0 hover:brightness-100 transition-all duration-300'
+                src="/icon-192.png"
+                alt="Skytech Aviation Logo"
+                className="relative z-10 w-auto h-auto max-h-24 md:max-h-32 lg:max-h-[12rem] object-contain rounded-md filter invert brightness-0 group-hover:invert-0 group-hover:brightness-100 transition-all duration-300 group-hover:scale-105"
               />
             </div>
             <p className='text-gray-200 text-sm'>{t('footer.companyDesc')}</p>

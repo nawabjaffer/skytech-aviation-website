@@ -68,26 +68,26 @@ const Logo: React.FC<LogoProps> = ({ className = '' }) => {
           cy={`${isArabic ?  mousePosition.y - 0 : mousePosition.y + 0}%`}
           r="60%"
         >
-          <stop offset="0%" stopColor="#0ea5e9" stopOpacity="1">
+          <stop offset="0%" stopColor="#7dd3fc" stopOpacity="1">
             <animate
               attributeName="stopColor"
-              values="#0ea5e9;#8b5cf6;#ec4899;#f59e0b;#10b981;#0ea5e9"
+              values="#7dd3fc;#38bdf8;#0284c7;#075985;#7dd3fc"
               dur="4s"
               repeatCount="indefinite"
             />
           </stop>
-          <stop offset="30%" stopColor="#8b5cf6" stopOpacity="0.8">
+          <stop offset="60%" stopColor="#38bdf8" stopOpacity="1">
             <animate
               attributeName="stopColor"
-              values="#8b5cf6;#ec4899;#f59e0b;#10b981;#0ea5e9;#8b5cf6"
+              values="#38bdf8;#0284c7;#0369a1;#075985;#38bdf8"
               dur="4s"
               repeatCount="indefinite"
             />
           </stop>
-          <stop offset="60%" stopColor="#ec4899" stopOpacity="0.4">
+          <stop offset="80%" stopColor="#0284c7" stopOpacity="1">
             <animate
               attributeName="stopColor"
-              values="#ec4899;#f59e0b;#10b981;#0ea5e9;#8b5cf6;#ec4899"
+              values="#0284c7;#0369a1;#075985;#0c4a6e;#0284c7"
               dur="4s"
               repeatCount="indefinite"
             />

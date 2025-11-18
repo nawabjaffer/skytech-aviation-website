@@ -55,17 +55,17 @@ const Navbar: React.FC = () => {
           {/* Desktop Navigation */}
           <ul className="hidden desktop:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
-              <li key={link.path}>
+                <li key={link.path} className="h-16 flex items-center">
                 <Link
                   to={link.path}
                   className={`text-white font-medium transition-all duration-300 hover:text-sky-blue relative group px-1 ${
-                    isActive(link.path) ? 'text-sky-blue' : ''
+                  isActive(link.path) ? 'text-sky-blue' : ''
                   }`}
                 >
                   {link.label}
-                  <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-sky-blue transform origin-left transition-transform duration-300 ${
+                    <span className={`absolute -bottom-1 left-0 w-full h-1 bg-sky-blue transform origin-left transition-transform duration-300 px-1 ${
                     isActive(link.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                  }`}></span>
+                    }`}></span>
                 </Link>
               </li>
             ))}

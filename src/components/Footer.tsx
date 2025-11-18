@@ -25,13 +25,13 @@ const Footer: React.FC = () => {
         {/* Footer Grid */}
         <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-8 mb-8">
           {/* Company Info with Logo */}
-          <div className="flex flex-row gap-2">
+          <div className="flex flex-row gap-4">
             {/* Skytech Logo */}
             <div className={`flex-shrink-0 ${isArabic ? 'ltr' : ''}`}>
               <img 
                 src="/icon-192.png" 
                 alt="Skytech Aviation Logo" 
-                className="h-20 w-auto bg-white object-contain"
+                className="h-20 w-auto object-contain"
               />
             </div>
             <div className="flex flex-col items-start">

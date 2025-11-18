@@ -42,13 +42,13 @@ const Navbar: React.FC = () => {
     >
       <div className="container-custom">
         <div className="flex justify-between items-center py-4">
-          {/* Logo/Brand */}
-          <div className="flex-shrink-0">
+          {/* Logo/Brand with Text */}
+          <div className="flex items-center">
             <Link 
               to="/" 
-              className="block transition-transform duration-300 hover:scale-105"
+              className="block transition-transform duration-300 hover:scale-110 flex-shrink-0"
             >
-              <Logo className="h-8 w-auto" />
+              <Logo className="h-10 w-auto" />
             </Link>
           </div>
 

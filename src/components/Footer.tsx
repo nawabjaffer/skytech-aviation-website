@@ -25,16 +25,16 @@ const Footer: React.FC = () => {
         {/* Footer Grid */}
         <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-8 mb-8">
           {/* Company Info with Logo */}
-          <div className={`flex ${isArabic ? 'flex-row-reverse' : 'flex-row'} gap-4`}>
+          <div className="flex flex-row gap-2">
             {/* Skytech Logo */}
             <div className={`flex-shrink-0 ${isArabic ? 'ltr' : ''}`}>
               <img 
-                src="/skytech-logo.png" 
+                src="/icon-192.png" 
                 alt="Skytech Aviation Logo" 
-                className="h-12 w-auto object-contain"
+                className="h-20 w-auto bg-white object-contain"
               />
             </div>
-            <div className={`flex flex-col ${isArabic ? 'items-end' : 'items-start'}`}>
+            <div className="flex flex-col items-start">
               <h3 className="text-xl font-bold font-heading mb-2">Skytech Aviation</h3>
               <p className="text-gray-200 text-sm">
                 {t('footer.companyDesc')}
@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Contact Info and ASA Logo */}
-          <div className={`flex flex-col ${isArabic ? 'items-end' : 'items-start'}`}>
+          <div className={"flex flex-col items-start"}>
             <h4 className={`text-lg font-semibold mb-4 ${isArabic ? 'text-right' : 'text-left'} w-full`}>
               {t('footer.contactInfo')}
             </h4>

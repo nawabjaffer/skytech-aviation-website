@@ -7,6 +7,7 @@
   "homepage": "https://nawabjaffer.github.io/skytech-aviation-website/",
   "scripts": {
     "start": "vite",
+    "prebuild": "node scripts/generate-version.js",
     "build": "vite build",
     "serve": "vite preview",
     "test": "vitest",

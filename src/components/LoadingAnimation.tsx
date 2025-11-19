@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Plane, Settings } from 'lucide-react';
+import { initVersionCheck } from '../utils/cacheManager';
 import '../styles/loading-animation.css';
 
 interface LoadingAnimationProps {
@@ -17,6 +18,7 @@ interface LoadingAnimationProps {
  * 4. Final Convergence (4-5s): Zoom transition to page content
  * 
  * Performance: 60 FPS, GPU-accelerated, < 5KB impact
+ * Cache Management: Checks for new versions and clears outdated cache
  */
 const LoadingAnimation: React.FC<LoadingAnimationProps> = ({ 
   onComplete, 
@@ -26,6 +28,28 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
   const [canSkip, setCanSkip] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [cacheStatus, setCacheStatus] = useState<'checking' | 'cleared' | 'current'>('checking');
+
+  // Cache version check during initial load
+  useEffect(() => {
+    const checkCache = async () => {
+      try {
+        const result = await initVersionCheck();
+        
+        if (result.updated) {
+          setCacheStatus('cleared');
+          console.log('✓ Cache cleared - fresh content loaded');
+        } else {
+          setCacheStatus('current');
+        }
+      } catch (error) {
+        console.error('Cache check failed:', error);
+        setCacheStatus('current'); // Continue anyway
+      }
+    };
+
+    checkCache();
+  }, []);
 
   useEffect(() => {
     // Phase transitions - continuous flow without pauses
@@ -204,7 +228,9 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
 
       {/* Screen reader announcement */}
       <div className="sr-only" aria-live="polite">
-        {phase === 1 && 'Loading Skytech Aviation website'}
+        {cacheStatus === 'checking' && 'Checking for updates...'}
+        {cacheStatus === 'cleared' && 'Loading fresh content...'}
+        {phase === 1 && cacheStatus === 'current' && 'Loading Skytech Aviation website'}
         {phase === 2 && 'Loading in progress'}
         {phase === 3 && 'Almost ready'}
         {phase === 4 && 'Loading complete'}

@@ -49,28 +49,26 @@ body:has(.loading-animation-container:not(.exiting)) {
   opacity: 1;
   visibility: visible;
   background: var(--color-primary-900, #1a237e);
-  /* Start with full coverage, will animate to circle reveal */
-  clip-path: circle(150% at 50% 50%);
-  animation: none;
 }
 
 .loading-animation-container.phase-4 {
   /* Circular mask that shrinks to reveal homepage behind */
-  animation: shrinkCircularMask 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: shrinkCircularMask 1.5s cubic-bezier(0.6, 0, 0.4, 1) forwards;
 }
 
 @keyframes shrinkCircularMask {
   0% {
-    clip-path: circle(150% at 50% 50%);
+    clip-path: circle(0% at 50% 50%);
     opacity: 1;
   }
-  70% {
-    clip-path: circle(5% at 50% 50%);
-    opacity: 1;
+  50% {
+    clip-path: circle(35% at 50% 50%);
+    opacity: 0.2;
   }
   100% {
-    clip-path: circle(0% at 50% 50%);
+    clip-path: circle(150% at 50% 50%);
     opacity: 0;
+    display: none;
   }
 }
 
@@ -220,9 +218,9 @@ body:has(.loading-animation-container:not(.exiting)) {
 }
 
 @keyframes hideBezierPath {
-  0%, 99% {
+  0%, 80% {
     display: block;
-    opacity: 1;
+    opacity: 0.3;
   }
   100% {
     display: none;
@@ -610,6 +608,23 @@ body:has(.loading-animation-container:not(.exiting)) {
   z-index: 1;
 }
 
+/* Invert-like intersection: make bezier path visually 'cut through' the loading background
+   We use `mix-blend-mode: difference` together with `isolation: isolate` on the parent
+   so the path appears inverted where it overlaps the background. This provides a
+   high-contrast, branded 'cut-out' effect. A CSS mask fallback is provided for
+   browsers that prefer compositing or when reduced-motion is requested. */
+
+.loading-animation-container {
+  /* ensure blending is contained to the loading overlay */
+  isolation: isolate;
+}
+
+.bezier-path {
+  mix-blend-mode: difference; /* inverts colors where the path overlaps */
+  /* Slightly raise z-index so it visually sits above subtle background elements */
+  z-index: 30;
+}
+
 .bezier-path .path-line {
   fill: none;
   stroke: rgba(14, 165, 233, 0.4);
@@ -617,6 +632,21 @@ body:has(.loading-animation-container:not(.exiting)) {
   stroke-dasharray: 8 4;
   animation: pathGlow 2s ease-in-out infinite;
   vector-effect: non-scaling-stroke;
+}
+
+/* Fallback mask approach: when blend modes are not desirable or supported,
+   the `.bezier-mask` class (applied to the SVG wrapper in markup) will use
+   an inverse mask to punch out the path area. This requires adding the
+   `bezier-mask` class to the SVG container in the component if a fallback
+   is needed. Kept here for reference and progressive enhancement. */
+.bezier-path.bezier-mask {
+  mix-blend-mode: normal;
+}
+
+.bezier-path.bezier-mask svg {
+  /* The mask should be defined in the SVG markup; this CSS ensures the masked
+     element uses the mask as intended. No-op here but kept for clarity. */
+  isolation: isolate;
 }
 
 @keyframes pathGlow {
@@ -780,10 +810,10 @@ body:has(.loading-animation-container:not(.exiting)) {
   height: 120px;
   transform: rotate(-90deg);
   opacity: 0.5;
-  animation: hideProgressRing var(--plane-arc-duration) ease-out forwards;
+  animation: hideElements var(--plane-arc-duration) ease-out forwards;
 }
 
-@keyframes hideProgressRing {
+@keyframes hideElements {
   0%, 99% {
     display: block;
     opacity: 0.5;
@@ -893,6 +923,7 @@ body:has(.loading-animation-container:not(.exiting)) {
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
+  animation: hideElements var(--progress-ring-duration) ease-out forwards;
 }
 
 /* ========================================
@@ -1146,6 +1177,7 @@ body:has(.loading-animation-container:not(.exiting)) {
   .loading-brand {
     font-size: 1rem;
     letter-spacing: 3px;
+    animation: hideElements var(--progress-ring-duration) ease-out forwards;
   }
 
   .skip-button {

@@ -35,8 +35,8 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
     // Immediately start Phase 2 (no delay)
     timers.push(setTimeout(() => setPhase(2), 100));
 
-    // // Phase 2 → 3: Planes reach center (after 3 seconds of flight)
-    // timers.push(setTimeout(() => setPhase(3), 3100));
+    // Phase 2 → 3: Planes reach center (after 3 seconds of flight)
+    timers.push(setTimeout(() => setPhase(3), 3100));
 
     // // Phase 3 → 4: Gear opens and circular mask starts (after 1 second)
     // timers.push(setTimeout(() => setPhase(4), 4100));
@@ -170,16 +170,6 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
               <div className="gear-petal petal-8"></div>
             </>
           )}
-        </div>
-
-        {/* Loading text */}
-        <div className="loading-text">
-          <span className="loading-label">Loading</span>
-          <span className="loading-dots">
-            <span className="dot dot-1">.</span>
-            <span className="dot dot-2">.</span>
-            <span className="dot dot-3">.</span>
-          </span>
         </div>
 
         {/* Company name */}

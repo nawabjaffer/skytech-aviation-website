@@ -1,0 +1,787 @@
+{
+  "nav": {
+    "home": "首页",
+    "products": "产品",
+    "services": "服务",
+    "distributors": "经销商",
+    "about": "关于我们",
+    "contact": "联系我们"
+  },
+  "company": {
+    "tagline": "您在航空器零件和服务方面的可信赖合作伙伴"
+  },
+  "footer": {
+    "companyInfo": "天空技术航空公司",
+    "companyDesc": "Skytech Aviation — 总部位于阿联酋的 ASA 成员，为全球提供正品飞机零件。",
+    "quickLinks": "快速链接",
+    "contactInfo": "联系信息",
+    "asaMember": "自 2015 年以来的 ASA 成员",
+    "address": "梅丹自由区，梅丹酒店，迪拜，阿联酋",
+    "phone": "电话",
+    "email": "电子邮件",
+    "businessHours": "营业时间",
+    "hours": "周日 - 周四：上午 9:00 - 下午 6:00",
+    "rights": "版权所有。"
+  },
+  "language": {
+    "select": "选择语言",
+    "en": "英文",
+    "ar": "阿拉伯文",
+    "ru": "俄文",
+    "zh": "中文"
+  },
+  "theme": {
+    "toggle": "切换主题",
+    "light": "浅色模式",
+    "dark": "深色模式"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "close": "关闭",
+    "open": "打开",
+    "submit": "提交",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "search": "搜索",
+    "filter": "筛选",
+    "sort": "排序",
+    "viewAll": "查看全部",
+    "learnMore": "了解更多",
+    "getStarted": "开始使用",
+    "contactUs": "联系我们",
+    "requestQuote": "请求报价",
+    "readMore": "阅读更多",
+    "showMore": "显示更多",
+    "showLess": "显示更少",
+    "download": "下载",
+    "upload": "上传",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "required": "必填项",
+    "optional": "可选项",
+    "or": "或",
+    "for_help": "求助"
+  },
+  "home": {
+    "title": "Skytech Aviation - 授权航空器零件供应商",
+    "description": "您值得信赖的正品民用飞机零件和组件合作伙伴。ASA 成员服务全球航空公司。",
+    "hero": {
+      "title": "授权民用飞机零件供应商",
+      "subtitle": "您的正品航空组件可信赖合作伙伴",
+      "description": "为中东、非洲及其他地区的航空公司、MRO 和经销商提供优质飞机零件和组件。",
+      "cta1": "查看产品",
+      "cta2": "成为经销商",
+      "trustBadge": "自 2015 年以来的 ASA 成员"
+    },
+    "features": {
+      "title": "为什么选择 Skytech Aviation",
+      "subtitle": "航空零件供应卓越",
+      "authentic": {
+        "title": "正品零件",
+        "description": "100% 正品 OEM 零件，具有完整的可追溯性和认证文件"
+      },
+      "global": {
+        "title": "全球配送",
+        "description": "服务遍布中东、非洲及其他地区的航空公司和 MRO，提供可靠的交付"
+      },
+      "support": {
+        "title": "专家支持",
+        "description": "24/7 技术援助和应急停泊支持，满足关键飞机需求"
+      },
+      "pricing": {
+        "title": "竞争价格",
+        "description": "最佳市场价格，为我们的值得信赖的合作伙伴提供灵活的付款条款"
+      }
+    },
+    "stats": {
+      "title": "我们的业绩记录",
+      "years": "年的业务",
+      "parts": "供应的零件",
+      "countries": "服务的国家",
+      "airlines": "合作航空公司"
+    },
+    "about": {
+      "title": "关于 Skytech Aviation",
+      "description": "我们是一家认证的航空零件供应商，专业供应民用飞机的正品 OEM 组件。作为航空供应商协会 (ASA) 的骄傲成员，我们坚持最高的质量和可靠性标准。",
+      "cta": "了解更多关于我们的信息"
+    },
+    "cta": {
+      "title": "准备与我们合作？",
+      "description": "加入我们全球日益壮大的满意经销商和航空公司网络。",
+      "button": "取得联系"
+    }
+  },
+  "products": {
+    "title": "飞机零件和组件",
+    "description": "浏览我们为所有主要飞机类型提供的认证飞机零件和组件的广泛目录。",
+    "subtitle": "优质航空组件",
+    "searchPlaceholder": "搜索零件、零件号或类别...",
+    "filterBy": "筛选",
+    "sortBy": "排序",
+    "noResults": "未找到符合条件的产品",
+    "categories": {
+      "all": "所有类别",
+      "engines": "飞机发动机",
+      "avionics": "航空电子与电子设备",
+      "landing": "起落架系统",
+      "flight": "飞行控制系统",
+      "fuel": "燃油系统",
+      "interior": "内部组件",
+      "hydraulic": "液压系统",
+      "pneumatic": "气动系统",
+      "electrical": "电气系统"
+    },
+    "sort": {
+      "newest": "最新优先",
+      "oldest": "最早优先",
+      "nameAZ": "名称 (A-Z)",
+      "nameZA": "名称 (Z-A)",
+      "category": "类别"
+    },
+    "card": {
+      "partNumber": "零件号",
+      "category": "类别",
+      "availability": "库存状况",
+      "inStock": "有货",
+      "onRequest": "订购",
+      "requestQuote": "请求报价",
+      "viewDetails": "查看详情"
+    },
+    "details": {
+      "specifications": "规格",
+      "description": "描述",
+      "compatibility": "兼容飞机",
+      "certification": "认证",
+      "relatedProducts": "相关产品",
+      "inquire": "咨询此零件"
+    }
+  },
+  "services": {
+    "title": "我们的服务 | Skytech Aviation",
+    "description": "综合航空零件和服务，包括制动器和车轮、机身组件、发动机零件、飞机工具、润滑油、粘合剂和航空燃料供应。",
+    "hero": {
+      "title": "专业航空服务",
+      "subtitle": "从头到尾的完整解决方案 - 为商业和商务飞机供应 OEM 和 PMA 零件",
+      "cta1": "浏览服务",
+      "cta2": "获取报价"
+    },
+    "cards": {
+      "title": "我们的服务类别",
+      "subtitle": "综合航空零件供应和专业服务",
+      "keyFeatures": "主要产品",
+      "learnMore": "了解更多",
+      "items": {
+        "sourcing": {
+          "title": "制动器和车轮",
+          "description": "直升机和飞机的高质量制动系统和车轮，来自知名制造商。完整的制动组件、车轮组件和相关零件。",
+          "benefits": {
+            "0": "OEM 和 PMA 认证制动系统",
+            "1": "直升机和飞机应用",
+            "2": "完整组件和备用零件"
+          }
+        },
+        "technical": {
+          "title": "机身组件",
+          "description": "结构零件、起落架总成、机翼组件、机身部分和所有机身相关零件，以保持您的飞机结构完整。",
+          "benefits": {
+            "0": "起落架系统和组件",
+            "1": "机翼和机身总成",
+            "2": "结构维修零件和配件"
+          }
+        },
+        "aog": {
+          "title": "发动机零件",
+          "description": "直升机和飞机发动机的综合发动机组件。从完整的发动机总成到单个零件和配件。",
+          "benefits": {
+            "0": "直升机发动机组件",
+            "1": "飞机发动机零件和总成",
+            "2": "发动机配件和相关系统"
+          }
+        },
+        "logistics": {
+          "title": "飞机工具",
+          "description": "用于飞机维护和维修操作的专业级工具。完整的专业航空工具和设备范围。",
+          "benefits": {
+            "0": "维护和维修工具",
+            "1": "专业航空设备",
+            "2": "校准和认证工具"
+          }
+        },
+        "quality": {
+          "title": "润滑油和化学品",
+          "description": "航空级润滑油，包括机油、润滑脂、液压液和经航空批准的特种化学品。",
+          "benefits": {
+            "0": "机油和航空润滑脂",
+            "1": "液压液和特种润滑油",
+            "2": "航空批准的化学产品"
+          }
+        },
+        "documentation": {
+          "title": "粘合剂和燃料供应",
+          "description": "适合航空应用的结构粘合剂、环氧密封胶，以及航空燃料供应和物流服务。",
+          "benefits": {
+            "0": "结构粘合剂和密封胶",
+            "1": "航空级环氧产品",
+            "2": "航空燃料供应和物流"
+          }
+        }
+      }
+    },
+    "process": {
+      "title": "我们的工作方式",
+      "subtitle": "快速响应时间的专业服务流程",
+      "note": {
+        "title": "快速响应",
+        "description": "我们的专业团队快速响应询问并高效解决问题"
+      },
+      "steps": {
+        "inquiry": {
+          "title": "提交询问",
+          "description": "使用您的零件要求和规格与我们联系"
+        },
+        "quote": {
+          "title": "专家建议",
+          "description": "从我们的团队获得专家咨询和竞争性价格"
+        },
+        "order": {
+          "title": "下单",
+          "description": "使用灵活的付款选项确认您的订单"
+        },
+        "delivery": {
+          "title": "快速交付",
+          "description": "接收具有完整文件的正品 OEM/PMA 零件"
+        }
+      }
+    },
+    "benefits": {
+      "title": "为什么选择 Skytech Aviation",
+      "subtitle": "由行业专业知识支持的专业服务",
+      "items": {
+        "certified": {
+          "title": "ASA 成员",
+          "description": "航空供应商协会的骄傲成员，致力于质量标准"
+        },
+        "network": {
+          "title": "OEM 和 PMA 零件",
+          "description": "与主要制造商的全球联系，用于正品零件供应"
+        },
+        "support": {
+          "title": "专业团队",
+          "description": "关于零件选择的专家建议和快速问题解决"
+        },
+        "pricing": {
+          "title": "竞争价格",
+          "description": "定期审查定价以提供良好价值和竞争价格"
+        }
+      }
+    },
+    "support": {
+      "title": "联系我们的团队",
+      "subtitle": "多种方式与我们的专业团队联系",
+      "channels": {
+        "hotline": {
+          "title": "电话支持",
+          "description": "拨打我们电话进行咨询和专家零件咨询",
+          "number": "+971 561 611 002",
+          "availability": "营业时间"
+        },
+        "email": {
+          "title": "电子邮件支持",
+          "description": "发送详细询问以获取专家建议和报价",
+          "address": "info@skytech.ae",
+          "responseTime": "保证快速响应"
+        },
+        "chat": {
+          "title": "销售咨询",
+          "description": "联系我们的销售团队了解零件需求和定价",
+          "button": "联系销售",
+          "availability": "sales@skytech.ae"
+        }
+      }
+    },
+    "downloads": {
+      "title": "其他服务",
+      "subtitle": "综合专业能力和支持",
+      "downloadButton": "了解更多",
+      "items": {
+        "catalog": {
+          "title": "维护支持",
+          "description": "专业维护支持服务和技术援助",
+          "size": "服务可用"
+        },
+        "brochure": {
+          "title": "购前检查",
+          "description": "综合飞机购前检查服务",
+          "size": "服务可用"
+        },
+        "certifications": {
+          "title": "飞机交付",
+          "description": "专业飞机交付和定位服务",
+          "size": "服务可用"
+        },
+        "capabilities": {
+          "title": "MRO 代理",
+          "description": "维护、维修和大修市场的代理",
+          "size": "服务可用"
+        }
+      }
+    },
+    "cta": {
+      "title": "准备开始了吗？",
+      "subtitle": "立即与我们联系，获取关于您的航空零件要求的专家建议",
+      "contact": "立即联系我们",
+      "products": "查看所有零件"
+    }
+  },
+  "distributors": {
+    "title": "成为经销商",
+    "description": "与 Skytech Aviation 合作，扩展您在航空业中的业务机会。",
+    "subtitle": "加入我们的全球网络",
+    "hero": {
+      "title": "经销商伙伴计划",
+      "description": "通过独家获取优质飞机零件和专业支持来发展您的航空业务。",
+      "cta": "立即申请"
+    },
+    "benefits": {
+      "title": "合作伙伴福利",
+      "subtitle": "您获得的好处",
+      "exclusive": {
+        "title": "独家地区权利",
+        "description": "受保护的地理区域用于市场开发"
+      },
+      "pricing": {
+        "title": "竞争价格",
+        "description": "批量折扣和特别经销商价格"
+      },
+      "support": {
+        "title": "营销支持",
+        "description": "共同品牌材料和促销协助"
+      },
+      "training": {
+        "title": "培训和教育",
+        "description": "产品培训和技术认证"
+      },
+      "priority": {
+        "title": "优先服务",
+        "description": "专业账户经理和加急处理"
+      },
+      "inventory": {
+        "title": "库存访问权",
+        "description": "实时访问我们广泛的零件库存"
+      }
+    },
+    "requirements": {
+      "title": "要求",
+      "subtitle": "我们所寻求的",
+      "registration": {
+        "title": "业务注册",
+        "description": "有效的营业执照和航空业注册"
+      },
+      "experience": {
+        "title": "行业经验",
+        "description": "在航空零件分销方面的行之有效的记录"
+      },
+      "financial": {
+        "title": "财务稳定性",
+        "description": "证明的财务能力和信誉"
+      },
+      "facilities": {
+        "title": "适当的设施",
+        "description": "充分的存储和处理能力"
+      },
+      "coverage": {
+        "title": "地理覆盖",
+        "description": "在目标地区的既有市场存在"
+      },
+      "compliance": {
+        "title": "监管合规",
+        "description": "了解航空法规和标准"
+      }
+    },
+    "process": {
+      "title": "申请流程",
+      "step1": "提交申请",
+      "step2": "初始审查",
+      "step3": "面试和评估",
+      "step4": "协议签署",
+      "step5": "入职和培训"
+    },
+    "testimonials": {
+      "title": "我们的合作伙伴如何说",
+      "testimonial1": {
+        "text": "与 Skytech Aviation 的合作对我们的业务进行了革命性的改变。他们的支持和产品质量无与伦比。",
+        "author": "Ahmed Al-Mansouri",
+        "company": "中东航空服务"
+      }
+    },
+    "cta": {
+      "title": "准备好合作了吗？",
+      "description": "向有利可图的伙伴关系迈出第一步。",
+      "button": "提交申请"
+    },
+    "form": {
+      "title": "经销商申请表",
+      "companyName": "公司名称",
+      "contactPerson": "联系人",
+      "email": "电子邮件地址",
+      "phone": "电话号码",
+      "website": "公司网站",
+      "country": "国家",
+      "city": "城市",
+      "yearsInBusiness": "从业年限",
+      "currentRevenue": "年度收入",
+      "targetMarket": "目标市场/地区",
+      "references": "业务参考",
+      "license": "营业执照",
+      "uploadLicense": "上传许可证文件",
+      "comments": "其他评论",
+      "submit": "提交申请",
+      "successMessage": "申请提交成功！我们将在 5 个工作日内审核并与您联系。"
+    }
+  },
+  "about": {
+    "title": "关于 Skytech Aviation",
+    "description": "了解我们对航空零件供应和分销卓越的承诺。",
+    "hero": {
+      "title": "关于 Skytech Aviation",
+      "subtitle": "您在航空卓越方面的可信赖合作伙伴"
+    },
+    "mission": {
+      "title": "我们的使命",
+      "description": "提供高质量的飞机备用零件和配件，并提供专家建议和卓越的服务，保持广泛的产品范围，价格竞争有力，同时与客户建立持久的关系。"
+    },
+    "vision": {
+      "title": "我们的愿景",
+      "description": "成为该地区飞机备用零件和配件的首选提供商，以高标准的质量、可靠性和客户满意度而闻名。"
+    },
+    "introduction": {
+      "title": "我们是谁",
+      "paragraph1": "Skytech Aviation 是一家值得信赖的航空公司，总部位于阿联酋，专业从事授权民用飞机零件供应商。我们是航空供应商协会 (ASA) 的骄傲成员，提供从头到尾的高质量、可靠的飞机备用零件和配件。",
+      "paragraph2": "我们的强大专业团队快速支持客户，高效解决问题，并在零件选择和兼容性方面提供专家建议。我们在所有事务中强调质量、诚实、安全、完整性和建立强大的客户关系。",
+      "paragraph3": "我们经营中型寿命窄体商务和商业客运/货运飞机，提供横跨多个类别的 OEM 和 PMA 零件，包括航空电子、工具、耗材、组件、化学品、生命支持系统、电气和润滑油。借助与主要制造商的全球联系和即时库存可用性，我们帮助客户大幅减少等待时间。"
+    },
+    "asa": {
+      "title": "ASA 会员资格",
+      "description": "我们是航空供应商协会的骄傲成员，该协会是为全球航空和航天工业提供产品和服务的公司的领先贸易协会。",
+      "memberSince": "ASA 成员"
+    },
+    "timeline": {
+      "title": "公司里程碑",
+      "milestones": {
+        "founded": {
+          "title": "公司成立",
+          "description": "Skytech Aviation 成立于阿联酋迪拜，愿景是成为该地区的首选飞机零件供应商"
+        },
+        "expansion": {
+          "title": "区域扩张",
+          "description": "扩展整个中东的业务，并在沙迦开设了我们的第一个国际办事处"
+        },
+        "asa": {
+          "title": "ASA 会员资格",
+          "description": "成为航空供应商协会的骄傲成员，展示我们对行业标准的承诺"
+        },
+        "certification": {
+          "title": "ISO 9001 认证",
+          "description": "获得 ISO 9001:2015 质量管理体系认证，加强我们对质量的专注"
+        },
+        "global": {
+          "title": "全球网络",
+          "description": "将经销商网络扩展到 50 多个国家，涵盖中东、非洲、欧洲和亚洲"
+        },
+        "innovation": {
+          "title": "技术创新",
+          "description": "推出先进的数字库存管理和实时零件跟踪系统"
+        }
+      }
+    },
+    "certifications": {
+      "title": "认证和认可",
+      "subtitle": "行业领先的标准",
+      "items": {
+        "iso9001": {
+          "name": "ISO 9001:2015",
+          "description": "质量管理体系"
+        },
+        "as9120": {
+          "name": "AS9120",
+          "description": "航空航天质量管理"
+        },
+        "easa": {
+          "name": "EASA Part-145",
+          "description": "欧洲航空安全局"
+        },
+        "faa": {
+          "name": "美国联邦航空局批准",
+          "description": "美国联邦航空管理局"
+        }
+      }
+    },
+    "values": {
+      "title": "我们的核心价值观",
+      "subtitle": "指导我们的原则",
+      "items": {
+        "integrity": {
+          "title": "完整性和诚实",
+          "description": "与客户和合作伙伴的诚实、透明业务做法，保持所有交易中的道德标准"
+        },
+        "quality": {
+          "title": "质量卓越",
+          "description": "对满足航空工业标准的高质量、可靠飞机零件的不妥协承诺"
+        },
+        "safety": {
+          "title": "安全第一",
+          "description": "对我们提供的每个零件中的航空安全标准的不妥协承诺"
+        },
+        "customer": {
+          "title": "客户关系",
+          "description": "通过卓越的服务和支持与客户建立强大的、持久的关系"
+        },
+        "value": {
+          "title": "竞争价值",
+          "description": "定期审查定价以为我们的客户提供竞争价格和良好价值"
+        },
+        "reliability": {
+          "title": "可靠性",
+          "description": "快速响应时间和问题解决的一致承诺"
+        },
+        "innovation": {
+          "title": "创新",
+          "description": "不断改进我们的流程并采用新技术以更好地为客户服务"
+        }
+      }
+    },
+    "team": {
+      "title": "领导团队",
+      "subtitle": "认识 Skytech Aviation 背后的专家",
+      "members": {
+        "ceo": {
+          "name": "Mohammed Al-Hashimi",
+          "position": "首席执行官",
+          "bio": "具有超过 25 年的航空业经验，Mohammed 领导 Skytech Aviation 的战略愿景和全球扩张。"
+        },
+        "cto": {
+          "name": "Sarah Williams",
+          "position": "首席技术官",
+          "bio": "Sarah 监督我们的技术基础设施和数字转换计划，确保尖端解决方案。"
+        },
+        "sales": {
+          "name": "John Peterson",
+          "position": "销售和业务开发副总裁",
+          "bio": "John 领导我们的全球销售团队并管理与全球航空公司和经销商的关键伙伴关系。"
+        }
+      }
+    },
+    "locations": {
+      "title": "办公位置",
+      "subtitle": "访问我们的迪拜办公室",
+      "main": {
+        "title": "Skytech Aviation - 迪拜办公室",
+        "address": {
+          "label": "地址",
+          "street": "梅丹自由区，梅丹酒店",
+          "city": "迪拜，阿联酋"
+        },
+        "phone": {
+          "label": "电话",
+          "number": "+971 561 611 002"
+        },
+        "email": {
+          "label": "电子邮件",
+          "address": "info@skytech.ae"
+        }
+      },
+      "regional": {
+        "title": "替代联系",
+        "address": {
+          "label": "地址",
+          "street": "梅丹自由区，梅丹酒店",
+          "city": "迪拜，阿联酋"
+        },
+        "phone": {
+          "label": "电话",
+          "number": "+971 508 640 842"
+        },
+        "email": {
+          "label": "电子邮件",
+          "address": "sales@skytech.ae"
+        }
+      }
+    },
+    "awards": {
+      "title": "奖项和荣誉",
+      "subtitle": "庆祝卓越",
+      "items": {
+        "excellence": {
+          "title": "航空卓越奖",
+          "year": "2023",
+          "issuer": "中东航空峰会"
+        },
+        "supplier": {
+          "title": "年度最佳供应商",
+          "year": "2022",
+          "issuer": "阿联酋航空奖"
+        },
+        "innovation": {
+          "title": "物流创新",
+          "year": "2022",
+          "issuer": "航空供应商协会"
+        },
+        "safety": {
+          "title": "安全卓越奖",
+          "year": "2021",
+          "issuer": "国际航空运输协会"
+        },
+        "service": {
+          "title": "杰出客户服务",
+          "year": "2021",
+          "issuer": "客户选择奖"
+        },
+        "growth": {
+          "title": "增长最快的供应商",
+          "year": "2020",
+          "issuer": "海湾航空杂志"
+        }
+      }
+    },
+    "cta": {
+      "title": "准备与我们合作？",
+      "subtitle": "让我们一起建立一个成功的伙伴关系",
+      "contact": "联系我们",
+      "products": "查看产品"
+    }
+  },
+  "contact": {
+    "title": "联系我们",
+    "description": "与我们的团队联系进行咨询、报价或支持。",
+    "hero": {
+      "title": "联系我们",
+      "subtitle": "我们 24/7 为您服务"
+    },
+    "info": {
+      "office": {
+        "title": "办公地址",
+        "address": "梅丹自由区\n梅丹酒店\n迪拜，阿联酋"
+      },
+      "sales": {
+        "title": "销售与咨询",
+        "phone": "+971 561 611 002"
+      },
+      "email": {
+        "title": "电子邮件",
+        "address": "info@skytech.ae"
+      },
+      "hours": {
+        "title": "替代联系",
+        "schedule": "+971 508 640 842 | sales@skytech.ae"
+      }
+    },
+    "form": {
+      "title": "发送消息给我们",
+      "subtitle": "填写下方表格，我们将在 24 小时内回复您",
+      "fields": {
+        "name": "全名",
+        "email": "电子邮件地址",
+        "phone": "电话号码",
+        "subject": "主题",
+        "message": "您的消息",
+        "file": "附加文件"
+      },
+      "placeholders": {
+        "name": "输入您的全名",
+        "email": "your@email.com",
+        "phone": "+971 XX XXX XXXX",
+        "subject": "选择主题",
+        "message": "告诉我们我们如何能帮助您..."
+      },
+      "subjects": {
+        "general": "常规咨询",
+        "sales": "销售和报价",
+        "support": "技术支持",
+        "partnership": "伙伴关系机会"
+      },
+      "validation": {
+        "nameRequired": "请输入您的名字",
+        "nameMin": "名字必须至少 2 个字符",
+        "emailRequired": "请输入您的电子邮件",
+        "emailInvalid": "请输入有效的电子邮件地址",
+        "phoneRequired": "请输入您的电话号码",
+        "phoneInvalid": "请输入有效的电话号码",
+        "subjectRequired": "请选择主题",
+        "messageRequired": "请输入您的消息",
+        "messageMin": "消息必须至少 10 个字符"
+      },
+      "fileHint": "接受的格式：PDF、DOC、DOCX、TXT（最大 5MB）",
+      "recaptchaNotice": "此网站受 reCAPTCHA 保护，Google 隐私政策和服务条款适用。",
+      "submit": "发送消息",
+      "submitting": "发送中...",
+      "success": "谢谢！您的消息已成功发送。我们将在 24 小时内回复。",
+      "error": "抱歉，发送您的消息时出错。请重试或直接与我们联系。"
+    },
+    "social": {
+      "title": "与我们联系"
+    },
+    "downloads": {
+      "title": "下载资源",
+      "productCatalog": "产品目录 (PDF)",
+      "companyBrochure": "公司宣传册 (PDF)"
+    }
+  },
+  "chat": {
+    "title": "聊天助手",
+    "placeholder": "输入您的消息...",
+    "send": "发送",
+    "minimize": "最小化聊天",
+    "maximize": "打开聊天",
+    "welcome": "您好！我今天能如何帮助您？",
+    "quickActions": {
+      "products": "您提供哪些产品？",
+      "distributor": "我如何成为经销商？",
+      "location": "您位于何处？",
+      "asa": "告诉我关于 ASA 会员资格"
+    },
+    "typing": "正在输入...",
+    "offline": "聊天目前离线。请通过电子邮件与我们联系。",
+    "error": "抱歉，我遇到了错误。请重试。"
+  },
+  "errors": {
+    "404": {
+      "title": "飞行路线未找到",
+      "message": "看起来这个页面改变了路线！我们的飞机零件和服务仍然可以在主要飞行路线上获得。",
+      "aviation_message": "即使是最好的飞行员也需要航线修正。让我们帮助您导航回目的地！",
+      "suggestions": "热门目的地",
+      "go_home": "返回首页",
+      "go_back": "返回",
+      "search_help": "寻找特定内容？请尝试我们的",
+      "contact_us": "联系我们"
+    },
+    "500": {
+      "title": "服务器错误",
+      "description": "我们这边出了问题。",
+      "retry": "重试"
+    },
+    "network": {
+      "title": "网络错误",
+      "description": "请检查您的互联网连接。"
+    },
+    "validation": {
+      "required": "此字段为必填项",
+      "email": "请输入有效的电子邮件地址",
+      "phone": "请输入有效的电话号码",
+      "min": "至少需要 {{count}} 个字符",
+      "max": "最多允许 {{count}} 个字符",
+      "numeric": "请仅输入数字",
+      "alphanumeric": "请输入字母和数字"
+    }
+  },
+  "notifications": {
+    "success": "成功！",
+    "error": "错误！",
+    "warning": "警告！",
+    "info": "信息"
+  }
+}

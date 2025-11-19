@@ -52,6 +52,7 @@ export default {
         sans: ['Inter', 'Open Sans', 'system-ui', 'sans-serif'],
         heading: ['Poppins', 'Inter', 'sans-serif'],
         arabic: ['Cairo', 'Tajawal', 'sans-serif'],
+        chinese: ['Noto Sans SC', 'Microsoft YaHei', 'SimHei', 'Heiti SC', 'sans-serif'],
       },
       spacing: {
         '128': '32rem',

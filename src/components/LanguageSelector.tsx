@@ -13,6 +13,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className = '' }) =
     { code: 'en', name: 'English', flag: '🇬🇧' },
     { code: 'ar', name: 'العربية', flag: '🇦🇪' },
     { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+    { code: 'zh', name: '中文', flag: '🇨🇳' },
   ];
 
   const handleLanguageChange = (code: string) => {

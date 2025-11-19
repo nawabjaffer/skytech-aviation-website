@@ -5,6 +5,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import enTranslation from './locales/en/translation.json';
 import arTranslation from './locales/ar/translation.json';
 import ruTranslation from './locales/ru/translation.json';
+import zhTranslation from './locales/zh/translation.json';
 
 // Define resources
 const resources = {
@@ -16,6 +17,9 @@ const resources = {
   },
   ru: {
     translation: ruTranslation,
+  },
+  zh: {
+    translation: zhTranslation,
   },
 };
 
@@ -45,17 +49,40 @@ i18n
     },
   });
 
-// Handle RTL languages
+// Handle RTL languages and language-specific styling
 i18n.on('languageChanged', (lng) => {
   const isRTL = lng === 'ar';
+  const isChinese = lng === 'zh';
   document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
   document.documentElement.lang = lng;
+  
+  // Add language-specific data attributes for CSS styling
+  document.documentElement.setAttribute('data-lang', lng);
+  if (isChinese) {
+    document.documentElement.classList.add('lang-zh');
+    document.documentElement.classList.remove('lang-ar', 'lang-ru', 'lang-en');
+  } else if (isRTL) {
+    document.documentElement.classList.add('lang-ar');
+    document.documentElement.classList.remove('lang-zh', 'lang-ru', 'lang-en');
+  } else {
+    document.documentElement.classList.add('lang-en');
+    document.documentElement.classList.remove('lang-zh', 'lang-ar', 'lang-ru');
+  }
 });
 
 // Set initial direction based on current language
 const currentLang = i18n.language;
 const isRTL = currentLang === 'ar';
+const isChinese = currentLang === 'zh';
 document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
 document.documentElement.lang = currentLang;
+document.documentElement.setAttribute('data-lang', currentLang);
+if (isChinese) {
+  document.documentElement.classList.add('lang-zh');
+} else if (isRTL) {
+  document.documentElement.classList.add('lang-ar');
+} else {
+  document.documentElement.classList.add('lang-en');
+}
 
 export default i18n;

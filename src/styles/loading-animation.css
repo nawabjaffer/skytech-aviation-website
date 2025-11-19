@@ -825,7 +825,7 @@ body:has(.loading-animation-container:not(.exiting)) {
 }
 
 .progress-ring-circle {
-  stroke: rgba(255, 255, 255, 0.3);
+  stroke: rgba(255, 255, 255, 0.6);
   stroke-dasharray: 339.292;
   stroke-dashoffset: 0;
   animation: progressRing var(--progress-ring-duration) ease-out forwards;
@@ -1122,12 +1122,19 @@ body:has(.loading-animation-container:not(.exiting)) {
   /* Use mobile-specific Bézier animations */
   .airplane-left.phase-2 {
     animation-name: bezierArcLeftMobile;
-    animation-duration: calc(var(--plane-arc-duration) * 1.1);
+    animation-duration: calc(var(--plane-arc-duration) * 0.6);
   }
 
   .airplane-right.phase-2 {
     animation-name: bezierArcRightMobile;
-    animation-duration: calc(var(--plane-arc-duration) * 1.1);
+    animation-duration: calc(var(--plane-arc-duration) * 0.6);
+  }
+
+  .progress-ring-circle {
+    stroke: rgba(255, 255, 255, 0.8);
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: 140;
+    animation: progressRing 3s ease-out forwards;
   }
 }
 

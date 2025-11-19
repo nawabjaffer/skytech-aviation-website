@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Google Fonts Import - Chinese (Noto Sans SC) */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&display=swap');
+
 /* Font loading optimization with font-display: swap */
 @font-face {
   font-family: 'Inter';
@@ -166,4 +169,332 @@
   .animate-fly-right {
     animation: fly-right 2s ease-in-out infinite;
   }
+}
+
+/* ========================================
+   Chinese Language Support (Simplified)
+   ======================================== */
+
+/* Chinese font stack - optimized for readability */
+html.lang-zh,
+html[lang="zh"],
+html[data-lang="zh"] {
+  font-family: 'Noto Sans SC', 'Microsoft YaHei', 'SimHei', 'Heiti SC', sans-serif;
+}
+
+html.lang-zh body,
+html[lang="zh"] body,
+html[data-lang="zh"] body {
+  font-size: 15px; /* Slightly larger than English for better Chinese character readability */
+  line-height: 1.8; /* Increased line height for Chinese text */
+  letter-spacing: 0.3px; /* Subtle letter spacing for clarity */
+  word-break: break-word;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.lang-zh h1,
+html[lang="zh"] h1,
+html[data-lang="zh"] h1 {
+  font-size: 2.5rem;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+}
+
+html.lang-zh h2,
+html[lang="zh"] h2,
+html[data-lang="zh"] h2 {
+  font-size: 2rem;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.25rem;
+}
+
+html.lang-zh h3,
+html[lang="zh"] h3,
+html[data-lang="zh"] h3 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  letter-spacing: 0em;
+  margin-bottom: 1rem;
+}
+
+html.lang-zh h4,
+html[lang="zh"] h4,
+html[data-lang="zh"] h4 {
+  font-size: 1.25rem;
+  line-height: 1.45;
+  margin-bottom: 0.875rem;
+}
+
+html.lang-zh p,
+html[lang="zh"] p,
+html[data-lang="zh"] p {
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  font-size: 15px;
+}
+
+/* Chinese button text - ensure proper padding and spacing */
+html.lang-zh button,
+html[lang="zh"] button,
+html[data-lang="zh"] button {
+  padding: 0.75rem 1.5rem;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+html.lang-zh .btn-primary,
+html[lang="zh"] .btn-primary,
+html[data-lang="zh"] .btn-primary {
+  @apply py-3 px-6;
+  padding: 0.875rem 1.75rem;
+}
+
+html.lang-zh .btn-secondary,
+html[lang="zh"] .btn-secondary,
+html[data-lang="zh"] .btn-secondary {
+  @apply py-3 px-6;
+  padding: 0.875rem 1.75rem;
+}
+
+/* Chinese section titles and subtitles */
+html.lang-zh .section-title,
+html[lang="zh"] .section-title,
+html[data-lang="zh"] .section-title {
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+}
+
+html.lang-zh .section-subtitle,
+html[lang="zh"] .section-subtitle,
+html[data-lang="zh"] .section-subtitle {
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+/* Chinese list items and navigation */
+html.lang-zh li,
+html[lang="zh"] li,
+html[data-lang="zh"] li {
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+
+html.lang-zh nav,
+html[lang="zh"] nav,
+html[data-lang="zh"] nav {
+  letter-spacing: 0.01em;
+}
+
+html.lang-zh nav a,
+html[lang="zh"] nav a,
+html[data-lang="zh"] nav a {
+  font-size: 15px;
+  letter-spacing: 0.01em;
+}
+
+/* Chinese form inputs and labels */
+html.lang-zh label,
+html[lang="zh"] label,
+html[data-lang="zh"] label {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+html.lang-zh .input-field,
+html[lang="zh"] .input-field,
+html[data-lang="zh"] .input-field {
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 0.75rem 1rem;
+}
+
+html.lang-zh textarea,
+html[lang="zh"] textarea,
+html[data-lang="zh"] textarea {
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+}
+
+/* Chinese cards and content containers */
+html.lang-zh .card,
+html[lang="zh"] .card,
+html[data-lang="zh"] .card {
+  padding: 1.5rem;
+}
+
+html.lang-zh .card p,
+html[lang="zh"] .card p,
+html[data-lang="zh"] .card p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+html.lang-zh .card h3,
+html[lang="zh"] .card h3,
+html[data-lang="zh"] .card h3 {
+  margin-bottom: 1rem;
+}
+
+/* Chinese table styling */
+html.lang-zh table,
+html[lang="zh"] table,
+html[data-lang="zh"] table {
+  border-collapse: collapse;
+}
+
+html.lang-zh td,
+html[lang="zh"] td,
+html[data-lang="zh"] td {
+  padding: 1rem 0.75rem;
+  line-height: 1.6;
+}
+
+html.lang-zh th,
+html[lang="zh"] th,
+html[data-lang="zh"] th {
+  padding: 1rem 0.75rem;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* Chinese footer styling */
+html.lang-zh footer,
+html[lang="zh"] footer,
+html[data-lang="zh"] footer {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+html.lang-zh footer p,
+html[lang="zh"] footer p,
+html[data-lang="zh"] footer p {
+  margin-bottom: 0.75rem;
+}
+
+html.lang-zh footer a,
+html[lang="zh"] footer a,
+html[data-lang="zh"] footer a {
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+
+/* Chinese responsive adjustments */
+@media (max-width: 640px) {
+  html.lang-zh body,
+  html[lang="zh"] body,
+  html[data-lang="zh"] body {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  html.lang-zh h1,
+  html[lang="zh"] h1,
+  html[data-lang="zh"] h1 {
+    font-size: 1.75rem;
+  }
+
+  html.lang-zh h2,
+  html[lang="zh"] h2,
+  html[data-lang="zh"] h2 {
+    font-size: 1.5rem;
+  }
+
+  html.lang-zh h3,
+  html[lang="zh"] h3,
+  html[data-lang="zh"] h3 {
+    font-size: 1.25rem;
+  }
+
+  html.lang-zh p,
+  html[lang="zh"] p,
+  html[data-lang="zh"] p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  html.lang-zh nav a,
+  html[lang="zh"] nav a,
+  html[data-lang="zh"] nav a {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  html.lang-zh body,
+  html[lang="zh"] body,
+  html[data-lang="zh"] body {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  html.lang-zh h1,
+  html[lang="zh"] h1,
+  html[data-lang="zh"] h1 {
+    font-size: 2.125rem;
+  }
+
+  html.lang-zh h2,
+  html[lang="zh"] h2,
+  html[data-lang="zh"] h2 {
+    font-size: 1.75rem;
+  }
+}
+
+/* RTL + Chinese hybrid (future support for simplified Chinese traditional layout) */
+html[dir="rtl"].lang-zh,
+html[dir="rtl"][lang="zh"],
+html[dir="rtl"][data-lang="zh"] {
+  direction: ltr; /* Keep Chinese LTR even if RTL is set */
+}
+
+/* Pagination and navigation for Chinese */
+html.lang-zh .pagination,
+html[lang="zh"] .pagination,
+html[data-lang="zh"] .pagination {
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+
+html.lang-zh .pagination a,
+html[lang="zh"] .pagination a,
+html[data-lang="zh"] .pagination a {
+  padding: 0.625rem 0.875rem;
+}
+
+/* Ensure proper text rendering for Chinese characters across browsers */
+html.lang-zh,
+html[lang="zh"],
+html[data-lang="zh"] {
+  text-rendering: optimizeLegibility;
+}
+
+/* Chinese language disabled style (e.g., for form validation) */
+html.lang-zh input:disabled,
+html[lang="zh"] input:disabled,
+html[data-lang="zh"] input:disabled {
+  font-size: 15px;
+}
+
+/* Chinese blockquote styling */
+html.lang-zh blockquote,
+html[lang="zh"] blockquote,
+html[data-lang="zh"] blockquote {
+  line-height: 1.8;
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 3px solid #0ea5e9;
+}
+
+html.lang-zh blockquote p,
+html[lang="zh"] blockquote p,
+html[data-lang="zh"] blockquote p {
+  margin-bottom: 0.5rem;
+  font-size: 15px;
 }

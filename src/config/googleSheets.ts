@@ -188,7 +188,7 @@ export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
     description:
       'Critical parts delivery within 24-48 hours worldwide. Our AOG team provides immediate assistance with hard-to-find components and emergency logistics support.',
     mediaType: 'video',
-    mediaUrl: 'https://www.pexels.com/download/video/11451049/',
+    mediaUrl: 'https://www.pexels.com/download/video/16386289/',
     ctaText1: 'AOG Hotline',
     ctaLink1: '/contacts',
     ctaText2: 'Emergency Services',
@@ -202,9 +202,8 @@ export const DEFAULT_HERO_SLIDES: HeroSlide[] = [
     subtitle: 'Join Our Global Distribution Network',
     description:
       'Partner with Skytech Aviation to access premium inventory, competitive pricing, and comprehensive support. Exclusive territories available in high-growth markets.',
-    mediaType: 'image',
-    mediaUrl:
-      'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80',
+    mediaType: 'video',
+    mediaUrl: 'https://www.pexels.com/download/video/19546327/',
     ctaText1: 'Apply Now',
     ctaLink1: '/distributors',
     ctaText2: 'Partner Benefits',
@@ -311,10 +310,13 @@ export const DEFAULT_PRODUCTS: Product[] = [
     category: 'Aircraft Engines',
     manufacturer: 'CFM International',
     aircraftModel: 'Boeing 737NG',
-    description: 'Genuine CFM56-7B engine parts and components with full certification and traceability documentation',
-    imageUrl: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80',
+    description:
+      'Genuine CFM56-7B engine parts and components with full certification and traceability documentation',
+    imageUrl:
+      'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80',
     availability: 'In Stock',
-    specifications: 'Thrust: 20,000-27,300 lbf | Weight: 5,216 lb | Length: 98.9 in',
+    specifications:
+      'Thrust: 20,000-27,300 lbf | Weight: 5,216 lb | Length: 98.9 in',
     link: '/products/cfm56-7b',
     active: true,
   },
@@ -325,10 +327,13 @@ export const DEFAULT_PRODUCTS: Product[] = [
     category: 'Landing Gear',
     manufacturer: 'Boeing',
     aircraftModel: 'Boeing 737',
-    description: 'OEM landing gear components and assemblies for Boeing 737 series aircraft with complete inspection records',
-    imageUrl: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
+    description:
+      'OEM landing gear components and assemblies for Boeing 737 series aircraft with complete inspection records',
+    imageUrl:
+      'https://plus.unsplash.com/premium_photo-1682142209920-c40d4eb175ab?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     availability: 'On Request',
-    specifications: 'Material: High-strength steel | Certification: FAA/EASA approved',
+    specifications:
+      'Material: High-strength steel | Certification: FAA/EASA approved',
     link: '/products/b737-landing-gear',
     active: true,
   },
@@ -339,8 +344,10 @@ export const DEFAULT_PRODUCTS: Product[] = [
     category: 'Avionics',
     manufacturer: 'Honeywell',
     aircraftModel: 'Various Business Jets',
-    description: 'Advanced integrated avionics system with flight management, navigation, and communication capabilities',
-    imageUrl: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80',
+    description:
+      'Advanced integrated avionics system with flight management, navigation, and communication capabilities',
+    imageUrl:
+      'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80',
     availability: 'In Stock',
     specifications: 'Display: 15" LCD | Features: WAAS GPS, TCAS, TAWS',
     link: '/products/honeywell-primus',
@@ -353,10 +360,13 @@ export const DEFAULT_PRODUCTS: Product[] = [
     category: 'Flight Control Systems',
     manufacturer: 'Airbus',
     aircraftModel: 'Airbus A320 Family',
-    description: 'Certified hydraulic pumps and systems for Airbus A320 family with zero-time warranty',
-    imageUrl: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80',
+    description:
+      'Certified hydraulic pumps and systems for Airbus A320 family with zero-time warranty',
+    imageUrl:
+      'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80',
     availability: 'Limited',
-    specifications: 'Pressure: 3000 PSI | Flow Rate: 30 GPM | Type: Variable Displacement',
+    specifications:
+      'Pressure: 3000 PSI | Flow Rate: 30 GPM | Type: Variable Displacement',
     link: '/products/a320-hydraulic',
     active: true,
   },
@@ -367,10 +377,13 @@ export const DEFAULT_PRODUCTS: Product[] = [
     category: 'Aircraft Engines',
     manufacturer: 'Pratt & Whitney',
     aircraftModel: 'Boeing 747/767/777',
-    description: 'Genuine PW4000 engine components including turbine blades, combustion chambers, and fuel nozzles',
-    imageUrl: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80',
+    description:
+      'Genuine PW4000 engine components including turbine blades, combustion chambers, and fuel nozzles',
+    imageUrl:
+      'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80',
     availability: 'In Stock',
-    specifications: 'Thrust: 52,000-99,040 lbf | Applications: Wide-body aircraft',
+    specifications:
+      'Thrust: 52,000-99,040 lbf | Applications: Wide-body aircraft',
     link: '/products/pw4000',
     active: true,
   },
@@ -381,10 +394,13 @@ export const DEFAULT_PRODUCTS: Product[] = [
     category: 'Fuel Systems',
     manufacturer: 'Airbus',
     aircraftModel: 'Airbus A380',
-    description: 'Complete fuel management and distribution system with electronic controls and monitoring',
-    imageUrl: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
+    description:
+      'Complete fuel management and distribution system with electronic controls and monitoring',
+    imageUrl:
+      'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
     availability: 'On Request',
-    specifications: 'Capacity: 320,000 liters | Tanks: 11 fuel tanks | Control: Digital FADEC',
+    specifications:
+      'Capacity: 320,000 liters | Tanks: 11 fuel tanks | Control: Digital FADEC',
     link: '/products/a380-fuel',
     active: true,
   },
@@ -395,10 +411,13 @@ export const DEFAULT_PRODUCTS: Product[] = [
     category: 'Avionics',
     manufacturer: 'Collins Aerospace',
     aircraftModel: 'Business Jets',
-    description: 'Next-generation integrated avionics suite with touchscreen controls and synthetic vision',
-    imageUrl: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80',
+    description:
+      'Next-generation integrated avionics suite with touchscreen controls and synthetic vision',
+    imageUrl:
+      'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80',
     availability: 'In Stock',
-    specifications: 'Display: Multi-touch 15" | Features: SVS, XM Weather, ADS-B',
+    specifications:
+      'Display: Multi-touch 15" | Features: SVS, XM Weather, ADS-B',
     link: '/products/proline-fusion',
     active: true,
   },
@@ -409,10 +428,13 @@ export const DEFAULT_PRODUCTS: Product[] = [
     category: 'Interior Components',
     manufacturer: 'Boeing',
     aircraftModel: 'Boeing 787',
-    description: 'Premium cabin interior components including seats, galleys, lavatories, and overhead bins',
-    imageUrl: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
+    description:
+      'Premium cabin interior components including seats, galleys, lavatories, and overhead bins',
+    imageUrl:
+      'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
     availability: 'Limited',
-    specifications: 'Configuration: Business/Economy | Material: Lightweight composites',
+    specifications:
+      'Configuration: Business/Economy | Material: Lightweight composites',
     link: '/products/b787-interior',
     active: true,
   },
@@ -423,10 +445,13 @@ export const DEFAULT_PRODUCTS: Product[] = [
     category: 'Aircraft Engines',
     manufacturer: 'GE Aviation',
     aircraftModel: 'Boeing 777',
-    description: 'World\'s most powerful jet engine components with complete documentation and certification',
-    imageUrl: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80',
+    description:
+      "World's most powerful jet engine components with complete documentation and certification",
+    imageUrl:
+      'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80',
     availability: 'On Request',
-    specifications: 'Thrust: 115,000 lbf | Bypass Ratio: 8.7:1 | Fan Diameter: 128 in',
+    specifications:
+      'Thrust: 115,000 lbf | Bypass Ratio: 8.7:1 | Fan Diameter: 128 in',
     link: '/products/ge90-115b',
     active: true,
   },
@@ -437,10 +462,13 @@ export const DEFAULT_PRODUCTS: Product[] = [
     category: 'Landing Gear',
     manufacturer: 'Safran Landing Systems',
     aircraftModel: 'Airbus A350',
-    description: 'Advanced carbon brake system with anti-skid technology and wear monitoring',
-    imageUrl: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
+    description:
+      'Advanced carbon brake system with anti-skid technology and wear monitoring',
+    imageUrl:
+      'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
     availability: 'In Stock',
-    specifications: 'Material: Carbon-carbon composite | Weight: 40% lighter | Life: 2000 landings',
+    specifications:
+      'Material: Carbon-carbon composite | Weight: 40% lighter | Life: 2000 landings',
     link: '/products/a350-brakes',
     active: true,
   },
@@ -451,10 +479,13 @@ export const DEFAULT_PRODUCTS: Product[] = [
     category: 'Avionics',
     manufacturer: 'Thales',
     aircraftModel: 'Regional Jets',
-    description: 'Integrated avionics solution for regional aircraft with full IFR capability',
-    imageUrl: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80',
+    description:
+      'Integrated avionics solution for regional aircraft with full IFR capability',
+    imageUrl:
+      'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80',
     availability: 'In Stock',
-    specifications: 'Display: Dual 12" screens | Navigation: Multi-sensor GPS/IRS',
+    specifications:
+      'Display: Dual 12" screens | Navigation: Multi-sensor GPS/IRS',
     link: '/products/thales-topflight',
     active: true,
   },
@@ -465,10 +496,13 @@ export const DEFAULT_PRODUCTS: Product[] = [
     category: 'Aircraft Engines',
     manufacturer: 'Honeywell',
     aircraftModel: 'Boeing 737 MAX',
-    description: 'Auxiliary Power Unit providing electrical power and compressed air for aircraft systems',
-    imageUrl: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80',
+    description:
+      'Auxiliary Power Unit providing electrical power and compressed air for aircraft systems',
+    imageUrl:
+      'https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&q=80',
     availability: 'Limited',
-    specifications: 'Power Output: 90 kVA | Operating Altitude: Up to 43,000 ft',
+    specifications:
+      'Power Output: 90 kVA | Operating Altitude: Up to 43,000 ft',
     link: '/products/b737max-apu',
     active: true,
   },

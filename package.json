@@ -11,7 +11,9 @@
     "build": "vite build",
     "serve": "vite preview",
     "test": "vitest",
-    "sync-locales": "node scripts/sync-locales.js"
+    "sync-locales": "node scripts/sync-locales.js",
+    "deploy": "node scripts/deploy.js",
+    "deploy:sync-locales": "node scripts/deploy.js -- --sync-locales"
   },
   "dependencies": {
     "@langchain/community": "^1.0.3",

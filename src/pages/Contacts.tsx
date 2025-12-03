@@ -27,8 +27,6 @@ const Contacts: React.FC = () => {
       // Simulate form submission (replace with actual API call)
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      console.log('Form data:', data);
-      
       setSubmitted(true);
       reset();
       

@@ -153,7 +153,18 @@ const config: GoogleSheetsConfig = {
   webhookUrl: import.meta.env.VITE_GOOGLE_WEBHOOK_URL || '',
 };
 
-// Sheet ranges for different sections
+// Sheet GIDs for different tabs (from your Google Sheet URLs)
+// GID is static per sheet tab and found in URL: ?gid=XXXXXXXXXX
+export const SHEET_GIDS = {
+  heroSlides: '0', // First/default sheet (gid=0)
+  stats: '2065539464',
+  testimonials: '1122517841',
+  products: '1835291215',
+  existingDistributors: '1067997296',
+  faq: '2091762513',
+};
+
+// Sheet ranges for different sections (kept for reference/backward compatibility)
 export const SHEET_RANGES = {
   heroSlides: 'HeroSlides!A2:L100',
   stats: 'Stats!A2:F100',

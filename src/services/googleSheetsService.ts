@@ -14,6 +14,7 @@ import googleSheetsConfig, {
   DEFAULT_DISTRIBUTORS,
   DEFAULT_FAQ,
   SHEET_RANGES,
+  SHEET_GIDS,
 } from '../config/googleSheets';
 
 /**
@@ -53,12 +54,8 @@ class GoogleSheetsService {
     }
 
     try {
-      const url = this.buildUrl(SHEET_RANGES.heroSlides);
-      const response = await axios.get(url, {
-        timeout: 10000, // 10 second timeout
-      });
-
-      const slides = this.parseHeroSlides(response.data.values);
+      const rows = await this.fetchCsvData(SHEET_GIDS.heroSlides);
+      const slides = this.parseHeroSlides(rows);
       
       // Update cache
       this.heroCache = {
@@ -94,9 +91,11 @@ class GoogleSheetsService {
     }
 
     try {
-      const url = this.buildUrl(SHEET_RANGES.stats);
-      const response = await axios.get(url, { timeout: 10000 });
-      const stats = this.parseStats(response.data.values);
+      const rows = await this.fetchCsvData(SHEET_GIDS.stats);
+      console.log('✓ Loaded stats:', rows);
+      const stats = this.parseStats(rows);
+
+      console.log('✓ Loaded stats:', stats);
       
       this.statsCache = {
         data: stats,
@@ -123,9 +122,8 @@ class GoogleSheetsService {
     }
 
     try {
-      const url = this.buildUrl(SHEET_RANGES.testimonials);
-      const response = await axios.get(url, { timeout: 10000 });
-      const testimonials = this.parseTestimonials(response.data.values);
+      const rows = await this.fetchCsvData(SHEET_GIDS.testimonials);
+      const testimonials = this.parseTestimonials(rows);
       
       this.testimonialsCache = {
         data: testimonials,
@@ -152,9 +150,8 @@ class GoogleSheetsService {
     }
 
     try {
-      const url = this.buildUrl(SHEET_RANGES.products);
-      const response = await axios.get(url, { timeout: 10000 });
-      const products = this.parseProducts(response.data.values);
+      const rows = await this.fetchCsvData(SHEET_GIDS.products);
+      const products = this.parseProducts(rows);
       
       this.productsCache = {
         data: products,
@@ -181,9 +178,8 @@ class GoogleSheetsService {
     }
 
     try {
-      const url = this.buildUrl(SHEET_RANGES.faq);
-      const response = await axios.get(url, { timeout: 10000 });
-      const faqs = this.parseFAQs(response.data.values);
+      const rows = await this.fetchCsvData(SHEET_GIDS.faq);
+      const faqs = this.parseFAQs(rows);
       
       this.faqCache = {
         data: faqs,
@@ -198,17 +194,92 @@ class GoogleSheetsService {
   }
 
   /**
-   * Build Google Sheets API URL
+   * Build Google Sheets CSV export URL with GID parameter
+   * @param gid - The sheet GID (tab identifier)
    */
-  private buildUrl(range: string): string {
-    const { sheetId, apiKey } = googleSheetsConfig;
-    let url = `${this.baseUrl}/${sheetId}/values/${range}`;
-    
-    if (apiKey) {
-      url += `?key=${apiKey}`;
+  private buildCsvUrl(gid: string): string {
+    const { sheetId } = googleSheetsConfig;
+    return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
+  }
+
+  /**
+   * Fetch CSV data from public Google Sheet (no API key required)
+   * @param gid - The sheet GID (tab identifier from URL)
+   */
+  private async fetchCsvData(gid: string): Promise<string[][]> {
+    try {
+      const csvUrl = this.buildCsvUrl(gid);
+      
+      const response = await axios.get(csvUrl, {
+        timeout: 10000,
+        responseType: 'text',
+      });
+
+      // Parse CSV with proper quoted field handling
+      const rows: string[][] = this.parseCSV(response.data);
+      
+      // Skip header row (first row) - data starts from row 2
+      return rows.slice(1);
+    } catch (error) {
+      console.error('Error fetching CSV data for gid:', gid, error);
+      throw error;
     }
-    
-    return url;
+  }
+
+  /**
+   * Parse CSV data properly handling quoted fields and commas within quotes
+   */
+  private parseCSV(csvData: string): string[][] {
+    const rows: string[][] = [];
+    let currentRow: string[] = [];
+    let currentField = '';
+    let insideQuotes = false;
+
+    for (let i = 0; i < csvData.length; i++) {
+      const char = csvData[i];
+      const nextChar = csvData[i + 1];
+
+      if (char === '"') {
+        if (insideQuotes && nextChar === '"') {
+          // Handle escaped quotes
+          currentField += '"';
+          i++; // Skip next quote
+        } else {
+          // Toggle quote state
+          insideQuotes = !insideQuotes;
+        }
+      } else if (char === ',' && !insideQuotes) {
+        // Field separator
+        currentRow.push(currentField.trim());
+        currentField = '';
+      } else if ((char === '\n' || char === '\r') && !insideQuotes) {
+        // Row separator
+        if (currentField || currentRow.length > 0) {
+          currentRow.push(currentField.trim());
+          if (currentRow.some(field => field.length > 0)) {
+            rows.push(currentRow);
+          }
+          currentRow = [];
+          currentField = '';
+        }
+        // Skip \r\n combination
+        if (char === '\r' && nextChar === '\n') {
+          i++;
+        }
+      } else {
+        currentField += char;
+      }
+    }
+
+    // Handle last field and row
+    if (currentField || currentRow.length > 0) {
+      currentRow.push(currentField.trim());
+      if (currentRow.some(field => field.length > 0)) {
+        rows.push(currentRow);
+      }
+    }
+
+    return rows;
   }
 
   /**
@@ -224,45 +295,44 @@ class GoogleSheetsService {
 
     const slides: HeroSlide[] = [];
 
-    for (const row of rows) {
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      
       // Skip empty rows
-      if (!row || row.length === 0) continue;
+      if (!row || row.length === 0 || row.every(cell => !cell)) continue;
 
-      const [
-        id,
-        title,
-        subtitle,
-        description,
-        mediaType,
-        mediaUrl,
-        ctaText1,
-        ctaLink1,
-        ctaText2,
-        ctaLink2,
-        trustBadge,
-        active,
-      ] = row;
+      // Expected: id, title, subtitle, description, mediaType, mediaUrl, ctaText1, ctaLink1, ctaText2, ctaLink2, trustBadge, active
+      const id = row[0]?.trim();
+      const title = row[1]?.trim();
+      const subtitle = row[2]?.trim();
+      const description = row[3]?.trim();
+      const mediaType = row[4]?.trim();
+      const mediaUrl = row[5]?.trim();
+      const ctaText1 = row[6]?.trim();
+      const ctaLink1 = row[7]?.trim();
+      const ctaText2 = row[8]?.trim();
+      const ctaLink2 = row[9]?.trim();
+      const trustBadge = row[10]?.trim();
+      const active = row[11]?.trim();
 
       // Skip inactive slides
       if (active?.toLowerCase() !== 'true') continue;
 
       // Validate required fields
       if (!id || !title || !mediaUrl) {
-        console.warn('Skipping row with missing required fields:', row);
+        console.warn('Skipping hero slide row with missing required fields:', row);
         continue;
       }
 
       // Validate mediaType
-      if (mediaType !== 'image' && mediaType !== 'video') {
-        console.warn('Invalid mediaType, defaulting to image:', mediaType);
-      }
+      const validMediaType = mediaType === 'video' ? 'video' : 'image';
 
       slides.push({
         id: String(id),
         title: String(title),
         subtitle: String(subtitle || ''),
         description: String(description || ''),
-        mediaType: mediaType === 'video' ? 'video' : 'image',
+        mediaType: validMediaType,
         mediaUrl: String(mediaUrl),
         ctaText1: ctaText1 ? String(ctaText1) : undefined,
         ctaLink1: ctaLink1 ? String(ctaLink1) : undefined,
@@ -275,10 +345,9 @@ class GoogleSheetsService {
 
     // Return defaults if no valid slides found
     if (slides.length === 0) {
-      console.warn('No valid slides found in Google Sheet');
+      console.warn('No valid slides found in Google Sheet, using defaults');
       return DEFAULT_HERO_SLIDES;
     }
-
     return slides;
   }
 
@@ -294,9 +363,14 @@ class GoogleSheetsService {
     const stats: StatItem[] = [];
 
     for (const row of rows) {
-      if (!row || row.length === 0) continue;
+      if (!row || row.length === 0 || row.every(cell => !cell)) continue;
 
-      const [id, value, label, suffix, prefix, active] = row;
+      const id = row[0]?.trim();
+      const value = row[1]?.trim();
+      const label = row[2]?.trim();
+      const suffix = row[3]?.trim();
+      const prefix = row[4]?.trim();
+      const active = row[5]?.trim();
 
       if (active?.toLowerCase() !== 'true') continue;
       if (!id || !value || !label) continue;
@@ -326,9 +400,16 @@ class GoogleSheetsService {
     const testimonials: Testimonial[] = [];
 
     for (const row of rows) {
-      if (!row || row.length === 0) continue;
+      if (!row || row.length === 0 || row.every(cell => !cell)) continue;
 
-      const [id, name, role, company, content, rating, imageUrl, active] = row;
+      const id = row[0]?.trim();
+      const name = row[1]?.trim();
+      const role = row[2]?.trim();
+      const company = row[3]?.trim();
+      const content = row[4]?.trim();
+      const rating = row[5]?.trim();
+      const imageUrl = row[6]?.trim();
+      const active = row[7]?.trim();
 
       if (active?.toLowerCase() !== 'true') continue;
       if (!id || !name || !content) continue;
@@ -350,7 +431,7 @@ class GoogleSheetsService {
 
   /**
    * Parse raw sheet data into Product objects
-   * Expected columns: id, name, category, description, imageUrl, availability, link, active
+   * Expected columns: id, name, partNumber, category, manufacturer, aircraftModel, description, imageUrl, availability, specifications, link, active
    */
   private parseProducts(rows: any[][]): Product[] {
     if (!rows || rows.length === 0) {
@@ -360,24 +441,20 @@ class GoogleSheetsService {
     const products: Product[] = [];
 
     for (const row of rows) {
-      if (!row || row.length === 0) continue;
+      if (!row || row.length === 0 || row.every(cell => !cell)) continue;
 
-      // Updated column mapping to match extended Product interface
-      // A-L: id, name, partNumber, category, manufacturer, aircraftModel, description, imageUrl, availability, specifications, link, active
-      const [
-        id,
-        name,
-        partNumber,
-        category,
-        manufacturer,
-        aircraftModel,
-        description,
-        imageUrl,
-        availability,
-        specifications,
-        link,
-        active
-      ] = row;
+      const id = row[0]?.trim();
+      const name = row[1]?.trim();
+      const partNumber = row[2]?.trim();
+      const category = row[3]?.trim();
+      const manufacturer = row[4]?.trim();
+      const aircraftModel = row[5]?.trim();
+      const description = row[6]?.trim();
+      const imageUrl = row[7]?.trim();
+      const availability = row[8]?.trim();
+      const specifications = row[9]?.trim();
+      const link = row[10]?.trim();
+      const active = row[11]?.trim();
 
       if (active?.toLowerCase() !== 'true') continue;
       if (!id || !name || !imageUrl) continue;
@@ -417,9 +494,14 @@ class GoogleSheetsService {
     const faqs: FAQ[] = [];
 
     for (const row of rows) {
-      if (!row || row.length === 0) continue;
+      if (!row || row.length === 0 || row.every(cell => !cell)) continue;
 
-      const [id, question, answer, keywords, category, active] = row;
+      const id = row[0]?.trim();
+      const question = row[1]?.trim();
+      const answer = row[2]?.trim();
+      const keywords = row[3]?.trim();
+      const category = row[4]?.trim();
+      const active = row[5]?.trim();
 
       if (active?.toLowerCase() !== 'true') continue;
       if (!id || !question || !answer) continue;
@@ -451,9 +533,8 @@ class GoogleSheetsService {
     }
 
     try {
-      const url = this.buildUrl(SHEET_RANGES.existingDistributors);
-      const response = await axios.get(url, { timeout: 10000 });
-      const distributors = this.parseExistingDistributors(response.data.values);
+      const rows = await this.fetchCsvData(SHEET_GIDS.existingDistributors);
+      const distributors = this.parseExistingDistributors(rows);
       
       this.distributorsCache = {
         data: distributors,
@@ -522,6 +603,7 @@ class GoogleSheetsService {
 
   /**
    * Parse existing distributors data from sheets
+   * Expected columns: id, companyName, country, city, region, latitude, longitude, yearsPartner, specializations, website, logo, active
    */
   private parseExistingDistributors(rows: any[][]): ExistingDistributor[] {
     if (!rows || rows.length === 0) {
@@ -531,10 +613,20 @@ class GoogleSheetsService {
     const distributors: ExistingDistributor[] = [];
 
     for (const row of rows) {
-      if (!row || row.length === 0) continue;
+      if (!row || row.length === 0 || row.every(cell => !cell)) continue;
 
-      // A-L: id, companyName, country, city, region, latitude, longitude, yearsPartner, specializations, website, logo, active
-      const [id, companyName, country, city, region, latitude, longitude, yearsPartner, specializations, website, logo, active] = row;
+      const id = row[0]?.trim();
+      const companyName = row[1]?.trim();
+      const country = row[2]?.trim();
+      const city = row[3]?.trim();
+      const region = row[4]?.trim();
+      const latitude = row[5]?.trim();
+      const longitude = row[6]?.trim();
+      const yearsPartner = row[7]?.trim();
+      const specializations = row[8]?.trim();
+      const website = row[9]?.trim();
+      const logo = row[10]?.trim();
+      const active = row[11]?.trim();
 
       if (active?.toLowerCase() !== 'true') continue;
       if (!id || !companyName || !country) continue;

@@ -389,7 +389,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, relatedPr
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
-    console.log('Quote request for:', product.name, formData);
+    // console.log('Quote request for:', product.name, formData);
     alert('Quote request submitted! We will contact you shortly.');
     onClose();
   };

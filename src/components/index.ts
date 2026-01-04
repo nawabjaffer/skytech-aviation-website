@@ -12,6 +12,7 @@ export { default as Footer } from './Footer';
 export { default as HeroCarousel } from './HeroCarousel';
 export { default as FeaturesSection } from './FeaturesSection';
 export { default as StatsSection } from './StatsSection';
+export { default as TrackRecordsSection } from './TrackRecordsSection';
 export { default as TestimonialsCarousel } from './TestimonialsCarousel';
 export { default as LatestProductsSection } from './LatestProductsSection';
 export { default as CTASection } from './CTASection';

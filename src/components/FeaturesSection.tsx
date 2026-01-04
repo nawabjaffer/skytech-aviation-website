@@ -80,7 +80,7 @@ const FeaturesSection: React.FC = () => {
               className="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
             >
               {/* Icon */}
-              <div className="inline-flex items-center justify-center w-16 h-16 mb-6 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded-xl group-hover:scale-110 transition-transform duration-300">
+              <div className="inline-flex items-center justify-center w-16 h-16 mb-6 bg-aviation-blue-100 dark:bg-aviation-blue-900/30 text-[#0b6d94] dark:text-aviation-blue-400 rounded-xl group-hover:scale-110 transition-transform duration-300">
                 {feature.icon}
               </div>
 

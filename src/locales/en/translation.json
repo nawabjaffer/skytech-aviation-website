@@ -104,6 +104,19 @@
       "countries": "Countries Served",
       "airlines": "Partner Airlines"
     },
+    "trackRecords": {
+      "badge": "Proven Excellence",
+      "title": "Our Track Record of Success",
+      "subtitle": "Years of dedication to excellence in aviation parts supply, building trust with leading airlines and MROs worldwide",
+      "achievementsTitle": "Milestones That Define Us",
+      "trustedBy": "Trusted by Leading Airlines & MROs Worldwide",
+      "items": {
+        "deliveries": "Successful Parts Deliveries",
+        "clients": "Satisfied Global Clients",
+        "countries": "Countries Served Worldwide",
+        "response": "Average Quote Response Time"
+      }
+    },
     "about": {
       "title": "About Skytech Aviation",
       "description": "We are a certified aviation parts supplier specializing in authentic OEM components for civil aircraft. As proud members of the Aviation Suppliers Association (ASA), we maintain the highest standards of quality and reliability.",

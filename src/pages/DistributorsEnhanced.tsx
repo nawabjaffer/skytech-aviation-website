@@ -151,10 +151,10 @@ const DistributorsEnhanced: React.FC = () => {
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         
         {/* Hero Section with Parallax Effect */}
-        <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 text-white py-32">          {/* Animated Background Shapes */}
+        <section className="relative overflow-hidden bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] text-white py-32">          {/* Animated Background Shapes */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-aviation-blue-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
           </div>
           
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -162,13 +162,13 @@ const DistributorsEnhanced: React.FC = () => {
               <h1 className="text-5xl md:text-7xl font-bold mb-6 fade-in">
                 Become a Partner
               </h1>
-              <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto fade-in" style={{ animationDelay: '0.2s' }}>
+              <p className="text-xl md:text-2xl text-aviation-blue-100 mb-8 max-w-3xl mx-auto fade-in" style={{ animationDelay: '0.2s' }}>
                 Join our global network of authorized distributors and transform your aviation parts business
               </p>
               <div className="flex flex-wrap gap-4 justify-center fade-in" style={{ animationDelay: '0.4s' }}>
                 <button
                   onClick={() => setShowApplicationModal(true)}
-                  className="group px-8 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50 hover:scale-105 transform"
+                  className="group px-8 py-4 bg-white text-[#0b6d94] font-bold rounded-xl hover:bg-aviation-blue-50 transition-all duration-300 shadow-2xl hover:shadow-[#0b6d94]/50 hover:scale-105 transform"
                 >
                   <span className="flex items-center gap-2">
                     Apply Now
@@ -179,7 +179,7 @@ const DistributorsEnhanced: React.FC = () => {
                 </button>
                 <button
                   onClick={() => setShowRequirementsModal(true)}
-                  className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-blue-600 transition-all duration-300 hover:scale-105 transform"
+                  className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-[#0b6d94] transition-all duration-300 hover:scale-105 transform"
                 >
                   View Requirements
                 </button>
@@ -256,7 +256,7 @@ const DistributorsEnhanced: React.FC = () => {
                 icon={<FileText className="w-12 h-12" />}
                 title="Requirements"
                 description="Essential criteria to become our distributor partner"
-                gradient="from-blue-500 to-blue-700"
+                gradient="from-[#0b6d94] to-[#073d53]"
                 onClick={() => setShowRequirementsModal(true)}
               />
 
@@ -319,22 +319,22 @@ const DistributorsEnhanced: React.FC = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 relative overflow-hidden scroll-animate">
+        <section className="py-24 bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] relative overflow-hidden scroll-animate">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-300 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-aviation-blue-300 rounded-full blur-3xl"></div>
           </div>
           
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Ready to Transform Your Business?
             </h2>
-            <p className="text-xl md:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-aviation-blue-100 mb-10 max-w-3xl mx-auto">
               Join the world's leading aviation parts distribution network today
             </p>
             <button
               onClick={() => setShowApplicationModal(true)}
-              className="group px-10 py-5 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-110 transform inline-flex items-center gap-3"
+              className="group px-10 py-5 bg-white text-[#0b6d94] font-bold rounded-xl hover:bg-aviation-blue-50 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-110 transform inline-flex items-center gap-3"
             >
               <span className="text-lg">Start Your Application</span>
               <svg className="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -385,7 +385,7 @@ interface BenefitCardProps {
 
 const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, description, delay = '' }) => (
   <div className={`benefit-card glass-effect rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl scroll-animate ${delay}`}>
-    <div className="text-blue-600 dark:text-blue-400 mb-6 flex justify-center transform hover:scale-125 transition-transform duration-300">{icon}</div>
+    <div className="text-[#0b6d94] dark:text-aviation-blue-400 mb-6 flex justify-center transform hover:scale-125 transition-transform duration-300">{icon}</div>
     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">{title}</h3>
     <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{description}</p>
   </div>
@@ -472,7 +472,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title, maxWidt
         {/* Modal Content */}
         <div className={`inline-block align-bottom bg-white dark:bg-gray-800 rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle ${maxWidth} w-full modal-content`}>
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-5">
+          <div className="bg-gradient-to-r from-[#0b6d94] to-[#073d53] px-6 py-5">
             <div className="flex items-center justify-between">
               <h3 className="text-2xl font-bold text-white">{title}</h3>
               <button
@@ -561,21 +561,21 @@ const ProcessModal: React.FC<ProcessModalProps> = ({ isOpen, onClose }) => {
           <div key={index} className="relative">
             <div className="flex gap-6">
               <div className="flex flex-col items-center">
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
+                <div className="w-14 h-14 bg-gradient-to-br from-[#0b6d94] to-[#073d53] text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
                   {step.number}
                 </div>
                 {index < steps.length - 1 && (
-                  <div className="w-1 h-full bg-gradient-to-b from-blue-600 to-purple-600 mt-2"></div>
+                  <div className="w-1 h-full bg-gradient-to-b from-[#0b6d94] to-[#0a5a7a] mt-2"></div>
                 )}
               </div>
               <div className="flex-1 pb-8">
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6">
+                <div className="bg-gradient-to-r from-aviation-blue-50 to-aviation-blue-100 dark:from-aviation-blue-900/20 dark:to-aviation-blue-800/20 rounded-xl p-6">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-3xl">{step.icon}</span>
                     <h4 className="text-xl font-bold text-gray-900 dark:text-white">{step.title}</h4>
                   </div>
                   <p className="text-gray-700 dark:text-gray-300 mb-3">{step.description}</p>
-                  <div className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400">
+                  <div className="flex items-center gap-2 text-sm text-[#0b6d94] dark:text-aviation-blue-400">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -814,7 +814,7 @@ const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onClose }) 
               <button type="button" onClick={onClose} className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
                 Cancel
               </button>
-              <button type="submit" disabled={submitting} className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed">
+              <button type="submit" disabled={submitting} className="px-6 py-3 bg-[#0b6d94] text-white rounded-lg hover:bg-[#0a5a7a] disabled:opacity-50 disabled:cursor-not-allowed">
                 {submitting ? 'Submitting...' : 'Submit Application'}
               </button>
             </div>

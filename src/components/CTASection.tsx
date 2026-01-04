@@ -15,7 +15,7 @@ const CTASection: React.FC = () => {
           className="w-full h-full object-cover"
         />
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 to-blue-700/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#073d53]/95 to-[#0b6d94]/90"></div>
       </div>
 
       {/* Content */}
@@ -44,7 +44,7 @@ const CTASection: React.FC = () => {
           </h2>
 
           {/* Description */}
-          <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-aviation-blue-100 mb-12 max-w-2xl mx-auto">
             {t('home.cta.description')}
           </p>
 
@@ -52,7 +52,7 @@ const CTASection: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               to="/contact"
-              className="inline-flex items-center px-8 py-4 text-lg font-bold text-blue-600 bg-white hover:bg-gray-100 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="inline-flex items-center px-8 py-4 text-lg font-bold text-[#0b6d94] bg-white hover:bg-gray-100 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-300"
             >
               {t('home.cta.button')}
               <svg
@@ -72,7 +72,7 @@ const CTASection: React.FC = () => {
 
             <Link
               to="/distributors"
-              className="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-transparent border-2 border-white hover:bg-white hover:text-blue-600 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-transparent border-2 border-white hover:bg-white hover:text-[#0b6d94] rounded-lg shadow-xl transform hover:scale-105 transition-all duration-300"
             >
               Become a Distributor
               <svg
@@ -102,7 +102,7 @@ const CTASection: React.FC = () => {
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
               <div className="font-semibold">ASA Member</div>
-              <div className="text-sm text-blue-200">Since 2015</div>
+              <div className="text-sm text-sky-200">Since 2015</div>
             </div>
 
             <div className="flex flex-col items-center">
@@ -120,7 +120,7 @@ const CTASection: React.FC = () => {
                 />
               </svg>
               <div className="font-semibold">ISO 9001:2015</div>
-              <div className="text-sm text-blue-200">Certified</div>
+              <div className="text-sm text-sky-200">Certified</div>
             </div>
 
             <div className="flex flex-col items-center">
@@ -138,7 +138,7 @@ const CTASection: React.FC = () => {
                 />
               </svg>
               <div className="font-semibold">24/7 Support</div>
-              <div className="text-sm text-blue-200">Always Available</div>
+              <div className="text-sm text-sky-200">Always Available</div>
             </div>
           </div>
         </div>

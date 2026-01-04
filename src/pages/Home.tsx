@@ -4,6 +4,7 @@ import SEOHead from '../components/SEOHead';
 import HeroCarousel from '../components/HeroCarousel';
 import FeaturesSection from '../components/FeaturesSection';
 import StatsSection from '../components/StatsSection';
+import TrackRecordsSection from '../components/TrackRecordsSection';
 import TestimonialsCarousel from '../components/TestimonialsCarousel';
 import LatestProductsSection from '../components/LatestProductsSection';
 import CTASection from '../components/CTASection';
@@ -27,6 +28,9 @@ const Home: React.FC = () => {
 
       {/* Features Section - Why Choose Skytech Aviation */}
       <FeaturesSection />
+
+      {/* Track Records Section - Our Success Story */}
+      <TrackRecordsSection />
 
       {/* Stats Counter - Animated on scroll */}
       <StatsSection />

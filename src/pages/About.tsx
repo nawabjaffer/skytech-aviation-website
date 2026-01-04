@@ -30,19 +30,19 @@ const About: React.FC = () => {
         ]}
       />
       
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-gray-900">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-aviation-blue-50 to-gray-50 dark:from-gray-900 dark:via-aviation-blue-900/20 dark:to-gray-900">
         
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 text-white py-20">
+        <section className="relative bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] text-white py-20">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-aviation-blue-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
           </div>
           
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-4">{t('about.hero.title')}</h1>
-              <p className="text-xl md:text-2xl text-blue-100">{t('about.hero.subtitle')}</p>
+              <p className="text-xl md:text-2xl text-aviation-blue-100">{t('about.hero.subtitle')}</p>
             </div>
           </div>
         </section>
@@ -53,8 +53,8 @@ const About: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
               <div className="bg-white dark:bg-gray-800 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="p-4 bg-blue-100 dark:bg-blue-900/30 rounded-2xl">
-                    <Target className="w-10 h-10 text-blue-600 dark:text-blue-400" strokeWidth={2} />
+                  <div className="p-4 bg-aviation-blue-100 dark:bg-aviation-blue-900/30 rounded-2xl">
+                    <Target className="w-10 h-10 text-[#0b6d94] dark:text-aviation-blue-400" strokeWidth={2} />
                   </div>
                   <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{t('about.mission.title')}</h2>
                 </div>
@@ -65,8 +65,8 @@ const About: React.FC = () => {
               
               <div className="bg-white dark:bg-gray-800 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="p-4 bg-purple-100 dark:bg-purple-900/30 rounded-2xl">
-                    <Eye className="w-10 h-10 text-purple-600 dark:text-purple-400" strokeWidth={2} />
+                  <div className="p-4 bg-aviation-blue-100 dark:bg-aviation-blue-900/30 rounded-2xl">
+                    <Eye className="w-10 h-10 text-[#0b6d94] dark:text-aviation-blue-400" strokeWidth={2} />
                   </div>
                   <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{t('about.vision.title')}</h2>
                 </div>
@@ -99,7 +99,7 @@ const About: React.FC = () => {
         </section>
 
         {/* ASA Membership Highlight */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <section className="py-20 bg-gradient-to-r from-[#0b6d94] to-[#0a5a7a] text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <div className="flex flex-col md:flex-row items-center gap-12">
               <div className="flex-1">
@@ -113,10 +113,10 @@ const About: React.FC = () => {
               </div>
               <div className="flex-1">
                 <h2 className="text-4xl font-bold mb-6">{t('about.asa.title')}</h2>
-                <p className="text-xl text-blue-100 mb-4 leading-relaxed">
+                <p className="text-xl text-aviation-blue-100 mb-4 leading-relaxed">
                   {t('about.asa.description')}
                 </p>
-                  <span className="text-blue-100 flex items-center gap-2">
+                  <span className="text-aviation-blue-100 flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-300" />
                     {t('about.asa.memberSince')}
                   </span>
@@ -142,11 +142,11 @@ const About: React.FC = () => {
               ].map((milestone, index) => (
                 <div key={index} className="flex gap-8 items-start">
                   <div className="flex flex-col items-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg flex-shrink-0">
+                    <div className="w-20 h-20 bg-gradient-to-br from-[#0b6d94] to-[#073d53] text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg flex-shrink-0">
                       {milestone.year}
                     </div>
                     {index < 5 && (
-                      <div className="w-1 h-full bg-gradient-to-b from-blue-600 to-purple-600 mt-2"></div>
+                      <div className="w-1 h-full bg-gradient-to-b from-[#0b6d94] to-[#0a5a7a] mt-2"></div>
                     )}
                   </div>
                   <div className="flex-1 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
@@ -174,7 +174,7 @@ const About: React.FC = () => {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
               {['iso9001', 'as9120', 'easa', 'faa'].map((cert, index) => (
-                <div key={index} className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8 text-center hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                <div key={index} className="bg-gradient-to-br from-aviation-blue-50 to-aviation-blue-100 dark:from-aviation-blue-900/20 dark:to-aviation-blue-800/20 rounded-2xl p-8 text-center hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                   <div className="flex justify-center mb-6">
                     <div className="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-md">
                       <Award className="w-12 h-12 text-amber-500" strokeWidth={2} />
@@ -229,7 +229,7 @@ const About: React.FC = () => {
         </section>
 
         {/* Team Section */}
-        <section className="py-24 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20">
+        <section className="py-24 bg-gradient-to-br from-gray-50 to-sky-50 dark:from-gray-900 dark:to-sky-900/20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
               {t('about.team.title')}
@@ -240,7 +240,7 @@ const About: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {['ceo', 'cto', 'sales'].map((member, index) => (
                 <div key={index} className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
-                  <div className="h-64 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+                  <div className="h-64 bg-gradient-to-br from-sky-500 to-cyan-500 flex items-center justify-center">
                     <div className="p-8 bg-white/10 backdrop-blur-sm rounded-2xl">
                       <UserCircle className="w-24 h-24 text-white" strokeWidth={1.5} />
                     </div>
@@ -280,9 +280,9 @@ const About: React.FC = () => {
             </p>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
               {/* Main Office */}
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
+              <div className="bg-gradient-to-br from-sky-50 to-cyan-50 dark:from-sky-900/20 dark:to-cyan-900/20 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-3">
-                  <div className="p-3 bg-blue-600 rounded-xl">
+                  <div className="p-3 bg-sky-500 rounded-xl">
                     <MapPin className="w-7 h-7 text-white" strokeWidth={2} />
                   </div>
                   {t('about.locations.main.title')}
@@ -314,9 +314,9 @@ const About: React.FC = () => {
               </div>
 
               {/* Regional Office */}
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
+              <div className="bg-gradient-to-br from-sky-50 to-cyan-50 dark:from-sky-900/20 dark:to-cyan-900/20 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-3">
-                  <div className="p-3 bg-purple-600 rounded-xl">
+                  <div className="p-3 bg-cyan-500 rounded-xl">
                     <MapPin className="w-7 h-7 text-white" strokeWidth={2} />
                   </div>
                   {t('about.locations.regional.title')}
@@ -351,7 +351,7 @@ const About: React.FC = () => {
         </section>
 
         {/* Awards & Recognition */}
-        <section className="py-24 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20">
+        <section className="py-24 bg-gradient-to-br from-gray-50 to-sky-50 dark:from-gray-900 dark:to-sky-900/20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
               {t('about.awards.title')}
@@ -383,24 +383,24 @@ const About: React.FC = () => {
         </section>
 
         {/* Call to Action */}
-        <section className="py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600">
+        <section className="py-24 bg-gradient-to-r from-sky-500 via-sky-600 to-cyan-500">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               {t('about.cta.title')}
             </h2>
-            <p className="text-xl md:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-sky-100 mb-10 max-w-3xl mx-auto">
               {t('about.cta.subtitle')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a
                 href="/contact"
-                className="px-10 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-105 transform"
+                className="px-10 py-4 bg-white text-sky-600 font-bold rounded-xl hover:bg-sky-50 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-105 transform"
               >
                 {t('about.cta.contact')}
               </a>
               <a
                 href="/products"
-                className="px-10 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-blue-600 transition-all duration-300 hover:scale-105 transform"
+                className="px-10 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-sky-600 transition-all duration-300 hover:scale-105 transform"
               >
                 {t('about.cta.products')}
               </a>

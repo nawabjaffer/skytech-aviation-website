@@ -131,12 +131,12 @@ const Products: React.FC = () => {
       
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+        <div className="bg-gradient-to-r from-[#0b6d94] to-[#073d53] text-white py-16">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               {t('products.title') || 'Our Products'}
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl">
+            <p className="text-xl text-aviation-blue-100 max-w-3xl">
               {t('products.subtitle') || 'Authorized civil aircraft parts and components with full certification and traceability'}
             </p>
           </div>
@@ -157,7 +157,7 @@ const Products: React.FC = () => {
                     placeholder="Search by name, part number..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#0b6d94] dark:bg-gray-700 dark:text-white"
                   />
                 </div>
 
@@ -173,7 +173,7 @@ const Products: React.FC = () => {
                         onClick={() => setSelectedCategory(category)}
                         className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${
                           selectedCategory === category
-                            ? 'bg-blue-600 text-white'
+                            ? 'bg-[#0b6d94] text-white'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                         }`}
                       >
@@ -191,7 +191,7 @@ const Products: React.FC = () => {
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as SortOption)}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#0b6d94] dark:bg-gray-700 dark:text-white"
                   >
                     <option value="name-asc">Name (A-Z)</option>
                     <option value="name-desc">Name (Z-A)</option>
@@ -261,7 +261,7 @@ const Products: React.FC = () => {
                           onClick={() => setCurrentPage(page)}
                           className={`px-4 py-2 rounded-lg ${
                             currentPage === page
-                              ? 'bg-blue-600 text-white'
+                              ? 'bg-[#0b6d94] text-white'
                               : 'bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                           }`}
                         >
@@ -332,7 +332,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
         />
         {/* Category Badge */}
         <div className="absolute top-3 left-3">
-          <span className="px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full">
+          <span className="px-3 py-1 bg-[#0b6d94] text-white text-xs font-semibold rounded-full">
             {product.category}
           </span>
         </div>
@@ -350,7 +350,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
           {product.name}
         </h3>
         {product.partNumber && (
-          <p className="text-sm text-blue-600 dark:text-blue-400 font-mono mb-2">
+          <p className="text-sm text-[#0b6d94] dark:text-aviation-blue-400 font-mono mb-2">
             P/N: {product.partNumber}
           </p>
         )}
@@ -362,7 +362,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
         <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2">
           {product.description}
         </p>
-        <button className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors">
+        <button className="w-full px-4 py-2 bg-[#0b6d94] hover:bg-[#0a5a7a] text-white font-semibold rounded-lg transition-colors">
           Request Quote
         </button>
       </div>
@@ -434,7 +434,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, relatedPr
                 className="w-full h-64 object-cover rounded-lg mb-4"
               />
               <div className="flex gap-2 mb-4">
-                <span className="px-3 py-1 bg-blue-600 text-white text-sm font-semibold rounded-full">
+                <span className="px-3 py-1 bg-[#0b6d94] text-white text-sm font-semibold rounded-full">
                   {product.category}
                 </span>
                 <span className={`px-3 py-1 text-sm font-semibold rounded-full ${getAvailabilityColor(product.availability)}`}>
@@ -449,7 +449,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, relatedPr
                 {product.name}
               </h3>
               {product.partNumber && (
-                <p className="text-blue-600 dark:text-blue-400 font-mono mb-4">
+                <p className="text-[#0b6d94] dark:text-aviation-blue-400 font-mono mb-4">
                   Part Number: {product.partNumber}
                 </p>
               )}
@@ -522,7 +522,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, relatedPr
               />
               <button
                 type="submit"
-                className="md:col-span-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors"
+                className="md:col-span-2 px-6 py-3 bg-[#0b6d94] hover:bg-[#0a5a7a] text-white font-semibold rounded-lg transition-colors"
               >
                 Submit Quote Request
               </button>

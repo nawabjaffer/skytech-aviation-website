@@ -29,8 +29,8 @@ const Services: React.FC = () => {
     {
       IconComponent: Search,
       key: 'sourcing',
-      gradient: 'from-blue-500 to-blue-700',
-      iconBg: 'bg-blue-100 dark:bg-blue-900'
+      gradient: 'from-[#0b6d94] to-[#073d53]',
+      iconBg: 'bg-aviation-blue-100 dark:bg-aviation-blue-900/30'
     },
     {
       IconComponent: Wrench,
@@ -53,8 +53,8 @@ const Services: React.FC = () => {
     {
       IconComponent: CheckCircle,
       key: 'quality',
-      gradient: 'from-indigo-500 to-indigo-700',
-      iconBg: 'bg-indigo-100 dark:bg-indigo-900'
+      gradient: 'from-[#0b6d94] to-[#0a5a7a]',
+      iconBg: 'bg-aviation-blue-100 dark:bg-aviation-blue-900/30'
     },
     {
       IconComponent: FileCheck,
@@ -81,29 +81,29 @@ const Services: React.FC = () => {
         ]}
       />
       
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-gray-900">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-aviation-blue-50 to-gray-50 dark:from-gray-900 dark:via-aviation-blue-900/20 dark:to-gray-900">
         
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 text-white py-20">
+        <section className="relative bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] text-white py-20">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-aviation-blue-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
           </div>
           
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-4">{t('services.hero.title')}</h1>
-              <p className="text-xl md:text-2xl text-blue-100 mb-8">{t('services.hero.subtitle')}</p>
+              <p className="text-xl md:text-2xl text-aviation-blue-100 mb-8">{t('services.hero.subtitle')}</p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <a
                   href="#services"
-                  className="px-8 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-105 transform"
+                  className="px-8 py-4 bg-white text-[#0b6d94] font-bold rounded-xl hover:bg-aviation-blue-50 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-105 transform"
                 >
                   {t('services.hero.cta1')}
                 </a>
                 <a
                   href="/contact"
-                  className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-blue-600 transition-all duration-300 hover:scale-105 transform"
+                  className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-[#0b6d94] transition-all duration-300 hover:scale-105 transform"
                 >
                   {t('services.hero.cta2')}
                 </a>
@@ -144,7 +144,7 @@ const Services: React.FC = () => {
                     </p>
                   
                   {/* Benefits List */}
-                  <div className="space-y-3 mb-6">
+                  <div className="space-y-3">
                     <p className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wide">
                       {t('services.cards.keyFeatures')}
                     </p>
@@ -159,10 +159,6 @@ const Services: React.FC = () => {
                       </div>
                     ))}
                   </div>
-
-                  <button className={`w-full py-3 bg-gradient-to-r ${service.gradient} text-white font-semibold rounded-lg hover:opacity-90 transition-opacity`}>
-                    {t('services.cards.learnMore')}
-                  </button>
                 </div>
               );
               })}
@@ -223,9 +219,9 @@ const Services: React.FC = () => {
             </div>
 
             {/* Timeline Note */}
-            <div className="mt-12 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl border border-blue-200 dark:border-blue-800">
+            <div className="mt-12 p-6 bg-gradient-to-r from-aviation-blue-50 to-aviation-blue-100 dark:from-aviation-blue-900/20 dark:to-aviation-blue-800/20 rounded-2xl border border-aviation-blue-200 dark:border-aviation-blue-800">
               <div className="flex items-center gap-3">
-                <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-[#0b6d94] dark:text-aviation-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <p className="text-gray-700 dark:text-gray-300">
@@ -237,7 +233,7 @@ const Services: React.FC = () => {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20">
+        <section className="py-20 bg-gradient-to-br from-gray-50 to-aviation-blue-50 dark:from-gray-900 dark:to-aviation-blue-900/20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -251,7 +247,7 @@ const Services: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto">
               {[
                 { benefit: 'certified', IconComponent: Award, color: 'amber' },
-                { benefit: 'network', IconComponent: Globe, color: 'blue' },
+                { benefit: 'network', IconComponent: Globe, color: 'aviation-blue' },
                 { benefit: 'support', IconComponent: MessageCircle, color: 'green' },
                 { benefit: 'pricing', IconComponent: DollarSign, color: 'purple' }
               ].map(({ benefit, IconComponent, color }, index) => (
@@ -261,7 +257,7 @@ const Services: React.FC = () => {
                 >
                   <div className="flex justify-center mb-6">
                     <div className={`p-5 bg-${color}-100 dark:bg-${color}-900/30 rounded-2xl`}>
-                      <IconComponent className={`w-10 h-10 text-${color}-600 dark:text-${color}-400`} strokeWidth={2} />
+                      <IconComponent className={`w-10 h-10 text-${color === 'aviation-blue' ? '[#0b6d94]' : color + '-600'} dark:text-${color}-400`} strokeWidth={2} />
                     </div>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
@@ -356,13 +352,13 @@ const Services: React.FC = () => {
         </section>
 
         {/* Download Center */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600">
+        <section className="py-20 bg-gradient-to-r from-sky-500 via-sky-600 to-cyan-500">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 {t('services.downloads.title')}
               </h2>
-              <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              <p className="text-xl text-sky-100 max-w-3xl mx-auto">
                 {t('services.downloads.subtitle')}
               </p>
             </div>
@@ -415,13 +411,13 @@ const Services: React.FC = () => {
             <div className="flex flex-wrap gap-4 justify-center">
               <a
                 href="/contact"
-                className="px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 transform"
+                className="px-10 py-4 bg-gradient-to-r from-sky-500 to-cyan-500 text-white font-bold rounded-xl hover:from-sky-600 hover:to-cyan-600 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 transform"
               >
                 {t('services.cta.contact')}
               </a>
               <a
                 href="/products"
-                className="px-10 py-4 bg-transparent border-2 border-blue-600 text-blue-600 dark:border-blue-400 dark:text-blue-400 font-bold rounded-xl hover:bg-blue-600 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900 transition-all duration-300 hover:scale-105 transform"
+                className="px-10 py-4 bg-transparent border-2 border-sky-500 text-sky-600 dark:border-sky-400 dark:text-sky-400 font-bold rounded-xl hover:bg-sky-500 hover:text-white dark:hover:bg-sky-400 dark:hover:text-gray-900 transition-all duration-300 hover:scale-105 transform"
               >
                 {t('services.cta.products')}
               </a>

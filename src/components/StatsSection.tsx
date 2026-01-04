@@ -106,7 +106,7 @@ const StatsSection: React.FC = () => {
 
   if (loading) {
     return (
-      <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-700 dark:from-blue-950 dark:to-blue-900">
+      <section className="py-20 bg-gradient-to-br from-[#0b6d94] to-[#0a5a7a] dark:from-[#073d53] dark:to-[#094a64]">
         <div className="container mx-auto px-4 text-center">
           <div className="animate-pulse text-white">Loading stats...</div>
         </div>
@@ -115,7 +115,7 @@ const StatsSection: React.FC = () => {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-700 dark:from-blue-950 dark:to-blue-900">
+    <section className="py-20 bg-gradient-to-br from-[#0b6d94] to-[#0a5a7a] dark:from-[#073d53] dark:to-[#094a64]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">

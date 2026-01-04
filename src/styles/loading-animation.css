@@ -48,7 +48,7 @@ body:has(.loading-animation-container:not(.exiting)) {
   overflow: hidden;
   opacity: 1;
   visibility: visible;
-  background: var(--color-primary-900, #1a237e);
+  background: var(--color-primary-900, #073d53);
 }
 
 .loading-animation-container.phase-4 {
@@ -93,7 +93,7 @@ body:has(.loading-animation-container:not(.exiting)) {
 .loading-background {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #0ea5e9 0%, #1e3a8a 100%);
+  background: linear-gradient(135deg, #0b6d94 0%, #073d53 100%);
   overflow: hidden;
 }
 

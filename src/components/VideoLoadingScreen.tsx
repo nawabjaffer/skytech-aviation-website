@@ -21,10 +21,18 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
   onComplete,
   videoSrc = '/skytech-loading.mp4'
 }) => {
+  const INTRO_DURATION_MS = 8000;
+  const EXIT_ANIMATION_MS = 800;
+  const EXIT_START_MS = INTRO_DURATION_MS - EXIT_ANIMATION_MS;
+
   const [progress, setProgress] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const rafRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number | null>(null);
+  const completedRef = useRef(false);
+  const exitStartedRef = useRef(false);
 
   // Cache version check during initial load
   useEffect(() => {
@@ -41,55 +49,95 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
     checkCache();
   }, []);
 
-  // Handle video playback and progress
+  // Drive progress by time so it stays smooth even if video stalls.
+  useEffect(() => {
+    startTimeRef.current = performance.now();
+    completedRef.current = false;
+    exitStartedRef.current = false;
+
+    const tick = (now: number) => {
+      if (completedRef.current) return;
+
+      const start = startTimeRef.current ?? now;
+      const elapsed = Math.max(0, now - start);
+
+      const nextProgress = Math.min(100, Math.round((elapsed / INTRO_DURATION_MS) * 100));
+      setProgress(prev => (nextProgress > prev ? nextProgress : prev));
+
+      if (!exitStartedRef.current && elapsed >= EXIT_START_MS) {
+        exitStartedRef.current = true;
+        setIsExiting(true);
+      }
+
+      if (elapsed >= INTRO_DURATION_MS) {
+        completedRef.current = true;
+        setProgress(100);
+        onComplete();
+        return;
+      }
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [onComplete]);
+
+  // Handle video playback (independent from progress)
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const handleLoadedData = () => {
-      setVideoLoaded(true);
-      video.play().catch(err => {
-        console.log('Video autoplay prevented:', err);
-        // Fallback: complete loading after timeout if video can't play
-        setTimeout(() => {
-          setIsExiting(true);
-          setTimeout(onComplete, 800);
-        }, 2000);
+    // Make playback feel more cinematic/slow
+    video.defaultPlaybackRate = 0.9;
+    video.playbackRate = 0.9;
+
+    const tryPlay = () => {
+      if (completedRef.current) return;
+      video.play().catch(() => {
+        // On some mobile browsers, play() can still be blocked until user gesture.
+        // We'll keep the intro smooth via the time-driven progress regardless.
       });
     };
 
-    const handleTimeUpdate = () => {
-      if (video.duration) {
-        const percentage = Math.round((video.currentTime / video.duration) * 100);
-        setProgress(percentage);
+    const handleLoadedMetadata = () => {
+      setVideoLoaded(true);
+      tryPlay();
+    };
+
+    const handleCanPlay = () => {
+      tryPlay();
+    };
+
+    const handleVisibility = () => {
+      // If the tab becomes visible again, try to resume.
+      if (document.visibilityState === 'visible') {
+        tryPlay();
       }
     };
 
-    const handleEnded = () => {
-      setProgress(100);
-      setIsExiting(true);
-      setTimeout(onComplete, 800);
-    };
-
-    // Fallback timer in case video doesn't load
-    const fallbackTimer = setTimeout(() => {
-      if (!videoLoaded) {
-        setIsExiting(true);
-        setTimeout(onComplete, 800);
+    // Watchdog: if video pauses/stalls mid-intro, attempt resume periodically.
+    const resumeInterval = setInterval(() => {
+      if (completedRef.current) return;
+      if (videoLoaded && video.paused && document.visibilityState === 'visible') {
+        tryPlay();
       }
-    }, 10000); // 10 second fallback
+    }, 500);
 
-    video.addEventListener('loadeddata', handleLoadedData);
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    video.addEventListener('ended', handleEnded);
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    video.addEventListener('canplay', handleCanPlay);
+    document.addEventListener('visibilitychange', handleVisibility);
+    tryPlay();
 
     return () => {
-      clearTimeout(fallbackTimer);
-      video.removeEventListener('loadeddata', handleLoadedData);
-      video.removeEventListener('timeupdate', handleTimeUpdate);
-      video.removeEventListener('ended', handleEnded);
+      clearInterval(resumeInterval);
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener('canplay', handleCanPlay);
+      document.removeEventListener('visibilitychange', handleVisibility);
     };
-  }, [onComplete, videoLoaded]);
+  }, [videoLoaded]);
 
   return (
     <div 
@@ -104,9 +152,12 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
       <video
         ref={videoRef}
         className="loading-video"
+        autoPlay
         muted
         playsInline
         preload="auto"
+        poster="/skytech-logo.png"
+        aria-hidden="true"
       >
         <source src={videoSrc} type="video/mp4" />
       </video>
@@ -165,8 +216,10 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
         <button 
           className="skip-hint"
           onClick={() => {
+            if (completedRef.current) return;
+            completedRef.current = true;
             setIsExiting(true);
-            setTimeout(onComplete, 800);
+            onComplete();
           }}
         >
           Skip Intro

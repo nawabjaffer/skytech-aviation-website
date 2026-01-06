@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next';
 
 interface LanguageSelectorProps {
   className?: string;
+  compact?: boolean;
 }
 
-const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className = '' }) => {
+const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className = '', compact = false }) => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -28,26 +29,37 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className = '' }) =
     <div className={`relative ${className}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-blue"
+        className={
+          compact
+            ? 'w-10 h-10 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-blue'
+            : 'flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-blue'
+        }
         aria-label="Select language"
       >
-        <span className="text-xl">{currentLang?.flag}</span>
-        <span className="hidden tablet:inline text-white text-sm font-medium">
-          {currentLang?.code.toUpperCase()}
-        </span>
-        <svg
-          className={`w-4 h-4 text-white transition-transform duration-200 ${
-            isOpen ? 'rotate-180' : ''
-          }`}
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path d="M19 9l-7 7-7-7" />
-        </svg>
+        {compact ? (
+          <span className="text-xl" aria-hidden="true">{currentLang?.flag}</span>
+        ) : (
+          <>
+            <span className="text-xl">{currentLang?.flag}</span>
+            <span className="hidden tablet:inline text-white text-sm font-medium">
+              {currentLang?.code.toUpperCase()}
+            </span>
+            <svg
+              className={`w-4 h-4 text-white transition-transform duration-200 ${
+                isOpen ? 'rotate-180' : ''
+              }`}
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M19 9l-7 7-7-7" />
+            </svg>
+          </>
+        )}
       </button>
 
       {/* Dropdown Menu */}

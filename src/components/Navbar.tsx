@@ -56,71 +56,81 @@ const Navbar: React.FC = () => {
       } ${isVisible ? 'navbar-visible' : 'navbar-hidden'}`}
     >
       <div className="container-custom">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo/Brand with Text */}
-          <div className="flex items-center">
-            <Link 
-              to="/" 
-              className="block transition-transform duration-300 hover:scale-110 flex-shrink-0"
+        {/* Desktop Navbar: utilities (left), logo (center), nav links (right) */}
+        <div className="hidden desktop:grid grid-cols-3 items-center py-4">
+          {/* Left Utilities */}
+          <div className="flex items-center justify-start gap-3">
+            <LanguageSelector compact />
+            <DarkModeToggle />
+          </div>
+
+          {/* Center Logo */}
+          <div className="flex items-center justify-center">
+            <Link
+              to="/"
+              className="logo-container block transition-transform duration-300 hover:scale-110 flex-shrink-0"
+              aria-label="Skytech Aviation"
             >
               <Logo className="h-10 w-auto" />
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden desktop:flex items-center gap-6 lg:gap-8">
+          {/* Right Navigation */}
+          <ul className="flex items-center justify-end gap-6 lg:gap-8">
             {navLinks.map((link) => (
-                <li key={link.path} className="h-16 flex items-center">
+              <li key={link.path} className="h-16 flex items-center">
                 <Link
                   to={link.path}
-                  className={`text-white font-medium transition-all duration-300 hover:text-sky-blue relative group px-1 ${
-                  isActive(link.path) ? 'text-sky-blue' : ''
+                  className={`nav-link font-medium transition-all duration-300 hover:text-sky-blue relative group px-1 ${
+                    isActive(link.path) ? 'text-sky-blue nav-link-active' : 'text-white'
                   }`}
                 >
                   {link.label}
-                    <span className={`absolute -bottom-1 left-0 w-full h-1 bg-sky-blue transform origin-left transition-transform duration-300 px-1 ${
+                  <span className={`absolute -bottom-1 left-0 w-full h-1 bg-sky-blue transform origin-left transition-transform duration-300 px-1 ${
                     isActive(link.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                    }`}></span>
+                  }`}></span>
                 </Link>
               </li>
             ))}
-            {/* Language Selector */}
-            <li>
-              <LanguageSelector />
-            </li>
-            {/* Dark Mode Toggle */}
-            <li>
-              <DarkModeToggle />
-            </li>
           </ul>
+        </div>
 
-          {/* Right side controls for mobile */}
-          <div className="flex items-center gap-3 desktop:hidden">
-            <LanguageSelector />
+        {/* Mobile Navbar */}
+        <div className="flex justify-between items-center py-4 desktop:hidden">
+          <Link
+            to="/"
+            className="logo-container block transition-transform duration-300 hover:scale-110 flex-shrink-0"
+            aria-label="Skytech Aviation"
+          >
+            <Logo className="h-10 w-auto" />
+          </Link>
+
+          <div className="flex items-center gap-3">
+            <LanguageSelector compact />
             <DarkModeToggle />
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white focus:outline-none focus:ring-2 focus:ring-sky-blue rounded-lg p-2"
+              className="menu-button text-white focus:outline-none focus:ring-2 focus:ring-sky-blue rounded-lg p-2"
               aria-label="Toggle menu"
             >
               <svg
                 className="w-6 h-6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
-        </div>
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                {isMenuOpen ? (
+                  <path d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}

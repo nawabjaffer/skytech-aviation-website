@@ -4,22 +4,37 @@ import { useTranslation } from 'react-i18next';
 import DarkModeToggle from './DarkModeToggle';
 import LanguageSelector from './LanguageSelector';
 import Logo from './Logo';
+import { useLoadingState } from '../contexts/LoadingStateContext';
+import '../styles/navbar-cinematic.css';
 
 const Navbar: React.FC = () => {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const location = useLocation();
+  const { isLoadingComplete } = useLoadingState();
 
-  // Handle scroll for backdrop blur effect
+  // Handle scroll for transparent to solid transition
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Animate navbar entrance after loading completes
+  useEffect(() => {
+    if (isLoadingComplete || location.pathname !== '/') {
+      // Small delay for cinematic entrance
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoadingComplete, location.pathname]);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -34,11 +49,11 @@ const Navbar: React.FC = () => {
 
   return (
     <nav 
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      className={`navbar-cinematic fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
         isScrolled 
-          ? 'bg-aviation-blue/95 dark:bg-gray-900/95 backdrop-blur-md shadow-xl' 
-          : 'bg-aviation-blue dark:bg-gray-900 shadow-lg'
-      }`}
+          ? 'navbar-solid' 
+          : 'navbar-transparent'
+      } ${isVisible ? 'navbar-visible' : 'navbar-hidden'}`}
     >
       <div className="container-custom">
         <div className="flex justify-between items-center py-4">

@@ -2,8 +2,9 @@
 import { Suspense, lazy, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { DarkModeProvider } from './contexts/DarkModeContext';
+import { LoadingStateProvider, useLoadingState } from './contexts/LoadingStateContext';
 import Layout from './components/Layout';
-import LoadingAnimation from './components/LoadingAnimation';
+import VideoLoadingScreen from './components/VideoLoadingScreen';
 import PageLoadingFallback from './components/PageLoadingFallback';
 
 // Code splitting: Lazy load pages for better performance
@@ -19,7 +20,8 @@ const ChatbotWidget = lazy(() => import('./components/ChatbotWidget'));
 // Component to handle loading animation on home page
 const AppContent = () => {
   const location = useLocation();
-  const [showLoading, setShowLoading] = useState(true); // Start with true to prevent flash
+  const { setLoadingComplete } = useLoadingState();
+  const [showLoading, setShowLoading] = useState(true);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   useEffect(() => {
@@ -30,21 +32,23 @@ const AppContent = () => {
     } else if (isFirstLoad) {
       // If first page is not home, don't show loading
       setShowLoading(false);
+      setLoadingComplete(true);
       setIsFirstLoad(false);
     }
-  }, [location.pathname, isFirstLoad]);
+  }, [location.pathname, isFirstLoad, setLoadingComplete]);
 
   const handleLoadingComplete = () => {
     setShowLoading(false);
+    setLoadingComplete(true);
   };
 
   return (
     <>
-      {/* Show loading animation on initial home page load */}
+      {/* Show video loading animation on initial home page load */}
       {showLoading && location.pathname === '/' && (
-        <LoadingAnimation 
+        <VideoLoadingScreen 
           onComplete={handleLoadingComplete}
-          minDuration={5500}
+          videoSrc="/skytech-loading.mp4"
         />
       )}
 
@@ -78,9 +82,11 @@ const AppContent = () => {
 const App = () => {
   return (
     <DarkModeProvider>
-      <Router basename="/">
-        <AppContent />
-      </Router>
+      <LoadingStateProvider>
+        <Router basename="/">
+          <AppContent />
+        </Router>
+      </LoadingStateProvider>
     </DarkModeProvider>
   );
 };

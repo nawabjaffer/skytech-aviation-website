@@ -1,0 +1,802 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    SKYTECH AVIATION WEBSITE CONTENT GUIDE
+                     Easy-to-Edit Content for Non-Technical Staff
+═══════════════════════════════════════════════════════════════════════════════
+
+Last Updated: January 4, 2026
+Version: 1.0
+
+═══════════════════════════════════════════════════════════════════════════════
+                              HOW TO USE THIS GUIDE
+═══════════════════════════════════════════════════════════════════════════════
+
+This document contains ALL the text content displayed on the Skytech Aviation 
+website. You can:
+
+    1. Edit any text in this document
+    2. Send the updated document to the development team
+    3. Changes will be applied to the website
+
+IMPORTANT: Only change the text content. Do not modify section headers or labels.
+
+═══════════════════════════════════════════════════════════════════════════════
+                                  HOMEPAGE
+═══════════════════════════════════════════════════════════════════════════════
+
+HERO SECTION (Main Banner)
+───────────────────────────────────────────────────────────────────────────────
+
+Main Title:
+    Authorized Civil Aircraft Parts Supplier
+
+Subtitle:
+    Your Trusted Partner for Authentic Aviation Components
+
+Description:
+    Providing premium quality aircraft parts and components to airlines, MROs, 
+    and distributors across the Middle East, Africa, and beyond.
+
+Primary Button Text:
+    View Products
+
+Secondary Button Text:
+    Become a Distributor
+
+Trust Badge Text:
+    ASA Member Since 2015
+
+
+WHY CHOOSE SKYTECH AVIATION (Features Section)
+───────────────────────────────────────────────────────────────────────────────
+
+Feature 1:
+    Title: Authentic Parts
+    Description: 100% genuine OEM parts with full traceability and 
+                 certification documentation
+
+Feature 2:
+    Title: Global Distribution
+    Description: Serving airlines and MROs across the Middle East, Africa, 
+                 and beyond with reliable delivery
+
+Feature 3:
+    Title: Expert Support
+    Description: 24/7 technical assistance and AOG support for critical 
+                 aircraft needs
+
+Feature 4:
+    Title: Competitive Pricing
+    Description: Best market rates with flexible payment terms for our 
+                 valued partners
+
+
+TRACK RECORD OF SUCCESS - Statistics
+───────────────────────────────────────────────────────────────────────────────
+
+Stat 1:
+    Value: 50,000+
+    Label: Successful Parts Deliveries
+
+Stat 2:
+    Value: 500+
+    Label: Satisfied Global Clients
+
+Stat 3:
+    Value: 60+
+    Label: Countries Served Worldwide
+
+Stat 4:
+    Value: < 2hrs
+    Label: Average Quote Response Time
+
+
+TRACK RECORD OF SUCCESS - Company Achievements
+───────────────────────────────────────────────────────────────────────────────
+
+Achievement 1 (Year: 2023):
+    Title: Aviation Excellence Award
+    Description: Recognized for outstanding service quality and customer 
+                 satisfaction at the Middle East Aviation Summit
+
+Achievement 2 (Year: 2022):
+    Title: Best Parts Supplier
+    Description: Named Best Aviation Parts Supplier in the UAE for exceptional 
+                 supply chain management
+
+Achievement 3 (Year: 2021):
+    Title: Safety Excellence
+    Description: Zero quality incidents maintaining 100% compliance with 
+                 international aviation standards
+
+Achievement 4 (Year: 2020):
+    Title: Global Expansion
+    Description: Successfully expanded distribution network to 50+ countries 
+                 across 5 continents
+
+
+TRUSTED PARTNERS (Display Names)
+───────────────────────────────────────────────────────────────────────────────
+
+    • Emirates
+    • Etihad
+    • Qatar Airways
+    • Air Arabia
+
+
+CALL TO ACTION SECTION
+───────────────────────────────────────────────────────────────────────────────
+
+Title:
+    Ready to Partner with Us?
+
+Description:
+    Join our growing network of satisfied distributors and airlines worldwide.
+
+Button Text:
+    Get in Touch
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                                  ABOUT PAGE
+═══════════════════════════════════════════════════════════════════════════════
+
+HERO SECTION
+───────────────────────────────────────────────────────────────────────────────
+
+Title:
+    About Skytech Aviation
+
+Subtitle:
+    Your Trusted Partner in Aviation Excellence
+
+
+MISSION STATEMENT
+───────────────────────────────────────────────────────────────────────────────
+
+Section Title:
+    Our Mission
+
+Content:
+    To deliver top-quality aircraft spare parts and accessories with expert 
+    advice and outstanding service, maintaining a broad product range at 
+    competitive rates while building lasting customer relationships.
+
+
+VISION STATEMENT
+───────────────────────────────────────────────────────────────────────────────
+
+Section Title:
+    Our Vision
+
+Content:
+    To be the premier provider of aircraft spare parts and accessories in the 
+    region, recognized for high standards in quality, reliability, and 
+    customer satisfaction.
+
+
+COMPANY INTRODUCTION
+───────────────────────────────────────────────────────────────────────────────
+
+Section Title:
+    Who We Are
+
+Paragraph 1:
+    Skytech Aviation is a trusted aviation company based in UAE, specializing 
+    as an authorized civil aircraft parts supplier. We are proud members of 
+    the Aviation Suppliers Association (ASA), providing high-quality, reliable 
+    aircraft spare parts and accessories from nose to tail.
+
+Paragraph 2:
+    Our strong professional team supports customers quickly, resolves issues 
+    efficiently, and provides expert advice on parts selection and 
+    compatibility. We emphasize quality, honesty, safety, integrity, and 
+    building strong customer relationships in everything we do.
+
+Paragraph 3:
+    We trade in mid-life narrow-body business and commercial passenger/freighter 
+    aircraft, supplying OEM & PMA parts across multiple categories including 
+    avionics, tools, consumables, components, chemicals, life support systems, 
+    electricals, and lubricants. With global links to major manufacturers and 
+    immediate stock availability, we help reduce customer waiting times 
+    significantly.
+
+
+ASA MEMBERSHIP SECTION
+───────────────────────────────────────────────────────────────────────────────
+
+Title:
+    ASA Membership
+
+Description:
+    We are proud members of the Aviation Suppliers Association, the leading 
+    trade association for companies providing products and services to the 
+    global aviation and aerospace industries.
+
+Badge Text:
+    ASA Member
+
+
+COMPANY MILESTONES
+───────────────────────────────────────────────────────────────────────────────
+
+Milestone 1 (Year: 2010):
+    Title: Company Founded
+    Description: Skytech Aviation was established in Dubai, UAE with a vision 
+                 to become the region's premier aircraft parts supplier
+
+Milestone 2 (Year: 2012):
+    Title: Regional Expansion
+    Description: Expanded operations across Middle East and opened our first 
+                 international office in Sharjah
+
+Milestone 3 (Year: 2015):
+    Title: ASA Membership
+    Description: Became proud members of the Aviation Suppliers Association, 
+                 demonstrating our commitment to industry standards
+
+Milestone 4 (Year: 2018):
+    Title: ISO 9001 Certification
+    Description: Achieved ISO 9001:2015 Quality Management System 
+                 certification, reinforcing our dedication to quality
+
+Milestone 5 (Year: 2020):
+    Title: Global Network
+    Description: Expanded our distributor network to 50+ countries across 
+                 Middle East, Africa, Europe, and Asia
+
+Milestone 6 (Year: 2023):
+    Title: Technology Innovation
+    Description: Launched advanced digital inventory management and real-time 
+                 parts tracking systems
+
+
+CERTIFICATIONS & ACCREDITATIONS
+───────────────────────────────────────────────────────────────────────────────
+
+Certification 1:
+    Name: ISO 9001:2015
+    Description: Quality Management System
+
+Certification 2:
+    Name: AS9120
+    Description: Aerospace Quality Management
+
+Certification 3:
+    Name: EASA Part-145
+    Description: European Aviation Safety Agency
+
+Certification 4:
+    Name: FAA Approved
+    Description: Federal Aviation Administration
+
+
+CORE VALUES
+───────────────────────────────────────────────────────────────────────────────
+
+Value 1:
+    Title: Integrity & Honesty
+    Description: Honest, transparent business practices with customers and 
+                 partners, maintaining ethical standards in all dealings
+
+Value 2:
+    Title: Quality Excellence
+    Description: Uncompromising commitment to high-quality, reliable aircraft 
+                 parts that meet aviation industry standards
+
+Value 3:
+    Title: Safety First
+    Description: Uncompromising commitment to aviation safety standards in 
+                 every part we supply
+
+Value 4:
+    Title: Customer Relationships
+    Description: Building strong, lasting relationships with customers through 
+                 exceptional service and support
+
+Value 5:
+    Title: Competitive Value
+    Description: Regular pricing reviews to offer competitive rates and good 
+                 value to our customers
+
+Value 6:
+    Title: Reliability
+    Description: Consistent delivery on promises with quick response times 
+                 and issue resolution
+
+Value 7:
+    Title: Innovation
+    Description: Continuous improvement of our processes and adoption of new 
+                 technologies to better serve our customers
+
+
+LEADERSHIP TEAM
+───────────────────────────────────────────────────────────────────────────────
+
+Leader 1:
+    Name: Mohammed Al-Hashimi
+    Position: Chief Executive Officer
+    Bio: With over 25 years in aviation industry, Mohammed leads Skytech 
+         Aviation's strategic vision and global expansion.
+
+Leader 2:
+    Name: Sarah Williams
+    Position: Chief Technology Officer
+    Bio: Sarah oversees our technology infrastructure and digital 
+         transformation initiatives, ensuring cutting-edge solutions.
+
+Leader 3:
+    Name: John Peterson
+    Position: VP of Sales & Business Development
+    Bio: John leads our global sales team and manages key partnerships with 
+         airlines and distributors worldwide.
+
+
+AWARDS & RECOGNITION
+───────────────────────────────────────────────────────────────────────────────
+
+Award 1:
+    Title: Aviation Excellence Award
+    Year: 2023
+    Issuer: Middle East Aviation Summit
+
+Award 2:
+    Title: Best Supplier of the Year
+    Year: 2022
+    Issuer: UAE Aviation Awards
+
+Award 3:
+    Title: Innovation in Logistics
+    Year: 2022
+    Issuer: Aviation Suppliers Association
+
+Award 4:
+    Title: Safety Excellence Award
+    Year: 2021
+    Issuer: International Air Transport Association
+
+Award 5:
+    Title: Outstanding Customer Service
+    Year: 2021
+    Issuer: Customer Choice Awards
+
+Award 6:
+    Title: Fastest Growing Supplier
+    Year: 2020
+    Issuer: Gulf Aviation Magazine
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                                SERVICES PAGE
+═══════════════════════════════════════════════════════════════════════════════
+
+HERO SECTION
+───────────────────────────────────────────────────────────────────────────────
+
+Title:
+    Professional Aviation Services
+
+Subtitle:
+    Complete solutions from nose to tail - supplying OEM & PMA parts for 
+    commercial and business aircraft
+
+Primary Button:
+    Explore Services
+
+Secondary Button:
+    Get a Quote
+
+
+SERVICE CATEGORIES
+───────────────────────────────────────────────────────────────────────────────
+
+Service 1: BRAKES & WHEELS
+
+    Description:
+        High-quality braking systems and wheels for both helicopters and 
+        airplanes from reputed manufacturers. Complete brake assemblies, 
+        wheel assemblies, and related components.
+
+    Key Offerings:
+        • OEM and PMA certified brake systems
+        • Helicopter and airplane applications
+        • Complete assemblies and spare parts
+
+───────────────────────────────────────────────────────────────────────────────
+
+Service 2: AIRFRAME COMPONENTS
+
+    Description:
+        Structural parts, landing gear assemblies, wing components, fuselage 
+        sections, and all airframe-related parts to keep your aircraft 
+        structurally sound.
+
+    Key Offerings:
+        • Landing gear systems and components
+        • Wing and fuselage assemblies
+        • Structural repair parts and accessories
+
+───────────────────────────────────────────────────────────────────────────────
+
+Service 3: ENGINE PARTS
+
+    Description:
+        Comprehensive engine components for both helicopter and airplane 
+        engines. From complete engine assemblies to individual parts and 
+        accessories.
+
+    Key Offerings:
+        • Helicopter engine components
+        • Airplane engine parts and assemblies
+        • Engine accessories and related systems
+
+───────────────────────────────────────────────────────────────────────────────
+
+Service 4: AIRCRAFT TOOLS
+
+    Description:
+        Professional-grade tools for aircraft maintenance and repair 
+        operations. Complete range of specialized aviation tools and equipment.
+
+    Key Offerings:
+        • Maintenance and repair tools
+        • Specialized aviation equipment
+        • Calibrated and certified tools
+
+───────────────────────────────────────────────────────────────────────────────
+
+Service 5: LUBRICANTS & CHEMICALS
+
+    Description:
+        Aviation-grade lubricants including engine oils, greases, hydraulic 
+        fluids, and specialty chemicals approved for aviation use.
+
+    Key Offerings:
+        • Engine oils and aviation greases
+        • Hydraulic fluids and specialty lubricants
+        • Aviation-approved chemical products
+
+───────────────────────────────────────────────────────────────────────────────
+
+Service 6: ADHESIVES & FUEL SUPPLY
+
+    Description:
+        Structural adhesives, epoxy sealants suitable for aviation 
+        applications, plus aviation fuel supply and logistics services.
+
+    Key Offerings:
+        • Structural adhesives and sealants
+        • Aviation-grade epoxy products
+        • Aviation fuel supply and logistics
+
+
+HOW WE WORK (Process Steps)
+───────────────────────────────────────────────────────────────────────────────
+
+Step 1:
+    Title: Submit Inquiry
+    Description: Contact us with your parts requirement and specifications
+
+Step 2:
+    Title: Expert Advice
+    Description: Receive expert consultation and competitive pricing from 
+                 our team
+
+Step 3:
+    Title: Place Order
+    Description: Confirm your order with flexible payment options
+
+Step 4:
+    Title: Fast Delivery
+    Description: Receive authentic OEM/PMA parts with full documentation
+
+
+WHY CHOOSE US (Benefits)
+───────────────────────────────────────────────────────────────────────────────
+
+Benefit 1:
+    Title: ASA Member
+    Description: Proud member of Aviation Suppliers Association with 
+                 commitment to quality standards
+
+Benefit 2:
+    Title: OEM & PMA Parts
+    Description: Global links with major manufacturers for authentic 
+                 parts supply
+
+Benefit 3:
+    Title: Professional Team
+    Description: Expert advice on parts selection and quick issue resolution
+
+Benefit 4:
+    Title: Competitive Rates
+    Description: Regular pricing reviews to offer good value and 
+                 competitive rates
+
+
+SUPPORT CHANNELS
+───────────────────────────────────────────────────────────────────────────────
+
+Channel 1: PHONE SUPPORT
+    Description: Call us for inquiries and expert parts consultation
+    Contact: +971 561 611 002
+    Availability: Business Hours
+
+Channel 2: EMAIL SUPPORT
+    Description: Send detailed inquiries for expert advice and quotations
+    Contact: info@skytech.ae
+    Availability: Quick response guaranteed
+
+Channel 3: SALES INQUIRIES
+    Description: Contact our sales team for parts requirements and pricing
+    Contact: sales@skytech.ae
+    Button Text: Contact Sales
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                                PRODUCTS PAGE
+═══════════════════════════════════════════════════════════════════════════════
+
+Page Title:
+    Aircraft Parts & Components
+
+Page Subtitle:
+    Premium Quality Aviation Components
+
+Search Placeholder:
+    Search for parts, part numbers, or categories...
+
+
+PRODUCT CATEGORIES
+───────────────────────────────────────────────────────────────────────────────
+
+    1. All Categories
+    2. Aircraft Engines
+    3. Avionics & Electronics
+    4. Landing Gear Systems
+    5. Flight Control Systems
+    6. Fuel Systems
+    7. Interior Components
+    8. Hydraulic Systems
+    9. Pneumatic Systems
+    10. Electrical Systems
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                              DISTRIBUTORS PAGE
+═══════════════════════════════════════════════════════════════════════════════
+
+HERO SECTION
+───────────────────────────────────────────────────────────────────────────────
+
+Title:
+    Distributor Partnership Program
+
+Description:
+    Grow your aviation business with exclusive access to premium aircraft 
+    parts and dedicated support.
+
+Button Text:
+    Apply Now
+
+
+PARTNERSHIP BENEFITS
+───────────────────────────────────────────────────────────────────────────────
+
+Benefit 1:
+    Title: Exclusive Territory Rights
+    Description: Protected geographic areas for market development
+
+Benefit 2:
+    Title: Competitive Pricing
+    Description: Volume discounts and special distributor rates
+
+Benefit 3:
+    Title: Marketing Support
+    Description: Co-branded materials and promotional assistance
+
+Benefit 4:
+    Title: Training & Education
+    Description: Product training and technical certification
+
+Benefit 5:
+    Title: Priority Service
+    Description: Dedicated account manager and expedited processing
+
+Benefit 6:
+    Title: Inventory Access
+    Description: Real-time access to our extensive parts inventory
+
+
+PARTNERSHIP REQUIREMENTS
+───────────────────────────────────────────────────────────────────────────────
+
+Requirement 1:
+    Title: Business Registration
+    Description: Valid business license and aviation industry registration
+
+Requirement 2:
+    Title: Industry Experience
+    Description: Proven track record in aviation parts distribution
+
+Requirement 3:
+    Title: Financial Stability
+    Description: Demonstrated financial capability and creditworthiness
+
+Requirement 4:
+    Title: Proper Facilities
+    Description: Adequate storage and handling capabilities
+
+Requirement 5:
+    Title: Geographic Coverage
+    Description: Established market presence in target region
+
+Requirement 6:
+    Title: Regulatory Compliance
+    Description: Knowledge of aviation regulations and standards
+
+
+APPLICATION PROCESS STEPS
+───────────────────────────────────────────────────────────────────────────────
+
+    1. Submit Application
+    2. Initial Review
+    3. Interview & Assessment
+    4. Agreement Signing
+    5. Onboarding & Training
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                                CONTACT PAGE
+═══════════════════════════════════════════════════════════════════════════════
+
+HERO SECTION
+───────────────────────────────────────────────────────────────────────────────
+
+Title:
+    Contact Us
+
+Subtitle:
+    We're Here to Help 24/7
+
+
+CONTACT INFORMATION
+───────────────────────────────────────────────────────────────────────────────
+
+Office Address:
+    Meydan Free Zone, The Meydan Hotel, Dubai, United Arab Emirates
+
+Sales Phone:
+    +971 561 611 002
+
+Alternative Phone:
+    +971 508 640 842
+
+Primary Email:
+    info@skytech.ae
+
+Sales Email:
+    sales@skytech.ae
+
+
+CONTACT FORM FIELDS
+───────────────────────────────────────────────────────────────────────────────
+
+Field Labels:
+    • Full Name
+    • Email Address
+    • Phone Number
+    • Subject
+    • Your Message
+    • Attach File
+
+Subject Dropdown Options:
+    • General Inquiry
+    • Sales & Quotes
+    • Technical Support
+    • Partnership Opportunity
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                                   FOOTER
+═══════════════════════════════════════════════════════════════════════════════
+
+Company Name:
+    SKYTECH AVIATION
+
+Company Description:
+    Skytech Aviation — UAE-based ASA member delivering authentic aircraft 
+    parts worldwide.
+
+ASA Badge Text:
+    ASA MEMBER SINCE 2015
+
+Copyright Text:
+    All rights reserved.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                                   CHATBOT
+═══════════════════════════════════════════════════════════════════════════════
+
+Chat Window Title:
+    Chat Assistant
+
+Input Placeholder:
+    Type your message...
+
+Welcome Message:
+    Hello! How can I help you today?
+
+Offline Message:
+    Chat is currently offline. Please contact us via email.
+
+Error Message:
+    Sorry, I encountered an error. Please try again.
+
+Quick Action Buttons:
+    • What products do you offer?
+    • How can I become a distributor?
+    • Where are you located?
+    • Tell me about ASA membership
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                                ERROR PAGES
+═══════════════════════════════════════════════════════════════════════════════
+
+404 PAGE (Page Not Found)
+───────────────────────────────────────────────────────────────────────────────
+
+Title:
+    Flight Path Not Found
+
+Message:
+    Looks like this page took a detour! Our aircraft parts and services are 
+    still available on the main flight path.
+
+Aviation Message:
+    Even the best pilots need course corrections. Let us help you navigate 
+    back to your destination!
+
+Suggestions Title:
+    Popular Destinations
+
+Home Button:
+    Return to Home Base
+
+Back Button:
+    Go Back
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                            HOW TO SUBMIT CHANGES
+═══════════════════════════════════════════════════════════════════════════════
+
+STEPS:
+    1. Edit this document with your changes
+    2. Highlight or mark the sections you've changed (use yellow highlight)
+    3. Save the document
+    4. Email to development team at: development@skytech.ae
+
+
+TIPS FOR CONTENT EDITING:
+───────────────────────────────────────────────────────────────────────────────
+
+DO:
+    ✓ Keep text professional and aviation-industry appropriate
+    ✓ Double-check phone numbers and email addresses
+    ✓ Maintain consistent formatting
+    ✓ Use clear, concise language
+
+DON'T:
+    ✗ Change section headers or labels
+    ✗ Modify technical terms unless necessary
+    ✗ Remove any sections entirely without consulting the team
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Document prepared by: Development Team
+For: Skytech Aviation Marketing & Content Team
+
+═══════════════════════════════════════════════════════════════════════════════

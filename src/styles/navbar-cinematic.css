@@ -1,0 +1,160 @@
+/**
+ * Cinematic Navbar Styles
+ * 
+ * Features:
+ * - Transparent with blur on initial load
+ * - Smooth transition to solid brand color on scroll
+ * - Cinematic entrance animation
+ * - GPU-accelerated for 60fps performance
+ */
+
+/* Base Navbar State */
+.navbar-cinematic {
+  will-change: transform, background-color, backdrop-filter;
+}
+
+/* Hidden State (before loading completes) */
+.navbar-hidden {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+/* Visible State (after loading completes) */
+.navbar-visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: navbarSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes navbarSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Transparent State (at top of page) */
+.navbar-transparent {
+  background: rgba(11, 109, 148, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode transparent */
+.dark .navbar-transparent {
+  background: rgba(17, 24, 39, 0.2);
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Solid State (after scrolling) */
+.navbar-solid {
+  background: rgba(11, 109, 148, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Dark mode solid */
+.dark .navbar-solid {
+  background: rgba(17, 24, 39, 0.98);
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo animation on scroll */
+.navbar-transparent .logo-container {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+.navbar-solid .logo-container {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Nav links styling for transparent state */
+.navbar-transparent .nav-link {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-transparent .nav-link:hover {
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* Nav links styling for solid state */
+.navbar-solid .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: none;
+}
+
+.navbar-solid .nav-link:hover {
+  color: #a9dde9;
+}
+
+/* Smooth color transitions for all children */
+.navbar-cinematic * {
+  transition: color 0.3s ease, text-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* Active link indicator animation */
+.navbar-cinematic .nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #0b6d94, transparent);
+  animation: activeGlow 2s ease-in-out infinite;
+}
+
+@keyframes activeGlow {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Mobile menu button styling */
+.navbar-transparent .menu-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar-solid .menu-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .navbar-visible {
+    animation: none;
+  }
+  
+  .navbar-cinematic,
+  .navbar-cinematic * {
+    transition: none;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .navbar-transparent,
+  .navbar-solid {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+}

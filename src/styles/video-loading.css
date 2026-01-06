@@ -1,0 +1,266 @@
+/**
+ * Video Loading Screen Styles
+ * 
+ * Premium cinematic loading experience
+ * GPU-accelerated animations for smooth 60fps performance
+ */
+
+/* Prevent body scroll during loading */
+body:has(.video-loading-container:not(.exiting)) {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* Main Container */
+.video-loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  overflow: hidden;
+}
+
+/* Video Background */
+.loading-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Gradient Overlay for better text readability */
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.1) 40%,
+    rgba(0, 0, 0, 0.1) 60%,
+    rgba(7, 61, 83, 0.6) 100%
+  );
+  z-index: 2;
+}
+
+/* Loading UI Container */
+.loading-ui {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Progress Ring Container */
+.progress-ring-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 0 20px rgba(11, 109, 148, 0.5));
+}
+
+.progress-ring-bg {
+  stroke: rgba(255, 255, 255, 0.15);
+}
+
+.progress-ring-fill {
+  stroke: #0b6d94;
+  transition: stroke-dashoffset 0.3s ease-out;
+  filter: drop-shadow(0 0 8px rgba(11, 109, 148, 0.8));
+}
+
+/* Progress Text */
+.progress-text {
+  position: absolute;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.progress-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(180deg, #ffffff 0%, #a9dde9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.progress-percent {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+/* Loading Text */
+.loading-text {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.loading-dots span {
+  animation: dotPulse 1.4s infinite both;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+  0%, 80%, 100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+/* Skip Button */
+.skip-hint {
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+  z-index: 4;
+  padding: 0.75rem 1.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.skip-hint:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Exit Animation */
+.video-loading-container.exiting {
+  animation: cinematicExit 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes cinematicExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  .loading-ui,
+  .skip-hint,
+  .video-loading-container.exiting {
+    animation: none;
+  }
+  
+  .loading-dots span {
+    animation: none;
+    opacity: 1;
+  }
+  
+  .progress-ring-fill {
+    transition: none;
+  }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 640px) {
+  .progress-ring-container {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .progress-number {
+    font-size: 2rem;
+  }
+  
+  .skip-hint {
+    bottom: 2rem;
+    right: 1.5rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8125rem;
+  }
+  
+  .loading-text {
+    font-size: 0.75rem;
+  }
+}

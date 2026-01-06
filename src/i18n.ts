@@ -23,9 +23,82 @@ const resources = {
   },
 };
 
+const supportedLanguages = ['en', 'ar', 'ru', 'zh'] as const;
+type SupportedLanguage = (typeof supportedLanguages)[number];
+
+const pickSupported = (lng?: string | null): SupportedLanguage | null => {
+  if (!lng) return null;
+  const normalized = lng.toLowerCase().split('-')[0];
+  return (supportedLanguages as readonly string[]).includes(normalized) ? (normalized as SupportedLanguage) : null;
+};
+
+const detectFromTimezone = (): SupportedLanguage | null => {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    const upper = tz.toUpperCase();
+
+    // Best-effort mapping by region/timezone naming.
+    // (No geolocation permission required; falls back to navigator + English.)
+    if (upper.startsWith('ASIA/SHANGHAI') || upper.startsWith('ASIA/CHONGQING') || upper.startsWith('ASIA/HARBIN') || upper.startsWith('ASIA/HONG_KONG') || upper.startsWith('ASIA/MACAU')) {
+      return 'zh';
+    }
+
+    if (
+      upper.startsWith('EUROPE/MOSCOW') ||
+      upper.startsWith('EUROPE/KALININGRAD') ||
+      upper.startsWith('EUROPE/SAMARA') ||
+      upper.startsWith('ASIA/YEKATERINBURG') ||
+      upper.startsWith('ASIA/OMSK') ||
+      upper.startsWith('ASIA/NOVOSIBIRSK') ||
+      upper.startsWith('ASIA/KRASNOYARSK') ||
+      upper.startsWith('ASIA/IRKUTSK') ||
+      upper.startsWith('ASIA/YAKUTSK') ||
+      upper.startsWith('ASIA/VLADIVOSTOK')
+    ) {
+      return 'ru';
+    }
+
+    if (
+      upper.startsWith('ASIA/DUBAI') ||
+      upper.startsWith('ASIA/RIYADH') ||
+      upper.startsWith('ASIA/KUWAIT') ||
+      upper.startsWith('ASIA/QATAR') ||
+      upper.startsWith('ASIA/BAHRAIN') ||
+      upper.startsWith('ASIA/AMMAN') ||
+      upper.startsWith('ASIA/BAGHDAD') ||
+      upper.startsWith('AFRICA/CAIRO') ||
+      upper.startsWith('AFRICA/CASABLANCA')
+    ) {
+      return 'ar';
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+};
+
+const languageDetector = new LanguageDetector();
+languageDetector.addDetector({
+  name: 'timezone',
+  lookup: () => {
+    // If browser language is already supported, prefer it.
+    const nav = typeof navigator !== 'undefined' ? pickSupported(navigator.language) : null;
+    if (nav) return nav;
+    return detectFromTimezone();
+  },
+  cacheUserLanguage: (lng) => {
+    try {
+      localStorage.setItem('i18nextLng', lng);
+    } catch {
+      // ignore
+    }
+  },
+});
+
 i18n
   // Detect user language
-  .use(LanguageDetector)
+  .use(languageDetector)
   // Pass the i18n instance to react-i18next
   .use(initReactI18next)
   // Initialize i18next
@@ -36,7 +109,7 @@ i18n
     
     // Language detection options
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
+      order: ['localStorage', 'timezone', 'navigator', 'htmlTag'],
       caches: ['localStorage'],
     },
 

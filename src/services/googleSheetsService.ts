@@ -36,6 +36,7 @@ class GoogleSheetsService {
   private distributorsCache: CacheItem<ExistingDistributor> | null = null;
   private faqCache: CacheItem<FAQ> | null = null;
   private cacheDuration = 5 * 60 * 1000; // 5 minutes
+  private warnedCsvGids = new Set<string>();
 
   /**
    * Fetch hero slides from Google Sheets
@@ -203,26 +204,54 @@ class GoogleSheetsService {
   }
 
   /**
+   * Alternative CSV URL using Google Visualization API (often more reliable than /export).
+   */
+  private buildGvizCsvUrl(gid: string): string {
+    const { sheetId } = googleSheetsConfig;
+    return `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&gid=${gid}`;
+  }
+
+  /**
    * Fetch CSV data from public Google Sheet (no API key required)
    * @param gid - The sheet GID (tab identifier from URL)
    */
   private async fetchCsvData(gid: string): Promise<string[][]> {
-    try {
-      const csvUrl = this.buildCsvUrl(gid);
-      
-      const response = await axios.get(csvUrl, {
-        timeout: 10000,
+    const attempt = async (url: string) => {
+      const response = await axios.get(url, {
+        timeout: 12000,
         responseType: 'text',
+        headers: {
+          Accept: 'text/csv,text/plain,*/*',
+        },
       });
 
-      // Parse CSV with proper quoted field handling
-      const rows: string[][] = this.parseCSV(response.data);
-      
-      // Skip header row (first row) - data starts from row 2
+      const text = typeof response.data === 'string' ? response.data : String(response.data);
+      const trimmed = text.trimStart();
+
+      // If the sheet isn't public, Google often returns HTML (login/permission page).
+      if (trimmed.startsWith('<!DOCTYPE html') || trimmed.startsWith('<html')) {
+        throw new Error('Google Sheets returned HTML instead of CSV. Ensure the sheet is shared publicly (Anyone with the link) or published.');
+      }
+
+      const rows: string[][] = this.parseCSV(text);
       return rows.slice(1);
+    };
+
+    const exportUrl = this.buildCsvUrl(gid);
+    const gvizUrl = this.buildGvizCsvUrl(gid);
+
+    try {
+      return await attempt(exportUrl);
     } catch (error) {
-      console.error('Error fetching CSV data for gid:', gid, error);
-      throw error;
+      try {
+        return await attempt(gvizUrl);
+      } catch (fallbackError) {
+        if (!this.warnedCsvGids.has(gid)) {
+          this.warnedCsvGids.add(gid);
+          console.warn('Google Sheets CSV fetch failed for gid:', gid, fallbackError);
+        }
+        throw fallbackError;
+      }
     }
   }
 

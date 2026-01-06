@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { asMailtoHref, asTelHref, siteConfig } from '../config/siteConfig';
 import { 
   Award, 
   Globe, 
@@ -84,7 +85,7 @@ const Services: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-aviation-blue-50 to-gray-50 dark:from-gray-900 dark:via-aviation-blue-900/20 dark:to-gray-900">
         
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] text-white py-20">
+        <section className="relative bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] text-white pt-28 pb-20 md:pt-32 md:pb-24">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute bottom-20 right-10 w-96 h-96 bg-aviation-blue-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -113,7 +114,7 @@ const Services: React.FC = () => {
         </section>
 
         {/* Service Cards */}
-        <section id="services" className="py-20">
+        <section id="services" className="py-20 scroll-mt-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -298,7 +299,7 @@ const Services: React.FC = () => {
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   {t('services.support.channels.hotline.description')}
                 </p>
-                <a href="tel:+97144XXXXXX" className="text-2xl font-bold text-blue-600 dark:text-blue-400 hover:underline">
+                <a href={asTelHref(siteConfig.contact.primaryPhone)} className="text-2xl font-bold text-blue-600 dark:text-blue-400 hover:underline">
                   {t('services.support.channels.hotline.number')}
                 </a>
                 <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
@@ -319,7 +320,7 @@ const Services: React.FC = () => {
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   {t('services.support.channels.email.description')}
                 </p>
-                <a href="mailto:support@skytechaviation.com" className="text-xl font-bold text-purple-600 dark:text-purple-400 hover:underline break-all">
+                <a href={asMailtoHref(siteConfig.contact.supportEmail || siteConfig.contact.primaryEmail)} className="text-xl font-bold text-purple-600 dark:text-purple-400 hover:underline break-all">
                   {t('services.support.channels.email.address')}
                 </a>
                 <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">

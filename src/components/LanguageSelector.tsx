@@ -5,11 +5,27 @@ import { Globe } from 'lucide-react';
 interface LanguageSelectorProps {
   className?: string;
   compact?: boolean;
+  dropdownAlign?: 'start' | 'end';
 }
 
-const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className = '', compact = false }) => {
+const LanguageSelector: React.FC<LanguageSelectorProps> = ({
+  className = '',
+  compact = false,
+  dropdownAlign = 'end',
+}) => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!isOpen) return;
+    const handleResizeOrScroll = () => setIsOpen(false);
+    window.addEventListener('resize', handleResizeOrScroll);
+    window.addEventListener('scroll', handleResizeOrScroll, { passive: true });
+    return () => {
+      window.removeEventListener('resize', handleResizeOrScroll);
+      window.removeEventListener('scroll', handleResizeOrScroll);
+    };
+  }, [isOpen]);
 
   const languages = [
     { code: 'en', name: 'English', flag: '🇬🇧' },
@@ -78,7 +94,14 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className = '', com
           />
           
           {/* Dropdown */}
-          <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-xl z-50 overflow-hidden border border-gray-200 dark:border-gray-700">
+          <div
+            className="absolute mt-2 w-48 max-w-[calc(100vw-1.5rem)] bg-white dark:bg-gray-800 rounded-lg shadow-xl z-50 overflow-hidden border border-gray-200 dark:border-gray-700 max-h-[min(60vh,20rem)] overflow-y-auto"
+            style={
+              dropdownAlign === 'start'
+                ? ({ insetInlineStart: 0 } as React.CSSProperties)
+                : ({ insetInlineEnd: 0 } as React.CSSProperties)
+            }
+          >
             {languages.map((lang) => (
               <button
                 key={lang.code}

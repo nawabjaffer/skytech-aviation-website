@@ -131,7 +131,7 @@ const Products: React.FC = () => {
       
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-[#0b6d94] to-[#073d53] text-white py-16">
+        <div className="bg-gradient-to-r from-[#0b6d94] to-[#073d53] text-white pt-28 pb-16 md:pt-32">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               {t('products.title') || 'Our Products'}

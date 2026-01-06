@@ -1,0 +1,25 @@
+{
+  "contact": {
+    "primaryEmail": "info@skytech.ae",
+    "salesEmail": "sales@skytech.ae",
+    "supportEmail": "support@skytechaviation.com",
+    "primaryPhone": "+971 561 611 002",
+    "secondaryPhone": "+971 508 640 842"
+  },
+  "address": {
+    "street": "Meydan Free Zone, The Meydan Hotel",
+    "city": "Dubai",
+    "country": "United Arab Emirates",
+    "fullAddress": "Meydan Free Zone, The Meydan Hotel, Dubai, UAE"
+  },
+  "socialMedia": {
+    "linkedin": "",
+    "twitter": "",
+    "facebook": "",
+    "instagram": ""
+  },
+  "downloads": {
+    "productCatalogUrl": "",
+    "companyBrochureUrl": ""
+  }
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { siteConfig } from '../config/siteConfig';
 
 const Footer: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -88,9 +89,9 @@ const Footer: React.FC = () => {
                 </li>
               ))}
               <li className='pt-2'>
-                <p className='text-sm'>info@skytech.ae</p>
-                <p className='text-sm'>+971 561 611 002</p>
-                <p className='text-sm mt-2'>{t('footer.address')}</p>
+                <p className='text-sm'>{siteConfig.contact.primaryEmail}</p>
+                <p className='text-sm'>{siteConfig.contact.primaryPhone}</p>
+                <p className='text-sm mt-2'>{siteConfig.address.fullAddress || t('footer.address')}</p>
               </li>
             </ul>
           </div>

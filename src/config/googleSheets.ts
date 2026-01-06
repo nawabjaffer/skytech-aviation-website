@@ -24,6 +24,8 @@
  * - active: "true" or "false" (whether to show this slide)
  */
 
+import { siteConfig } from './siteConfig';
+
 export interface HeroSlide {
   id: string;
   title: string;
@@ -622,7 +624,7 @@ export const DEFAULT_FAQ: FAQ[] = [
   {
     id: '3',
     question: "How can I request a quote?",
-    answer: "You can request a quote by contacting us at +971 561 611 002, emailing info@skytech.ae or sales@skytech.ae, or filling out the contact form on our website. Our professional team will respond quickly with expert advice and competitive pricing.",
+    answer: `You can request a quote by contacting us at ${siteConfig.contact.primaryPhone}, emailing ${siteConfig.contact.primaryEmail}${siteConfig.contact.salesEmail ? ` or ${siteConfig.contact.salesEmail}` : ''}, or filling out the contact form on our website. Our professional team will respond quickly with expert advice and competitive pricing.`,
     keywords: "quote, request, contact, email, phone, pricing, RFQ",
     category: "Support",
     active: true,
@@ -630,7 +632,7 @@ export const DEFAULT_FAQ: FAQ[] = [
   {
     id: '4',
     question: "Where are you located?",
-    answer: "We are located at Meydan Free Zone, The Meydan Hotel, Dubai, United Arab Emirates. Our business hours are Sunday to Thursday, 9:00 AM - 6:00 PM GST.",
+    answer: `We are located at ${siteConfig.address.fullAddress}. Our business hours are Sunday to Thursday, 9:00 AM - 6:00 PM GST.`,
     keywords: "location, address, Dubai, UAE, office, hours, business hours",
     category: "Company",
     active: true,
@@ -646,7 +648,7 @@ export const DEFAULT_FAQ: FAQ[] = [
   {
     id: '6',
     question: "What are your payment terms?",
-    answer: "We offer flexible payment options. Please contact our sales team at sales@skytech.ae or +971 561 611 002 to discuss specific payment terms for your order.",
+    answer: `We offer flexible payment options. Please contact our sales team at ${siteConfig.contact.salesEmail || siteConfig.contact.primaryEmail} or ${siteConfig.contact.primaryPhone} to discuss specific payment terms for your order.`,
     keywords: "payment, terms, pricing, cost, invoice, billing",
     category: "Support",
     active: true,
@@ -678,7 +680,7 @@ export const DEFAULT_FAQ: FAQ[] = [
   {
     id: '10',
     question: "What are your contact details?",
-    answer: "Phone: +971 561 611 002 (primary), +971 508 640 842 (secondary). Email: info@skytech.ae, sales@skytech.ae. Address: Meydan Free Zone, The Meydan Hotel, Dubai, UAE. Business Hours: Sunday to Thursday, 9:00 AM - 6:00 PM GST.",
+    answer: `Phone: ${siteConfig.contact.primaryPhone} (primary)${siteConfig.contact.secondaryPhone ? `, ${siteConfig.contact.secondaryPhone} (secondary)` : ''}. Email: ${siteConfig.contact.primaryEmail}${siteConfig.contact.salesEmail ? `, ${siteConfig.contact.salesEmail}` : ''}. Address: ${siteConfig.address.fullAddress}. Business Hours: Sunday to Thursday, 9:00 AM - 6:00 PM GST.`,
     keywords: "contact, phone, email, address, hours, reach, communicate",
     category: "Support",
     active: true,

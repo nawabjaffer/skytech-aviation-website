@@ -3,6 +3,8 @@
  * Optimized for UAE market and multilingual support
  */
 
+import { siteConfig as appSiteConfig } from '../config/siteConfig';
+
 export interface PageMeta {
   title: string;
   description: string;
@@ -38,12 +40,12 @@ export const organizationData = {
   "url": siteConfig.siteUrl,
   "logo": `${siteConfig.siteUrl}/assets/logo.png`,
   "description": "Authorized civil aircraft parts supplier and proud member of the Aviation Suppliers Association (ASA)",
-  "email": "info@skytech.ae",
-  "telephone": "+971561611002",
+  "email": appSiteConfig.contact.primaryEmail || "info@skytech.ae",
+  "telephone": (appSiteConfig.contact.primaryPhone || "+971 561 611 002").replace(/[\s()-]/g, ''),
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Meydan Free Zone, The Meydan Hotel",
-    "addressLocality": "Dubai",
+    "streetAddress": appSiteConfig.address.street || "Meydan Free Zone, The Meydan Hotel",
+    "addressLocality": appSiteConfig.address.city || "Dubai",
     "addressRegion": "Dubai",
     "postalCode": "",
     "addressCountry": "AE"
@@ -54,8 +56,8 @@ export const organizationData = {
     "longitude": "55.3093"
   },
   "sameAs": [
-    "https://www.linkedin.com/company/skytech-aviation",
-    "https://twitter.com/SkytechAviation"
+    appSiteConfig.socialMedia.linkedin || "https://www.linkedin.com/company/skytech-aviation",
+    appSiteConfig.socialMedia.twitter || "https://twitter.com/SkytechAviation"
   ],
   "memberOf": {
     "@type": "Organization",
@@ -70,12 +72,12 @@ export const localBusinessData = {
   "name": "Skytech Aviation",
   "image": `${siteConfig.siteUrl}/assets/business-image.jpg`,
   "url": siteConfig.siteUrl,
-  "telephone": "+971561611002",
-  "email": "info@skytech.ae",
+  "telephone": (appSiteConfig.contact.primaryPhone || "+971 561 611 002").replace(/[\s()-]/g, ''),
+  "email": appSiteConfig.contact.primaryEmail || "info@skytech.ae",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Meydan Free Zone, The Meydan Hotel",
-    "addressLocality": "Dubai",
+    "streetAddress": appSiteConfig.address.street || "Meydan Free Zone, The Meydan Hotel",
+    "addressLocality": appSiteConfig.address.city || "Dubai",
     "addressRegion": "Dubai",
     "addressCountry": "AE"
   },
@@ -117,7 +119,7 @@ export const localBusinessData = {
 export const pageMetadata: Record<string, PageMeta> = {
   home: {
     title: "Skytech Aviation | Authorized Aircraft Parts Supplier UAE | Dubai",
-    description: "Leading aircraft parts supplier in Dubai, UAE. Authorized distributor of OEM & PMA certified parts for civil aircraft. ASA member. Contact: +971 561 611 002",
+    description: `Leading aircraft parts supplier in Dubai, UAE. Authorized distributor of OEM & PMA certified parts for civil aircraft. ASA member. Contact: ${appSiteConfig.contact.primaryPhone}`,
     keywords: [
       "aircraft parts UAE",
       "aviation parts Dubai",
@@ -194,8 +196,8 @@ export const pageMetadata: Record<string, PageMeta> = {
     ogImage: "/assets/about-og.jpg"
   },
   contact: {
-    title: "Contact Us | Skytech Aviation Dubai | +971 561 611 002",
-    description: "Contact Skytech Aviation in Dubai, UAE. Meydan Free Zone location. Email: info@skytech.ae | Phone: +971 561 611 002. Get a quote for aircraft parts.",
+    title: `Contact Us | Skytech Aviation Dubai | ${appSiteConfig.contact.primaryPhone}`,
+    description: `Contact Skytech Aviation in Dubai, UAE. ${appSiteConfig.address.street} location. Email: ${appSiteConfig.contact.primaryEmail} | Phone: ${appSiteConfig.contact.primaryPhone}. Get a quote for aircraft parts.`,
     keywords: [
       "contact Skytech Aviation",
       "aviation Dubai contact",

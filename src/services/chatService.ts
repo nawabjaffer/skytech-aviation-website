@@ -6,6 +6,7 @@
 import { systemPrompt, chatbotKnowledge } from '../data/chatbotKnowledge';
 import googleSheetsService from './googleSheetsService';
 import type { FAQ } from '../config/googleSheets';
+import { siteConfig } from '../config/siteConfig';
 
 export interface Message {
   id: string;
@@ -331,7 +332,7 @@ class ChatService {
     }
 
     if (lowerQuery.includes('thank')) {
-      return 'You\'re welcome! If you have any other questions, feel free to ask. You can also contact us at info@skytech.ae or +971 561 611 002.';
+        return `You're welcome! If you have any other questions, feel free to ask. You can also contact us at ${siteConfig.contact.primaryEmail} or ${siteConfig.contact.primaryPhone}.`;
     }
 
     return null;

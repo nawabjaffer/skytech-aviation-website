@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import SEOHead from '../components/SEOHead';
+import { siteConfig } from '../config/siteConfig';
 
 interface ContactFormData {
   name: string;
@@ -52,7 +53,7 @@ const Contacts: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-aviation-blue-50 to-gray-50 dark:from-gray-900 dark:via-aviation-blue-900/20 dark:to-gray-900">
         
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] text-white py-20">
+        <section className="relative bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] text-white pt-28 pb-20 md:pt-32 md:pb-24">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute bottom-20 right-10 w-96 h-96 bg-aviation-blue-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -69,7 +70,7 @@ const Contacts: React.FC = () => {
         {/* Contact Information Cards */}
         <section className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto -mt-20 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto -mt-16 md:-mt-20 relative z-10">
               {/* Office Address */}
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-shadow">
                 <div className="flex items-center gap-3 mb-4">
@@ -338,17 +339,32 @@ const Contacts: React.FC = () => {
                     {t('contact.social.title')}
                   </h3>
                   <div className="flex gap-4">
-                    <a href="#" className="p-4 bg-white dark:bg-gray-800 rounded-lg hover:scale-110 transition-transform shadow-lg">
+                    <a
+                      href={siteConfig.socialMedia.linkedin || '#'}
+                      target={siteConfig.socialMedia.linkedin ? '_blank' : undefined}
+                      rel={siteConfig.socialMedia.linkedin ? 'noreferrer' : undefined}
+                      className="p-4 bg-white dark:bg-gray-800 rounded-lg hover:scale-110 transition-transform shadow-lg"
+                    >
                       <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                       </svg>
                     </a>
-                    <a href="#" className="p-4 bg-white dark:bg-gray-800 rounded-lg hover:scale-110 transition-transform shadow-lg">
+                    <a
+                      href={siteConfig.socialMedia.twitter || '#'}
+                      target={siteConfig.socialMedia.twitter ? '_blank' : undefined}
+                      rel={siteConfig.socialMedia.twitter ? 'noreferrer' : undefined}
+                      className="p-4 bg-white dark:bg-gray-800 rounded-lg hover:scale-110 transition-transform shadow-lg"
+                    >
                       <svg className="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
                       </svg>
                     </a>
-                    <a href="#" className="p-4 bg-white dark:bg-gray-800 rounded-lg hover:scale-110 transition-transform shadow-lg">
+                    <a
+                      href={siteConfig.socialMedia.facebook || '#'}
+                      target={siteConfig.socialMedia.facebook ? '_blank' : undefined}
+                      rel={siteConfig.socialMedia.facebook ? 'noreferrer' : undefined}
+                      className="p-4 bg-white dark:bg-gray-800 rounded-lg hover:scale-110 transition-transform shadow-lg"
+                    >
                       <svg className="w-6 h-6 text-blue-700" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
                       </svg>
@@ -362,13 +378,23 @@ const Contacts: React.FC = () => {
                     {t('contact.downloads.title')}
                   </h3>
                   <div className="space-y-3">
-                    <a href="#" className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-lg hover:scale-105 transition-transform shadow-lg">
+                    <a
+                      href={siteConfig.downloads.productCatalogUrl || '#'}
+                      target={siteConfig.downloads.productCatalogUrl ? '_blank' : undefined}
+                      rel={siteConfig.downloads.productCatalogUrl ? 'noreferrer' : undefined}
+                      className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-lg hover:scale-105 transition-transform shadow-lg"
+                    >
                       <svg className="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clipRule="evenodd" />
                       </svg>
                       <span className="font-medium text-gray-900 dark:text-white">{t('contact.downloads.productCatalog')}</span>
                     </a>
-                    <a href="#" className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-lg hover:scale-105 transition-transform shadow-lg">
+                    <a
+                      href={siteConfig.downloads.companyBrochureUrl || '#'}
+                      target={siteConfig.downloads.companyBrochureUrl ? '_blank' : undefined}
+                      rel={siteConfig.downloads.companyBrochureUrl ? 'noreferrer' : undefined}
+                      className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-lg hover:scale-105 transition-transform shadow-lg"
+                    >
                       <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clipRule="evenodd" />
                       </svg>

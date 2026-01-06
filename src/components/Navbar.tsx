@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
         <div className="hidden desktop:grid grid-cols-[1fr_auto_1fr] items-center py-4">
           {/* Left Utilities */}
           <div className="flex items-center justify-start gap-3">
-            <LanguageSelector compact />
+            <LanguageSelector compact dropdownAlign="start" />
             <DarkModeToggle />
           </div>
 
@@ -77,23 +77,25 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Right Navigation */}
-          <ul className="justify-self-end w-[30%] min-w-fit flex items-center justify-end gap-2 lg:gap-3">
-            {navLinks.map((link) => (
-              <li key={link.path} className="h-16 flex items-center">
-                <Link
-                  to={link.path}
-                  className={`nav-link text-sm font-medium transition-all duration-300 hover:text-sky-blue relative group px-1 ${
-                    isActive(link.path) ? 'text-sky-blue nav-link-active' : 'text-white'
-                  }`}
-                >
-                  {link.label}
-                  <span className={`absolute -bottom-1 left-0 w-full h-1 bg-sky-blue transform origin-left transition-transform duration-300 px-1 ${
-                    isActive(link.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                  }`}></span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div className="justify-self-end flex items-center justify-end">
+            <ul className="flex items-center justify-end gap-2 lg:gap-3">
+              {navLinks.map((link) => (
+                <li key={link.path} className="h-16 flex items-center">
+                  <Link
+                    to={link.path}
+                    className={`nav-link text-sm font-medium transition-all duration-300 hover:text-sky-blue relative group px-1 ${
+                      isActive(link.path) ? 'text-sky-blue nav-link-active' : 'text-white'
+                    }`}
+                  >
+                    {link.label}
+                    <span className={`absolute -bottom-1 left-0 w-full h-1 bg-sky-blue transform origin-left transition-transform duration-300 px-1 ${
+                      isActive(link.path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                    }`}></span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Mobile Navbar */}

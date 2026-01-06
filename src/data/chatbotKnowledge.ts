@@ -3,12 +3,14 @@
  * Contains predefined information about the company, services, and products
  */
 
+import { siteConfig } from '../config/siteConfig';
+
 export const chatbotKnowledge = {
   company: {
     name: "Skytech Aviation",
     website: "skytech.ae",
     description: "A trusted aviation company based in UAE, serving as an authorized civil aircraft parts supplier and proud member of the Aviation Suppliers Association (ASA).",
-    location: "Meydan Free Zone, The Meydan Hotel, Dubai, UAE",
+    location: siteConfig.address.fullAddress,
     
     mission: "To deliver top-quality aircraft spare parts and accessories with expert advice and outstanding service, maintaining a broad product range at competitive rates while building lasting customer relationships.",
     
@@ -31,14 +33,14 @@ export const chatbotKnowledge = {
 
   contact: {
     phone: {
-      primary: "+971 561 611 002",
-      secondary: "+971 508 640 842"
+      primary: siteConfig.contact.primaryPhone,
+      secondary: siteConfig.contact.secondaryPhone || ''
     },
     email: {
-      primary: "info@skytech.ae",
-      sales: "sales@skytech.ae"
+      primary: siteConfig.contact.primaryEmail,
+      sales: siteConfig.contact.salesEmail || ''
     },
-    address: "Meydan Free Zone, The Meydan Hotel, Dubai, United Arab Emirates",
+    address: siteConfig.address.fullAddress,
     businessHours: "Sunday to Thursday: 9:00 AM - 6:00 PM GST"
   },
 

@@ -97,6 +97,8 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
     video.playsInline = true;
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
+    // iOS Safari still relies on the prefixed attribute in some cases
+    video.setAttribute('webkit-playsinline', '');
     video.setAttribute('autoplay', '');
 
     // Make playback feel more cinematic/slow
@@ -138,6 +140,13 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
       }
     }, 500);
 
+    // If autoplay is blocked until the first user gesture, resume ASAP on that gesture.
+    const resumeOnGesture = () => {
+      tryPlay();
+    };
+    window.addEventListener('pointerdown', resumeOnGesture, { once: true, passive: true });
+    window.addEventListener('touchstart', resumeOnGesture, { once: true, passive: true });
+
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
     video.addEventListener('canplay', handleCanPlay);
     document.addEventListener('visibilitychange', handleVisibility);
@@ -145,6 +154,8 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
 
     return () => {
       clearInterval(resumeInterval);
+      window.removeEventListener('pointerdown', resumeOnGesture);
+      window.removeEventListener('touchstart', resumeOnGesture);
       video.removeEventListener('loadedmetadata', handleLoadedMetadata);
       video.removeEventListener('canplay', handleCanPlay);
       document.removeEventListener('visibilitychange', handleVisibility);

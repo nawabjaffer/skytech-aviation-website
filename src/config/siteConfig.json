@@ -21,5 +21,23 @@
   "downloads": {
     "productCatalogUrl": "",
     "companyBrochureUrl": ""
+  },
+  "pages": {
+    "about": {
+      "sections": {
+        "milestonesTitle": "Company Milestones",
+        "certificationsTitle": "Certifications & Accreditations",
+        "coreValuesTitle": "Our Core Values",
+        "coreValuesSubtitle": "The Principles That Guide Us",
+        "leadershipTeamTitle": "Leadership Team",
+        "awardsTitle": "Awards & Recognition",
+        "partnershipBenefitsTitle": "Partnership Benefits"
+      }
+    },
+    "services": {
+      "sections": {
+        "serviceCategoriesTitle": "Our Service Categories"
+      }
+    }
   }
 }

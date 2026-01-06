@@ -26,6 +26,30 @@ export interface SiteConfig {
     productCatalogUrl?: string;
     companyBrochureUrl?: string;
   };
+
+  /**
+   * Optional page-level copy/labels.
+   * This is used for simple, non-localized configuration and chatbot context.
+    * UI pages primarily use i18n keys from src/locales/<lang>/translation.json.
+   */
+  pages?: {
+    about?: {
+      sections?: {
+        milestonesTitle?: string;
+        certificationsTitle?: string;
+        coreValuesTitle?: string;
+        coreValuesSubtitle?: string;
+        leadershipTeamTitle?: string;
+        awardsTitle?: string;
+        partnershipBenefitsTitle?: string;
+      };
+    };
+    services?: {
+      sections?: {
+        serviceCategoriesTitle?: string;
+      };
+    };
+  };
 }
 
 export const siteConfig = raw as SiteConfig;

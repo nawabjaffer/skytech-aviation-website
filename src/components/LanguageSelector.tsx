@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Globe } from 'lucide-react';
 
 interface LanguageSelectorProps {
   className?: string;
@@ -37,7 +38,12 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ className = '', com
         aria-label="Select language"
       >
         {compact ? (
-          <span className="text-xl" aria-hidden="true">{currentLang?.flag}</span>
+          <span className="flex flex-col items-center justify-center leading-none" aria-hidden="true">
+            <Globe className="w-4 h-4 text-white/90" />
+            <span className="mt-0.5 text-[10px] font-semibold tracking-wide text-white/90">
+              {(currentLang?.code || 'EN').toUpperCase()}
+            </span>
+          </span>
         ) : (
           <>
             <span className="text-xl">{currentLang?.flag}</span>

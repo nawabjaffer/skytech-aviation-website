@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Right Navigation */}
-          <ul className="flex items-center justify-end gap-6 lg:gap-8">
+          <ul className="justify-self-end flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
               <li key={link.path} className="h-16 flex items-center">
                 <Link

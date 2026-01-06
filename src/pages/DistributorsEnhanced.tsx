@@ -43,14 +43,18 @@ const DistributorsEnhanced: React.FC = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-in');
+          // Once animated in, we don't need to keep observing.
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+    // IMPORTANT: Testimonials/cards are rendered after async sheet fetch.
+    // Re-scan and observe whenever the page re-renders with new content.
+    document.querySelectorAll('.scroll-animate:not(.animate-in)').forEach(el => observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [distributors.length, testimonials.length, loading]);
 
   // Fetch distributors and testimonials
   useEffect(() => {

@@ -20,6 +20,8 @@ body:has(.video-loading-container:not(.exiting)) {
   left: 0;
   width: 100vw;
   height: 100vh;
+  /* Prefer dynamic viewport on mobile to avoid address-bar resizing issues */
+  height: 100dvh;
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -36,6 +38,10 @@ body:has(.video-loading-container:not(.exiting)) {
   height: 100%;
   object-fit: cover;
   z-index: 1;
+  /* Prevent iOS from showing selection/callout UI */
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
 }
 
 /* Gradient Overlay for better text readability */

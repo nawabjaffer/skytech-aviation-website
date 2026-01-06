@@ -90,12 +90,24 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
     const video = videoRef.current;
     if (!video) return;
 
+    // Mobile autoplay hardening (iOS Safari is picky about *attributes* existing)
+    // Keep the video muted and inline so autoplay is allowed without user gesture.
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('autoplay', '');
+
     // Make playback feel more cinematic/slow
     video.defaultPlaybackRate = 0.9;
     video.playbackRate = 0.9;
 
     const tryPlay = () => {
       if (completedRef.current) return;
+      // Re-assert muted before play attempts (some browsers can reset it)
+      video.muted = true;
+      video.defaultMuted = true;
       video.play().catch(() => {
         // On some mobile browsers, play() can still be blocked until user gesture.
         // We'll keep the intro smooth via the time-driven progress regardless.
@@ -156,8 +168,11 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
         muted
         playsInline
         preload="auto"
-        poster="/skytech-logo.png"
+        controls={false}
+        disablePictureInPicture
+        controlsList="nodownload noplaybackrate noremoteplayback"
         aria-hidden="true"
+        tabIndex={-1}
       >
         <source src={videoSrc} type="video/mp4" />
       </video>

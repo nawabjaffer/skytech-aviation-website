@@ -55,9 +55,10 @@ const Navbar: React.FC = () => {
           : 'navbar-transparent'
       } ${isVisible ? 'navbar-visible' : 'navbar-hidden'}`}
     >
-      <div className="container-custom">
+      {/* Full-width navbar container (keeps existing padding rhythm, removes max-width) */}
+      <div className="w-full px-5 tablet:px-8 desktop:px-12">
         {/* Desktop Navbar: utilities (left), logo (center), nav links (right) */}
-        <div className="hidden desktop:grid grid-cols-3 items-center py-4">
+        <div className="hidden desktop:grid grid-cols-[1fr_auto_1fr] items-center py-4">
           {/* Left Utilities */}
           <div className="flex items-center justify-start gap-3">
             <LanguageSelector compact />
@@ -76,12 +77,12 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Right Navigation */}
-          <ul className="justify-self-end flex items-center gap-6 lg:gap-8">
+          <ul className="justify-self-end w-[30%] min-w-fit flex items-center justify-end gap-2 lg:gap-3">
             {navLinks.map((link) => (
               <li key={link.path} className="h-16 flex items-center">
                 <Link
                   to={link.path}
-                  className={`nav-link font-medium transition-all duration-300 hover:text-sky-blue relative group px-1 ${
+                  className={`nav-link text-sm font-medium transition-all duration-300 hover:text-sky-blue relative group px-1 ${
                     isActive(link.path) ? 'text-sky-blue nav-link-active' : 'text-white'
                   }`}
                 >

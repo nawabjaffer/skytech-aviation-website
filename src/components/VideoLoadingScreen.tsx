@@ -27,12 +27,12 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
 
   const [progress, setProgress] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const rafRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
   const completedRef = useRef(false);
   const exitStartedRef = useRef(false);
+  const videoReadyRef = useRef(false);
 
   // Cache version check during initial load
   useEffect(() => {
@@ -90,6 +90,8 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
     const video = videoRef.current;
     if (!video) return;
 
+    videoReadyRef.current = false;
+
     // Mobile autoplay hardening (iOS Safari is picky about *attributes* existing)
     // Keep the video muted and inline so autoplay is allowed without user gesture.
     video.muted = true;
@@ -100,6 +102,8 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
     // iOS Safari still relies on the prefixed attribute in some cases
     video.setAttribute('webkit-playsinline', '');
     video.setAttribute('autoplay', '');
+    video.setAttribute('loop', '');
+    video.preload = 'auto';
 
     // Make playback feel more cinematic/slow
     video.defaultPlaybackRate = 0.9;
@@ -117,11 +121,20 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
     };
 
     const handleLoadedMetadata = () => {
-      setVideoLoaded(true);
-      tryPlay();
+      requestAnimationFrame(tryPlay);
+    };
+
+    const handleLoadedData = () => {
+      requestAnimationFrame(tryPlay);
     };
 
     const handleCanPlay = () => {
+      videoReadyRef.current = true;
+      tryPlay();
+    };
+
+    const handleCanPlayThrough = () => {
+      videoReadyRef.current = true;
       tryPlay();
     };
 
@@ -135,7 +148,8 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
     // Watchdog: if video pauses/stalls mid-intro, attempt resume periodically.
     const resumeInterval = setInterval(() => {
       if (completedRef.current) return;
-      if (videoLoaded && video.paused && document.visibilityState === 'visible') {
+      const ready = videoReadyRef.current || video.readyState >= 2;
+      if (ready && video.paused && document.visibilityState === 'visible') {
         tryPlay();
       }
     }, 500);
@@ -148,19 +162,24 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
     window.addEventListener('touchstart', resumeOnGesture, { once: true, passive: true });
 
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    video.addEventListener('loadeddata', handleLoadedData);
     video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('canplaythrough', handleCanPlayThrough);
     document.addEventListener('visibilitychange', handleVisibility);
-    tryPlay();
+    // Kick an immediate attempt; many browsers will ignore until ready.
+    requestAnimationFrame(tryPlay);
 
     return () => {
       clearInterval(resumeInterval);
       window.removeEventListener('pointerdown', resumeOnGesture);
       window.removeEventListener('touchstart', resumeOnGesture);
       video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener('loadeddata', handleLoadedData);
       video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('canplaythrough', handleCanPlayThrough);
       document.removeEventListener('visibilitychange', handleVisibility);
     };
-  }, [videoLoaded]);
+  }, [videoSrc]);
 
   return (
     <div 
@@ -175,9 +194,11 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
       <video
         ref={videoRef}
         className="loading-video"
+        src={videoSrc}
         autoPlay
         muted
         playsInline
+        loop
         preload="auto"
         controls={false}
         disablePictureInPicture
@@ -185,7 +206,7 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
         aria-hidden="true"
         tabIndex={-1}
       >
-        <source src={videoSrc} type="video/mp4" />
+        {/* Source is provided via src attribute for best mobile compatibility */}
       </video>
 
       {/* Gradient Overlay */}

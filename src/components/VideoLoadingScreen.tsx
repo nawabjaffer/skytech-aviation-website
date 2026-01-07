@@ -289,7 +289,7 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
             onComplete();
           }}
         >
-          Skip Intro
+          X
         </button>
       )}
     </div>

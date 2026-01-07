@@ -27,8 +27,7 @@
     "select": "选择语言",
     "en": "英文",
     "ar": "阿拉伯文",
-    "ru": "俄文",
-    "zh": "中文"
+    "ru": "俄文"
   },
   "theme": {
     "toggle": "切换主题",
@@ -114,6 +113,19 @@
       "title": "准备与我们合作？",
       "description": "加入我们全球日益壮大的满意经销商和航空公司网络。",
       "button": "取得联系"
+    },
+    "trackRecords": {
+      "items": {
+        "deliveries": "成功的零件交付",
+        "response": "平均报价响应时间",
+        "countries": "全球服务国家",
+        "clients": "满意的全球客户"
+      },
+      "trustedBy": "受到全球领先航空公司和 MRO 的信赖",
+      "title": "我们的成功记录",
+      "subtitle": "多年来致力于卓越的航空零部件供应，与全球领先的航空公司和 MRO 建立信任",
+      "badge": "久经考验的卓越品质",
+      "achievementsTitle": "定义我们的里程碑"
     }
   },
   "products": {

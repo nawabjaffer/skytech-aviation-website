@@ -572,19 +572,19 @@
       "subtitle": "Meet the Experts Behind Skytech Aviation",
       "members": {
         "ceo": {
-          "name": "Mohammed Al-Hashimi",
-          "position": "Chief Executive Officer",
+          "name": "Mohammed Yaseen",
+          "position": "General Manager",
           "bio": "With over 25 years in aviation industry, Mohammed leads Skytech Aviation's strategic vision and global expansion."
         },
         "cto": {
-          "name": "Sarah Williams",
-          "position": "Chief Technology Officer",
-          "bio": "Sarah oversees our technology infrastructure and digital transformation initiatives, ensuring cutting-edge solutions."
+          "name": "Saidali Nizamudeen",
+          "position": "Sales Executive",
+          "bio": "Saidali oversees our technology infrastructure and digital transformation initiatives, ensuring cutting-edge solutions."
         },
         "sales": {
-          "name": "John Peterson",
-          "position": "VP of Sales & Business Development",
-          "bio": "John leads our global sales team and manages key partnerships with airlines and distributors worldwide."
+          "name": "Mohammed Mujahidh",
+          "position": " Sales & Procurement Coordinator",
+          "bio": "Mohammed leads our global sales team and manages key partnerships with airlines and distributors worldwide."
         }
       }
     },

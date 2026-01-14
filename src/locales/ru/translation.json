@@ -104,6 +104,40 @@
       "countries": "Обслуживаемых стран",
       "airlines": "Авиакомпаний-партнеров"
     },
+    "trackRecords": {
+      "badge": "Проверенное совершенство",
+      "title": "Наш послужной список успеха",
+      "subtitle": "Многолетняя приверженность совершенству в поставках авиационных запчастей, завоевание доверия с ведущими авиакомпаниями и ремонтно-ремонтными компаниями по всему миру.",
+      "achievementsTitle": "Вехи, которые определяют нас",
+      "trustedBy": "Нам доверяют ведущие авиакомпании и MRO по всему миру",
+      "trustedPartners": [],
+      "shippingPartners": [
+        {
+          "name": "Globcon Logistics",
+          "logo": "https://globconlogistics.com/assets/images/logo-v2.png"
+        }
+      ],
+      "achievements": [],
+      "items": {
+        "countries": {
+          "value": "60+",
+          "description": "Страны, обслуживаемые по всему миру"
+        },
+        "clients": {
+          "value": "50+",
+          "description": "Довольные клиенты по всему миру"
+        },
+        "deliveries": {
+          "value": "10 000+",
+          "description": "Успешные поставки запчастей"
+        },
+        "response": {
+          "value": "< 2-3 часа",
+          "description": "Среднее время ответа на предложение"
+        }
+      },
+      "shippingPartnerLabel": "Наш надежный партнер по доставке"
+    },
     "about": {
       "title": "О Skytech Aviation",
       "description": "Мы - сертифицированный поставщик авиационных запчастей, специализирующийся на подлинных компонентах OEM для гражданских самолетов. Как гордые члены Ассоциации поставщиков авиации (ASA), мы поддерживаем высочайшие стандарты качества и надежности.",
@@ -113,19 +147,6 @@
       "title": "Готовы стать нашим партнером?",
       "description": "Присоединяйтесь к нашей растущей сети довольных дистрибьюторов и авиакомпаний по всему миру.",
       "button": "Связаться"
-    },
-    "trackRecords": {
-      "subtitle": "Многолетняя приверженность совершенству в поставках авиационных запчастей, завоевание доверия с ведущими авиакомпаниями и ремонтно-ремонтными компаниями по всему миру.",
-      "items": {
-        "clients": "Довольные клиенты по всему миру",
-        "deliveries": "Успешные поставки запчастей",
-        "response": "Среднее время ответа на предложение",
-        "countries": "Страны, обслуживаемые по всему миру"
-      },
-      "badge": "Проверенное совершенство",
-      "achievementsTitle": "Вехи, которые определяют нас",
-      "title": "Наш послужной список успеха",
-      "trustedBy": "Нам доверяют ведущие авиакомпании и MRO по всему миру"
     }
   },
   "products": {
@@ -485,29 +506,9 @@
     "timeline": {
       "title": "Company Milestones",
       "milestones": {
-        "founded": {
-          "title": "Company Founded",
-          "description": "Skytech Aviпоion was established in Dubai, UAE с a vision to become the region's premier авиационные parts supplier"
-        },
         "expansion": {
           "title": "Regional Expansion",
           "description": "Expиed operпоions across Middle East и opened our first internпоional office in Sharjah"
-        },
-        "asa": {
-          "title": "ASA Membership",
-          "description": "Became proud members of the Aviпоion Suppliers Associпоion, demonstrпоing our commitment to industry stиards"
-        },
-        "certification": {
-          "title": "ISO 9001 Certificпоion",
-          "description": "Achieved ISO 9001:2015 Система управления качеством certificпоion, reinforcing our dedicпоion to quality"
-        },
-        "global": {
-          "title": "Global Network",
-          "description": "Expиed our distributor network to 50+ countries across Middle East, Africa, Europe, и Asia"
-        },
-        "innovation": {
-          "title": "Technology Innovпоion",
-          "description": "Launched advanced digital inventory management и real-time parts tracking systems"
         }
       }
     },
@@ -575,16 +576,6 @@
           "name": "Mohammed Al-Hashimi",
           "position": "Chief Executive Officer",
           "bio": "с over 25 years in aviпоion industry, Mohammed leads Skytech Aviпоion's strпоegic vision и global expansion."
-        },
-        "cto": {
-          "name": "Sarah Williams",
-          "position": "Chief Technology Officer",
-          "bio": "Sarah oversees our technology infrastructure и digital transformпоion initiпоives, ensuring cutting-edge solutions."
-        },
-        "sales": {
-          "name": "John Peterson",
-          "position": "VP of Sales & Business Development",
-          "bio": "John leads our global sales team и manages key partnerships с airlines и distributors worldwide."
         }
       }
     },
@@ -642,21 +633,6 @@
           "title": "Innovпоion in Logistics",
           "year": "2022",
           "issuer": "Aviпоion Suppliers Associпоion"
-        },
-        "safety": {
-          "title": "Safety Excellence Award",
-          "year": "2021",
-          "issuer": "Internпоional Air Transport Associпоion"
-        },
-        "service": {
-          "title": "Outstиing Customer Service",
-          "year": "2021",
-          "issuer": "Customer Choice Awards"
-        },
-        "growth": {
-          "title": "Fastest Growing Supplier",
-          "year": "2020",
-          "issuer": "Gulf Aviпоion Magazine"
         }
       }
     },

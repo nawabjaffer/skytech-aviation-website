@@ -19,8 +19,8 @@
     "instagram": ""
   },
   "downloads": {
-    "productCatalogUrl": "",
-    "companyBrochureUrl": ""
+    "productCatalogUrl": "https://drive.google.com/file/d/YOUR_PRODUCT_CATALOG_FILE_ID/view?usp=sharing",
+    "companyBrochureUrl": "https://drive.google.com/file/d/YOUR_COMPANY_BROCHURE_FILE_ID/view?usp=sharing"
   },
   "pages": {
     "about": {

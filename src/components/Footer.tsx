@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { siteConfig } from '../config/siteConfig';
+import { NAV_LINKS, EMAIL_LINKS, PHONE_LINKS, COMPANY_INFO, EXTERNAL_LINKS } from '../config/links';
 
 const Footer: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -10,13 +10,13 @@ const Footer: React.FC = () => {
 
   const footerLinks = {
     company: [
-      { path: '/about', label: t('nav.about') },
-      { path: '/products', label: t('nav.products') },
-      { path: '/services', label: t('nav.services') },
+      { path: NAV_LINKS.about, label: t('nav.about') },
+      { path: NAV_LINKS.products, label: t('nav.products') },
+      { path: NAV_LINKS.services, label: t('nav.services') },
     ],
     support: [
-      { path: '/distributors', label: t('nav.distributors') },
-      { path: '/contacts', label: t('nav.contact') },
+      { path: NAV_LINKS.distributors, label: t('nav.distributors') },
+      { path: NAV_LINKS.contact, label: t('nav.contact') },
     ],
   };
 
@@ -89,9 +89,9 @@ const Footer: React.FC = () => {
                 </li>
               ))}
               <li className='pt-2'>
-                <p className='text-sm'>{siteConfig.contact.primaryEmail}</p>
-                <p className='text-sm'>{siteConfig.contact.primaryPhone}</p>
-                <p className='text-sm mt-2'>{siteConfig.address.fullAddress || t('footer.address')}</p>
+                <p className='text-sm'>{EMAIL_LINKS.info}</p>
+                <p className='text-sm'>{PHONE_LINKS.primary}</p>
+                <p className='text-sm mt-2'>{COMPANY_INFO.fullAddress || t('footer.address')}</p>
               </li>
             </ul>
           </div>
@@ -104,11 +104,13 @@ const Footer: React.FC = () => {
               {t('footer.asaMember')}
             </h4>
             <div className='w-full flex-1 flex items-center justify-center h-full'>
-              <img
-                src='/ASALogo.png'
-                alt='ASA Logo'
-                className='w-full h-full object-contain'
-              />
+              <a href={EXTERNAL_LINKS.asa} target="_blank" rel="noopener noreferrer">
+                <img
+                  src='/ASALogo.png'
+                  alt='ASA Logo'
+                  className='w-full h-full object-contain hover:opacity-80 transition-opacity'
+                />
+              </a>
             </div>
           </div>
         </div>

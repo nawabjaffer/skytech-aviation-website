@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import SEOHead from '../components/SEOHead';
 import { siteConfig } from '../config/siteConfig';
+import { DOWNLOAD_LINKS } from '../config/links';
 
 interface ContactFormData {
   name: string;
@@ -379,9 +380,9 @@ const Contacts: React.FC = () => {
                   </h3>
                   <div className="space-y-3">
                     <a
-                      href={siteConfig.downloads.productCatalogUrl || '#'}
-                      target={siteConfig.downloads.productCatalogUrl ? '_blank' : undefined}
-                      rel={siteConfig.downloads.productCatalogUrl ? 'noreferrer' : undefined}
+                      href={DOWNLOAD_LINKS.productCatalog || '#'}
+                      target={DOWNLOAD_LINKS.productCatalog ? '_blank' : undefined}
+                      rel={DOWNLOAD_LINKS.productCatalog ? 'noopener noreferrer' : undefined}
                       className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-lg hover:scale-105 transition-transform shadow-lg"
                     >
                       <svg className="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
@@ -390,9 +391,9 @@ const Contacts: React.FC = () => {
                       <span className="font-medium text-gray-900 dark:text-white">{t('contact.downloads.productCatalog')}</span>
                     </a>
                     <a
-                      href={siteConfig.downloads.companyBrochureUrl || '#'}
-                      target={siteConfig.downloads.companyBrochureUrl ? '_blank' : undefined}
-                      rel={siteConfig.downloads.companyBrochureUrl ? 'noreferrer' : undefined}
+                      href={DOWNLOAD_LINKS.companyBrochure || '#'}
+                      target={DOWNLOAD_LINKS.companyBrochure ? '_blank' : undefined}
+                      rel={DOWNLOAD_LINKS.companyBrochure ? 'noopener noreferrer' : undefined}
                       className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-lg hover:scale-105 transition-transform shadow-lg"
                     >
                       <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">

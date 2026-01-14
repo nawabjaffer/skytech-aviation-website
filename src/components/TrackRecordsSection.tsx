@@ -17,63 +17,40 @@ const TrackRecordsSection: React.FC = () => {
   const trackRecords = [
     {
       key: 'deliveries',
-      icon: Package,
-      value: '50,000+',
-      description: 'Successful Parts Deliveries'
+      icon: Package
     },
     {
       key: 'clients',
-      icon: Users,
-      value: '500+',
-      description: 'Satisfied Global Clients'
+      icon: Users
     },
     {
       key: 'countries',
-      icon: Globe,
-      value: '60+',
-      description: 'Countries Served Worldwide'
+      icon: Globe
     },
     {
       key: 'response',
-      icon: Clock,
-      value: '< 2hrs',
-      description: 'Average Quote Response Time'
+      icon: Clock
     }
   ];
 
-  const achievements = [
-    {
-      year: '2023',
-      title: 'Aviation Excellence Award',
-      description: 'Recognized for outstanding service quality and customer satisfaction at the Middle East Aviation Summit',
-      icon: Award
-    },
-    {
-      year: '2022',
-      title: 'Best Parts Supplier',
-      description: 'Named Best Aviation Parts Supplier in the UAE for exceptional supply chain management',
-      icon: TrendingUp
-    },
-    {
-      year: '2021',
-      title: 'Safety Excellence',
-      description: 'Zero quality incidents maintaining 100% compliance with international aviation standards',
-      icon: CheckCircle2
-    },
-    {
-      year: '2020',
-      title: 'Global Expansion',
-      description: 'Successfully expanded distribution network to 50+ countries across 5 continents',
-      icon: Plane
-    }
-  ];
+  // Icon mapping for achievements
+  const iconMap: { [key: string]: React.ElementType } = {
+    award: Award,
+    trending: TrendingUp,
+    check: CheckCircle2,
+    plane: Plane,
+    users: Users,
+    globe: Globe,
+    package: Package,
+    clock: Clock
+  };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 via-aviation-blue-50 to-gray-50 dark:from-gray-900 dark:via-aviation-blue-900/10 dark:to-gray-900">
+    <section className="py-24 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-aviation-blue-100 dark:bg-aviation-blue-900/30 text-aviation-blue-600 dark:text-aviation-blue-400 text-sm font-semibold rounded-full mb-4">
+          <span className="inline-block px-4 py-2 bg-[#0b6d94]/10 text-[#0b6d94] dark:text-aviation-blue-400 text-sm font-semibold rounded-full mb-4">
             {t('home.trackRecords.badge', 'Proven Excellence')}
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -85,30 +62,27 @@ const TrackRecordsSection: React.FC = () => {
         </div>
 
         {/* Track Record Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {trackRecords.map((record, index) => {
             const IconComponent = record.icon;
             return (
               <div
                 key={record.key}
-                className="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 overflow-hidden group"
+                className="bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center border border-gray-100 dark:border-gray-700"
               >
-                {/* Background Decoration */}
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-aviation-blue-100 dark:bg-aviation-blue-900/20 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500"></div>
-                
                 {/* Icon */}
-                <div className="relative z-10 inline-flex items-center justify-center w-16 h-16 mb-6 bg-gradient-to-br from-aviation-blue-500 to-aviation-blue-700 rounded-2xl shadow-lg">
-                  <IconComponent className="w-8 h-8 text-white" strokeWidth={2} />
+                <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 mb-4 bg-[#0b6d94]/10 rounded-xl">
+                  <IconComponent className="w-6 h-6 md:w-7 md:h-7 text-[#0b6d94]" strokeWidth={2} />
                 </div>
 
                 {/* Value */}
-                <div className="relative z-10 text-4xl md:text-5xl font-bold text-aviation-blue-600 dark:text-aviation-blue-400 mb-2">
-                  {record.value}
+                <div className="text-3xl md:text-4xl font-bold text-[#0b6d94] dark:text-aviation-blue-400 mb-2">
+                  {t(`home.trackRecords.items.${record.key}.value`)}
                 </div>
 
                 {/* Description */}
-                <p className="relative z-10 text-gray-600 dark:text-gray-400 font-medium">
-                  {t(`home.trackRecords.items.${record.key}`, record.description)}
+                <p className="text-sm md:text-base text-gray-600 dark:text-gray-400">
+                  {t(`home.trackRecords.items.${record.key}.description`)}
                 </p>
               </div>
             );
@@ -116,68 +90,158 @@ const TrackRecordsSection: React.FC = () => {
         </div>
 
         {/* Achievement Timeline */}
-        <div className="max-w-5xl mx-auto">
-          <h3 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-            {t('home.trackRecords.achievementsTitle', 'Milestones That Define Us')}
-          </h3>
+        {(() => {
+          const achievements = t('home.trackRecords.achievements', { returnObjects: true }) as Array<{ year: string; title: string; description: string; icon?: string }>;
+          if (!achievements || !Array.isArray(achievements) || achievements.length === 0) return null;
           
-          <div className="space-y-8">
-            {achievements.map((achievement, index) => {
-              const IconComponent = achievement.icon;
-              const isEven = index % 2 === 0;
+          return (
+            <div className="max-w-4xl mx-auto mb-16">
+              <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-900 dark:text-white mb-10">
+                {t('home.trackRecords.achievementsTitle', 'Milestones That Define Us')}
+              </h3>
               
-              return (
-                <div
-                  key={index}
-                  className={`flex flex-col md:flex-row items-center gap-6 ${isEven ? '' : 'md:flex-row-reverse'}`}
-                >
-                  {/* Year Badge */}
-                  <div className="flex-shrink-0">
-                    <div className="w-20 h-20 bg-gradient-to-br from-aviation-blue-600 to-aviation-blue-700 rounded-full flex items-center justify-center shadow-xl">
-                      <span className="text-white font-bold text-lg">{achievement.year}</span>
-                    </div>
-                  </div>
-
-                  {/* Content Card */}
-                  <div className={`flex-1 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow ${isEven ? 'md:text-left' : 'md:text-right'}`}>
-                    <div className={`flex items-center gap-3 mb-3 ${isEven ? '' : 'md:flex-row-reverse'}`}>
-                      <div className="p-2 bg-aviation-blue-100 dark:bg-aviation-blue-900/30 rounded-lg">
-                        <IconComponent className="w-5 h-5 text-aviation-blue-600 dark:text-aviation-blue-400" strokeWidth={2} />
+              <div className="space-y-4">
+                {achievements.map((achievement, index) => {
+                  if (!achievement || !achievement.title) return null;
+                  const IconComponent = iconMap[achievement.icon || 'award'] || Award;
+                  
+                  return (
+                    <div
+                      key={index}
+                      className="flex items-center gap-4 bg-white dark:bg-gray-800 rounded-xl p-5 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                    >
+                      {/* Year Badge */}
+                      <div className="flex-shrink-0 w-16 h-16 bg-[#0b6d94] rounded-xl flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">{achievement.year}</span>
                       </div>
-                      <h4 className="text-xl font-bold text-gray-900 dark:text-white">
-                        {achievement.title}
-                      </h4>
+
+                      {/* Content */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <IconComponent className="w-4 h-4 text-[#0b6d94] flex-shrink-0" strokeWidth={2} />
+                          <h4 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
+                            {achievement.title}
+                          </h4>
+                        </div>
+                        {achievement.description && (
+                          <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                            {achievement.description}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {achievement.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Trust Badges */}
-        <div className="mt-20 text-center">
-          <p className="text-gray-500 dark:text-gray-400 mb-8 font-medium">
-            {t('home.trackRecords.trustedBy', 'Trusted by Leading Airlines & MROs Worldwide')}
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-            <div className="bg-white dark:bg-gray-800 px-8 py-4 rounded-xl shadow-md">
-              <span className="text-2xl font-bold text-gray-400 dark:text-gray-500">Emirates</span>
+        {(() => {
+          const trustedPartners = t('home.trackRecords.trustedPartners', { returnObjects: true }) as string[];
+          return trustedPartners && trustedPartners.length > 0 ? (
+            <div className="mt-16 text-center">
+              <div className="flex items-center justify-center gap-4 mb-8">
+                <div className="h-px w-12 bg-gradient-to-r from-transparent to-gray-300 dark:to-gray-600"></div>
+                <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em]">
+                  {t('home.trackRecords.trustedBy', 'Trusted by Leading Airlines & MROs Worldwide')}
+                </p>
+                <div className="h-px w-12 bg-gradient-to-l from-transparent to-gray-300 dark:to-gray-600"></div>
+              </div>
+              <div className="flex flex-wrap justify-center items-center gap-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                {trustedPartners.map((partner, index) => (
+                  <div key={index} className="bg-white dark:bg-gray-800 px-8 py-4 rounded-xl shadow-md">
+                    <span className="text-2xl font-bold text-gray-400 dark:text-gray-500">{partner}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="bg-white dark:bg-gray-800 px-8 py-4 rounded-xl shadow-md">
-              <span className="text-2xl font-bold text-gray-400 dark:text-gray-500">Etihad</span>
+          ) : null;
+        })()}
+
+        {/* Shipping Partners */}
+        {(() => {
+          const shippingPartners = t('home.trackRecords.shippingPartners', { returnObjects: true }) as Array<{ name: string; logo?: string }>;
+          if (!shippingPartners || shippingPartners.length === 0) return null;
+          
+          // Create enough duplicates for seamless infinite scroll
+          const repeatedPartners = [...shippingPartners, ...shippingPartners, ...shippingPartners, ...shippingPartners, ...shippingPartners, ...shippingPartners, ...shippingPartners, ...shippingPartners];
+          
+          return (
+            <div className="mt-12 pt-12 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-center gap-4 mb-8">
+                <div className="h-px w-12 bg-gradient-to-r from-transparent to-gray-300 dark:to-gray-600"></div>
+                <h2 className="font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em]">
+                  {t('home.trackRecords.shippingPartnerLabel', 'Our Trusted Shipping Partner')}
+                </h2>
+                <div className="h-px w-12 bg-gradient-to-l from-transparent to-gray-300 dark:to-gray-600"></div>
+              </div>
+              
+              {/* Infinite Scrolling Carousel */}
+              <div className="relative overflow-hidden py-4">
+                {/* Fade edges */}
+                <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+                
+                <div className="carousel-track">
+                  {repeatedPartners.map((partner, index) => (
+                    <div
+                      key={index}
+                      className="carousel-item flex-shrink-0 flex items-center justify-center px-16 py-4"
+                    >
+                      {partner.logo ? (
+                        <img
+                          src={partner.logo}
+                          alt={partner.name}
+                          className="h-10 w-auto object-contain opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            if (e.currentTarget.nextElementSibling) {
+                              (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'block';
+                            }
+                          }}
+                        />
+                      ) : null}
+                      <span 
+                        className="text-xl font-semibold text-gray-500 dark:text-gray-400 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-300"
+                        style={{ display: partner.logo ? 'none' : 'block' }}
+                      >
+                        {partner.name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Carousel Animation Styles */}
+              <style>{`
+                .carousel-track {
+                  display: flex;
+                  width: fit-content;
+                  animation: scroll 20s linear infinite;
+                }
+                
+                .carousel-track:hover {
+                  animation-play-state: paused;
+                }
+                
+                @keyframes scroll {
+                  0% {
+                    transform: translateX(0);
+                  }
+                  100% {
+                    transform: translateX(-50%);
+                  }
+                }
+                
+                .carousel-item {
+                  transition: all 0.3s ease;
+                }
+              `}</style>
             </div>
-            <div className="bg-white dark:bg-gray-800 px-8 py-4 rounded-xl shadow-md">
-              <span className="text-2xl font-bold text-gray-400 dark:text-gray-500">Qatar Airways</span>
-            </div>
-            <div className="bg-white dark:bg-gray-800 px-8 py-4 rounded-xl shadow-md">
-              <span className="text-2xl font-bold text-gray-400 dark:text-gray-500">Air Arabia</span>
-            </div>
-          </div>
-        </div>
+          );
+        })()}
       </div>
     </section>
   );

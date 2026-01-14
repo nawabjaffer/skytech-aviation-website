@@ -16,7 +16,7 @@
     "quickLinks": "QUICK LINKS",
     "contactInfo": "CONTACT INFORMATION",
     "asaMember": "ASA MEMBER SINCE 2015",
-    "address": "Meydan Free Zone, The Meydan Hotel, Dubai, UAE",
+    "address": "Business Centre 1, Meydan Free Zone, Nad Al Sheba, Dubai, UAE",
     "phone": "Phone",
     "email": "Email",
     "businessHours": "Business Hours",
@@ -70,9 +70,9 @@
     "title": "Skytech Aviation - Authorized Aircraft Parts Supplier",
     "description": "Your trusted partner for authentic civil aircraft parts and components. ASA member serving airlines worldwide.",
     "hero": {
-      "title": "Authorized Civil Aircraft Parts Supplier",
+      "title": "Aircraft Parts Stockist and Supplier",
       "subtitle": "Your Trusted Partner for Authentic Aviation Components",
-      "description": "Providing premium quality aircraft parts and components to airlines, MROs, and distributors across the Middle East, Africa, and beyond.",
+      "description": "Providing certified aircraft parts and components to airlines, MROs, and distributors across the Middle East, Asia, Africa, and beyond.",
       "cta1": "View Products",
       "cta2": "Become a Distributor",
       "trustBadge": "ASA Member Since 2015"
@@ -86,7 +86,7 @@
       },
       "global": {
         "title": "Global Distribution",
-        "description": "Serving airlines and MROs across the Middle East, Africa, and beyond with reliable delivery"
+        "description": "Serving airlines and MROs across the Middle East, Asia, Africa, and beyond with reliable delivery"
       },
       "support": {
         "title": "Expert Support",
@@ -111,11 +111,33 @@
       "achievementsTitle": "Milestones That Define Us",
       "trustedBy": "Trusted by Leading Airlines & MROs Worldwide",
       "items": {
-        "deliveries": "Successful Parts Deliveries",
-        "clients": "Satisfied Global Clients",
-        "countries": "Countries Served Worldwide",
-        "response": "Average Quote Response Time"
-      }
+        "deliveries": {
+          "value": "10,000+",
+          "description": "Successful Parts Deliveries"
+        },
+        "clients": {
+          "value": "50+",
+          "description": "Satisfied Global Clients"
+        },
+        "countries": {
+          "value": "60+",
+          "description": "Countries Served Worldwide"
+        },
+        "response": {
+          "value": "< 2-3hrs",
+          "description": "Average Quote Response Time"
+        }
+      },
+      "trustedPartners": [
+      ],
+      "shippingPartnerLabel": "Our Trusted Shipping Partner",
+      "shippingPartners": [
+        {
+          "name": "Globcon Logistics",
+          "logo": "https://globconlogistics.com/assets/images/logo-v2.png"
+        }
+      ],
+      "achievements": []
     },
     "about": {
       "title": "About Skytech Aviation",
@@ -312,34 +334,34 @@
           "title": "Sales Inquiries",
           "description": "Contact our sales team for parts requirements and pricing",
           "button": "Contact Sales",
-          "availability": "sales@skytech.ae"
+          "availability": "enquiry@skytech.ae"
         }
       }
     },
     "downloads": {
-      "title": "Additional Services",
-      "subtitle": "Comprehensive professional capabilities and support",
-      "downloadButton": "Learn More",
+      "title": "Company Resources",
+      "subtitle": "Download our company information and documentation",
+      "downloadButton": "Download",
       "items": {
         "catalog": {
-          "title": "Maintenance Support",
-          "description": "Professional maintenance support services and technical assistance",
-          "size": "Service Available"
+          "title": "Product Catalog",
+          "description": "Complete catalog of our aviation parts and components",
+          "size": "PDF Document"
         },
         "brochure": {
-          "title": "Pre-Purchase Inspections",
-          "description": "Comprehensive aircraft pre-purchase inspection services",
-          "size": "Service Available"
+          "title": "Company Brochure",
+          "description": "Learn about Skytech Aviation's history, values, and services",
+          "size": "PDF Document"
         },
         "certifications": {
-          "title": "Aircraft Delivery",
-          "description": "Professional aircraft delivery and positioning services",
-          "size": "Service Available"
+          "title": "Certifications",
+          "description": "Our quality certifications and accreditations",
+          "size": "PDF Document"
         },
         "capabilities": {
-          "title": "MRO Representation",
-          "description": "Representation in Maintenance, Repair, and Overhaul markets",
-          "size": "Service Available"
+          "title": "Company Profile",
+          "description": "Detailed overview of our capabilities and expertise",
+          "size": "PDF Document"
         }
       }
     },
@@ -356,7 +378,7 @@
     "subtitle": "Join Our Global Network",
     "hero": {
       "title": "Distributor Partnership Program",
-      "description": "Grow your aviation business with exclusive access to premium aircraft parts and dedicated support.",
+      "description": "Grow your aviation business with exclusive access to certified aircraft parts and dedicated support.",
       "cta": "Apply Now"
     },
     "benefits": {
@@ -485,29 +507,9 @@
     "timeline": {
       "title": "Company Milestones",
       "milestones": {
-        "founded": {
-          "title": "Company Founded",
-          "description": "Skytech Aviation was established in Dubai, UAE with a vision to become the region's premier aircraft parts supplier"
-        },
         "expansion": {
           "title": "Regional Expansion",
-          "description": "Expanded operations across Middle East and opened our first international office in Sharjah"
-        },
-        "asa": {
-          "title": "ASA Membership",
-          "description": "Became proud members of the Aviation Suppliers Association, demonstrating our commitment to industry standards"
-        },
-        "certification": {
-          "title": "ISO 9001 Certification",
-          "description": "Achieved ISO 9001:2015 Quality Management System certification, reinforcing our dedication to quality"
-        },
-        "global": {
-          "title": "Global Network",
-          "description": "Expanded our distributor network to 50+ countries across Middle East, Africa, Europe, and Asia"
-        },
-        "innovation": {
-          "title": "Technology Innovation",
-          "description": "Launched advanced digital inventory management and real-time parts tracking systems"
+          "description": "Established and expanded operations in aviation supply and support Succesfully participated in major internaltional aviation exhibitions"
         }
       }
     },
@@ -573,18 +575,8 @@
       "members": {
         "ceo": {
           "name": "Mohammed Yaseen",
-          "position": "General Manager",
-          "bio": "With over 25 years in aviation industry, Mohammed leads Skytech Aviation's strategic vision and global expansion."
-        },
-        "cto": {
-          "name": "Saidali Nizamudeen",
-          "position": "Sales Executive",
-          "bio": "Saidali oversees our technology infrastructure and digital transformation initiatives, ensuring cutting-edge solutions."
-        },
-        "sales": {
-          "name": "Mohammed Mujahidh",
-          "position": " Sales & Procurement Coordinator",
-          "bio": "Mohammed leads our global sales team and manages key partnerships with airlines and distributors worldwide."
+          "position": "Chief Executive Officer Manager",
+          "bio": "With over 20 years in aviation industry, Mr. Mohammed leads Skytech Aviation's strategic vision and global expansion."
         }
       }
     },
@@ -595,7 +587,7 @@
         "title": "Skytech Aviation - Dubai Office",
         "address": {
           "label": "Address",
-          "street": "Meydan Free Zone, The Meydan Hotel",
+          "street": "Meydan Free Zone, Nad Al Sheba,",
           "city": "Dubai, United Arab Emirates"
         },
         "phone": {
@@ -611,7 +603,7 @@
         "title": "Alternative Contact",
         "address": {
           "label": "Address",
-          "street": "Meydan Free Zone, The Meydan Hotel",
+          "street": "Meydan Free Zone, Nad Al Sheba,",
           "city": "Dubai, United Arab Emirates"
         },
         "phone": {
@@ -629,34 +621,19 @@
       "subtitle": "Celebrating Excellence",
       "items": {
         "excellence": {
-          "title": "Aviation Excellence Award",
-          "year": "2023",
-          "issuer": "Middle East Aviation Summit"
+          "title": "Heli 2025 Award",
+          "year": "2025",
+          "issuer": "Dubai Heli Show"
         },
         "supplier": {
-          "title": "Best Supplier of the Year",
-          "year": "2022",
-          "issuer": "UAE Aviation Awards"
+          "title": "ISO 9001:2015 Certified",
+          "year": "2025",
+          "issuer": "International Standards Organization"
         },
         "innovation": {
-          "title": "Innovation in Logistics",
-          "year": "2022",
-          "issuer": "Aviation Suppliers Association"
-        },
-        "safety": {
-          "title": "Safety Excellence Award",
-          "year": "2021",
-          "issuer": "International Air Transport Association"
-        },
-        "service": {
-          "title": "Outstanding Customer Service",
-          "year": "2021",
-          "issuer": "Customer Choice Awards"
-        },
-        "growth": {
-          "title": "Fastest Growing Supplier",
-          "year": "2020",
-          "issuer": "Gulf Aviation Magazine"
+          "title": "Signed MOU with Edge",
+          "year": "2024",
+          "issuer": "Edge Group"
         }
       }
     },
@@ -672,13 +649,13 @@
     "description": "Get in touch with our team for inquiries, quotes, or support.",
     "hero": {
       "title": "Contact Us",
-      "subtitle": "We're Here to Help 24/7"
+      "subtitle": "Have an AOG, We're Here to Help 24/7"
     },
     "info": {
       "office": {
         "title": "Office Address",
-        "address": "Meydan Free Zone\nThe Meydan Hotel\nDubai, United Arab Emirates"
-      },
+        "address": "Business Centre 1, Meydan Free Zone,\n Nad Al Sheba, Dubai, United Arab Emirates"
+      }, 
       "sales": {
         "title": "Sales & Inquiries",
         "phone": "+971 561 611 002"
@@ -689,7 +666,7 @@
       },
       "hours": {
         "title": "Alternative Contact",
-        "schedule": "+971 508 640 842 | sales@skytech.ae"
+        "schedule": "+971 508 640 842"
       }
     },
     "form": {

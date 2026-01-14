@@ -54,9 +54,14 @@ function isTechnicalTerm(text) {
  * Falls back to placeholder on failure.
  */
 async function translateText(text, targetLocale) {
+  // Handle non-string values (arrays, objects, numbers, etc.)
+  if (typeof text !== 'string') {
+    return text;
+  }
+  
   const textToTranslate = text.replace(/^\[MISSING\]\s*/, '').trim();
 
-  if (!textToTranslate || typeof textToTranslate !== 'string' || isTechnicalTerm(textToTranslate)) {
+  if (!textToTranslate || isTechnicalTerm(textToTranslate)) {
     return textToTranslate;
   }
 

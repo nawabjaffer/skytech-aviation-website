@@ -126,148 +126,195 @@ const About: React.FC = () => {
         </section>
 
         {/* Timeline */}
-        <section className="py-20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-            <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-16">
-              {t('about.timeline.title')}
-            </h2>
-            <div className="space-y-8">
-              {[
-                { year: '2010', event: 'founded' },
-                { year: '2012', event: 'expansion' },
-                { year: '2015', event: 'asa' },
-                { year: '2018', event: 'certification' },
-                { year: '2020', event: 'global' },
-                { year: '2023', event: 'innovation' }
-              ].map((milestone, index) => (
-                <div key={index} className="flex gap-8 items-start">
-                  <div className="flex flex-col items-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-[#0b6d94] to-[#073d53] text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg flex-shrink-0">
-                      {milestone.year}
-                    </div>
-                    {index < 5 && (
-                      <div className="w-1 h-full bg-gradient-to-b from-[#0b6d94] to-[#0a5a7a] mt-2"></div>
-                    )}
-                  </div>
-                  <div className="flex-1 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                      {t(`about.timeline.milestones.${milestone.event}.title`)}
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      {t(`about.timeline.milestones.${milestone.event}.description`)}
-                    </p>
-                  </div>
+        {(() => {
+          const milestones = t('about.timeline.milestones', { returnObjects: true }) as Record<string, { title: string; description: string }>;
+          const milestoneKeys = milestones && typeof milestones === 'object' ? Object.keys(milestones) : [];
+          
+          if (milestoneKeys.length === 0) return null;
+          
+          return (
+            <section className="py-20">
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+                <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-16">
+                  {t('about.timeline.title')}
+                </h2>
+                <div className="space-y-6">
+                  {milestoneKeys.map((key, index) => {
+                    const milestone = milestones[key];
+                    if (!milestone || !milestone.title) return null;
+                    
+                    return (
+                      <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-[#0b6d94]">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                          {milestone.title}
+                        </h3>
+                        {milestone.description && (
+                          <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            {milestone.description}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Certifications */}
-        <section className="py-24 bg-white dark:bg-gray-800">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
-              {t('about.certifications.title')}
-            </h2>
-            <p className="text-xl text-center text-gray-600 dark:text-gray-400 mb-16">
-              {t('about.certifications.subtitle')}
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-              {['iso9001', 'as9120', 'easa', 'faa'].map((cert, index) => (
-                <div key={index} className="bg-gradient-to-br from-aviation-blue-50 to-aviation-blue-100 dark:from-aviation-blue-900/20 dark:to-aviation-blue-800/20 rounded-2xl p-8 text-center hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                  <div className="flex justify-center mb-6">
-                    <div className="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-md">
-                      <Award className="w-12 h-12 text-amber-500" strokeWidth={2} />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                    {t(`about.certifications.items.${cert}.name`)}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                    {t(`about.certifications.items.${cert}.description`)}
-                  </p>
+        {(() => {
+          const certItems = t('about.certifications.items', { returnObjects: true }) as Record<string, { name: string; description: string }>;
+          const certKeys = certItems && typeof certItems === 'object' ? Object.keys(certItems) : [];
+          
+          if (certKeys.length === 0) return null;
+          
+          return (
+            <section className="py-24 bg-white dark:bg-gray-800">
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
+                  {t('about.certifications.title')}
+                </h2>
+                <p className="text-xl text-center text-gray-600 dark:text-gray-400 mb-16">
+                  {t('about.certifications.subtitle')}
+                </p>
+                <div className={`grid grid-cols-1 ${certKeys.length === 1 ? 'max-w-md mx-auto' : certKeys.length === 2 ? 'md:grid-cols-2 max-w-3xl mx-auto' : certKeys.length === 3 ? 'md:grid-cols-3 max-w-5xl mx-auto' : 'md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto'} gap-8`}>
+                  {certKeys.map((cert, index) => {
+                    const certData = certItems[cert];
+                    if (!certData || !certData.name) return null;
+                    
+                    return (
+                      <div key={index} className="bg-gradient-to-br from-aviation-blue-50 to-aviation-blue-100 dark:from-aviation-blue-900/20 dark:to-aviation-blue-800/20 rounded-2xl p-8 text-center hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                        <div className="flex justify-center mb-6">
+                          <div className="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-md">
+                            <Award className="w-12 h-12 text-[#0b6d94]" strokeWidth={2} />
+                          </div>
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                          {certData.name}
+                        </h3>
+                        {certData.description && (
+                          <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                            {certData.description}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Core Values */}
-        <section className="py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
-              {t('about.values.title')}
-            </h2>
-            <p className="text-xl text-center text-gray-600 dark:text-gray-400 mb-16">
-              {t('about.values.subtitle')}
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {[
-                { IconComponent: Target, name: 'integrity', color: 'blue' },
-                { IconComponent: Star, name: 'quality', color: 'amber' },
-                { IconComponent: Shield, name: 'reliability', color: 'green' },
-                { IconComponent: Lightbulb, name: 'innovation', color: 'purple' },
-                { IconComponent: Users, name: 'customer', color: 'pink' },
-                { IconComponent: Globe, name: 'safety', color: 'cyan' }
-              ].map((value, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                  <div className="flex justify-center mb-6">
-                    <div className={`p-5 bg-${value.color}-100 dark:bg-${value.color}-900/30 rounded-2xl`}>
-                      <value.IconComponent className={`w-10 h-10 text-${value.color}-600 dark:text-${value.color}-400`} strokeWidth={2} />
-                    </div>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 text-center">
-                    {t(`about.values.items.${value.name}.title`)}
-                  </h3>
-                  <p className="text-gray-700 dark:text-gray-300 text-center leading-relaxed">
-                    {t(`about.values.items.${value.name}.description`)}
-                  </p>
+        {(() => {
+          const valueItems = t('about.values.items', { returnObjects: true }) as Record<string, { title: string; description: string }>;
+          const valueKeys = valueItems && typeof valueItems === 'object' ? Object.keys(valueItems) : [];
+          
+          if (valueKeys.length === 0) return null;
+          
+          // Icon mapping for values
+          const valueIconMap: { [key: string]: React.ElementType } = {
+            integrity: Target,
+            quality: Star,
+            reliability: Shield,
+            innovation: Lightbulb,
+            customer: Users,
+            safety: Shield,
+            value: TrendingUp
+          };
+          
+          return (
+            <section className="py-24">
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
+                  {t('about.values.title')}
+                </h2>
+                <p className="text-xl text-center text-gray-600 dark:text-gray-400 mb-16">
+                  {t('about.values.subtitle')}
+                </p>
+                <div className={`grid grid-cols-1 ${valueKeys.length <= 3 ? 'md:grid-cols-' + valueKeys.length : 'md:grid-cols-2 lg:grid-cols-3'} gap-8 max-w-6xl mx-auto`}>
+                  {valueKeys.map((key, index) => {
+                    const value = valueItems[key];
+                    if (!value || !value.title) return null;
+                    const IconComponent = valueIconMap[key] || Star;
+                    
+                    return (
+                      <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="p-3 bg-aviation-blue-100 dark:bg-aviation-blue-900/30 rounded-xl">
+                            <IconComponent className="w-6 h-6 text-[#0b6d94] dark:text-aviation-blue-400" strokeWidth={2} />
+                          </div>
+                          <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                            {value.title}
+                          </h3>
+                        </div>
+                        {value.description && (
+                          <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            {value.description}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Team Section */}
-        <section className="py-24 bg-gradient-to-br from-gray-50 to-sky-50 dark:from-gray-900 dark:to-sky-900/20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
-              {t('about.team.title')}
-            </h2>
-            <p className="text-xl text-center text-gray-600 dark:text-gray-400 mb-16">
-              {t('about.team.subtitle')}
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {['ceo', 'cto', 'sales'].map((member, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
-                  <div className="h-64 bg-gradient-to-br from-sky-500 to-cyan-500 flex items-center justify-center">
-                    <div className="p-8 bg-white/10 backdrop-blur-sm rounded-2xl">
-                      <UserCircle className="w-24 h-24 text-white" strokeWidth={1.5} />
-                    </div>
-                  </div>
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                      {t(`about.team.members.${member}.name`)}
-                    </h3>
-                    <p className="text-blue-600 dark:text-blue-400 font-semibold mb-4">
-                      {t(`about.team.members.${member}.position`)}
-                    </p>
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-                      {t(`about.team.members.${member}.bio`)}
-                    </p>
-                    <div className="flex gap-3">
-                      <a href="#" className="text-blue-600 hover:text-blue-700 dark:text-blue-400 transition-colors">
-                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
+        {(() => {
+          const teamMembers = t('about.team.members', { returnObjects: true }) as Record<string, { name: string; position: string; bio: string }>;
+          const memberKeys = teamMembers && typeof teamMembers === 'object' ? Object.keys(teamMembers) : [];
+          
+          if (memberKeys.length === 0) return null;
+          
+          return (
+            <section className="py-24 bg-gradient-to-br from-gray-50 to-sky-50 dark:from-gray-900 dark:to-sky-900/20">
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
+                  {t('about.team.title')}
+                </h2>
+                <p className="text-xl text-center text-gray-600 dark:text-gray-400 mb-16">
+                  {t('about.team.subtitle')}
+                </p>
+                <div className={`${memberKeys.length === 1 ? 'max-w-md mx-auto' : memberKeys.length === 2 ? 'grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto'}`}>
+                  {memberKeys.map((member, index) => {
+                    const memberData = teamMembers[member];
+                    if (!memberData || !memberData.name) return null;
+                    
+                    return (
+                      <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
+                        <div className="h-48 bg-gradient-to-br from-[#0b6d94] to-[#073d53] flex items-center justify-center">
+                          <div className="p-6 bg-white/10 backdrop-blur-sm rounded-full">
+                            <UserCircle className="w-20 h-20 text-white" strokeWidth={1.5} />
+                          </div>
+                        </div>
+                        <div className="p-8 text-center">
+                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                            {memberData.name}
+                          </h3>
+                          {memberData.position && (
+                            <p className="text-[#0b6d94] dark:text-aviation-blue-400 font-semibold mb-4">
+                              {memberData.position}
+                            </p>
+                          )}
+                          {memberData.bio && (
+                            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                              {memberData.bio}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Office Locations */}
         <section className="py-24 bg-white dark:bg-gray-800">
@@ -351,36 +398,54 @@ const About: React.FC = () => {
         </section>
 
         {/* Awards & Recognition */}
-        <section className="py-24 bg-gradient-to-br from-gray-50 to-sky-50 dark:from-gray-900 dark:to-sky-900/20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
-              {t('about.awards.title')}
-            </h2>
-            <p className="text-xl text-center text-gray-600 dark:text-gray-400 mb-16">
-              {t('about.awards.subtitle')}
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {['excellence', 'supplier', 'innovation', 'safety', 'service', 'growth'].map((award, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-3xl p-8 text-center shadow-xl hover:scale-105 transition-all duration-300 hover:shadow-2xl">
-                  <div className="flex justify-center mb-6">
-                    <div className="p-5 bg-gradient-to-br from-amber-100 to-yellow-100 dark:from-amber-900/30 dark:to-yellow-900/30 rounded-2xl">
-                      <Award className="w-12 h-12 text-amber-600 dark:text-amber-400" strokeWidth={2} />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                    {t(`about.awards.items.${award}.title`)}
-                  </h3>
-                  <p className="text-blue-600 dark:text-blue-400 font-semibold mb-3">
-                    {t(`about.awards.items.${award}.year`)}
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
-                    {t(`about.awards.items.${award}.issuer`)}
-                  </p>
+        {(() => {
+          const awardsItems = t('about.awards.items', { returnObjects: true }) as Record<string, { title: string; year: string; issuer: string }>;
+          const awardKeys = awardsItems && typeof awardsItems === 'object' ? Object.keys(awardsItems) : [];
+          
+          if (awardKeys.length === 0) return null;
+          
+          return (
+            <section className="py-24 bg-gradient-to-br from-gray-50 to-sky-50 dark:from-gray-900 dark:to-sky-900/20">
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
+                  {t('about.awards.title')}
+                </h2>
+                <p className="text-xl text-center text-gray-600 dark:text-gray-400 mb-16">
+                  {t('about.awards.subtitle')}
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                  {awardKeys.map((award, index) => {
+                    const awardData = awardsItems[award];
+                    if (!awardData || !awardData.title) return null;
+                    
+                    return (
+                      <div key={index} className="bg-white dark:bg-gray-800 rounded-3xl p-8 text-center shadow-xl hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+                        <div className="flex justify-center mb-6">
+                          <div className="p-5 bg-gradient-to-br from-amber-100 to-yellow-100 dark:from-amber-900/30 dark:to-yellow-900/30 rounded-2xl">
+                            <Award className="w-12 h-12 text-amber-600 dark:text-amber-400" strokeWidth={2} />
+                          </div>
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                          {awardData.title}
+                        </h3>
+                        {awardData.year && (
+                          <p className="text-blue-600 dark:text-blue-400 font-semibold mb-3">
+                            {awardData.year}
+                          </p>
+                        )}
+                        {awardData.issuer && (
+                          <p className="text-gray-600 dark:text-gray-400 text-sm">
+                            {awardData.issuer}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              </div>
+            </section>
+          );
+        })()}
 
         {/* Call to Action */}
         <section className="py-24 bg-gradient-to-r from-sky-500 via-sky-600 to-cyan-500">

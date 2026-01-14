@@ -5,6 +5,7 @@ import DarkModeToggle from './DarkModeToggle';
 import LanguageSelector from './LanguageSelector';
 import Logo from './Logo';
 import { useLoadingState } from '../contexts/LoadingStateContext';
+import { NAV_LINKS } from '../config/links';
 import '../styles/navbar-cinematic.css';
 
 const Navbar: React.FC = () => {
@@ -39,12 +40,12 @@ const Navbar: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   const navLinks = [
-    { path: '/', label: t('nav.home') },
-    { path: '/products', label: t('nav.products') },
-    { path: '/services', label: t('nav.services') },
-    { path: '/distributors', label: t('nav.distributors') },
-    { path: '/about', label: t('nav.about') },
-    { path: '/contacts', label: t('nav.contact') },
+    { path: NAV_LINKS.home, label: t('nav.home') },
+    { path: NAV_LINKS.products, label: t('nav.products') },
+    { path: NAV_LINKS.services, label: t('nav.services') },
+    { path: NAV_LINKS.distributors, label: t('nav.distributors') },
+    { path: NAV_LINKS.about, label: t('nav.about') },
+    { path: NAV_LINKS.contact, label: t('nav.contact') },
   ];
 
   return (

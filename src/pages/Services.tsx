@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { asMailtoHref, asTelHref, siteConfig } from '../config/siteConfig';
+import { DOWNLOAD_LINKS } from '../config/links';
 import { 
   Award, 
   Globe, 
@@ -366,14 +367,16 @@ const Services: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-6xl mx-auto">
               {[
-                { key: 'catalog', IconComponent: Book, color: 'red' },
-                { key: 'brochure', IconComponent: FileText, color: 'blue' },
-                { key: 'certifications', IconComponent: Award, color: 'amber' },
-                { key: 'capabilities', IconComponent: BarChart3, color: 'green' }
-              ].map(({ key, IconComponent, color }) => (
+                { key: 'catalog', IconComponent: Book, color: 'red', link: DOWNLOAD_LINKS.productCatalog },
+                { key: 'brochure', IconComponent: FileText, color: 'blue', link: DOWNLOAD_LINKS.companyBrochure },
+                { key: 'certifications', IconComponent: Award, color: 'amber', link: DOWNLOAD_LINKS.certifications },
+                { key: 'capabilities', IconComponent: BarChart3, color: 'green', link: DOWNLOAD_LINKS.capabilities }
+              ].map(({ key, IconComponent, color, link }) => (
                 <a
                   key={key}
-                  href="#"
+                  href={link || '#'}
+                  target={link ? '_blank' : undefined}
+                  rel={link ? 'noopener noreferrer' : undefined}
                   className="group bg-white dark:bg-gray-800 rounded-3xl p-8 text-center hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
                 >
                   <div className="flex justify-center mb-6">

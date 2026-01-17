@@ -355,67 +355,80 @@ const About: React.FC = () => {
             <p className="text-xl text-center text-gray-600 dark:text-gray-400 mb-16">
               {t('about.locations.subtitle')}
             </p>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {/* Main Office */}
-              <div className="bg-gradient-to-br from-sky-50 to-cyan-50 dark:from-sky-900/20 dark:to-cyan-900/20 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-3">
-                  <div className="p-3 bg-sky-500 rounded-xl">
-                    <MapPin className="w-7 h-7 text-white" strokeWidth={2} />
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2.5 bg-[#0b6d94]/10 dark:bg-[#0b6d94]/20 rounded-xl">
+                    <MapPin className="w-5 h-5 text-[#0b6d94] dark:text-aviation-blue-400" strokeWidth={2} />
                   </div>
-                  {t('about.locations.main.title')}
-                </h3>
-                <div className="space-y-6">
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    <strong className="block mb-2">{t('about.locations.main.address.label')}:</strong>
-                    {t('about.locations.main.address.street')}<br />
-                    {t('about.locations.main.address.city')}
-                  </p>
-                  {t('about.locations.main.contact.name') && (
-                    <p className="text-gray-700 dark:text-gray-300">
-                      <strong>{t('about.locations.main.contact.label')}:</strong> {t('about.locations.main.contact.name')}
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    {t('about.locations.main.title')}
+                  </h3>
+                </div>
+                
+                <div className="space-y-3 mb-6">
+                  <div>
+                    <span className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">{t('about.locations.main.address.label')}</span>
+                    <p className="text-gray-700 dark:text-gray-300 mt-1">
+                      {t('about.locations.main.address.street')}<br />
+                      {t('about.locations.main.address.city')}
                     </p>
-                  )}
-                  <p className="text-gray-700 dark:text-gray-300">
-                    <strong>{t('about.locations.main.phone.label')}:</strong> {t('about.locations.main.phone.number')}
-                  </p>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    <strong>{t('about.locations.main.email.label')}:</strong> {t('about.locations.main.email.address')}
-                  </p>
-                  <div className="pt-4">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.0763!2d55.3474!3d25.2477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d483bce5f2b%3A0x8c9c5c5c5c5c5c5c!2sAl%20Garhoud%2C%20Dubai!5e0!3m2!1sen!2sae"
-                      width="100%"
-                      height="250"
-                      style={{ border: 0, borderRadius: '16px' }}
-                      allowFullScreen
-                      loading="lazy"
-                      className="shadow-lg"
-                    ></iframe>
                   </div>
+                  {t('about.locations.main.contact.name') && (
+                    <div>
+                      <span className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">{t('about.locations.main.contact.label')}</span>
+                      <p className="text-gray-700 dark:text-gray-300 mt-1">{t('about.locations.main.contact.name')}</p>
+                    </div>
+                  )}
+                  <div>
+                    <span className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">{t('about.locations.main.phone.label')}</span>
+                    <p className="text-gray-700 dark:text-gray-300 mt-1">{t('about.locations.main.phone.number')}</p>
+                  </div>
+                  <div>
+                    <span className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">{t('about.locations.main.email.label')}</span>
+                    <p className="text-gray-700 dark:text-gray-300 mt-1">{t('about.locations.main.email.address')}</p>
+                  </div>
+                </div>
+                
+                <div className="rounded-xl overflow-hidden">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.0763!2d55.3474!3d25.2477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d483bce5f2b%3A0x8c9c5c5c5c5c5c5c!2sAl%20Garhoud%2C%20Dubai!5e0!3m2!1sen!2sae"
+                    width="100%"
+                    height="200"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                  ></iframe>
                 </div>
               </div>
 
               {/* Enquiry Contact */}
-              <div className="bg-gradient-to-br from-sky-50 to-cyan-50 dark:from-sky-900/20 dark:to-cyan-900/20 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-3">
-                  <div className="p-3 bg-cyan-500 rounded-xl">
-                    <Phone className="w-7 h-7 text-white" strokeWidth={2} />
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2.5 bg-[#0b6d94]/10 dark:bg-[#0b6d94]/20 rounded-xl">
+                    <Phone className="w-5 h-5 text-[#0b6d94] dark:text-aviation-blue-400" strokeWidth={2} />
                   </div>
-                  {t('about.locations.regional.title')}
-                </h3>
-                <div className="space-y-6">
-                  <p className="text-gray-700 dark:text-gray-300">
-                    <strong>{t('about.locations.regional.phone.label')}:</strong> {t('about.locations.regional.phone.number')}
-                  </p>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    <strong>{t('about.locations.regional.email.label')}:</strong> {t('about.locations.regional.email.address')}
-                  </p>
-                  <div className="pt-4 bg-white dark:bg-gray-700 rounded-2xl p-8 text-center">
-                    <div className="text-6xl mb-4">📞</div>
-                    <p className="text-lg text-gray-600 dark:text-gray-300">
-                      For enquiries and support, reach out to us via phone or email. Our team is ready to assist you.
-                    </p>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    {t('about.locations.regional.title')}
+                  </h3>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                    <span className="font-medium text-gray-900 dark:text-white min-w-[60px]">{t('about.locations.regional.phone.label')}:</span>
+                    <span>{t('about.locations.regional.phone.number')}</span>
                   </div>
+                  <div className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                    <span className="font-medium text-gray-900 dark:text-white min-w-[60px]">{t('about.locations.regional.email.label')}:</span>
+                    <span>{t('about.locations.regional.email.address')}</span>
+                  </div>
+                </div>
+                
+                <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700">
+                  <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+                    For enquiries and support, our team is ready to assist you.
+                  </p>
                 </div>
               </div>
             </div>
@@ -429,40 +442,57 @@ const About: React.FC = () => {
           
           if (awardKeys.length === 0) return null;
           
+          // Dynamic grid class based on number of items
+          const getGridClass = () => {
+            const count = awardKeys.length;
+            if (count === 1) return 'flex justify-center';
+            if (count === 2) return 'grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto';
+            if (count === 3) return 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto';
+            return 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto';
+          };
+          
           return (
-            <section className="py-24 bg-gradient-to-br from-gray-50 to-sky-50 dark:from-gray-900 dark:to-sky-900/20">
+            <section className="py-20 bg-gray-50 dark:bg-gray-900">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
-                  {t('about.awards.title')}
-                </h2>
-                <p className="text-xl text-center text-gray-600 dark:text-gray-400 mb-16">
-                  {t('about.awards.subtitle')}
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+                    {t('about.awards.title')}
+                  </h2>
+                  <p className="text-lg text-gray-600 dark:text-gray-400">
+                    {t('about.awards.subtitle')}
+                  </p>
+                </div>
+                
+                <div className={getGridClass()}>
                   {awardKeys.map((award, index) => {
                     const awardData = awardsItems[award];
                     if (!awardData || !awardData.title) return null;
                     
                     return (
-                      <div key={index} className="bg-white dark:bg-gray-800 rounded-3xl p-8 text-center shadow-xl hover:scale-105 transition-all duration-300 hover:shadow-2xl">
-                        <div className="flex justify-center mb-6">
-                          <div className="p-5 bg-gradient-to-br from-amber-100 to-yellow-100 dark:from-amber-900/30 dark:to-yellow-900/30 rounded-2xl">
-                            <Award className="w-12 h-12 text-amber-600 dark:text-amber-400" strokeWidth={2} />
+                      <div 
+                        key={index} 
+                        className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 dark:border-gray-700 max-w-sm w-full"
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
+                            <Award className="w-6 h-6 text-amber-600 dark:text-amber-400" strokeWidth={2} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-1 leading-tight">
+                              {awardData.title}
+                            </h3>
+                            {awardData.year && (
+                              <p className="text-sm font-medium text-[#0b6d94] dark:text-aviation-blue-400 mb-1">
+                                {awardData.year}
+                              </p>
+                            )}
+                            {awardData.issuer && (
+                              <p className="text-sm text-gray-500 dark:text-gray-400">
+                                {awardData.issuer}
+                              </p>
+                            )}
                           </div>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                          {awardData.title}
-                        </h3>
-                        {awardData.year && (
-                          <p className="text-blue-600 dark:text-blue-400 font-semibold mb-3">
-                            {awardData.year}
-                          </p>
-                        )}
-                        {awardData.issuer && (
-                          <p className="text-gray-600 dark:text-gray-400 text-sm">
-                            {awardData.issuer}
-                          </p>
-                        )}
                       </div>
                     );
                   })}

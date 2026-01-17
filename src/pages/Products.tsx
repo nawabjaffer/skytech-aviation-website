@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import SEOHead from '../components/SEOHead';
 import { Product } from '../config/googleSheets';
 import googleSheetsService from '../services/googleSheetsService';
+import { convertToDirectImageUrl } from '../utils/imageUrlConverter';
 
 // Category list
 const CATEGORIES = [
@@ -305,6 +306,12 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
+  const [imageError, setImageError] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  
+  // Convert cloud storage URLs to direct image URLs
+  const imageUrl = useMemo(() => convertToDirectImageUrl(product.imageUrl), [product.imageUrl]);
+  
   const getAvailabilityColor = (availability: string) => {
     switch (availability) {
       case 'In Stock':
@@ -325,11 +332,29 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
     >
       {/* Image */}
       <div className="relative h-48 bg-gray-200 dark:bg-gray-700 overflow-hidden">
-        <img
-          src={product.imageUrl}
-          alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-        />
+        {!imageLoaded && !imageError && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700">
+            <div className="animate-pulse w-12 h-12 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+          </div>
+        )}
+        {imageError ? (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
+            <svg className="w-16 h-16 text-gray-400 dark:text-gray-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span className="text-xs text-gray-500 dark:text-gray-400">Image unavailable</span>
+          </div>
+        ) : (
+          <img
+            src={imageUrl}
+            alt={product.name}
+            onLoad={() => setImageLoaded(true)}
+            onError={() => setImageError(true)}
+            className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+            loading="lazy"
+            referrerPolicy="no-referrer"
+          />
+        )}
         {/* Category Badge */}
         <div className="absolute top-3 left-3">
           <span className="px-3 py-1 bg-[#0b6d94] text-white text-xs font-semibold rounded-full">
@@ -385,6 +410,10 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, relatedPr
     company: '',
     message: '',
   });
+  const [imageError, setImageError] = useState(false);
+  
+  // Convert cloud storage URLs to direct image URLs
+  const imageUrl = useMemo(() => convertToDirectImageUrl(product.imageUrl), [product.imageUrl]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -428,11 +457,22 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, relatedPr
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             {/* Left Column - Image & Specs */}
             <div>
-              <img
-                src={product.imageUrl}
-                alt={product.name}
-                className="w-full h-64 object-cover rounded-lg mb-4"
-              />
+              {imageError ? (
+                <div className="w-full h-64 rounded-lg mb-4 flex flex-col items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
+                  <svg className="w-20 h-20 text-gray-400 dark:text-gray-500 mb-2\" fill=\"none\" viewBox=\"0 0 24 24\" stroke=\"currentColor\">
+                    <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={1.5} d=\"M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\" />
+                  </svg>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">Image unavailable</span>
+                </div>
+              ) : (
+                <img
+                  src={imageUrl}
+                  alt={product.name}
+                  onError={() => setImageError(true)}
+                  className="w-full h-64 object-cover rounded-lg mb-4"
+                  referrerPolicy="no-referrer"
+                />
+              )}
               <div className="flex gap-2 mb-4">
                 <span className="px-3 py-1 bg-[#0b6d94] text-white text-sm font-semibold rounded-full">
                   {product.category}

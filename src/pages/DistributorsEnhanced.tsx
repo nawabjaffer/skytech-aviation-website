@@ -66,8 +66,8 @@ const DistributorsEnhanced: React.FC = () => {
         ]);
         setDistributors(distributorsData);
         setTestimonials(testimonialsData);
-      } catch (error) {
-        console.error('Error loading data:', error);
+      } catch {
+        // Use default data on error
       } finally {
         setLoading(false);
       }

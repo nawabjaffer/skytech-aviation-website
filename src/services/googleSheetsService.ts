@@ -50,7 +50,6 @@ class GoogleSheetsService {
 
     // If no sheet ID configured, return default slides
     if (!googleSheetsConfig.sheetId) {
-      console.warn('Google Sheets not configured. Using default hero slides.');
       return DEFAULT_HERO_SLIDES;
     }
 
@@ -65,16 +64,12 @@ class GoogleSheetsService {
       };
 
       return slides;
-    } catch (error) {
-      console.error('Error fetching hero slides:', error);
-      
+    } catch {
       // Return cached data if available, otherwise use defaults
       if (this.heroCache) {
-        console.warn('Using cached hero slides due to fetch error');
         return this.heroCache.data;
       }
       
-      console.warn('Falling back to default hero slides');
       return DEFAULT_HERO_SLIDES;
     }
   }
@@ -93,10 +88,7 @@ class GoogleSheetsService {
 
     try {
       const rows = await this.fetchCsvData(SHEET_GIDS.stats);
-      console.log('✓ Loaded stats:', rows);
       const stats = this.parseStats(rows);
-
-      console.log('✓ Loaded stats:', stats);
       
       this.statsCache = {
         data: stats,
@@ -104,8 +96,7 @@ class GoogleSheetsService {
       };
 
       return stats;
-    } catch (error) {
-      console.error('Error fetching stats:', error);
+    } catch {
       return this.statsCache?.data || DEFAULT_STATS;
     }
   }
@@ -132,8 +123,7 @@ class GoogleSheetsService {
       };
 
       return testimonials;
-    } catch (error) {
-      console.error('Error fetching testimonials:', error);
+    } catch {
       return this.testimonialsCache?.data || DEFAULT_TESTIMONIALS;
     }
   }
@@ -160,8 +150,7 @@ class GoogleSheetsService {
       };
 
       return products;
-    } catch (error) {
-      console.error('Error fetching products:', error);
+    } catch {
       return this.productsCache?.data || DEFAULT_PRODUCTS;
     }
   }
@@ -188,8 +177,7 @@ class GoogleSheetsService {
       };
 
       return faqs;
-    } catch (error) {
-      console.error('Error fetching FAQs:', error);
+    } catch {
       return this.faqCache?.data || DEFAULT_FAQ;
     }
   }
@@ -242,14 +230,11 @@ class GoogleSheetsService {
 
     try {
       return await attempt(exportUrl);
-    } catch (error) {
+    } catch {
       try {
         return await attempt(gvizUrl);
       } catch (fallbackError) {
-        if (!this.warnedCsvGids.has(gid)) {
-          this.warnedCsvGids.add(gid);
-          console.warn('Google Sheets CSV fetch failed for gid:', gid, fallbackError);
-        }
+        this.warnedCsvGids.add(gid);
         throw fallbackError;
       }
     }
@@ -318,7 +303,6 @@ class GoogleSheetsService {
    */
   private parseHeroSlides(rows: any[][]): HeroSlide[] {
     if (!rows || rows.length === 0) {
-      console.warn('No data found in HeroSlides sheet');
       return DEFAULT_HERO_SLIDES;
     }
 
@@ -349,7 +333,6 @@ class GoogleSheetsService {
 
       // Validate required fields
       if (!id || !title || !mediaUrl) {
-        console.warn('Skipping hero slide row with missing required fields:', row);
         continue;
       }
 
@@ -374,7 +357,6 @@ class GoogleSheetsService {
 
     // Return defaults if no valid slides found
     if (slides.length === 0) {
-      console.warn('No valid slides found in Google Sheet, using defaults');
       return DEFAULT_HERO_SLIDES;
     }
     return slides;
@@ -571,8 +553,7 @@ class GoogleSheetsService {
       };
 
       return distributors;
-    } catch (error) {
-      console.error('Error fetching distributors:', error);
+    } catch {
       if (this.distributorsCache) {
         return this.distributorsCache.data;
       }
@@ -588,7 +569,6 @@ class GoogleSheetsService {
     const webAppUrl = googleSheetsConfig.webhookUrl || import.meta.env.VITE_GOOGLE_WEBAPP_URL;
     
     if (!webAppUrl) {
-      console.error('Google Apps Script Web App URL not configured');
       return {
         success: false,
         message: 'Form submission endpoint not configured. Please contact support.',
@@ -621,8 +601,7 @@ class GoogleSheetsService {
           message: response.data.message || 'Submission failed. Please try again.',
         };
       }
-    } catch (error) {
-      console.error('Error submitting distributor application:', error);
+    } catch {
       return {
         success: false,
         message: 'Failed to submit application. Please try again or contact support.',

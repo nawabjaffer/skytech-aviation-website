@@ -34,8 +34,7 @@ export function getStoredVersion(): AppVersion | null {
   try {
     const stored = localStorage.getItem(VERSION_KEY);
     return stored ? JSON.parse(stored) : null;
-  } catch (error) {
-    console.error('Failed to parse stored version:', error);
+  } catch {
     return null;
   }
 }
@@ -47,8 +46,8 @@ export function storeVersion(version: AppVersion): void {
   try {
     localStorage.setItem(VERSION_KEY, JSON.stringify(version));
     localStorage.setItem(LAST_CHECK_KEY, Date.now().toString());
-  } catch (error) {
-    console.error('Failed to store version:', error);
+  } catch {
+    // Silently fail if localStorage is unavailable
   }
 }
 
@@ -102,8 +101,6 @@ export async function clearAllCaches(): Promise<void> {
         return Promise.all(
           cacheNames.map(cacheName => caches.delete(cacheName))
         );
-      }).then(() => {
-        console.log('✓ Cache API cleared');
       })
     );
   }
@@ -121,17 +118,15 @@ export async function clearAllCaches(): Promise<void> {
     }
     
     keysToRemove.forEach(key => localStorage.removeItem(key));
-    console.log('✓ localStorage cleared (preserved user preferences)');
-  } catch (error) {
-    console.error('Failed to clear localStorage:', error);
+  } catch {
+    // Silently fail
   }
   
   // 3. Clear sessionStorage
   try {
     sessionStorage.clear();
-    console.log('✓ sessionStorage cleared');
-  } catch (error) {
-    console.error('Failed to clear sessionStorage:', error);
+  } catch {
+    // Silently fail
   }
   
   // 4. Unregister service workers (if needed for major updates)
@@ -145,8 +140,6 @@ export async function clearAllCaches(): Promise<void> {
             return registration.update();
           })
         );
-      }).then(() => {
-        console.log('✓ Service workers updated');
       })
     );
   }
@@ -167,31 +160,23 @@ export async function checkAndClearCache(): Promise<boolean> {
     // First time visitor or no stored version
     if (!storedVersion) {
       storeVersion(currentVersion);
-      console.log('First visit - version stored:', currentVersion);
       return false;
     }
     
     // Check if update is needed
     if (isVersionOutdated(currentVersion, storedVersion)) {
-      console.log('New version detected:', {
-        old: storedVersion,
-        new: currentVersion,
-      });
-      
       // Clear all caches
       await clearAllCaches();
       
       // Store new version
       storeVersion(currentVersion);
       
-      console.log('✓ Cache cleared successfully for new version');
       return true;
     }
     
     // No update needed
     return false;
-  } catch (error) {
-    console.error('Failed to check/clear cache:', error);
+  } catch {
     return false;
   }
 }
@@ -223,8 +208,7 @@ export async function checkServerVersion(): Promise<AppVersion | null> {
     }
     
     return await response.json();
-  } catch (error) {
-    console.error('Failed to check server version:', error);
+  } catch {
     return null;
   }
 }

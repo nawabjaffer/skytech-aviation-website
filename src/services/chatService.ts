@@ -72,9 +72,7 @@ class ChatService {
       });
 
       this.mergedFAQs = Array.from(mergedMap.values());
-      console.log(`✅ Loaded ${this.mergedFAQs.length} FAQs (${sheetFAQs.length} from Sheets, ${staticFAQs.length} static)`);
-    } catch (error) {
-      console.error('❌ Error loading FAQs:', error);
+    } catch {
       // Fallback to static FAQs only
       this.mergedFAQs = chatbotKnowledge.faq.map((faq, index) => ({
         id: `static-${index + 1}`,
@@ -99,7 +97,6 @@ class ChatService {
       // Check if Ollama is available first
       const isAvailable = await this.checkOllamaStatus();
       if (!isAvailable) {
-        console.warn('⚠️ Ollama is not running. Chatbot will use fallback responses.');
         this.isInitialized = true;
         return;
       }
@@ -115,11 +112,9 @@ class ChatService {
       this.memory = [];
 
       this.isInitialized = true;
-      console.log('✅ Ollama chatbot initialized successfully with llama3.2');
-    } catch (error) {
-      console.error('❌ Failed to initialize Ollama:', error);
+    } catch {
       this.isInitialized = true;
-      console.warn('⚠️ Chatbot will use fallback responses');
+      // Chatbot will use fallback responses
     }
   }
 
@@ -247,9 +242,7 @@ class ChatService {
       }
 
       return aiMessage || 'I apologize, but I could not generate a response. Please try again.';
-    } catch (error: any) {
-      console.error('Error getting chatbot response:', error);
-      
+    } catch {
       // Fall back to knowledge base response
       return this.getKnowledgeBaseResponse(message);
     }

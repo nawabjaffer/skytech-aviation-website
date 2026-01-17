@@ -17,8 +17,7 @@ const useChatbot = () => {
     try {
       const botResponse = await fetchResponse(userMessage);
       setMessages((prevMessages) => [...prevMessages, { text: botResponse, isUser: false }]);
-    } catch (error) {
-      console.error('Error fetching chatbot response:', error);
+    } catch {
       setMessages((prevMessages) => [...prevMessages, { text: 'Sorry, something went wrong.', isUser: false }]);
     } finally {
       setLoading(false);

@@ -51,7 +51,6 @@ class VideoPreloader {
         if (timeoutId) clearTimeout(timeoutId);
         cleanup();
         this.preloadedVideos.set(url, { video, cleanup: () => this.cleanupVideo(url) });
-        console.log(`✓ Video preloaded: ${url.substring(0, 50)}...`);
         resolve({ url, loaded: true });
       };
 
@@ -60,7 +59,6 @@ class VideoPreloader {
         resolved = true;
         if (timeoutId) clearTimeout(timeoutId);
         cleanup();
-        console.warn(`✗ Failed to preload video: ${url}`);
         resolve({ url, loaded: false, error: 'Failed to load' });
       };
       
@@ -78,7 +76,6 @@ class VideoPreloader {
           resolved = true;
           cleanup();
           this.preloadedVideos.set(url, { video, cleanup: () => this.cleanupVideo(url) });
-          console.log(`⏱ Video partially preloaded (timeout): ${url.substring(0, 50)}...`);
           resolve({ url, loaded: true });
         }
       }, 5000);
@@ -96,18 +93,14 @@ class VideoPreloader {
    */
   async preloadVideos(urls: string[]): Promise<PreloadResult[]> {
     if (this.isPreloading) {
-      console.log('Video preloading already in progress');
       return [];
     }
 
     this.isPreloading = true;
-    console.log(`📹 Preloading ${urls.length} videos...`);
 
     const results = await Promise.all(urls.map(url => this.preloadVideo(url)));
     
     this.isPreloading = false;
-    const successful = results.filter(r => r.loaded).length;
-    console.log(`✓ Video preloading complete: ${successful}/${urls.length} loaded`);
     
     return results;
   }
@@ -173,11 +166,9 @@ export async function preloadHeroVideos(): Promise<void> {
 
     if (videoUrls.length > 0) {
       await videoPreloader.preloadVideos(videoUrls);
-    } else {
-      console.log('No hero videos to preload');
     }
-  } catch (error) {
-    console.warn('Failed to preload hero videos:', error);
+  } catch {
+    // Silently handle preload errors
   }
 }
 

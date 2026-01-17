@@ -72,8 +72,8 @@ const ChatbotWidget: React.FC = () => {
           };
           setMessages([welcomeMsg]);
         }
-      }).catch(error => {
-        console.error('Failed to initialize chat service:', error);
+      }).catch(() => {
+        // Silently handle initialization failure
       });
     }
   }, [isOpen, isInitialized, messages.length, t]);
@@ -102,8 +102,7 @@ const ChatbotWidget: React.FC = () => {
       };
 
       setMessages(prev => [...prev, botMessage]);
-    } catch (error) {
-      console.error('Error sending message:', error);
+    } catch {
       const errorMessage: Message = {
         text: t('chat.error'),
         isUser: false,

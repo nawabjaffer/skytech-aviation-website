@@ -16,8 +16,8 @@ const TestimonialsCarousel: React.FC = () => {
       try {
         const data = await googleSheetsService.getTestimonials();
         setTestimonials(data);
-      } catch (error) {
-        console.error('Error loading testimonials:', error);
+      } catch {
+        // Use default testimonials on error
       } finally {
         setLoading(false);
       }

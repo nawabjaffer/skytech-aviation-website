@@ -8,8 +8,7 @@ export const sendMessageToLLM = async (message: string) => {
       prompt: message,
     });
     return response.data;
-  } catch (error) {
-    console.error('Error communicating with LLM:', error);
+  } catch {
     throw new Error('Failed to get a response from the chatbot.');
   }
 };

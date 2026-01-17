@@ -41,16 +41,12 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
     const initializeResources = async () => {
       try {
         // Start cache check and video preloading in parallel
-        const [cacheResult] = await Promise.all([
+        await Promise.all([
           initVersionCheck(),
           preloadHeroVideos() // Preload hero videos during loading screen
         ]);
-        
-        if (cacheResult.updated) {
-          console.log('✓ Cache cleared - fresh content loaded');
-        }
-      } catch (error) {
-        console.error('Resource initialization failed:', error);
+      } catch {
+        // Silently handle initialization errors
       }
     };
     initializeResources();

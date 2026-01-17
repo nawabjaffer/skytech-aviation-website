@@ -95,8 +95,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
         } else {
           setLoading(false);
         }
-      } catch (error) {
-        console.error('Error loading hero slides:', error);
+      } catch {
         setLoading(false);
       }
     };
@@ -123,7 +122,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
       // Auto-play video when it becomes active
       const videoEl = videoRefs.current.get(nextIndex);
       if (videoEl && slides[nextIndex]?.mediaType === 'video') {
-        videoEl.play().catch(err => console.log('Video autoplay prevented:', err));
+        videoEl.play().catch(() => { /* Autoplay may be prevented by browser */ });
       }
     }, CAROUSEL_TIMING.transitionDuration);
   }, [slides, currentIndex, videosLoaded]);
@@ -147,7 +146,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
       // Auto-play video when it becomes active
       const videoEl = videoRefs.current.get(prevIndex);
       if (videoEl && slides[prevIndex]?.mediaType === 'video') {
-        videoEl.play().catch(err => console.log('Video autoplay prevented:', err));
+        videoEl.play().catch(() => { /* Autoplay may be prevented by browser */ });
       }
     }, CAROUSEL_TIMING.transitionDuration);
   }, [slides, currentIndex, videosLoaded]);
@@ -171,7 +170,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
       // Auto-play video when it becomes active
       const videoEl = videoRefs.current.get(index);
       if (videoEl && slides[index]?.mediaType === 'video') {
-        videoEl.play().catch(err => console.log('Video autoplay prevented:', err));
+        videoEl.play().catch(() => { /* Autoplay may be prevented by browser */ });
       }
     }, CAROUSEL_TIMING.transitionDuration);
   };
@@ -284,7 +283,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
                   if (index === currentIndex) {
                     const videoEl = videoRefs.current.get(index);
                     if (videoEl) {
-                      videoEl.play().catch(err => console.log('Video autoplay prevented:', err));
+                      videoEl.play().catch(() => { /* Autoplay may be prevented by browser */ });
                     }
                   }
                 }}

@@ -94,8 +94,8 @@ const StatsSection: React.FC = () => {
       try {
         const data = await googleSheetsService.getStats();
         setStats(data);
-      } catch (error) {
-        console.error('Error loading stats:', error);
+      } catch {
+        // Use default stats on error
       } finally {
         setLoading(false);
       }

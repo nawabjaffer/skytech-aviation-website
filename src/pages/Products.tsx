@@ -36,8 +36,8 @@ const Products: React.FC = () => {
       try {
         const data = await googleSheetsService.getProducts();
         setProducts(data);
-      } catch (error) {
-        console.error('Error loading products:', error);
+      } catch {
+        // Silently handle error - products will use default data
       } finally {
         setLoading(false);
       }
@@ -237,9 +237,9 @@ const Products: React.FC = () => {
               ) : (
                 <>
                   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                    {paginatedProducts.map((product) => (
+                    {paginatedProducts.map((product, index) => (
                       <ProductCard
-                        key={product.id}
+                        key={`${product.id}-${index}`}
                         product={product}
                         onClick={() => setSelectedProduct(product)}
                       />
@@ -582,10 +582,6 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose, relatedPr
                       // Replace current product with related product
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                       onClose();
-                      setTimeout(() => {
-                        // This would need to be handled by parent component
-                        console.log('Navigate to:', related.name);
-                      }, 300);
                     }}
                   >
                     <img src={related.imageUrl} alt={related.name} className="w-full h-32 object-cover rounded mb-2" />

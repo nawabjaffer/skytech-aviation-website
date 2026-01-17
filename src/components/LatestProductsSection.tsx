@@ -219,8 +219,8 @@ const LatestProductsSection: React.FC = () => {
         const data = await googleSheetsService.getProducts();
         // Get more products for carousel effect
         setProducts(data.slice(0, 8));
-      } catch (error) {
-        console.error('Error loading products:', error);
+      } catch {
+        // Silently handle error - products section will show default state
       } finally {
         setLoading(false);
       }

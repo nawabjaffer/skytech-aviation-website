@@ -38,12 +38,10 @@ const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
         
         if (result.updated) {
           setCacheStatus('cleared');
-          console.log('✓ Cache cleared - fresh content loaded');
         } else {
           setCacheStatus('current');
         }
-      } catch (error) {
-        console.error('Cache check failed:', error);
+      } catch {
         setCacheStatus('current'); // Continue anyway
       }
     };

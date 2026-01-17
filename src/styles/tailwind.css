@@ -60,6 +60,23 @@
   img {
     @apply max-w-full h-auto;
   }
+  
+  /* Smooth global transitions */
+  *, *::before, *::after {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Optimize animations for performance */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  
+  /* GPU acceleration for smooth animations */
+  .will-change-transform {
+    will-change: transform;
+  }
 }
 
 /* Custom component styles */

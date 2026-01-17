@@ -180,32 +180,35 @@ const TrackRecordsSection: React.FC = () => {
               </div>
               
               {/* Infinite Scrolling Carousel - Left to Right */}
-              <div className="relative overflow-hidden py-4">
+              <div className="relative overflow-hidden py-6">
                 {/* Fade edges */}
-                <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
-                <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
                 
                 <div className="carousel-track-left">
                   {repeatedPartners.map((partner, index) => (
                     <div
                       key={index}
-                      className="carousel-item flex-shrink-0 flex items-center justify-center px-12 py-4"
+                      className="carousel-item flex-shrink-0 flex items-center justify-center px-10 py-3 min-w-[180px]"
                     >
                       {partner.logo ? (
                         <img
                           src={partner.logo}
                           alt={partner.name}
-                          className="h-10 w-auto object-contain opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110"
+                          title={partner.name}
+                          className="h-8 max-w-[140px] w-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 ease-out hover:scale-110"
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
                           onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                            if (e.currentTarget.nextElementSibling) {
-                              (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'block';
-                            }
+                            const target = e.currentTarget;
+                            target.style.display = 'none';
+                            const fallback = target.nextElementSibling as HTMLElement;
+                            if (fallback) fallback.style.display = 'block';
                           }}
                         />
                       ) : null}
                       <span 
-                        className="text-lg font-semibold text-gray-500 dark:text-gray-400 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-300"
+                        className="text-base font-medium text-gray-400 dark:text-gray-500 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-500"
                         style={{ display: partner.logo ? 'none' : 'block' }}
                       >
                         {partner.name}
@@ -237,32 +240,35 @@ const TrackRecordsSection: React.FC = () => {
               </div>
               
               {/* Infinite Scrolling Carousel - Right to Left (opposite direction) */}
-              <div className="relative overflow-hidden py-4">
+              <div className="relative overflow-hidden py-6">
                 {/* Fade edges */}
-                <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
-                <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
                 
                 <div className="carousel-track-right">
                   {repeatedDistributors.map((partner, index) => (
                     <div
                       key={index}
-                      className="carousel-item flex-shrink-0 flex items-center justify-center px-12 py-4"
+                      className="carousel-item flex-shrink-0 flex items-center justify-center px-10 py-3 min-w-[180px]"
                     >
                       {partner.logo ? (
                         <img
                           src={partner.logo}
                           alt={partner.name}
-                          className="h-10 w-auto object-contain opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110"
+                          title={partner.name}
+                          className="h-8 max-w-[140px] w-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 ease-out hover:scale-110"
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
                           onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                            if (e.currentTarget.nextElementSibling) {
-                              (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'block';
-                            }
+                            const target = e.currentTarget;
+                            target.style.display = 'none';
+                            const fallback = target.nextElementSibling as HTMLElement;
+                            if (fallback) fallback.style.display = 'block';
                           }}
                         />
                       ) : null}
                       <span 
-                        className="text-lg font-semibold text-gray-500 dark:text-gray-400 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-300"
+                        className="text-base font-medium text-gray-400 dark:text-gray-500 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-500"
                         style={{ display: partner.logo ? 'none' : 'block' }}
                       >
                         {partner.name}
@@ -281,14 +287,15 @@ const TrackRecordsSection: React.FC = () => {
           .carousel-track-right {
             display: flex;
             width: fit-content;
+            will-change: transform;
           }
           
           .carousel-track-left {
-            animation: scroll-left 25s linear infinite;
+            animation: scroll-left 60s linear infinite;
           }
           
           .carousel-track-right {
-            animation: scroll-right 25s linear infinite;
+            animation: scroll-right 60s linear infinite;
           }
           
           .carousel-track-left:hover,
@@ -298,24 +305,24 @@ const TrackRecordsSection: React.FC = () => {
           
           @keyframes scroll-left {
             0% {
-              transform: translateX(0);
+              transform: translate3d(0, 0, 0);
             }
             100% {
-              transform: translateX(-50%);
+              transform: translate3d(-50%, 0, 0);
             }
           }
           
           @keyframes scroll-right {
             0% {
-              transform: translateX(-50%);
+              transform: translate3d(-50%, 0, 0);
             }
             100% {
-              transform: translateX(0);
+              transform: translate3d(0, 0, 0);
             }
           }
           
           .carousel-item {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           }
         `}</style>
       </div>

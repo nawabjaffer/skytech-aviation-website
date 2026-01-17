@@ -10,8 +10,13 @@ interface PreloadResult {
   error?: string;
 }
 
+interface VideoEntry {
+  video: HTMLVideoElement;
+  cleanup: () => void;
+}
+
 class VideoPreloader {
-  private preloadedVideos: Map<string, HTMLVideoElement> = new Map();
+  private preloadedVideos: Map<string, VideoEntry> = new Map();
   private preloadPromises: Map<string, Promise<PreloadResult>> = new Map();
   private isPreloading = false;
 
@@ -37,24 +42,42 @@ class VideoPreloader {
       video.setAttribute('muted', '');
       video.setAttribute('playsinline', '');
       
+      let resolved = false;
+      let timeoutId: ReturnType<typeof setTimeout> | null = null;
+      
       const handleSuccess = () => {
-        this.preloadedVideos.set(url, video);
+        if (resolved) return;
+        resolved = true;
+        if (timeoutId) clearTimeout(timeoutId);
+        cleanup();
+        this.preloadedVideos.set(url, { video, cleanup: () => this.cleanupVideo(url) });
         console.log(`✓ Video preloaded: ${url.substring(0, 50)}...`);
         resolve({ url, loaded: true });
       };
 
-      const handleError = (e: Event) => {
-        console.warn(`✗ Failed to preload video: ${url}`, e);
+      const handleError = () => {
+        if (resolved) return;
+        resolved = true;
+        if (timeoutId) clearTimeout(timeoutId);
+        cleanup();
+        console.warn(`✗ Failed to preload video: ${url}`);
         resolve({ url, loaded: false, error: 'Failed to load' });
+      };
+      
+      const cleanup = () => {
+        video.removeEventListener('canplaythrough', handleSuccess);
+        video.removeEventListener('error', handleError);
       };
 
       video.addEventListener('canplaythrough', handleSuccess, { once: true });
       video.addEventListener('error', handleError, { once: true });
       
       // Fallback timeout - consider it loaded after 5 seconds even if not fully buffered
-      setTimeout(() => {
-        if (!this.preloadedVideos.has(url)) {
-          this.preloadedVideos.set(url, video);
+      timeoutId = setTimeout(() => {
+        if (!resolved) {
+          resolved = true;
+          cleanup();
+          this.preloadedVideos.set(url, { video, cleanup: () => this.cleanupVideo(url) });
           console.log(`⏱ Video partially preloaded (timeout): ${url.substring(0, 50)}...`);
           resolve({ url, loaded: true });
         }
@@ -93,7 +116,7 @@ class VideoPreloader {
    * Get a preloaded video element (for reuse)
    */
   getPreloadedVideo(url: string): HTMLVideoElement | undefined {
-    return this.preloadedVideos.get(url);
+    return this.preloadedVideos.get(url)?.video;
   }
 
   /**
@@ -102,17 +125,33 @@ class VideoPreloader {
   isPreloaded(url: string): boolean {
     return this.preloadedVideos.has(url);
   }
+  
+  /**
+   * Clean up a single video to free memory
+   */
+  private cleanupVideo(url: string): void {
+    const entry = this.preloadedVideos.get(url);
+    if (entry) {
+      entry.video.pause();
+      entry.video.src = '';
+      entry.video.load();
+      this.preloadedVideos.delete(url);
+      this.preloadPromises.delete(url);
+    }
+  }
 
   /**
    * Clear all preloaded videos (for memory management)
    */
   clear(): void {
-    this.preloadedVideos.forEach(video => {
-      video.src = '';
-      video.load();
+    this.preloadedVideos.forEach((entry) => {
+      entry.video.pause();
+      entry.video.src = '';
+      entry.video.load();
     });
     this.preloadedVideos.clear();
     this.preloadPromises.clear();
+    this.isPreloading = false;
   }
 }
 

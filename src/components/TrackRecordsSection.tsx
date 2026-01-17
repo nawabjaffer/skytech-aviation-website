@@ -291,11 +291,11 @@ const TrackRecordsSection: React.FC = () => {
           }
           
           .carousel-track-left {
-            animation: scroll-left 60s linear infinite;
+            animation: scroll-left 90s linear infinite;
           }
           
           .carousel-track-right {
-            animation: scroll-right 60s linear infinite;
+            animation: scroll-right 90s linear infinite;
           }
           
           .carousel-track-left:hover,

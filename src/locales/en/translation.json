@@ -132,16 +132,16 @@
       ],
       "trustedGloballyLabel": "Trusted Globally By",
       "trustedGloballyBy": [
-        { "name": "Air Works", "logo": "https://www.airworks.aero/wp-content/uploads/2021/04/airworks-logo.png" },
+        { "name": "Air Works" },
         { "name": "Air Arabia", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Air_Arabia_Logo.svg/512px-Air_Arabia_Logo.svg.png" },
         { "name": "SpiceJet", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/SpiceJet_logo.svg/512px-SpiceJet_logo.svg.png" },
-        { "name": "FLY91", "logo": "https://www.fly91.com/images/logo.png" },
+        { "name": "FLY91" },
         { "name": "SriLankan Airlines", "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4a/SriLankan_Airlines_logo.svg/512px-SriLankan_Airlines_logo.svg.png" },
-        { "name": "Southwind Airlines", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Southwind_Airlines_logo.svg/512px-Southwind_Airlines_logo.svg.png" },
+        { "name": "Southwind Airlines" },
         { "name": "Cebu Pacific", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Cebu_Pacific_Air_logo.svg/512px-Cebu_Pacific_Air_logo.svg.png" },
         { "name": "AirAsia", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/AirAsia_New_Logo.svg/512px-AirAsia_New_Logo.svg.png" },
-        { "name": "Skydive Dubai", "logo": "https://www.skydivedubai.ae/themes/skydivedubai/images/logo.png" },
-        { "name": "EDGE Group", "logo": "https://edgegroup.ae/themes/starter/images/edge-logo.svg" }
+        { "name": "Skydive Dubai" },
+        { "name": "EDGE Group" }
       ],
       "distributorPartnersLabel": "Our Distributor Partners",
       "distributorPartners": [
@@ -149,9 +149,9 @@
         { "name": "Michelin", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Michelin_logo.svg/512px-Michelin_logo.svg.png" },
         { "name": "ExxonMobil", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/ExxonMobil_Logo.svg/512px-ExxonMobil_Logo.svg.png" },
         { "name": "Honeywell", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Honeywell_logo.svg/512px-Honeywell_logo.svg.png" },
-        { "name": "Diamond Aircraft", "logo": "https://www.diamondaircraft.com/wp-content/uploads/2020/12/diamond-logo.svg" },
+        { "name": "Diamond Aircraft" },
         { "name": "3M", "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/3M_wordmark.svg/512px-3M_wordmark.svg.png" },
-        { "name": "Tronair", "logo": "https://www.tronair.com/images/tronair-logo.png" }
+        { "name": "Tronair" }
       ],
       "achievements": []
     },

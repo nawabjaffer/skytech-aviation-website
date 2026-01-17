@@ -92,7 +92,7 @@ export const COMPANY_INFO = {
     country: 'United Arab Emirates',
     full: 'Meydan Free Zone, The Meydan Hotel, Dubai, UAE'
   },
-  asaMemberSince: '2015',
+  asaMemberSince: '2022',
 } as const;
 
 // ==================== REQUEST QUOTE CONFIG ====================

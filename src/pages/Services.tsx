@@ -276,7 +276,7 @@ const Services: React.FC = () => {
 
         {/* Support Channels */}
         <section className="py-20 bg-white dark:bg-gray-800">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
                 {t('services.support.title')}
@@ -286,67 +286,88 @@ const Services: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* 24/7 Hotline */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-8 text-center">
-                <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-6 text-center">
+                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                   {t('services.support.channels.hotline.title')}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                   {t('services.support.channels.hotline.description')}
                 </p>
-                <a href={asTelHref(siteConfig.contact.primaryPhone)} className="text-2xl font-bold text-blue-600 dark:text-blue-400 hover:underline">
+                <a href={asTelHref(siteConfig.contact.primaryPhone)} className="text-lg font-bold text-blue-600 dark:text-blue-400 hover:underline">
                   {t('services.support.channels.hotline.number')}
                 </a>
-                <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
+                <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
                   {t('services.support.channels.hotline.availability')}
                 </p>
               </div>
 
               {/* Email Support */}
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-2xl p-8 text-center">
-                <div className="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-2xl p-6 text-center">
+                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                   {t('services.support.channels.email.title')}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                   {t('services.support.channels.email.description')}
                 </p>
-                <a href={asMailtoHref(siteConfig.contact.supportEmail || siteConfig.contact.primaryEmail)} className="text-xl font-bold text-purple-600 dark:text-purple-400 hover:underline break-all">
+                <a href={asMailtoHref(siteConfig.contact.supportEmail || siteConfig.contact.primaryEmail)} className="text-lg font-bold text-purple-600 dark:text-purple-400 hover:underline break-all">
                   {t('services.support.channels.email.address')}
                 </a>
-                <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
+                <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
                   {t('services.support.channels.email.responseTime')}
                 </p>
               </div>
 
-              {/* Live Chat */}
-              <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-2xl p-8 text-center">
-                <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {/* Sales Inquiries */}
+              <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-2xl p-6 text-center">
+                <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                   {t('services.support.channels.chat.title')}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                   {t('services.support.channels.chat.description')}
                 </p>
-                <button className="px-8 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition-colors">
+                <a href="mailto:enquiry@skytech.ae" className="px-6 py-2 bg-green-600 text-white text-sm font-bold rounded-lg hover:bg-green-700 transition-colors inline-block">
                   {t('services.support.channels.chat.button')}
-                </button>
-                <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
+                </a>
+                <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
                   {t('services.support.channels.chat.availability')}
+                </p>
+              </div>
+
+              {/* Career Opportunities */}
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-2xl p-6 text-center">
+                <div className="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  {t('services.support.channels.careers.title')}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                  {t('services.support.channels.careers.description')}
+                </p>
+                <a href="mailto:hr@skytech.ae" className="px-6 py-2 bg-orange-600 text-white text-sm font-bold rounded-lg hover:bg-orange-700 transition-colors inline-block">
+                  {t('services.support.channels.careers.button')}
+                </a>
+                <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
+                  {t('services.support.channels.careers.availability')}
                 </p>
               </div>
             </div>

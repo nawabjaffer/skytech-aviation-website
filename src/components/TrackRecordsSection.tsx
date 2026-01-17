@@ -8,13 +8,18 @@ import {
   Clock, 
   Award,
   CheckCircle2,
-  Plane
+  Plane,
+  Calendar
 } from 'lucide-react';
 
 const TrackRecordsSection: React.FC = () => {
   const { t } = useTranslation();
 
   const trackRecords = [
+    {
+      key: 'years',
+      icon: Calendar
+    },
     {
       key: 'deliveries',
       icon: Package
@@ -26,10 +31,6 @@ const TrackRecordsSection: React.FC = () => {
     {
       key: 'countries',
       icon: Globe
-    },
-    {
-      key: 'response',
-      icon: Clock
     }
   ];
 
@@ -160,20 +161,20 @@ const TrackRecordsSection: React.FC = () => {
           ) : null;
         })()}
 
-        {/* Shipping Partners */}
+        {/* Trusted Globally By */}
         {(() => {
-          const shippingPartners = t('home.trackRecords.shippingPartners', { returnObjects: true }) as Array<{ name: string; logo?: string }>;
-          if (!shippingPartners || shippingPartners.length === 0) return null;
+          const trustedPartners = t('home.trackRecords.trustedGloballyBy', { returnObjects: true }) as Array<{ name: string; logo?: string }>;
+          if (!trustedPartners || trustedPartners.length === 0) return null;
           
           // Create enough duplicates for seamless infinite scroll
-          const repeatedPartners = [...shippingPartners, ...shippingPartners, ...shippingPartners, ...shippingPartners, ...shippingPartners, ...shippingPartners, ...shippingPartners, ...shippingPartners];
+          const repeatedPartners = [...trustedPartners, ...trustedPartners, ...trustedPartners, ...trustedPartners, ...trustedPartners, ...trustedPartners, ...trustedPartners, ...trustedPartners];
           
           return (
             <div className="mt-12 pt-12 border-t border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-center gap-4 mb-8">
                 <div className="h-px w-12 bg-gradient-to-r from-transparent to-gray-300 dark:to-gray-600"></div>
                 <h2 className="font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em]">
-                  {t('home.trackRecords.shippingPartnerLabel', 'Our Trusted Shipping Partner')}
+                  {t('home.trackRecords.trustedGloballyLabel', 'Trusted Globally By')}
                 </h2>
                 <div className="h-px w-12 bg-gradient-to-l from-transparent to-gray-300 dark:to-gray-600"></div>
               </div>

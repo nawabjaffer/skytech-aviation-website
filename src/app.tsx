@@ -65,7 +65,7 @@ const AppContent = () => {
               <Route path="/about" element={<About />} />
               <Route path="/products" element={<Products />} />
               <Route path="/services" element={<Services />} />
-              <Route path="/contacts" element={<Contacts />} />
+              <Route path="/contact" element={<Contacts />} />
               {/* Catch-all route for 404 pages */}
               <Route path="*" element={<NotFound />} />
             </Routes>

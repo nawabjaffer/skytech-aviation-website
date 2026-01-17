@@ -13,7 +13,8 @@ import {
   UserCircle,
   MapPin,
   TrendingUp,
-  CheckCircle2
+  CheckCircle2,
+  Phone
 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 
@@ -103,11 +104,11 @@ const About: React.FC = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <div className="flex flex-col md:flex-row items-center gap-12">
               <div className="flex-1">
-                <div className="rounded-2xl p-8 flex items-center justify-center shadow-2xl">
+                <div className="rounded-2xl p-8 flex items-center justify-center bg-white/10 backdrop-blur-sm">
                   <img 
                     src="https://www.aviationsuppliers.org/images/ASA-logo-wt.png" 
                     alt="ASA Logo" 
-                    className="w-full max-w-xs"
+                    className="w-full max-w-[220px]"
                   />
                 </div>
               </div>
@@ -266,7 +267,7 @@ const About: React.FC = () => {
 
         {/* Team Section */}
         {(() => {
-          const teamMembers = t('about.team.members', { returnObjects: true }) as Record<string, { name: string; position: string; bio: string }>;
+          const teamMembers = t('about.team.members', { returnObjects: true }) as Record<string, { name: string; position: string; bio: string; photo?: string; linkedin?: string }>;
           const memberKeys = teamMembers && typeof teamMembers === 'object' ? Object.keys(teamMembers) : [];
           
           if (memberKeys.length === 0) return null;
@@ -285,10 +286,26 @@ const About: React.FC = () => {
                     const memberData = teamMembers[member];
                     if (!memberData || !memberData.name) return null;
                     
+                    // CEO specific data
+                    const ceoPhoto = member === 'ceo' ? '/images/ceo-mohamed-yaseen.jpg' : memberData.photo;
+                    const ceoLinkedIn = member === 'ceo' ? 'https://ae.linkedin.com/in/mohamed-yaseen-80298b68' : memberData.linkedin;
+                    
                     return (
                       <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
-                        <div className="h-48 bg-gradient-to-br from-[#0b6d94] to-[#073d53] flex items-center justify-center">
-                          <div className="p-6 bg-white/10 backdrop-blur-sm rounded-full">
+                        <div className="h-56 bg-gradient-to-br from-[#0b6d94] to-[#073d53] flex items-center justify-center relative overflow-hidden">
+                          {ceoPhoto ? (
+                            <img 
+                              src={ceoPhoto} 
+                              alt={memberData.name}
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                                if (fallback) fallback.style.display = 'flex';
+                              }}
+                            />
+                          ) : null}
+                          <div className={`p-6 bg-white/10 backdrop-blur-sm rounded-full ${ceoPhoto ? 'hidden' : 'flex'}`}>
                             <UserCircle className="w-20 h-20 text-white" strokeWidth={1.5} />
                           </div>
                         </div>
@@ -302,9 +319,22 @@ const About: React.FC = () => {
                             </p>
                           )}
                           {memberData.bio && (
-                            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                            <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
                               {memberData.bio}
                             </p>
+                          )}
+                          {ceoLinkedIn && (
+                            <a 
+                              href={ceoLinkedIn}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center w-10 h-10 bg-[#0077b5] text-white rounded-full hover:bg-[#006097] hover:scale-110 transition-all duration-300"
+                              title="Connect on LinkedIn"
+                            >
+                              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                              </svg>
+                            </a>
                           )}
                         </div>
                       </div>
@@ -340,6 +370,11 @@ const About: React.FC = () => {
                     {t('about.locations.main.address.street')}<br />
                     {t('about.locations.main.address.city')}
                   </p>
+                  {t('about.locations.main.contact.name') && (
+                    <p className="text-gray-700 dark:text-gray-300">
+                      <strong>{t('about.locations.main.contact.label')}:</strong> {t('about.locations.main.contact.name')}
+                    </p>
+                  )}
                   <p className="text-gray-700 dark:text-gray-300">
                     <strong>{t('about.locations.main.phone.label')}:</strong> {t('about.locations.main.phone.number')}
                   </p>
@@ -348,7 +383,7 @@ const About: React.FC = () => {
                   </p>
                   <div className="pt-4">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462560.6828072805!2d54.89782999414062!3d25.076280535204924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai!5e0!3m2!1sen!2sae!4v1635849271234!5m2!1sen!2sae"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.0763!2d55.3474!3d25.2477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d483bce5f2b%3A0x8c9c5c5c5c5c5c5c!2sAl%20Garhoud%2C%20Dubai!5e0!3m2!1sen!2sae"
                       width="100%"
                       height="250"
                       style={{ border: 0, borderRadius: '16px' }}
@@ -360,36 +395,26 @@ const About: React.FC = () => {
                 </div>
               </div>
 
-              {/* Regional Office */}
+              {/* Enquiry Contact */}
               <div className="bg-gradient-to-br from-sky-50 to-cyan-50 dark:from-sky-900/20 dark:to-cyan-900/20 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-3">
                   <div className="p-3 bg-cyan-500 rounded-xl">
-                    <MapPin className="w-7 h-7 text-white" strokeWidth={2} />
+                    <Phone className="w-7 h-7 text-white" strokeWidth={2} />
                   </div>
                   {t('about.locations.regional.title')}
                 </h3>
                 <div className="space-y-6">
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    <strong className="block mb-2">{t('about.locations.regional.address.label')}:</strong>
-                    {t('about.locations.regional.address.street')}<br />
-                    {t('about.locations.regional.address.city')}
-                  </p>
                   <p className="text-gray-700 dark:text-gray-300">
                     <strong>{t('about.locations.regional.phone.label')}:</strong> {t('about.locations.regional.phone.number')}
                   </p>
                   <p className="text-gray-700 dark:text-gray-300">
                     <strong>{t('about.locations.regional.email.label')}:</strong> {t('about.locations.regional.email.address')}
                   </p>
-                  <div className="pt-4">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.1594166447834!2d55.27577931501432!3d25.186917583895634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69d9e8b3c4db%3A0x4d3f73e2895b8c1d!2sSharjah!5e0!3m2!1sen!2sae!4v1635849371234!5m2!1sen!2sae"
-                      width="100%"
-                      height="250"
-                      style={{ border: 0, borderRadius: '16px' }}
-                      allowFullScreen
-                      loading="lazy"
-                      className="shadow-lg"
-                    ></iframe>
+                  <div className="pt-4 bg-white dark:bg-gray-700 rounded-2xl p-8 text-center">
+                    <div className="text-6xl mb-4">📞</div>
+                    <p className="text-lg text-gray-600 dark:text-gray-300">
+                      For enquiries and support, reach out to us via phone or email. Our team is ready to assist you.
+                    </p>
                   </div>
                 </div>
               </div>

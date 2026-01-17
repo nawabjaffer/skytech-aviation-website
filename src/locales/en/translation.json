@@ -15,7 +15,7 @@
     "companyDesc": "Skytech Aviation — UAE-based ASA member delivering authentic aircraft parts worldwide.",
     "quickLinks": "QUICK LINKS",
     "contactInfo": "CONTACT INFORMATION",
-    "asaMember": "ASA MEMBER SINCE 2015",
+    "asaMember": "ASA MEMBER SINCE 2022",
     "address": "Business Centre 1, Meydan Free Zone, Nad Al Sheba, Dubai, UAE",
     "phone": "Phone",
     "email": "Email",
@@ -75,14 +75,14 @@
       "description": "Providing certified aircraft parts and components to airlines, MROs, and distributors across the Middle East, Asia, Africa, and beyond.",
       "cta1": "View Products",
       "cta2": "Become a Distributor",
-      "trustBadge": "ASA Member Since 2015"
+      "trustBadge": "ASA Member Since 2022"
     },
     "features": {
       "title": "Why Choose Skytech Aviation",
       "subtitle": "Excellence in Aviation Parts Supply",
       "authentic": {
-        "title": "Authentic Parts",
-        "description": "100% genuine OEM parts with full traceability and certification documentation"
+        "title": "AOG Support",
+        "description": "24/7 Aircraft on Ground support for critical parts delivery when you need it most"
       },
       "global": {
         "title": "Global Distribution",
@@ -111,6 +111,10 @@
       "achievementsTitle": "Milestones That Define Us",
       "trustedBy": "Trusted by Leading Airlines & MROs Worldwide",
       "items": {
+        "years": {
+          "value": "7+",
+          "description": "Years of Excellence"
+        },
         "deliveries": {
           "value": "10,000+",
           "description": "Successful Parts Deliveries"
@@ -122,16 +126,12 @@
         "countries": {
           "value": "60+",
           "description": "Countries Served Worldwide"
-        },
-        "response": {
-          "value": "< 2-3hrs",
-          "description": "Average Quote Response Time"
         }
       },
       "trustedPartners": [
       ],
-      "shippingPartnerLabel": "Our Trusted Shipping Partner",
-      "shippingPartners": [
+      "trustedGloballyLabel": "Trusted Globally By",
+      "trustedGloballyBy": [
         {
           "name": "Globcon Logistics",
           "logo": "https://globconlogistics.com/assets/images/logo-v2.png"
@@ -335,6 +335,12 @@
           "description": "Contact our sales team for parts requirements and pricing",
           "button": "Contact Sales",
           "availability": "enquiry@skytech.ae"
+        },
+        "careers": {
+          "title": "Career Opportunities",
+          "description": "Join our dynamic team and build your career in aviation industry",
+          "button": "View Careers",
+          "availability": "hr@skytech.ae"
         }
       }
     },
@@ -509,7 +515,11 @@
       "milestones": {
         "expansion": {
           "title": "Regional Expansion",
-          "description": "Established and expanded operations in aviation supply and support Succesfully participated in major internaltional aviation exhibitions"
+          "description": "Established and expanded operations in aviation supply and support. Successfully participated in major international aviation exhibitions."
+        },
+        "helishow": {
+          "title": "Exhibited in Heli Show Event 2025",
+          "description": "Showcased our products and services at the prestigious Dubai Heli Show 2025"
         }
       }
     },
@@ -520,18 +530,6 @@
         "iso9001": {
           "name": "ISO 9001:2015",
           "description": "Quality Management System"
-        },
-        "as9120": {
-          "name": "AS9120",
-          "description": "Aerospace Quality Management"
-        },
-        "easa": {
-          "name": "EASA Part-145",
-          "description": "European Aviation Safety Agency"
-        },
-        "faa": {
-          "name": "FAA Approved",
-          "description": "Federal Aviation Administration"
         }
       }
     },
@@ -584,15 +582,19 @@
       "title": "Office Location",
       "subtitle": "Visit Our Dubai Office",
       "main": {
-        "title": "Skytech Aviation - Dubai Office",
+        "title": "SKYTECH AVIATION L.L.C FZ",
         "address": {
           "label": "Address",
-          "street": "Meydan Free Zone, Nad Al Sheba,",
-          "city": "Dubai, United Arab Emirates"
+          "street": "Office 4, Al Uruba Business Center, Garhoud Views Building, 7th Floor, Al Garhoud,",
+          "city": "Dubai - UAE"
+        },
+        "contact": {
+          "label": "Contact",
+          "name": "Mohammed Yaseen"
         },
         "phone": {
           "label": "Phone",
-          "number": "+971 561 611 002"
+          "number": "+971 50 864 0842"
         },
         "email": {
           "label": "Email",
@@ -600,19 +602,14 @@
         }
       },
       "regional": {
-        "title": "Alternative Contact",
-        "address": {
-          "label": "Address",
-          "street": "Meydan Free Zone, Nad Al Sheba,",
-          "city": "Dubai, United Arab Emirates"
-        },
+        "title": "Enquiry Contact",
         "phone": {
           "label": "Phone",
-          "number": "+971 508 640 842"
+          "number": "+971 50 456 1809"
         },
         "email": {
           "label": "Email",
-          "address": "sales@skytech.ae"
+          "address": "enquiry@skytech.ae"
         }
       }
     },
@@ -620,11 +617,6 @@
       "title": "Awards & Recognition",
       "subtitle": "Celebrating Excellence",
       "items": {
-        "excellence": {
-          "title": "Heli 2025 Award",
-          "year": "2025",
-          "issuer": "Dubai Heli Show"
-        },
         "supplier": {
           "title": "ISO 9001:2015 Certified",
           "year": "2025",

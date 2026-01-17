@@ -132,10 +132,39 @@
       ],
       "trustedGloballyLabel": "Trusted Globally By",
       "trustedGloballyBy": [
-        {
-          "name": "Globcon Logistics",
-          "logo": "https://globconlogistics.com/assets/images/logo-v2.png"
-        }
+        { "name": "Air Works" },
+        { "name": "Air Arabia" },
+        { "name": "SpiceJet" },
+        { "name": "FLY91" },
+        { "name": "SriLankan Airlines" },
+        { "name": "Southwind Airlines" },
+        { "name": "Cebu Pacific" },
+        { "name": "EVAAY" },
+        { "name": "AirAsia" },
+        { "name": "Solit Air" },
+        { "name": "Abu Dhabi Skydive" },
+        { "name": "Government of Ras Al Khaimah" },
+        { "name": "RASCJ" },
+        { "name": "ADA" },
+        { "name": "EDGE" },
+        { "name": "Jazirah Aviation Club" },
+        { "name": "Oman Aviation Academy" },
+        { "name": "Skydive Dubai" },
+        { "name": "Machihtechnik" }
+      ],
+      "distributorPartnersLabel": "Our Distributor Partners",
+      "distributorPartners": [
+        { "name": "ROTAX" },
+        { "name": "Michelin" },
+        { "name": "Skydrol" },
+        { "name": "Molykote" },
+        { "name": "ExxonMobil" },
+        { "name": "Honeywell" },
+        { "name": "Diamond Aircraft" },
+        { "name": "Dunlop" },
+        { "name": "3M" },
+        { "name": "K&N" },
+        { "name": "Tronair" }
       ],
       "achievements": []
     },

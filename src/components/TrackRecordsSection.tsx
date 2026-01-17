@@ -179,17 +179,17 @@ const TrackRecordsSection: React.FC = () => {
                 <div className="h-px w-12 bg-gradient-to-l from-transparent to-gray-300 dark:to-gray-600"></div>
               </div>
               
-              {/* Infinite Scrolling Carousel */}
+              {/* Infinite Scrolling Carousel - Left to Right */}
               <div className="relative overflow-hidden py-4">
                 {/* Fade edges */}
                 <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
                 <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
                 
-                <div className="carousel-track">
+                <div className="carousel-track-left">
                   {repeatedPartners.map((partner, index) => (
                     <div
                       key={index}
-                      className="carousel-item flex-shrink-0 flex items-center justify-center px-16 py-4"
+                      className="carousel-item flex-shrink-0 flex items-center justify-center px-12 py-4"
                     >
                       {partner.logo ? (
                         <img
@@ -205,7 +205,7 @@ const TrackRecordsSection: React.FC = () => {
                         />
                       ) : null}
                       <span 
-                        className="text-xl font-semibold text-gray-500 dark:text-gray-400 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-300"
+                        className="text-lg font-semibold text-gray-500 dark:text-gray-400 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-300"
                         style={{ display: partner.logo ? 'none' : 'block' }}
                       >
                         {partner.name}
@@ -214,35 +214,110 @@ const TrackRecordsSection: React.FC = () => {
                   ))}
                 </div>
               </div>
-              
-              {/* Carousel Animation Styles */}
-              <style>{`
-                .carousel-track {
-                  display: flex;
-                  width: fit-content;
-                  animation: scroll 20s linear infinite;
-                }
-                
-                .carousel-track:hover {
-                  animation-play-state: paused;
-                }
-                
-                @keyframes scroll {
-                  0% {
-                    transform: translateX(0);
-                  }
-                  100% {
-                    transform: translateX(-50%);
-                  }
-                }
-                
-                .carousel-item {
-                  transition: all 0.3s ease;
-                }
-              `}</style>
             </div>
           );
         })()}
+
+        {/* Distributor Partners Carousel */}
+        {(() => {
+          const distributorPartners = t('home.trackRecords.distributorPartners', { returnObjects: true }) as Array<{ name: string; logo?: string }>;
+          if (!distributorPartners || distributorPartners.length === 0) return null;
+          
+          // Create enough duplicates for seamless infinite scroll
+          const repeatedDistributors = [...distributorPartners, ...distributorPartners, ...distributorPartners, ...distributorPartners, ...distributorPartners, ...distributorPartners, ...distributorPartners, ...distributorPartners];
+          
+          return (
+            <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-center gap-4 mb-8">
+                <div className="h-px w-12 bg-gradient-to-r from-transparent to-gray-300 dark:to-gray-600"></div>
+                <h2 className="font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em]">
+                  {t('home.trackRecords.distributorPartnersLabel', 'Our Distributor Partners')}
+                </h2>
+                <div className="h-px w-12 bg-gradient-to-l from-transparent to-gray-300 dark:to-gray-600"></div>
+              </div>
+              
+              {/* Infinite Scrolling Carousel - Right to Left (opposite direction) */}
+              <div className="relative overflow-hidden py-4">
+                {/* Fade edges */}
+                <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+                
+                <div className="carousel-track-right">
+                  {repeatedDistributors.map((partner, index) => (
+                    <div
+                      key={index}
+                      className="carousel-item flex-shrink-0 flex items-center justify-center px-12 py-4"
+                    >
+                      {partner.logo ? (
+                        <img
+                          src={partner.logo}
+                          alt={partner.name}
+                          className="h-10 w-auto object-contain opacity-70 hover:opacity-100 transition-all duration-300 hover:scale-110"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            if (e.currentTarget.nextElementSibling) {
+                              (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'block';
+                            }
+                          }}
+                        />
+                      ) : null}
+                      <span 
+                        className="text-lg font-semibold text-gray-500 dark:text-gray-400 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-300"
+                        style={{ display: partner.logo ? 'none' : 'block' }}
+                      >
+                        {partner.name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* Carousel Animation Styles */}
+        <style>{`
+          .carousel-track-left,
+          .carousel-track-right {
+            display: flex;
+            width: fit-content;
+          }
+          
+          .carousel-track-left {
+            animation: scroll-left 25s linear infinite;
+          }
+          
+          .carousel-track-right {
+            animation: scroll-right 25s linear infinite;
+          }
+          
+          .carousel-track-left:hover,
+          .carousel-track-right:hover {
+            animation-play-state: paused;
+          }
+          
+          @keyframes scroll-left {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+          
+          @keyframes scroll-right {
+            0% {
+              transform: translateX(-50%);
+            }
+            100% {
+              transform: translateX(0);
+            }
+          }
+          
+          .carousel-item {
+            transition: all 0.3s ease;
+          }
+        `}</style>
       </div>
     </section>
   );

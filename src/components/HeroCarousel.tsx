@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { HeroSlide, CAROUSEL_TIMING } from '../config/googleSheets';
 import googleSheetsService from '../services/googleSheetsService';
+import { videoPreloader } from '../utils/videoPreloader';
 
 interface HeroCarouselProps {
   autoPlayInterval?: number; // milliseconds (deprecated - use CAROUSEL_TIMING config instead)
@@ -49,28 +50,44 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
         if (data.length > 0) {
           setSlides(data);
           
-          // Preload first video immediately for instant playback
+          // Check if videos were already preloaded during loading screen
+          data.forEach((slide, index) => {
+            if (slide.mediaType === 'video' && videoPreloader.isPreloaded(slide.mediaUrl)) {
+              setVideosLoaded(prev => new Set(prev).add(index));
+              if (index === 0) {
+                setFirstVideoReady(true);
+              }
+            }
+          });
+          
+          // Preload first video if not already preloaded
           if (data[0].mediaType === 'video') {
-            const firstVideo = document.createElement('video');
-            firstVideo.src = data[0].mediaUrl;
-            firstVideo.preload = 'auto';
-            firstVideo.muted = true;
-            firstVideo.playsInline = true;
-            
-            // Start loading immediately
-            firstVideo.load();
-            
-            // Mark as ready when enough data is loaded
-            firstVideo.addEventListener('canplay', () => {
+            if (videoPreloader.isPreloaded(data[0].mediaUrl)) {
+              // Already preloaded during loading screen
               setVideosLoaded(prev => new Set(prev).add(0));
               setFirstVideoReady(true);
-              setLoading(false); // Hide skeleton as soon as first video can play
-            }, { once: true });
-            
-            // Fallback: show after 2s even if video isn't ready
-            setTimeout(() => {
               setLoading(false);
-            }, 2000);
+            } else {
+              // Fallback: preload now if not done during loading
+              const firstVideo = document.createElement('video');
+              firstVideo.src = data[0].mediaUrl;
+              firstVideo.preload = 'auto';
+              firstVideo.muted = true;
+              firstVideo.playsInline = true;
+              
+              firstVideo.load();
+              
+              firstVideo.addEventListener('canplay', () => {
+                setVideosLoaded(prev => new Set(prev).add(0));
+                setFirstVideoReady(true);
+                setLoading(false);
+              }, { once: true });
+              
+              // Fallback: show after 2s even if video isn't ready
+              setTimeout(() => {
+                setLoading(false);
+              }, 2000);
+            }
           } else {
             // For images, no wait needed
             setLoading(false);

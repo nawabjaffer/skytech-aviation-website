@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { initVersionCheck } from '../utils/cacheManager';
+import { preloadHeroVideos } from '../utils/videoPreloader';
 import '../styles/video-loading.css';
 
 interface VideoLoadingScreenProps {
@@ -16,6 +17,7 @@ interface VideoLoadingScreenProps {
  * - Smooth cinematic transitions
  * - 8-second video duration with progress tracking
  * - GPU-accelerated animations
+ * - Preloads hero carousel videos for instant playback after loading
  */
 const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({ 
   onComplete,
@@ -34,19 +36,24 @@ const VideoLoadingScreen: React.FC<VideoLoadingScreenProps> = ({
   const exitStartedRef = useRef(false);
   const videoReadyRef = useRef(false);
 
-  // Cache version check during initial load
+  // Cache version check and video preloading during initial load
   useEffect(() => {
-    const checkCache = async () => {
+    const initializeResources = async () => {
       try {
-        const result = await initVersionCheck();
-        if (result.updated) {
+        // Start cache check and video preloading in parallel
+        const [cacheResult] = await Promise.all([
+          initVersionCheck(),
+          preloadHeroVideos() // Preload hero videos during loading screen
+        ]);
+        
+        if (cacheResult.updated) {
           console.log('✓ Cache cleared - fresh content loaded');
         }
       } catch (error) {
-        console.error('Cache check failed:', error);
+        console.error('Resource initialization failed:', error);
       }
     };
-    checkCache();
+    initializeResources();
   }, []);
 
   // Drive progress by time so it stays smooth even if video stalls.

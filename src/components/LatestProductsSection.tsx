@@ -393,7 +393,7 @@ const LatestProductsSection: React.FC = () => {
                         </div>
                       )}
                       <Link
-                        to={product.link || NAV_LINKS.products}
+                        to={`${NAV_LINKS.products}?category=${encodeURIComponent(product.category)}`}
                         className="inline-flex items-center text-xs md:text-sm text-[#0b6d94] hover:text-[#095a7a] font-medium mt-2 group"
                       >
                         View Details

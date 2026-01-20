@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Product } from '../config/googleSheets';
@@ -6,6 +6,16 @@ import googleSheetsService from '../services/googleSheetsService';
 import { NAV_LINKS, QUOTE_CONFIG, EMAIL_LINKS } from '../config/links';
 import { X, Mail, User, Building2, Phone, MessageSquare, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { convertToDirectImageUrl } from '../utils/imageUrlConverter';
+
+// Preload images for faster rendering
+const preloadImages = (urls: string[]) => {
+  urls.forEach(url => {
+    if (url) {
+      const img = new Image();
+      img.src = convertToDirectImageUrl(url);
+    }
+  });
+};
 
 // Quote Modal Component
 interface QuoteModalProps {
@@ -204,23 +214,35 @@ const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, product }) => 
 };
 
 const LatestProductsSection: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [activeProduct, setActiveProduct] = useState<number | null>(null);
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
+  
+  // Detect RTL mode
+  const isRTL = i18n.language === 'ar' || i18n.language === 'he' || document.documentElement.dir === 'rtl';
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const data = await googleSheetsService.getProducts();
         // Get more products for carousel effect
-        setProducts(data.slice(0, 8));
+        const selectedProducts = data.slice(0, 8);
+        setProducts(selectedProducts);
+        
+        // Preload images for faster rendering
+        preloadImages(selectedProducts.map(p => p.imageUrl));
+        
+        // Mark images as loaded after a short delay to allow preloading
+        setTimeout(() => setImagesLoaded(true), 100);
       } catch {
         // Silently handle error - products section will show default state
+        setImagesLoaded(true);
       } finally {
         setLoading(false);
       }
@@ -236,12 +258,27 @@ const LatestProductsSection: React.FC = () => {
 
   if (loading) {
     return (
-      <section className="py-20 bg-white dark:bg-gray-800">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-3">
-            <div className="w-2 h-2 bg-[#0b6d94] rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-            <div className="w-2 h-2 bg-[#0b6d94] rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-            <div className="w-2 h-2 bg-[#0b6d94] rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+      <section className="py-12 md:py-20 bg-white dark:bg-gray-800">
+        <div className="container mx-auto px-4">
+          {/* Header Skeleton */}
+          <div className="text-center mb-10 md:mb-16">
+            <div className="inline-block w-32 h-8 bg-gray-200 dark:bg-gray-700 rounded-full mb-4 animate-pulse"></div>
+            <div className="w-64 h-10 bg-gray-200 dark:bg-gray-700 rounded-lg mx-auto mb-4 animate-pulse"></div>
+            <div className="w-96 max-w-full h-6 bg-gray-200 dark:bg-gray-700 rounded-lg mx-auto animate-pulse"></div>
+          </div>
+          
+          {/* Product Cards Skeleton */}
+          <div className="flex gap-4 md:gap-6 overflow-hidden px-4 md:px-8">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="flex-shrink-0 w-[280px] sm:w-[300px] md:w-[320px] bg-gray-50 dark:bg-gray-900 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg animate-pulse">
+                <div className="h-44 sm:h-48 md:h-52 bg-gray-200 dark:bg-gray-700"></div>
+                <div className="p-4 md:p-6 space-y-3">
+                  <div className="w-20 h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                  <div className="w-full h-6 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                  <div className="w-3/4 h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -283,10 +320,10 @@ const LatestProductsSection: React.FC = () => {
           <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-12 md:w-16 lg:w-24 bg-gradient-to-l from-white dark:from-gray-800 to-transparent z-10 pointer-events-none"></div>
           
           {/* Carousel Track Container */}
-          <div className="overflow-hidden">
+          <div className="overflow-hidden" dir="ltr">
             <div 
               ref={carouselRef}
-              className="products-carousel-track flex gap-4 md:gap-6 py-4 px-4 md:px-8"
+              className={`${isRTL ? 'products-carousel-track-rtl' : 'products-carousel-track'} flex gap-4 md:gap-6 py-4 px-4 md:px-8`}
               style={{
                 animationPlayState: isPaused ? 'paused' : 'running'
               }}
@@ -312,7 +349,7 @@ const LatestProductsSection: React.FC = () => {
                     className={`w-full h-full object-cover transition-transform duration-700 ease-out ${
                       activeProduct === index ? 'scale-110' : ''
                     }`}
-                    loading="lazy"
+                    loading={index < 4 ? 'eager' : 'lazy'}
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       const target = e.currentTarget;
@@ -419,23 +456,44 @@ const LatestProductsSection: React.FC = () => {
           </Link>
         </div>
         
-        {/* Carousel Animation Styles */}
+        {/* Carousel Animation Styles - RTL aware */}
         <style>{`
-          .products-carousel-track {
-            animation: products-scroll 30s linear infinite;
+          .products-carousel-track,
+          .products-carousel-track-rtl {
             width: fit-content;
+            will-change: transform;
           }
           
-          .products-carousel-track:hover {
+          .products-carousel-track {
+            animation: products-scroll-ltr 30s linear infinite;
+          }
+          
+          .products-carousel-track-rtl {
+            animation: products-scroll-rtl 30s linear infinite;
+          }
+          
+          .products-carousel-track:hover,
+          .products-carousel-track-rtl:hover {
             animation-play-state: paused;
           }
           
-          @keyframes products-scroll {
+          /* LTR scrolling animation */
+          @keyframes products-scroll-ltr {
             0% {
-              transform: translateX(0);
+              transform: translate3d(0, 0, 0);
             }
             100% {
-              transform: translateX(-50%);
+              transform: translate3d(-50%, 0, 0);
+            }
+          }
+          
+          /* RTL scrolling animation - opposite direction */
+          @keyframes products-scroll-rtl {
+            0% {
+              transform: translate3d(-50%, 0, 0);
+            }
+            100% {
+              transform: translate3d(0, 0, 0);
             }
           }
           

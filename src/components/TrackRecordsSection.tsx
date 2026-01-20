@@ -210,45 +210,54 @@ const TrackRecordsSection: React.FC = () => {
                       {/* Fixed-size logo container for consistent sizing */}
                       <div className="logo-container w-[160px] h-[60px] flex items-center justify-center">
                         {partner.logo ? (
-                          <img
-                            src={partner.logo}
-                            alt={partner.name}
-                            title={partner.name}
-                            className="max-h-[60px] max-w-[160px] w-auto h-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 ease-out hover:scale-110"
-                            loading="lazy"
-                            referrerPolicy="no-referrer"
-                            style={{ minHeight: '40px', minWidth: '60px' }}
-                            onLoad={(e) => {
-                              // Smart scaling: ensure small logos are scaled up appropriately
-                              const img = e.currentTarget;
-                              const naturalWidth = img.naturalWidth;
-                              const naturalHeight = img.naturalHeight;
-                              
-                              // If logo is very small, scale it up while maintaining aspect ratio
-                              if (naturalHeight < 40 || naturalWidth < 60) {
-                                const scaleFactorH = 50 / naturalHeight;
-                                const scaleFactorW = 120 / naturalWidth;
-                                const scaleFactor = Math.min(scaleFactorH, scaleFactorW, 3); // Max 3x scale
-                                if (scaleFactor > 1) {
-                                  img.style.transform = `scale(${scaleFactor})`;
-                                  img.style.transformOrigin = 'center';
+                          <>
+                            <img
+                              src={partner.logo}
+                              alt={partner.name}
+                              title={partner.name}
+                              className="partner-logo max-h-[60px] max-w-[160px] w-auto h-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 ease-out hover:scale-110"
+                              loading="eager"
+                              referrerPolicy="no-referrer"
+                              style={{ minHeight: '40px', minWidth: '60px' }}
+                              onLoad={(e) => {
+                                // Smart scaling: ensure small logos are scaled up appropriately
+                                const img = e.currentTarget;
+                                const naturalWidth = img.naturalWidth;
+                                const naturalHeight = img.naturalHeight;
+                                
+                                // If logo is very small, scale it up while maintaining aspect ratio
+                                if (naturalHeight < 40 || naturalWidth < 60) {
+                                  const scaleFactorH = 50 / naturalHeight;
+                                  const scaleFactorW = 120 / naturalWidth;
+                                  const scaleFactor = Math.min(scaleFactorH, scaleFactorW, 3); // Max 3x scale
+                                  if (scaleFactor > 1) {
+                                    img.style.transform = `scale(${scaleFactor})`;
+                                    img.style.transformOrigin = 'center';
+                                  }
                                 }
-                              }
-                            }}
-                            onError={(e) => {
-                              const target = e.currentTarget;
-                              target.style.display = 'none';
-                              const fallback = target.nextElementSibling as HTMLElement;
-                              if (fallback) fallback.style.display = 'block';
-                            }}
-                          />
-                        ) : null}
-                        <span 
-                          className="text-lg font-semibold text-gray-400 dark:text-gray-500 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-500"
-                          style={{ display: partner.logo ? 'none' : 'block' }}
-                        >
-                          {partner.name}
-                        </span>
+                              }}
+                              onError={(e) => {
+                                const target = e.currentTarget;
+                                target.style.display = 'none';
+                                const fallback = target.nextElementSibling as HTMLElement;
+                                if (fallback) fallback.style.display = 'flex';
+                              }}
+                            />
+                            <div 
+                              className="partner-fallback hidden items-center justify-center w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg px-3 py-2"
+                            >
+                              <span className="text-sm font-bold text-gray-600 dark:text-gray-300 tracking-wide whitespace-nowrap text-center leading-tight">
+                                {partner.name}
+                              </span>
+                            </div>
+                          </>
+                        ) : (
+                          <div className="flex items-center justify-center w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg px-3 py-2">
+                            <span className="text-sm font-bold text-gray-600 dark:text-gray-300 tracking-wide whitespace-nowrap text-center leading-tight">
+                              {partner.name}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -290,45 +299,54 @@ const TrackRecordsSection: React.FC = () => {
                       {/* Fixed-size logo container for consistent sizing */}
                       <div className="logo-container w-[160px] h-[60px] flex items-center justify-center">
                         {partner.logo ? (
-                          <img
-                            src={partner.logo}
-                            alt={partner.name}
-                            title={partner.name}
-                            className="max-h-[60px] max-w-[160px] w-auto h-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 ease-out hover:scale-110"
-                            loading="lazy"
-                            referrerPolicy="no-referrer"
-                            style={{ minHeight: '40px', minWidth: '60px' }}
-                            onLoad={(e) => {
-                              // Smart scaling: ensure small logos are scaled up appropriately
-                              const img = e.currentTarget;
-                              const naturalWidth = img.naturalWidth;
-                              const naturalHeight = img.naturalHeight;
-                              
-                              // If logo is very small, scale it up while maintaining aspect ratio
-                              if (naturalHeight < 40 || naturalWidth < 60) {
-                                const scaleFactorH = 50 / naturalHeight;
-                                const scaleFactorW = 120 / naturalWidth;
-                                const scaleFactor = Math.min(scaleFactorH, scaleFactorW, 3); // Max 3x scale
-                                if (scaleFactor > 1) {
-                                  img.style.transform = `scale(${scaleFactor})`;
-                                  img.style.transformOrigin = 'center';
+                          <>
+                            <img
+                              src={partner.logo}
+                              alt={partner.name}
+                              title={partner.name}
+                              className="distributor-logo max-h-[60px] max-w-[160px] w-auto h-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 ease-out hover:scale-110"
+                              loading="eager"
+                              referrerPolicy="no-referrer"
+                              style={{ minHeight: '40px', minWidth: '60px' }}
+                              onLoad={(e) => {
+                                // Smart scaling: ensure small logos are scaled up appropriately
+                                const img = e.currentTarget;
+                                const naturalWidth = img.naturalWidth;
+                                const naturalHeight = img.naturalHeight;
+                                
+                                // If logo is very small, scale it up while maintaining aspect ratio
+                                if (naturalHeight < 40 || naturalWidth < 60) {
+                                  const scaleFactorH = 50 / naturalHeight;
+                                  const scaleFactorW = 120 / naturalWidth;
+                                  const scaleFactor = Math.min(scaleFactorH, scaleFactorW, 3); // Max 3x scale
+                                  if (scaleFactor > 1) {
+                                    img.style.transform = `scale(${scaleFactor})`;
+                                    img.style.transformOrigin = 'center';
+                                  }
                                 }
-                              }
-                            }}
-                            onError={(e) => {
-                              const target = e.currentTarget;
-                              target.style.display = 'none';
-                              const fallback = target.nextElementSibling as HTMLElement;
-                              if (fallback) fallback.style.display = 'block';
-                            }}
-                          />
-                        ) : null}
-                        <span 
-                          className="text-lg font-semibold text-gray-400 dark:text-gray-500 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-500"
-                          style={{ display: partner.logo ? 'none' : 'block' }}
-                        >
-                          {partner.name}
-                        </span>
+                              }}
+                              onError={(e) => {
+                                const target = e.currentTarget;
+                                target.style.display = 'none';
+                                const fallback = target.nextElementSibling as HTMLElement;
+                                if (fallback) fallback.style.display = 'flex';
+                              }}
+                            />
+                            <div 
+                              className="distributor-fallback hidden items-center justify-center w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg px-3 py-2"
+                            >
+                              <span className="text-sm font-bold text-gray-600 dark:text-gray-300 tracking-wide whitespace-nowrap text-center leading-tight">
+                                {partner.name}
+                              </span>
+                            </div>
+                          </>
+                        ) : (
+                          <div className="flex items-center justify-center w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg px-3 py-2">
+                            <span className="text-sm font-bold text-gray-600 dark:text-gray-300 tracking-wide whitespace-nowrap text-center leading-tight">
+                              {partner.name}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}

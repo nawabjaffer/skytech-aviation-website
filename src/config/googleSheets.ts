@@ -20,7 +20,7 @@
  * - ctaLink1: First CTA button link
  * - ctaText2: Second CTA button text (e.g., "Become a Distributor")
  * - ctaLink2: Second CTA button link
- * - trustBadge: Trust badge text (e.g., "ASA Member Since 2015")
+ * - trustBadge: Trust badge text (e.g., "ASA Member Since 2022")
  * - active: "true" or "false" (whether to show this slide)
  */
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { 
   TrendingUp, 
@@ -11,9 +11,26 @@ import {
   Plane,
   Calendar
 } from 'lucide-react';
+import partnersData from '../data/partners.json';
+
+interface Partner {
+  name: string;
+  logo?: string;
+}
 
 const TrackRecordsSection: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const [isRTL, setIsRTL] = useState(false);
+
+  // Detect RTL language
+  useEffect(() => {
+    const rtlLanguages = ['ar', 'he', 'fa', 'ur'];
+    setIsRTL(rtlLanguages.includes(i18n.language));
+  }, [i18n.language]);
+
+  // Get partners data directly from JSON file (not from translations)
+  const trustedPartners: Partner[] = partnersData.trustedGloballyBy;
+  const distributorPartners: Partner[] = partnersData.distributorPartners;
 
   const trackRecords = [
     {
@@ -163,7 +180,6 @@ const TrackRecordsSection: React.FC = () => {
 
         {/* Trusted Globally By */}
         {(() => {
-          const trustedPartners = t('home.trackRecords.trustedGloballyBy', { returnObjects: true }) as Array<{ name: string; logo?: string }>;
           if (!trustedPartners || trustedPartners.length === 0) return null;
           
           // Create enough duplicates for seamless infinite scroll
@@ -179,40 +195,61 @@ const TrackRecordsSection: React.FC = () => {
                 <div className="h-px w-12 bg-gradient-to-l from-transparent to-gray-300 dark:to-gray-600"></div>
               </div>
               
-              {/* Infinite Scrolling Carousel - Left to Right */}
-              <div className="relative overflow-hidden py-6">
+              {/* Infinite Scrolling Carousel - Direction aware for RTL */}
+              <div className="relative overflow-hidden py-8" dir="ltr">
                 {/* Fade edges */}
                 <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
                 <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
                 
-                <div className="carousel-track-left">
+                <div className={isRTL ? "carousel-track-right" : "carousel-track-left"}>
                   {repeatedPartners.map((partner, index) => (
                     <div
                       key={index}
-                      className="carousel-item flex-shrink-0 flex items-center justify-center px-10 py-3 min-w-[180px]"
+                      className="carousel-item flex-shrink-0 flex items-center justify-center px-8 py-4 min-w-[200px]"
                     >
-                      {partner.logo ? (
-                        <img
-                          src={partner.logo}
-                          alt={partner.name}
-                          title={partner.name}
-                          className="h-8 max-w-[140px] w-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 ease-out hover:scale-110"
-                          loading="lazy"
-                          referrerPolicy="no-referrer"
-                          onError={(e) => {
-                            const target = e.currentTarget;
-                            target.style.display = 'none';
-                            const fallback = target.nextElementSibling as HTMLElement;
-                            if (fallback) fallback.style.display = 'block';
-                          }}
-                        />
-                      ) : null}
-                      <span 
-                        className="text-base font-medium text-gray-400 dark:text-gray-500 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-500"
-                        style={{ display: partner.logo ? 'none' : 'block' }}
-                      >
-                        {partner.name}
-                      </span>
+                      {/* Fixed-size logo container for consistent sizing */}
+                      <div className="logo-container w-[160px] h-[60px] flex items-center justify-center">
+                        {partner.logo ? (
+                          <img
+                            src={partner.logo}
+                            alt={partner.name}
+                            title={partner.name}
+                            className="max-h-[60px] max-w-[160px] w-auto h-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 ease-out hover:scale-110"
+                            loading="lazy"
+                            referrerPolicy="no-referrer"
+                            style={{ minHeight: '40px', minWidth: '60px' }}
+                            onLoad={(e) => {
+                              // Smart scaling: ensure small logos are scaled up appropriately
+                              const img = e.currentTarget;
+                              const naturalWidth = img.naturalWidth;
+                              const naturalHeight = img.naturalHeight;
+                              
+                              // If logo is very small, scale it up while maintaining aspect ratio
+                              if (naturalHeight < 40 || naturalWidth < 60) {
+                                const scaleFactorH = 50 / naturalHeight;
+                                const scaleFactorW = 120 / naturalWidth;
+                                const scaleFactor = Math.min(scaleFactorH, scaleFactorW, 3); // Max 3x scale
+                                if (scaleFactor > 1) {
+                                  img.style.transform = `scale(${scaleFactor})`;
+                                  img.style.transformOrigin = 'center';
+                                }
+                              }
+                            }}
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              target.style.display = 'none';
+                              const fallback = target.nextElementSibling as HTMLElement;
+                              if (fallback) fallback.style.display = 'block';
+                            }}
+                          />
+                        ) : null}
+                        <span 
+                          className="text-lg font-semibold text-gray-400 dark:text-gray-500 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-500"
+                          style={{ display: partner.logo ? 'none' : 'block' }}
+                        >
+                          {partner.name}
+                        </span>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -223,7 +260,6 @@ const TrackRecordsSection: React.FC = () => {
 
         {/* Distributor Partners Carousel */}
         {(() => {
-          const distributorPartners = t('home.trackRecords.distributorPartners', { returnObjects: true }) as Array<{ name: string; logo?: string }>;
           if (!distributorPartners || distributorPartners.length === 0) return null;
           
           // Create enough duplicates for seamless infinite scroll
@@ -239,40 +275,61 @@ const TrackRecordsSection: React.FC = () => {
                 <div className="h-px w-12 bg-gradient-to-l from-transparent to-gray-300 dark:to-gray-600"></div>
               </div>
               
-              {/* Infinite Scrolling Carousel - Right to Left (opposite direction) */}
-              <div className="relative overflow-hidden py-6">
+              {/* Infinite Scrolling Carousel - Direction aware for RTL */}
+              <div className="relative overflow-hidden py-8" dir="ltr">
                 {/* Fade edges */}
                 <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
                 <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
                 
-                <div className="carousel-track-right">
+                <div className={isRTL ? "carousel-track-left" : "carousel-track-right"}>
                   {repeatedDistributors.map((partner, index) => (
                     <div
                       key={index}
-                      className="carousel-item flex-shrink-0 flex items-center justify-center px-10 py-3 min-w-[180px]"
+                      className="carousel-item flex-shrink-0 flex items-center justify-center px-8 py-4 min-w-[200px]"
                     >
-                      {partner.logo ? (
-                        <img
-                          src={partner.logo}
-                          alt={partner.name}
-                          title={partner.name}
-                          className="h-8 max-w-[140px] w-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 ease-out hover:scale-110"
-                          loading="lazy"
-                          referrerPolicy="no-referrer"
-                          onError={(e) => {
-                            const target = e.currentTarget;
-                            target.style.display = 'none';
-                            const fallback = target.nextElementSibling as HTMLElement;
-                            if (fallback) fallback.style.display = 'block';
-                          }}
-                        />
-                      ) : null}
-                      <span 
-                        className="text-base font-medium text-gray-400 dark:text-gray-500 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-500"
-                        style={{ display: partner.logo ? 'none' : 'block' }}
-                      >
-                        {partner.name}
-                      </span>
+                      {/* Fixed-size logo container for consistent sizing */}
+                      <div className="logo-container w-[160px] h-[60px] flex items-center justify-center">
+                        {partner.logo ? (
+                          <img
+                            src={partner.logo}
+                            alt={partner.name}
+                            title={partner.name}
+                            className="max-h-[60px] max-w-[160px] w-auto h-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 ease-out hover:scale-110"
+                            loading="lazy"
+                            referrerPolicy="no-referrer"
+                            style={{ minHeight: '40px', minWidth: '60px' }}
+                            onLoad={(e) => {
+                              // Smart scaling: ensure small logos are scaled up appropriately
+                              const img = e.currentTarget;
+                              const naturalWidth = img.naturalWidth;
+                              const naturalHeight = img.naturalHeight;
+                              
+                              // If logo is very small, scale it up while maintaining aspect ratio
+                              if (naturalHeight < 40 || naturalWidth < 60) {
+                                const scaleFactorH = 50 / naturalHeight;
+                                const scaleFactorW = 120 / naturalWidth;
+                                const scaleFactor = Math.min(scaleFactorH, scaleFactorW, 3); // Max 3x scale
+                                if (scaleFactor > 1) {
+                                  img.style.transform = `scale(${scaleFactor})`;
+                                  img.style.transformOrigin = 'center';
+                                }
+                              }
+                            }}
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              target.style.display = 'none';
+                              const fallback = target.nextElementSibling as HTMLElement;
+                              if (fallback) fallback.style.display = 'block';
+                            }}
+                          />
+                        ) : null}
+                        <span 
+                          className="text-lg font-semibold text-gray-400 dark:text-gray-500 tracking-wide whitespace-nowrap hover:text-[#0b6d94] dark:hover:text-aviation-blue-400 transition-colors duration-500"
+                          style={{ display: partner.logo ? 'none' : 'block' }}
+                        >
+                          {partner.name}
+                        </span>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -281,7 +338,7 @@ const TrackRecordsSection: React.FC = () => {
           );
         })()}
 
-        {/* Carousel Animation Styles */}
+        {/* Carousel Animation Styles - Direction-aware for RTL support */}
         <style>{`
           .carousel-track-left,
           .carousel-track-right {
@@ -291,11 +348,11 @@ const TrackRecordsSection: React.FC = () => {
           }
           
           .carousel-track-left {
-            animation: scroll-left 120s linear infinite;
+            animation: scroll-ltr 120s linear infinite;
           }
           
           .carousel-track-right {
-            animation: scroll-right 120s linear infinite;
+            animation: scroll-rtl 120s linear infinite;
           }
           
           .carousel-track-left:hover,
@@ -303,7 +360,8 @@ const TrackRecordsSection: React.FC = () => {
             animation-play-state: paused;
           }
           
-          @keyframes scroll-left {
+          /* LTR scrolling animation (works for both LTR and RTL layouts) */
+          @keyframes scroll-ltr {
             0% {
               transform: translate3d(0, 0, 0);
             }
@@ -312,7 +370,8 @@ const TrackRecordsSection: React.FC = () => {
             }
           }
           
-          @keyframes scroll-right {
+          /* RTL scrolling animation (opposite direction) */
+          @keyframes scroll-rtl {
             0% {
               transform: translate3d(-50%, 0, 0);
             }
@@ -323,6 +382,29 @@ const TrackRecordsSection: React.FC = () => {
           
           .carousel-item {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          
+          /* Logo container styling for consistent sizing */
+          .logo-container {
+            position: relative;
+            overflow: hidden;
+          }
+          
+          .logo-container img {
+            /* Ensure images fill available space proportionally */
+            object-fit: contain;
+            object-position: center;
+          }
+          
+          /* Handle very small SVG logos */
+          .logo-container img[src*=".svg"] {
+            min-height: 50px;
+            width: auto;
+          }
+          
+          /* Smooth scaling animation */
+          .logo-container img {
+            transition: transform 0.5s ease-out, filter 0.5s ease-out, opacity 0.5s ease-out;
           }
         `}</style>
       </div>

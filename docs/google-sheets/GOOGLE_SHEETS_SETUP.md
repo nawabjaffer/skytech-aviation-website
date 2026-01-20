@@ -46,7 +46,7 @@ Benefits:
 | H | ctaLink1 | url | /products | ❌ |
 | I | ctaText2 | text | "Become a Distributor" | ❌ |
 | J | ctaLink2 | url | /distributors | ❌ |
-| K | trustBadge | text | "ASA Member Since 2015" | ❌ |
+| K | trustBadge | text | "ASA Member Since 2022" | ❌ |
 | L | active | boolean | "TRUE" or "FALSE" | ✅ |
 
 **Carousel Timing:**

@@ -154,7 +154,7 @@ Successfully created a stunning, conversion-optimized Home page with 7 major sec
 - ✅ Responsive button stacking
 
 **Trust Indicators:**
-- ASA Member (Since 2015) - Star icon
+- ASA Member (Since 2022) - Star icon
 - ISO 9001:2015 Certified - Shield icon
 - 24/7 Support (Always Available) - Clock icon
 

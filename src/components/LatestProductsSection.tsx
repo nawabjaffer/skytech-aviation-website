@@ -6,6 +6,10 @@ import googleSheetsService from '../services/googleSheetsService';
 import { NAV_LINKS, QUOTE_CONFIG, EMAIL_LINKS } from '../config/links';
 import { X, Mail, User, Building2, Phone, MessageSquare, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { convertToDirectImageUrl } from '../utils/imageUrlConverter';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Preload images for faster rendering
 const preloadImages = (urls: string[]) => {
@@ -223,9 +227,39 @@ const LatestProductsSection: React.FC = () => {
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   
   // Detect RTL mode
   const isRTL = i18n.language === 'ar' || i18n.language === 'he' || document.documentElement.dir === 'rtl';
+
+  // GSAP animations - enhanced for mobile and desktop
+  useEffect(() => {
+    if (loading) return;
+
+    const ctx = gsap.context(() => {
+      if (headerRef.current && headerRef.current.children.length > 0) {
+        gsap.fromTo(
+          headerRef.current.children,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            stagger: 0.18,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [loading]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -290,18 +324,18 @@ const LatestProductsSection: React.FC = () => {
 
   return (
     <>
-      <section className="py-12 md:py-20 bg-white dark:bg-gray-800">
+      <section ref={sectionRef} className="py-12 md:py-20 bg-white dark:bg-gray-800">
         {/* Section Header - Inside container */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 md:mb-16">
+          <div ref={headerRef} className="text-center mb-10 md:mb-16">
             <span className="inline-block px-4 py-2 bg-[#0b6d94]/10 text-[#0b6d94] dark:text-aviation-blue-400 text-sm font-semibold rounded-full mb-4">
               Featured Products
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Latest Products
+              Latest Products & Components
             </h2>
             <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Explore our newest additions of authentic OEM aircraft parts
+              Explore our newest additions of authentic OEM aircraft parts and components
             </p>
           </div>
         </div>

@@ -17,6 +17,17 @@ const Contacts = lazy(() => import('./pages/Contacts'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const ChatbotWidget = lazy(() => import('./components/ChatbotWidget'));
 
+// Scroll to top on route change
+const ScrollToTopOnNavigate = () => {
+  const { pathname } = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  
+  return null;
+};
+
 // Component to handle loading animation on home page
 const AppContent = () => {
   const location = useLocation();
@@ -57,6 +68,7 @@ const AppContent = () => {
         visibility: showLoading && location.pathname === '/' ? 'hidden' : 'visible',
         opacity: showLoading && location.pathname === '/' ? 0 : 1
       }}>
+        <ScrollToTopOnNavigate />
         <Layout>
           <Suspense fallback={<PageLoadingFallback />}>
             <Routes>

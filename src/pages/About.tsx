@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { 
   Target, 
   Eye, 
@@ -18,8 +20,174 @@ import {
 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const About: React.FC = () => {
   const { t } = useTranslation();
+  
+  // Refs for GSAP animations
+  const heroRef = useRef<HTMLDivElement>(null);
+  const missionVisionRef = useRef<HTMLDivElement>(null);
+  const introRef = useRef<HTMLElement>(null);
+  const asaRef = useRef<HTMLElement>(null);
+  const locationsRef = useRef<HTMLElement>(null);
+  const ctaRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero animation - simple entrance with opacity
+      if (heroRef.current && heroRef.current.children.length > 0) {
+        gsap.fromTo(
+          heroRef.current.children,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'power3.out',
+          }
+        );
+      }
+
+      // Mission & Vision cards animation
+      if (missionVisionRef.current && missionVisionRef.current.children.length > 0) {
+        gsap.fromTo(
+          missionVisionRef.current.children,
+          { opacity: 0, y: 40, scale: 0.98 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: missionVisionRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      // Introduction section animation
+      if (introRef.current) {
+        const introElements = introRef.current.querySelectorAll('h2, p');
+        if (introElements.length > 0) {
+          gsap.fromTo(
+            introElements,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.7,
+              stagger: 0.15,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: introRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+      }
+
+      // ASA Membership section animation
+      if (asaRef.current) {
+        const asaElements = asaRef.current.querySelectorAll('.flex-1');
+        if (asaElements.length > 0) {
+          gsap.fromTo(
+            asaElements,
+            { opacity: 0, x: (i) => (i === 0 ? -40 : 40) },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 0.9,
+              stagger: 0.2,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: asaRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+      }
+
+      // Locations section animation
+      if (locationsRef.current) {
+        const locationHeaders = locationsRef.current.querySelectorAll('h2, p');
+        const locationGrid = locationsRef.current.querySelector('.grid');
+        
+        if (locationHeaders.length > 0) {
+          gsap.fromTo(
+            locationHeaders,
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.7,
+              stagger: 0.1,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: locationsRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+        
+        if (locationGrid && locationGrid.children.length > 0) {
+          gsap.fromTo(
+            locationGrid.children,
+            { opacity: 0, y: 30, scale: 0.98 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.8,
+              stagger: 0.15,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: locationGrid,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+      }
+
+      // CTA section animation
+      if (ctaRef.current) {
+        const ctaElements = ctaRef.current.querySelectorAll('h2, p, .flex');
+        if (ctaElements.length > 0) {
+          gsap.fromTo(
+            ctaElements,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.15,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: ctaRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <>
@@ -40,7 +208,7 @@ const About: React.FC = () => {
             <div className="absolute bottom-20 right-10 w-96 h-96 bg-aviation-blue-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
           </div>
           
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div ref={heroRef} className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-4">{t('about.hero.title')}</h1>
               <p className="text-xl md:text-2xl text-aviation-blue-100">{t('about.hero.subtitle')}</p>
@@ -51,7 +219,7 @@ const About: React.FC = () => {
         {/* Mission & Vision */}
         <section className="py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+            <div ref={missionVisionRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
               <div className="bg-white dark:bg-gray-800 rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]">
                 <div className="flex items-center gap-4 mb-8">
                   <div className="p-4 bg-aviation-blue-100 dark:bg-aviation-blue-900/30 rounded-2xl">
@@ -80,7 +248,7 @@ const About: React.FC = () => {
         </section>
 
         {/* Company Introduction */}
-        <section className="py-20 bg-white dark:bg-gray-800">
+        <section ref={introRef} className="py-20 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
             <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-8">
               {t('about.introduction.title')}
@@ -100,7 +268,7 @@ const About: React.FC = () => {
         </section>
 
         {/* ASA Membership Highlight */}
-        <section className="py-20 bg-gradient-to-r from-[#0b6d94] to-[#0a5a7a] text-white">
+        <section ref={asaRef} className="py-20 bg-gradient-to-r from-[#0b6d94] to-[#0a5a7a] text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <div className="flex flex-col md:flex-row items-center gap-12">
               <div className="flex-1">
@@ -188,7 +356,7 @@ const About: React.FC = () => {
                     return (
                       <div key={index} className="bg-gradient-to-br from-aviation-blue-50 to-aviation-blue-100 dark:from-aviation-blue-900/20 dark:to-aviation-blue-800/20 rounded-2xl p-8 text-center hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                         <div className="flex justify-center mb-6">
-                          <div className="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-md">
+                          <div className="p-4 bg-[rgba(11,109,148,0.98)] dark:bg-gray-800 rounded-2xl shadow-md">
                             {isISO ? (
                               <img
                                 src="/iso-9001-2015.png"
@@ -295,30 +463,15 @@ const About: React.FC = () => {
                     const memberData = teamMembers[member];
                     if (!memberData || !memberData.name) return null;
                     
-                    // CEO specific data
-                    const ceoPhoto = member === 'ceo' ? '/images/ceo-mohamed-yaseen.jpg' : memberData.photo;
-                    const ceoLinkedIn = member === 'ceo' ? 'https://ae.linkedin.com/in/mohamed-yaseen-80298b68' : memberData.linkedin;
+                    // CEO specific LinkedIn
+                    const memberLinkedIn = member === 'ceo' ? 'https://ae.linkedin.com/in/mohamed-yaseen-80298b68' : memberData.linkedin;
                     
                     return (
                       <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
-                        <div className="h-56 bg-gradient-to-br from-[#0b6d94] to-[#073d53] flex items-center justify-center relative overflow-hidden">
-                          {ceoPhoto ? (
-                            <img 
-                              src={ceoPhoto} 
-                              alt={memberData.name}
-                              className="w-full h-full object-cover"
-                              onError={(e) => {
-                                e.currentTarget.style.display = 'none';
-                                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
-                                if (fallback) fallback.style.display = 'flex';
-                              }}
-                            />
-                          ) : null}
-                          <div className={`p-6 bg-white/10 backdrop-blur-sm rounded-full ${ceoPhoto ? 'hidden' : 'flex'}`}>
-                            <UserCircle className="w-20 h-20 text-white" strokeWidth={1.5} />
-                          </div>
-                        </div>
                         <div className="p-8 text-center">
+                          <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#0b6d94] to-[#073d53] rounded-full flex items-center justify-center">
+                            <UserCircle className="w-12 h-12 text-white" strokeWidth={1.5} />
+                          </div>
                           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                             {memberData.name}
                           </h3>
@@ -332,9 +485,9 @@ const About: React.FC = () => {
                               {memberData.bio}
                             </p>
                           )}
-                          {ceoLinkedIn && (
+                          {memberLinkedIn && (
                             <a 
-                              href={ceoLinkedIn}
+                              href={memberLinkedIn}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center justify-center w-10 h-10 bg-[#0077b5] text-white rounded-full hover:bg-[#006097] hover:scale-110 transition-all duration-300"
@@ -356,7 +509,7 @@ const About: React.FC = () => {
         })()}
 
         {/* Office Locations */}
-        <section className="py-24 bg-white dark:bg-gray-800">
+        <section ref={locationsRef} className="py-24 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
               {t('about.locations.title')}
@@ -423,7 +576,7 @@ const About: React.FC = () => {
                   </h3>
                 </div>
                 
-                <div className="space-y-4">
+                <div className="space-y-4 mb-6">
                   <div className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
                     <span className="font-medium text-gray-900 dark:text-white min-w-[60px]">{t('about.locations.regional.phone.label')}:</span>
                     <span>{t('about.locations.regional.phone.number')}</span>
@@ -434,10 +587,37 @@ const About: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700">
-                  <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
-                    For enquiries and support, our team is ready to assist you.
-                  </p>
+                <div className="pt-6 border-t border-gray-100 dark:border-gray-700">
+                  <p className="text-sm font-medium text-gray-900 dark:text-white mb-4">Connect with us:</p>
+                  <div className="flex gap-4">
+                    {/* LinkedIn */}
+                    <a
+                      href="https://www.linkedin.com/company/skytech-aviation-llc-fz"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2.5 bg-[#0077b5] text-white rounded-lg hover:bg-[#006097] transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg"
+                      title="Connect on LinkedIn"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                      <span className="text-sm font-medium">LinkedIn</span>
+                    </a>
+
+                    {/* Instagram */}
+                    <a
+                      href="https://www.instagram.com/skytech_uae/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white rounded-lg hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg"
+                      title="Follow on Instagram"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                      </svg>
+                      <span className="text-sm font-medium">Instagram</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -484,7 +664,7 @@ const About: React.FC = () => {
                         className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 dark:border-gray-700 max-w-sm w-full"
                       >
                         <div className="flex items-start gap-4">
-                          <div className="flex-shrink-0 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
+                          <div className="flex-shrink-0 p-3 bg-[rgba(11,109,148,0.98)] dark:bg-amber-900/20 rounded-lg">
                             {isISOAward ? (
                               <img
                                 src="/iso-9001-2015.png"
@@ -492,7 +672,7 @@ const About: React.FC = () => {
                                 className="w-10 h-10 object-contain filter brightness-0 invert"
                               />
                             ) : (
-                              <Award className="w-6 h-6 text-amber-600 dark:text-amber-400" strokeWidth={2} />
+                              <Award className="w-6 h-6 text-white dark:text-amber-400" strokeWidth={2} />
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
@@ -521,7 +701,7 @@ const About: React.FC = () => {
         })()}
 
         {/* Call to Action */}
-        <section className="py-24 bg-gradient-to-r from-sky-500 via-sky-600 to-cyan-500">
+        <section ref={ctaRef} className="py-24 bg-gradient-to-r from-sky-500 via-sky-600 to-cyan-500">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               {t('about.cta.title')}

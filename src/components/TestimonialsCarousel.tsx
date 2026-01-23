@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Testimonial } from '../config/googleSheets';
 import googleSheetsService from '../services/googleSheetsService';
+import { DEFAULT_TESTIMONIALS } from '../config/googleSheets';
 
 const TestimonialsCarousel: React.FC = () => {
   const { t } = useTranslation();
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(DEFAULT_TESTIMONIALS);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -15,9 +16,12 @@ const TestimonialsCarousel: React.FC = () => {
     const fetchTestimonials = async () => {
       try {
         const data = await googleSheetsService.getTestimonials();
-        setTestimonials(data);
+        if (data && data.length > 0) {
+          setTestimonials(data);
+        }
       } catch {
         // Use default testimonials on error
+        setTestimonials(DEFAULT_TESTIMONIALS);
       } finally {
         setLoading(false);
       }

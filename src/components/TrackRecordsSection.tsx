@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { 
   TrendingUp, 
@@ -11,7 +11,11 @@ import {
   Plane,
   Calendar
 } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import partnersData from '../data/partners.json';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Partner {
   name: string;
@@ -21,12 +25,63 @@ interface Partner {
 const TrackRecordsSection: React.FC = () => {
   const { t, i18n } = useTranslation();
   const [isRTL, setIsRTL] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const statsGridRef = useRef<HTMLDivElement>(null);
 
   // Detect RTL language
   useEffect(() => {
     const rtlLanguages = ['ar', 'he', 'fa', 'ur'];
     setIsRTL(rtlLanguages.includes(i18n.language));
   }, [i18n.language]);
+
+  // GSAP animations
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate header
+      if (headerRef.current && headerRef.current.children.length > 0) {
+        gsap.fromTo(
+          headerRef.current.children,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            stagger: 0.18,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      // Animate stats grid items with scale
+      if (statsGridRef.current && statsGridRef.current.children.length > 0) {
+        gsap.fromTo(
+          statsGridRef.current.children,
+          { opacity: 0, y: 40, scale: 0.85 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'back.out(1.5)',
+            scrollTrigger: {
+              trigger: statsGridRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   // Get partners data directly from JSON file (not from translations)
   const trustedPartners: Partner[] = partnersData.trustedGloballyBy;
@@ -64,10 +119,10 @@ const TrackRecordsSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-gray-50 dark:bg-gray-900">
+    <section ref={sectionRef} className="py-24 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-[#0b6d94]/10 text-[#0b6d94] dark:text-aviation-blue-400 text-sm font-semibold rounded-full mb-4">
             {t('home.trackRecords.badge', 'Proven Excellence')}
           </span>
@@ -80,7 +135,7 @@ const TrackRecordsSection: React.FC = () => {
         </div>
 
         {/* Track Record Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-16">
+        <div ref={statsGridRef} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-16">
           {trackRecords.map((record, index) => {
             const IconComponent = record.icon;
             return (

@@ -1,12 +1,63 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const CTASection: React.FC = () => {
   const { t } = useTranslation();
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const badgesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (contentRef.current && contentRef.current.children.length > 0) {
+        gsap.fromTo(
+          contentRef.current.children,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.18,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: contentRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      if (badgesRef.current && badgesRef.current.children.length > 0) {
+        gsap.fromTo(
+          badgesRef.current.children,
+          { opacity: 0, scale: 0.75 },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'elastic.out(1, 0.5)',
+            scrollTrigger: {
+              trigger: badgesRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section className="relative py-24 overflow-hidden">
+    <section ref={sectionRef} className="relative py-24 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -20,7 +71,7 @@ const CTASection: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
+        <div ref={contentRef} className="max-w-4xl mx-auto text-center">
           {/* Icon */}
           <div className="inline-flex items-center justify-center w-20 h-20 mb-8 bg-white bg-opacity-20 backdrop-blur-sm rounded-full">
             <svg
@@ -92,7 +143,7 @@ const CTASection: React.FC = () => {
           </div>
 
           {/* Trust Indicators */}
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 text-white">
+          <div ref={badgesRef} className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 text-white">
             <div className="flex flex-col items-center">
               <svg
                 className="w-12 h-12 mb-3 text-yellow-400"

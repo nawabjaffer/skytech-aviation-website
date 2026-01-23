@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { asMailtoHref, asTelHref, siteConfig } from '../config/siteConfig';
 import { DOWNLOAD_LINKS } from '../config/links';
@@ -23,9 +23,20 @@ import {
   Rocket
 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Services: React.FC = () => {
   const { t } = useTranslation();
+  const heroRef = useRef<HTMLElement>(null);
+  const servicesGridRef = useRef<HTMLDivElement>(null);
+  const processRef = useRef<HTMLDivElement>(null);
+  const benefitsRef = useRef<HTMLElement>(null);
+  const supportRef = useRef<HTMLElement>(null);
+  const downloadsRef = useRef<HTMLElement>(null);
+  const ctaRef = useRef<HTMLElement>(null);
 
   const services = [
     {
@@ -73,6 +84,230 @@ const Services: React.FC = () => {
     { number: 4, key: 'delivery', IconComponent: Rocket, color: 'orange' }
   ];
 
+  // GSAP animations
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate hero section
+      if (heroRef.current) {
+        const heroElements = heroRef.current.querySelectorAll('h1, p, .flex');
+        if (heroElements.length > 0) {
+          gsap.fromTo(
+            heroElements,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.2,
+              ease: 'power3.out',
+            }
+          );
+        }
+      }
+
+      // Animate services grid
+      if (servicesGridRef.current && servicesGridRef.current.children.length > 0) {
+        gsap.fromTo(
+          servicesGridRef.current.children,
+          { opacity: 0, y: 60, scale: 0.9 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: 'back.out(1.2)',
+            scrollTrigger: {
+              trigger: servicesGridRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      // Animate process steps
+      if (processRef.current && processRef.current.children.length > 0) {
+        gsap.fromTo(
+          processRef.current.children,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: processRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      // Animate benefits section (Why Choose Skytech Aviation)
+      if (benefitsRef.current) {
+        const benefitsHeader = benefitsRef.current.querySelectorAll('h2, p');
+        const benefitsGrid = benefitsRef.current.querySelector('.grid');
+        
+        if (benefitsHeader.length > 0) {
+          gsap.fromTo(
+            benefitsHeader,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.15,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: benefitsRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+        
+        if (benefitsGrid && benefitsGrid.children.length > 0) {
+          gsap.fromTo(
+            benefitsGrid.children,
+            { opacity: 0, y: 50, scale: 0.9 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.7,
+              stagger: 0.12,
+              ease: 'back.out(1.3)',
+              scrollTrigger: {
+                trigger: benefitsGrid,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+      }
+
+      // Animate support section (Contact Our Team)
+      if (supportRef.current) {
+        const supportHeader = supportRef.current.querySelectorAll('h2, p');
+        const supportGrid = supportRef.current.querySelector('.grid');
+        
+        if (supportHeader.length > 0) {
+          gsap.fromTo(
+            supportHeader,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.15,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: supportRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+        
+        if (supportGrid && supportGrid.children.length > 0) {
+          gsap.fromTo(
+            supportGrid.children,
+            { opacity: 0, y: 40, scale: 0.95 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.7,
+              stagger: 0.1,
+              ease: 'back.out(1.2)',
+              scrollTrigger: {
+                trigger: supportGrid,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+      }
+
+      // Animate downloads section (Company Resources)
+      if (downloadsRef.current) {
+        const downloadsHeader = downloadsRef.current.querySelectorAll('h2, p');
+        const downloadsGrid = downloadsRef.current.querySelector('.grid');
+        
+        if (downloadsHeader.length > 0) {
+          gsap.fromTo(
+            downloadsHeader,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.15,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: downloadsRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+        
+        if (downloadsGrid && downloadsGrid.children.length > 0) {
+          gsap.fromTo(
+            downloadsGrid.children,
+            { opacity: 0, y: 50, scale: 0.9 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.7,
+              stagger: 0.12,
+              ease: 'back.out(1.3)',
+              scrollTrigger: {
+                trigger: downloadsGrid,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+      }
+
+      // Animate CTA section (Ready to Get Started?)
+      if (ctaRef.current) {
+        const ctaElements = ctaRef.current.querySelectorAll('h2, p, .flex');
+        if (ctaElements.length > 0) {
+          gsap.fromTo(
+            ctaElements,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.15,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: ctaRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <>
       <SEOHead 
@@ -86,7 +321,7 @@ const Services: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-aviation-blue-50 to-gray-50 dark:from-gray-900 dark:via-aviation-blue-900/20 dark:to-gray-900">
         
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] text-white pt-28 pb-20 md:pt-32 md:pb-24">
+        <section ref={heroRef} className="relative bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] text-white pt-28 pb-20 md:pt-32 md:pb-24">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute bottom-20 right-10 w-96 h-96 bg-aviation-blue-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -126,7 +361,7 @@ const Services: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div ref={servicesGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
               {services.map((service, index) => {
                 const IconComponent = service.IconComponent;
                 return (
@@ -180,7 +415,7 @@ const Services: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div ref={processRef} className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {processSteps.map((step, index) => {
                 const StepIcon = step.IconComponent;
                 return (
@@ -235,7 +470,7 @@ const Services: React.FC = () => {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 to-aviation-blue-50 dark:from-gray-900 dark:to-aviation-blue-900/20">
+        <section ref={benefitsRef} className="py-20 bg-gradient-to-br from-gray-50 to-aviation-blue-50 dark:from-gray-900 dark:to-aviation-blue-900/20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -275,7 +510,7 @@ const Services: React.FC = () => {
         </section>
 
         {/* Support Channels */}
-        <section className="py-20 bg-white dark:bg-gray-800">
+        <section ref={supportRef} className="py-20 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -375,7 +610,7 @@ const Services: React.FC = () => {
         </section>
 
         {/* Download Center */}
-        <section className="py-20 bg-gradient-to-r from-sky-500 via-sky-600 to-cyan-500">
+        <section ref={downloadsRef} className="py-20 bg-gradient-to-r from-sky-500 via-sky-600 to-cyan-500">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -425,7 +660,7 @@ const Services: React.FC = () => {
         </section>
 
         {/* Call to Action */}
-        <section className="py-24 bg-white dark:bg-gray-800">
+        <section ref={ctaRef} className="py-24 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               {t('services.cta.title')}

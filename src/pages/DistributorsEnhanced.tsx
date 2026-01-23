@@ -3,7 +3,7 @@
  * 
  * Senior Frontend Developer Improvements:
  * - Modal-based UX (no endless scrolling)
- * - Smooth scroll animations with Intersection Observer
+ * - Smooth scroll animations with GSAP ScrollTrigger
  * - Glass morphism effects
  * - Gradient backgrounds and text
  * - Staggered animations
@@ -13,12 +13,16 @@
  * To use: Rename this file to Distributors.tsx
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Globe, Plane, BookOpen, Truck, Briefcase, TrendingUp, FileText, Clock, CheckCircle, Users, MapPin, Map } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { ExistingDistributor, DistributorApplication, Testimonial } from '../config/googleSheets';
 import googleSheetsService from '../services/googleSheetsService';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const DistributorsEnhanced: React.FC = () => {
   const { t } = useTranslation();
@@ -31,30 +35,129 @@ const DistributorsEnhanced: React.FC = () => {
   const [showRequirementsModal, setShowRequirementsModal] = useState(false);
   const [showProcessModal, setShowProcessModal] = useState(false);
   const [showMapModal, setShowMapModal] = useState(false);
+  
+  // Refs for GSAP animations
+  const heroRef = useRef<HTMLElement>(null);
+  const benefitsRef = useRef<HTMLElement>(null);
+  const statsRef = useRef<HTMLElement>(null);
+  const distributorsRef = useRef<HTMLElement>(null);
+  const testimonialsRef = useRef<HTMLElement>(null);
+  const ctaRef = useRef<HTMLElement>(null);
 
-  // Intersection Observer for scroll animations
+  // GSAP ScrollTrigger animations - enhanced for mobile/desktop
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
-          // Once animated in, we don't need to keep observing.
-          observer.unobserve(entry.target);
+    const ctx = gsap.context(() => {
+      // Hero animation
+      if (heroRef.current) {
+        const heroElements = heroRef.current.querySelectorAll('h1, p, .flex');
+        if (heroElements.length > 0) {
+          gsap.fromTo(heroElements,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1, y: 0, duration: 0.9, stagger: 0.18, ease: 'power2.out',
+              scrollTrigger: {
+                trigger: heroRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
         }
-      });
-    }, observerOptions);
+      }
 
-    // IMPORTANT: Testimonials/cards are rendered after async sheet fetch.
-    // Re-scan and observe whenever the page re-renders with new content.
-    document.querySelectorAll('.scroll-animate:not(.animate-in)').forEach(el => observer.observe(el));
+      // Benefits section animation
+      if (benefitsRef.current) {
+        const benefitElements = benefitsRef.current.querySelectorAll('.benefit-card');
+        if (benefitElements.length > 0) {
+          gsap.fromTo(benefitElements,
+            { opacity: 0, y: 50, scale: 0.9 },
+            {
+              opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.15, ease: 'back.out(1.3)',
+              scrollTrigger: {
+                trigger: benefitsRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+      }
 
-    return () => observer.disconnect();
-  }, [distributors.length, testimonials.length, loading]);
+      // Stats section animation
+      if (statsRef.current) {
+        const statElements = statsRef.current.querySelectorAll('.stat-card');
+        if (statElements.length > 0) {
+          gsap.fromTo(statElements,
+            { opacity: 0, scale: 0.75 },
+            {
+              opacity: 1, scale: 1, duration: 0.7, stagger: 0.12, ease: 'elastic.out(1, 0.6)',
+              scrollTrigger: {
+                trigger: statsRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+      }
+
+      // Distributors section animation
+      if (distributorsRef.current) {
+        const distributorElements = distributorsRef.current.querySelectorAll('.distributor-card');
+        if (distributorElements.length > 0) {
+          gsap.fromTo(distributorElements,
+            { opacity: 0, x: -40, y: 30 },
+            {
+              opacity: 1, x: 0, y: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out',
+              scrollTrigger: {
+                trigger: distributorsRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+      }
+
+      // Testimonials section animation
+      if (testimonialsRef.current) {
+        const testimonialElements = testimonialsRef.current.querySelectorAll('.testimonial-card');
+        if (testimonialElements.length > 0) {
+          gsap.fromTo(testimonialElements,
+            { opacity: 0, y: 40, scale: 0.9 },
+            {
+              opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.2, ease: 'back.out(1.2)',
+              scrollTrigger: {
+                trigger: testimonialsRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+      }
+
+      // CTA section animation
+      if (ctaRef.current) {
+        const ctaElements = ctaRef.current.querySelectorAll('h2, p, .flex');
+        if (ctaElements.length > 0) {
+          gsap.fromTo(ctaElements,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1, y: 0, duration: 0.9, stagger: 0.18, ease: 'power2.out',
+              scrollTrigger: {
+                trigger: ctaRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+      }
+    });
+
+    return () => ctx.revert();
+  }, [loading]); // Re-run when loading completes to animate newly loaded content
 
   // Fetch distributors and testimonials
   useEffect(() => {
@@ -160,7 +263,7 @@ const DistributorsEnhanced: React.FC = () => {
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         
         {/* Hero Section with Parallax Effect */}
-        <section className="relative overflow-hidden bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] text-white py-32">          {/* Animated Background Shapes */}
+        <section ref={heroRef} className="relative overflow-hidden bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] text-white py-32">          {/* Animated Background Shapes */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute bottom-20 right-10 w-96 h-96 bg-aviation-blue-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -205,7 +308,7 @@ const DistributorsEnhanced: React.FC = () => {
         </section>
 
         {/* Partnership Benefits */}
-        <section id="benefits" className="py-20 bg-gray-50 dark:bg-gray-900 scroll-animate">
+        <section ref={benefitsRef} id="benefits" className="py-20 bg-gray-50 dark:bg-gray-900">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -257,7 +360,7 @@ const DistributorsEnhanced: React.FC = () => {
         </section>
 
         {/* Interactive Cards Section */}
-        <section id="info" className="py-20 bg-white dark:bg-gray-800 scroll-animate">
+        <section ref={statsRef} id="info" className="py-20 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {/* Requirements Card */}
@@ -291,7 +394,7 @@ const DistributorsEnhanced: React.FC = () => {
         </section>
 
         {/* Partner Testimonials */}
-        <section id="testimonials" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20 scroll-animate">
+        <section ref={testimonialsRef} id="testimonials" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -319,7 +422,7 @@ const DistributorsEnhanced: React.FC = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] relative overflow-hidden scroll-animate">
+        <section ref={ctaRef} className="py-24 bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-aviation-blue-300 rounded-full blur-3xl"></div>
@@ -384,7 +487,7 @@ interface BenefitCardProps {
 }
 
 const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, description, delay = '' }) => (
-  <div className={`benefit-card glass-effect rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl scroll-animate ${delay}`}>
+  <div className={`benefit-card glass-effect rounded-2xl p-8 text-center shadow-lg hover:shadow-2xl ${delay}`}>
     <div className="text-[#0b6d94] dark:text-aviation-blue-400 mb-6 flex justify-center transform hover:scale-125 transition-transform duration-300">{icon}</div>
     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">{title}</h3>
     <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{description}</p>
@@ -403,7 +506,7 @@ interface InteractiveCardProps {
 const InteractiveCard: React.FC<InteractiveCardProps> = ({ icon, title, description, gradient, onClick }) => (
   <div 
     onClick={onClick}
-    className={`group cursor-pointer bg-gradient-to-br ${gradient} rounded-2xl p-8 text-white transform hover:scale-105 transition-all duration-300 hover:shadow-2xl`}
+    className={`stat-card group cursor-pointer bg-gradient-to-br ${gradient} rounded-2xl p-8 text-white transform hover:scale-105 transition-all duration-300 hover:shadow-2xl`}
   >
     <div className="mb-4 group-hover:scale-110 transition-transform">{icon}</div>
     <h3 className="text-2xl font-bold mb-3">{title}</h3>
@@ -429,7 +532,7 @@ interface TestimonialCardProps {
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author, company, location, rating = 5, imageUrl, delay = '' }) => (
-  <div className={`glass-effect rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:transform hover:translateY(-5px) transition-all duration-400 scroll-animate ${delay}`}>
+  <div className={`testimonial-card glass-effect rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:transform hover:translateY(-5px) transition-all duration-400 ${delay}`}>
     <div className="flex items-start justify-between mb-6">
       <svg className="w-12 h-12 text-blue-600 opacity-50" fill="currentColor" viewBox="0 0 24 24">
         <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>

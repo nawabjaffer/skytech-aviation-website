@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SEOHead from '../components/SEOHead';
 import { siteConfig } from '../config/siteConfig';
 import { DOWNLOAD_LINKS } from '../config/links';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ContactFormData {
   name: string;
@@ -20,6 +24,71 @@ const Contacts: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  
+  // Refs for animation sections
+  const heroRef = useRef<HTMLElement>(null);
+  const infoCardsRef = useRef<HTMLElement>(null);
+  const formSectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero animation with opacity
+      if (heroRef.current) {
+        const heroElements = heroRef.current.querySelectorAll('h1, p');
+        if (heroElements.length > 0) {
+          gsap.fromTo(heroElements,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1, y: 0, duration: 0.9, stagger: 0.15, ease: 'power3.out',
+              scrollTrigger: {
+                trigger: heroRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+      }
+
+      // Info cards animation with scale
+      if (infoCardsRef.current) {
+        const infoCardElements = infoCardsRef.current.querySelectorAll('.grid > div');
+        if (infoCardElements.length > 0) {
+          gsap.fromTo(infoCardElements,
+            { opacity: 0, y: 40, scale: 0.9 },
+            {
+              opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.15, ease: 'back.out(1.3)',
+              scrollTrigger: {
+                trigger: infoCardsRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+      }
+
+      // Form section animation with directional approach
+      if (formSectionRef.current) {
+        const formElements = formSectionRef.current.querySelectorAll('.grid > div');
+        if (formElements.length > 0) {
+          gsap.fromTo(formElements,
+            { opacity: 0, x: (index) => index === 0 ? -40 : 40, y: 20 },
+            {
+              opacity: 1, x: 0, y: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out',
+              scrollTrigger: {
+                trigger: formSectionRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+        }
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   const onSubmit = async (data: ContactFormData) => {
     setSubmitting(true);
@@ -54,7 +123,7 @@ const Contacts: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-aviation-blue-50 to-gray-50 dark:from-gray-900 dark:via-aviation-blue-900/20 dark:to-gray-900">
         
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] text-white pt-28 pb-20 md:pt-32 md:pb-24">
+        <section ref={heroRef} className="relative bg-gradient-to-r from-[#0b6d94] via-[#0a5a7a] to-[#073d53] text-white pt-28 pb-20 md:pt-32 md:pb-24">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute bottom-20 right-10 w-96 h-96 bg-aviation-blue-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -69,7 +138,7 @@ const Contacts: React.FC = () => {
         </section>
 
         {/* Contact Information Cards */}
-        <section className="py-20">
+        <section ref={infoCardsRef} className="py-20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto -mt-16 md:-mt-20 relative z-10">
               {/* Office Address */}
@@ -137,7 +206,7 @@ const Contacts: React.FC = () => {
         </section>
 
         {/* Contact Form & Map */}
-        <section className="py-20 bg-white dark:bg-gray-800">
+        <section ref={formSectionRef} className="py-20 bg-white dark:bg-gray-800">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               

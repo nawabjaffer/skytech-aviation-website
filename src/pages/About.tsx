@@ -183,18 +183,27 @@ const About: React.FC = () => {
                   {certKeys.map((cert, index) => {
                     const certData = certItems[cert];
                     if (!certData || !certData.name) return null;
+                    const isISO = cert === 'iso9001';
                     
                     return (
                       <div key={index} className="bg-gradient-to-br from-aviation-blue-50 to-aviation-blue-100 dark:from-aviation-blue-900/20 dark:to-aviation-blue-800/20 rounded-2xl p-8 text-center hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                         <div className="flex justify-center mb-6">
                           <div className="p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-md">
-                            <Award className="w-12 h-12 text-[#0b6d94]" strokeWidth={2} />
+                            {isISO ? (
+                              <img
+                                src="/iso-9001-2015.png"
+                                alt="ISO Certified"
+                                className="w-16 h-16 object-contain filter brightness-0 invert"
+                              />
+                            ) : (
+                              <Award className="w-12 h-12 text-[#0b6d94]" strokeWidth={2} />
+                            )}
                           </div>
                         </div>
                         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                          {certData.name}
+                          {isISO ? 'ISO Certified' : certData.name}
                         </h3>
-                        {certData.description && (
+                        {!isISO && certData.description && (
                           <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                             {certData.description}
                           </p>
@@ -467,6 +476,7 @@ const About: React.FC = () => {
                   {awardKeys.map((award, index) => {
                     const awardData = awardsItems[award];
                     if (!awardData || !awardData.title) return null;
+                    const isISOAward = award === 'supplier' || (awardData.title && awardData.title.toLowerCase().includes('iso'));
                     
                     return (
                       <div 
@@ -475,18 +485,26 @@ const About: React.FC = () => {
                       >
                         <div className="flex items-start gap-4">
                           <div className="flex-shrink-0 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
-                            <Award className="w-6 h-6 text-amber-600 dark:text-amber-400" strokeWidth={2} />
+                            {isISOAward ? (
+                              <img
+                                src="/iso-9001-2015.png"
+                                alt="ISO Certified"
+                                className="w-10 h-10 object-contain filter brightness-0 invert"
+                              />
+                            ) : (
+                              <Award className="w-6 h-6 text-amber-600 dark:text-amber-400" strokeWidth={2} />
+                            )}
                           </div>
                           <div className="flex-1 min-w-0">
                             <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-1 leading-tight">
-                              {awardData.title}
+                              {isISOAward ? 'ISO Certified' : awardData.title}
                             </h3>
-                            {awardData.year && (
+                            {!isISOAward && awardData.year && (
                               <p className="text-sm font-medium text-[#0b6d94] dark:text-aviation-blue-400 mb-1">
                                 {awardData.year}
                               </p>
                             )}
-                            {awardData.issuer && (
+                            {!isISOAward && awardData.issuer && (
                               <p className="text-sm text-gray-500 dark:text-gray-400">
                                 {awardData.issuer}
                               </p>

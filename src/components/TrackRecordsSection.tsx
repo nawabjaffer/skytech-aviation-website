@@ -80,26 +80,26 @@ const TrackRecordsSection: React.FC = () => {
         </div>
 
         {/* Track Record Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-16">
           {trackRecords.map((record, index) => {
             const IconComponent = record.icon;
             return (
               <div
                 key={record.key}
-                className="bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center border border-gray-100 dark:border-gray-700"
+                className="bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center border border-gray-100 dark:border-gray-700 overflow-hidden"
               >
                 {/* Icon */}
-                <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 mb-4 bg-[#0b6d94]/10 rounded-xl">
-                  <IconComponent className="w-6 h-6 md:w-7 md:h-7 text-[#0b6d94]" strokeWidth={2} />
+                <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mb-3 sm:mb-4 bg-[#0b6d94]/10 rounded-xl">
+                  <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-[#0b6d94]" strokeWidth={2} />
                 </div>
 
                 {/* Value */}
-                <div className="text-3xl md:text-4xl font-bold text-[#0b6d94] dark:text-aviation-blue-400 mb-2">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0b6d94] dark:text-aviation-blue-400 mb-1 sm:mb-2 whitespace-nowrap">
                   {t(`home.trackRecords.items.${record.key}.value`)}
                 </div>
 
                 {/* Description */}
-                <p className="text-sm md:text-base text-gray-600 dark:text-gray-400">
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-400 leading-tight">
                   {t(`home.trackRecords.items.${record.key}.description`)}
                 </p>
               </div>

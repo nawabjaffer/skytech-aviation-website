@@ -96,21 +96,30 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* ASA Member Badge */}
+          {/* Certifications & Memberships */}
           <div
             className={`flex flex-col h-full items-center justify-center text-center p-2`}
           >
-            <h4 className='text-lg font-semibold w-full'>
+            <h4 className='text-lg font-semibold w-full mb-4'>
               {t('footer.asaMember')}
             </h4>
-            <div className='w-full flex-1 flex items-center justify-center h-full'>
-              <a href={EXTERNAL_LINKS.asa} target="_blank" rel="noopener noreferrer">
+            <div className='w-full flex-1 flex flex-row items-center justify-center gap-4'>
+              {/* ASA Logo */}
+              <a href={EXTERNAL_LINKS.asa} target="_blank" rel="noopener noreferrer" className='flex-1 max-w-[120px]'>
                 <img
                   src='/ASALogo.png'
                   alt='ASA Logo'
-                  className='w-full h-full object-contain hover:opacity-80 transition-opacity'
+                  className='w-full h-auto object-contain hover:opacity-80 transition-opacity'
                 />
               </a>
+              {/* ISO 9001:2015 Logo */}
+              <div className='flex-1 max-w-[100px]'>
+                <img
+                  src='/iso-9001-2015.png'
+                  alt='ISO 9001:2015 Certified'
+                  className='w-full h-auto object-contain filter brightness-0 invert'
+                />
+              </div>
             </div>
           </div>
         </div>

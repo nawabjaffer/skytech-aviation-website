@@ -4,7 +4,7 @@
   "type": "module",
   "description": "A responsive website for Skytech Aviation, an authorized civil aircraft parts supplier.",
   "main": "src/main.tsx",
-  "homepage": "https://nawabjaffer.github.io/skytech-aviation-website/",
+  "homepage": "https://aviation.skytech.ae/",
   "scripts": {
     "start": "vite",
     "prebuild": "node scripts/generate-version.js",

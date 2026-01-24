@@ -251,46 +251,30 @@ const TrackRecordsSection: React.FC = () => {
               </div>
               
               {/* Infinite Scrolling Carousel - Direction aware for RTL */}
-              <div className="relative overflow-hidden py-8" dir="ltr">
+              <div className="relative overflow-hidden py-12" dir="ltr">
                 {/* Fade edges */}
                 <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
                 <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
                 
-                <div className={isRTL ? "carousel-track-right" : "carousel-track-left"}>
+                <div className={`ripple-carousel ${isRTL ? "carousel-track-right" : "carousel-track-left"}`}>
                   {repeatedPartners.map((partner, index) => (
                     <div
                       key={index}
-                      className="carousel-item flex-shrink-0 flex items-center justify-center px-8 py-4 min-w-[200px]"
+                      className="carousel-item ripple-item flex-shrink-0 flex items-center justify-center px-6 py-6 min-w-[220px]"
+                      data-index={index}
                     >
-                      {/* Fixed-size logo container for consistent sizing */}
-                      <div className="logo-container w-[160px] h-[60px] flex items-center justify-center">
+                      {/* Fixed-size logo container for consistent sizing - increased for hover */}
+                      <div className="logo-container w-[180px] h-[80px] flex items-center justify-center overflow-visible">
                         {partner.logo ? (
                           <>
                             <img
                               src={partner.logo}
                               alt={partner.name}
                               title={partner.name}
-                              className="partner-logo max-h-[60px] max-w-[160px] w-auto h-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 ease-out hover:scale-110"
+                              className="partner-logo max-h-[70px] max-w-[170px] w-auto h-auto object-contain transition-all duration-500 ease-out"
                               loading="eager"
                               referrerPolicy="no-referrer"
-                              style={{ minHeight: '40px', minWidth: '60px' }}
-                              onLoad={(e) => {
-                                // Smart scaling: ensure small logos are scaled up appropriately
-                                const img = e.currentTarget;
-                                const naturalWidth = img.naturalWidth;
-                                const naturalHeight = img.naturalHeight;
-                                
-                                // If logo is very small, scale it up while maintaining aspect ratio
-                                if (naturalHeight < 40 || naturalWidth < 60) {
-                                  const scaleFactorH = 50 / naturalHeight;
-                                  const scaleFactorW = 120 / naturalWidth;
-                                  const scaleFactor = Math.min(scaleFactorH, scaleFactorW, 3); // Max 3x scale
-                                  if (scaleFactor > 1) {
-                                    img.style.transform = `scale(${scaleFactor})`;
-                                    img.style.transformOrigin = 'center';
-                                  }
-                                }
-                              }}
+                              style={{ minHeight: '45px', minWidth: '70px' }}
                               onError={(e) => {
                                 const target = e.currentTarget;
                                 target.style.display = 'none';
@@ -299,7 +283,7 @@ const TrackRecordsSection: React.FC = () => {
                               }}
                             />
                             <div 
-                              className="partner-fallback hidden items-center justify-center w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg px-3 py-2"
+                              className="partner-fallback hidden items-center justify-center w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg px-4 py-3"
                             >
                               <span className="text-sm font-bold text-gray-600 dark:text-gray-300 tracking-wide whitespace-nowrap text-center leading-tight">
                                 {partner.name}
@@ -307,7 +291,7 @@ const TrackRecordsSection: React.FC = () => {
                             </div>
                           </>
                         ) : (
-                          <div className="flex items-center justify-center w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg px-3 py-2">
+                          <div className="flex items-center justify-center w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg px-4 py-3">
                             <span className="text-sm font-bold text-gray-600 dark:text-gray-300 tracking-wide whitespace-nowrap text-center leading-tight">
                               {partner.name}
                             </span>
@@ -340,46 +324,30 @@ const TrackRecordsSection: React.FC = () => {
               </div>
               
               {/* Infinite Scrolling Carousel - Direction aware for RTL */}
-              <div className="relative overflow-hidden py-8" dir="ltr">
+              <div className="relative overflow-hidden py-12" dir="ltr">
                 {/* Fade edges */}
                 <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
                 <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
                 
-                <div className={isRTL ? "carousel-track-left" : "carousel-track-right"}>
+                <div className={`ripple-carousel ${isRTL ? "carousel-track-left" : "carousel-track-right"}`}>
                   {repeatedDistributors.map((partner, index) => (
                     <div
                       key={index}
-                      className="carousel-item flex-shrink-0 flex items-center justify-center px-8 py-4 min-w-[200px]"
+                      className="carousel-item ripple-item flex-shrink-0 flex items-center justify-center px-6 py-6 min-w-[220px]"
+                      data-index={index}
                     >
-                      {/* Fixed-size logo container for consistent sizing */}
-                      <div className="logo-container w-[160px] h-[60px] flex items-center justify-center">
+                      {/* Fixed-size logo container for consistent sizing - increased for hover */}
+                      <div className="logo-container w-[180px] h-[80px] flex items-center justify-center overflow-visible">
                         {partner.logo ? (
                           <>
                             <img
                               src={partner.logo}
                               alt={partner.name}
                               title={partner.name}
-                              className="distributor-logo max-h-[60px] max-w-[160px] w-auto h-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-500 ease-out hover:scale-110"
+                              className="distributor-logo max-h-[70px] max-w-[170px] w-auto h-auto object-contain transition-all duration-500 ease-out"
                               loading="eager"
                               referrerPolicy="no-referrer"
-                              style={{ minHeight: '40px', minWidth: '60px' }}
-                              onLoad={(e) => {
-                                // Smart scaling: ensure small logos are scaled up appropriately
-                                const img = e.currentTarget;
-                                const naturalWidth = img.naturalWidth;
-                                const naturalHeight = img.naturalHeight;
-                                
-                                // If logo is very small, scale it up while maintaining aspect ratio
-                                if (naturalHeight < 40 || naturalWidth < 60) {
-                                  const scaleFactorH = 50 / naturalHeight;
-                                  const scaleFactorW = 120 / naturalWidth;
-                                  const scaleFactor = Math.min(scaleFactorH, scaleFactorW, 3); // Max 3x scale
-                                  if (scaleFactor > 1) {
-                                    img.style.transform = `scale(${scaleFactor})`;
-                                    img.style.transformOrigin = 'center';
-                                  }
-                                }
-                              }}
+                              style={{ minHeight: '45px', minWidth: '70px' }}
                               onError={(e) => {
                                 const target = e.currentTarget;
                                 target.style.display = 'none';
@@ -388,7 +356,7 @@ const TrackRecordsSection: React.FC = () => {
                               }}
                             />
                             <div 
-                              className="distributor-fallback hidden items-center justify-center w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg px-3 py-2"
+                              className="distributor-fallback hidden items-center justify-center w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg px-4 py-3"
                             >
                               <span className="text-sm font-bold text-gray-600 dark:text-gray-300 tracking-wide whitespace-nowrap text-center leading-tight">
                                 {partner.name}
@@ -396,7 +364,7 @@ const TrackRecordsSection: React.FC = () => {
                             </div>
                           </>
                         ) : (
-                          <div className="flex items-center justify-center w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg px-3 py-2">
+                          <div className="flex items-center justify-center w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg px-4 py-3">
                             <span className="text-sm font-bold text-gray-600 dark:text-gray-300 tracking-wide whitespace-nowrap text-center leading-tight">
                               {partner.name}
                             </span>
@@ -411,7 +379,7 @@ const TrackRecordsSection: React.FC = () => {
           );
         })()}
 
-        {/* Carousel Animation Styles - Direction-aware for RTL support */}
+        {/* Carousel Animation Styles - Direction-aware for RTL support with Liquidify Ripple Effect */}
         <style>{`
           .carousel-track-left,
           .carousel-track-right {
@@ -454,13 +422,13 @@ const TrackRecordsSection: React.FC = () => {
           }
           
           .carousel-item {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
           }
           
-          /* Logo container styling for consistent sizing */
+          /* Logo container styling for consistent sizing - no overflow hidden */
           .logo-container {
             position: relative;
-            overflow: hidden;
+            overflow: visible;
           }
           
           .logo-container img {
@@ -471,13 +439,132 @@ const TrackRecordsSection: React.FC = () => {
           
           /* Handle very small SVG logos */
           .logo-container img[src*=".svg"] {
-            min-height: 50px;
+            min-height: 55px;
             width: auto;
           }
           
-          /* Smooth scaling animation */
+          /* Smooth scaling animation with liquidify effect */
           .logo-container img {
-            transition: transform 0.5s ease-out, filter 0.5s ease-out, opacity 0.5s ease-out;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        filter 0.4s ease-out, 
+                        opacity 0.4s ease-out;
+          }
+          
+          /* ====== THREAD-CONNECTED FLOWING ANIMATION ====== */
+          
+          /* Thread item base state - smooth flowing motion */
+          .ripple-item {
+            transform: scale(1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: center center;
+            position: relative;
+          }
+          
+          /* Hovered item - smooth scale with glow */
+          .ripple-item:hover {
+            transform: scale(1.15);
+            z-index: 20;
+          }
+          
+          .ripple-item:hover .logo-container img {
+            transform: scale(1.08);
+            filter: drop-shadow(0 6px 16px rgba(11, 109, 148, 0.25));
+          }
+          
+          /* Connected thread effect - adjacent items flow together */
+          .ripple-item:hover + .ripple-item {
+            transform: scale(1.08) translateX(4px);
+            z-index: 18;
+          }
+          
+          .ripple-item:has(+ .ripple-item:hover) {
+            transform: scale(1.08) translateX(-4px);
+            z-index: 18;
+          }
+          
+          /* Second-level connected neighbors - subtle connection */
+          .ripple-item:hover + .ripple-item + .ripple-item {
+            transform: scale(1.04) translateX(2px);
+            z-index: 16;
+          }
+          
+          .ripple-item:has(+ .ripple-item + .ripple-item:hover) {
+            transform: scale(1.04) translateX(-2px);
+            z-index: 16;
+          }
+          
+          /* Thread connection line effect with hover */
+          .ripple-item:hover .logo-container::before {
+            content: '';
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            width: 8px;
+            height: 2px;
+            background: linear-gradient(to right, rgba(11, 109, 148, 0.4), transparent);
+            transform: translateY(-50%);
+            animation: threadPulse 0.6s ease-in-out;
+          }
+          
+          .ripple-item:has(+ .ripple-item:hover) .logo-container::after {
+            content: '';
+            position: absolute;
+            right: 100%;
+            top: 50%;
+            width: 8px;
+            height: 2px;
+            background: linear-gradient(to left, rgba(11, 109, 148, 0.4), transparent);
+            transform: translateY(-50%);
+            animation: threadPulse 0.6s ease-in-out;
+          }
+          
+          /* Thread pulse animation - items connected in flow */
+          @keyframes threadPulse {
+            0% {
+              opacity: 0;
+              width: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              opacity: 0;
+              width: 8px;
+            }
+          }
+          
+          /* Subtle glow connecting the items */
+          .ripple-item:hover .logo-container::after {
+            content: '';
+            position: absolute;
+            inset: -8px -4px -8px -4px;
+            background: radial-gradient(ellipse 120% 100% at center, rgba(11, 109, 148, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: threadGlow 0.8s ease-in-out;
+          }
+          
+          @keyframes threadGlow {
+            0%, 100% {
+              opacity: 0.4;
+              transform: scale(0.95);
+            }
+            50% {
+              opacity: 0.8;
+              transform: scale(1.05);
+            }
+          }
+          
+          /* Smooth transition when leaving hover - items flow back */
+          .ripple-carousel .ripple-item {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          }
+          
+          /* Ensure images are visible with full color */
+          .partner-logo,
+          .distributor-logo {
+            filter: none !important;
+            opacity: 1 !important;
           }
         `}</style>
       </div>

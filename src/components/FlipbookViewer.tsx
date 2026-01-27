@@ -193,11 +193,12 @@ export const FlipbookModal: React.FC<FlipbookModalProps> = ({
   const enteredFullscreenRef = useRef(false);
   const closingRef = useRef(false);
 
-  // Auto-enter fullscreen on mount
+  // Auto-enter fullscreen on mount (desktop/tablet only)
   useEffect(() => {
     const enterFullscreen = async () => {
       try {
-        if (modalRef.current && document.fullscreenEnabled) {
+        const prefersFullscreen = !window.matchMedia('(max-width: 768px)').matches;
+        if (modalRef.current && document.fullscreenEnabled && prefersFullscreen) {
           await modalRef.current.requestFullscreen();
           enteredFullscreenRef.current = true;
         }
@@ -214,14 +215,11 @@ export const FlipbookModal: React.FC<FlipbookModalProps> = ({
   // Prevent body scroll when modal is open
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
-    const originalTouchAction = document.body.style.touchAction;
     
     document.body.style.overflow = 'hidden';
-    document.body.style.touchAction = 'none';
     
     return () => {
       document.body.style.overflow = originalOverflow;
-      document.body.style.touchAction = originalTouchAction;
     };
   }, []);
 
@@ -301,6 +299,7 @@ export const FlipbookModal: React.FC<FlipbookModalProps> = ({
   return (
     <div 
       className="fixed inset-0 z-[9999] w-screen h-screen overflow-hidden safe-top safe-bottom"
+      style={{ width: '100dvw', height: '100dvh' }}
       role="dialog"
       aria-modal="true"
       aria-labelledby="flipbook-title"
@@ -308,8 +307,21 @@ export const FlipbookModal: React.FC<FlipbookModalProps> = ({
       {/* Full Screen Flipbook Container - Seamless Design */}
       <div
         ref={modalRef}
-        className="relative w-full h-full bg-black overflow-hidden"
+        className="relative w-full h-full bg-black overflow-hidden overscroll-contain"
+        style={{ width: '100dvw', height: '100dvh' }}
       >
+        {/* Mobile Safe Control Bar */}
+        <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-3 py-2 sm:px-4 sm:py-3 bg-black/35 backdrop-blur-sm border-b border-white/10" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
+          <div className="text-white/70 text-xs sm:text-sm">{config.title}</div>
+          <button
+            onClick={handleClose}
+            className="flex items-center gap-2 px-3 py-1.5 bg-white/15 hover:bg-white/25 active:bg-white/30 text-white text-xs sm:text-sm rounded-full transition-all duration-200 touch-manipulation"
+            aria-label="Close flipbook viewer"
+          >
+            <X className="w-4 h-4" />
+            <span>Close</span>
+          </button>
+        </div>
         {/* Minimal Close Button - Top Right Corner */}
         <button
           ref={closeButtonRef}
@@ -343,17 +355,23 @@ export const FlipbookModal: React.FC<FlipbookModalProps> = ({
         )}
 
         {/* Seamless Flipbook Iframe - No Visible Borders */}
-        <iframe
-          src={config.flipbookUrl}
-          title={config.title}
-          className="w-full h-full border-0 bg-black"
-          onLoad={() => setIsLoading(false)}
-          allow="fullscreen"
-          style={{ 
-            touchAction: 'pan-x pan-y pinch-zoom',
-            filter: 'none',
-          }}
-        />
+        <div className="absolute inset-0 pt-12 sm:pt-0" style={{ paddingTop: 'calc(env(safe-area-inset-top) + 3rem)' }}>
+          <iframe
+            src={config.flipbookUrl}
+            title={config.title}
+            className="w-full h-full border-0 bg-black"
+            onLoad={() => setIsLoading(false)}
+            allow="fullscreen"
+            allowFullScreen
+            webkitallowfullscreen="true"
+            mozallowfullscreen="true"
+            style={{ 
+              touchAction: 'pan-x pan-y pinch-zoom',
+              pointerEvents: 'auto',
+              filter: 'none',
+            }}
+          />
+        </div>
 
         {/* Download Button - Optional, Top Left when available */}
         {showDownload && !isLoading && (

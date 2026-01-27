@@ -23,6 +23,9 @@ export { default as LanguageSelector } from './LanguageSelector';
 export { default as DarkModeToggle } from './DarkModeToggle';
 export { default as ScrollToTop } from './ScrollToTop';
 
+// Document Viewer components
+export { default as FlipbookViewer, FlipbookCard, FlipbookEmbed, FlipbookModal, DocumentViewer, FLIPBOOK_CONFIGS } from './FlipbookViewer';
+
 // SEO components
 export { default as SEOHead } from './SEOHead';
 

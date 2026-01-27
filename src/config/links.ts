@@ -76,9 +76,18 @@ export const DOWNLOAD_LINKS = {
   // Company profile/brochure document
   companyProfile: 'https://drive.google.com/file/d/YOUR_COMPANY_PROFILE_FILE_ID/view?usp=sharing',
   productCatalog: 'https://drive.google.com/file/d/YOUR_PRODUCT_CATALOG_FILE_ID/view?usp=sharing',
-  companyBrochure: 'https://drive.google.com/file/d/YOUR_COMPANY_BROCHURE_FILE_ID/view?usp=sharing',
+  companyBrochure: 'https://heyzine.com/flip-book/61a32a0ad7.html',
   certifications: 'https://drive.google.com/file/d/YOUR_CERTIFICATIONS_FILE_ID/view?usp=sharing',
   capabilities: 'https://drive.google.com/file/d/YOUR_CAPABILITIES_FILE_ID/view?usp=sharing',
+} as const;
+
+// ==================== HEYZINE FLIPBOOK CONFIG ====================
+export const HEYZINE_CONFIG = {
+  companyBrochure: {
+    id: '61a32a0ad7',
+    coverImage: 'https://cdnc.heyzine.com/flip-book/cover/61a32a0ad7.jpg',
+    flipbookUrl: 'https://heyzine.com/flip-book/61a32a0ad7.html',
+  },
 } as const;
 
 // ==================== COMPANY INFO ====================

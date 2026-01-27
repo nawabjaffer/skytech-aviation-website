@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { asMailtoHref, asTelHref, siteConfig } from '../config/siteConfig';
 import { DOWNLOAD_LINKS } from '../config/links';
@@ -20,9 +20,12 @@ import {
   ClipboardList,
   CircleDollarSign,
   Check,
-  Rocket
+  Rocket,
+  BookOpen,
+  ExternalLink
 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
+import { FlipbookModal, FLIPBOOK_CONFIGS } from '../components/FlipbookViewer';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -37,6 +40,7 @@ const Services: React.FC = () => {
   const supportRef = useRef<HTMLElement>(null);
   const downloadsRef = useRef<HTMLElement>(null);
   const ctaRef = useRef<HTMLElement>(null);
+  const [showBrochureModal, setShowBrochureModal] = useState(false);
 
   const services = [
     {
@@ -308,6 +312,7 @@ const Services: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
+  // Brochure Flipbook Card Component with Modal
   return (
     <>
       <SEOHead 
@@ -609,7 +614,7 @@ const Services: React.FC = () => {
           </div>
         </section>
 
-        {/* Download Center */}
+        {/* Download Center with Flipbook Integration */}
         <section ref={downloadsRef} className="py-20 bg-gradient-to-r from-sky-500 via-sky-600 to-cyan-500">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -621,41 +626,78 @@ const Services: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-6xl mx-auto">
+            {/* Downloads */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 lg:gap-8 max-w-6xl mx-auto">
               {[
-                { key: 'catalog', IconComponent: Book, color: 'red', link: DOWNLOAD_LINKS.productCatalog },
-                { key: 'brochure', IconComponent: FileText, color: 'blue', link: DOWNLOAD_LINKS.companyBrochure },
-                { key: 'certifications', IconComponent: Award, color: 'amber', link: DOWNLOAD_LINKS.certifications },
-                { key: 'capabilities', IconComponent: BarChart3, color: 'green', link: DOWNLOAD_LINKS.capabilities }
-              ].map(({ key, IconComponent, color, link }) => (
-                <a
-                  key={key}
-                  href={link || '#'}
-                  target={link ? '_blank' : undefined}
-                  rel={link ? 'noopener noreferrer' : undefined}
-                  className="group bg-white dark:bg-gray-800 rounded-3xl p-8 text-center hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
-                >
-                  <div className="flex justify-center mb-6">
-                    <div className={`p-5 bg-${color}-100 dark:bg-${color}-900/30 rounded-2xl group-hover:scale-110 transition-transform duration-300`}>
-                      <IconComponent className={`w-12 h-12 text-${color}-600 dark:text-${color}-400`} strokeWidth={2} />
+                { key: 'catalog', IconComponent: Book, color: 'red', link: DOWNLOAD_LINKS.productCatalog, type: 'link' },
+                { key: 'brochure', IconComponent: FileText, color: 'blue', link: null, type: 'modal' },
+                { key: 'certifications', IconComponent: Award, color: 'amber', link: DOWNLOAD_LINKS.certifications, type: 'link' },
+                { key: 'capabilities', IconComponent: BarChart3, color: 'green', link: DOWNLOAD_LINKS.capabilities, type: 'link' }
+              ].map(({ key, IconComponent, color, link, type }) => (
+                type === 'modal' ? (
+                  <button
+                    key={key}
+                    onClick={() => setShowBrochureModal(true)}
+                    className="group bg-white dark:bg-gray-800 rounded-3xl p-8 text-center hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl cursor-pointer border-0"
+                  >
+                    <div className="flex justify-center mb-6">
+                      <div className={`p-5 bg-${color}-100 dark:bg-${color}-900/30 rounded-2xl group-hover:scale-110 transition-transform duration-300`}>
+                        <IconComponent className={`w-12 h-12 text-${color}-600 dark:text-${color}-400`} strokeWidth={2} />
+                      </div>
                     </div>
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
-                    {t(`services.downloads.items.${key}.title`)}
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                    {t(`services.downloads.items.${key}.description`)}
-                  </p>
-                  <div className="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400 font-semibold group-hover:gap-3 transition-all">
-                    <Download className="w-5 h-5" strokeWidth={2} />
-                    <span>{t('services.downloads.downloadButton')}</span>
-                  </div>
-                  <p className="text-xs text-gray-500 dark:text-gray-500 mt-3">
-                    {t(`services.downloads.items.${key}.size`)}
-                  </p>
-                </a>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+                      {t(`services.downloads.items.${key}.title`)}
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                      {t(`services.downloads.items.${key}.description`)}
+                    </p>
+                    <div className="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400 font-semibold group-hover:gap-3 transition-all">
+                      <Download className="w-5 h-5" strokeWidth={2} />
+                      <span>{t('services.downloads.downloadButton')}</span>
+                    </div>
+                    <p className="text-xs text-gray-500 dark:text-gray-500 mt-3">
+                      {t(`services.downloads.items.${key}.size`)}
+                    </p>
+                  </button>
+                ) : (
+                  <a
+                    key={key}
+                    href={link || '#'}
+                    target={link ? '_blank' : undefined}
+                    rel={link ? 'noopener noreferrer' : undefined}
+                    className="group bg-white dark:bg-gray-800 rounded-3xl p-8 text-center hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
+                  >
+                    <div className="flex justify-center mb-6">
+                      <div className={`p-5 bg-${color}-100 dark:bg-${color}-900/30 rounded-2xl group-hover:scale-110 transition-transform duration-300`}>
+                        <IconComponent className={`w-12 h-12 text-${color}-600 dark:text-${color}-400`} strokeWidth={2} />
+                      </div>
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+                      {t(`services.downloads.items.${key}.title`)}
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                      {t(`services.downloads.items.${key}.description`)}
+                    </p>
+                    <div className="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400 font-semibold group-hover:gap-3 transition-all">
+                      <Download className="w-5 h-5" strokeWidth={2} />
+                      <span>{t('services.downloads.downloadButton')}</span>
+                    </div>
+                    <p className="text-xs text-gray-500 dark:text-gray-500 mt-3">
+                      {t(`services.downloads.items.${key}.size`)}
+                    </p>
+                  </a>
+                )
               ))}
             </div>
+
+            {/* Brochure Modal */}
+            {showBrochureModal && (
+              <FlipbookModal
+                config={FLIPBOOK_CONFIGS.companyBrochure}
+                onClose={() => setShowBrochureModal(false)}
+                showDownload={true}
+              />
+            )}
           </div>
         </section>
 

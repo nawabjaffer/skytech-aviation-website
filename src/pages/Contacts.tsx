@@ -275,15 +275,6 @@ const Contacts: React.FC = () => {
                     </button>
                   </div>
                 </div>
-
-                {/* Brochure Modal */}
-                {showBrochureModal && (
-                  <FlipbookModal
-                    config={FLIPBOOK_CONFIGS.companyBrochure}
-                    onClose={() => setShowBrochureModal(false)}
-                    showDownload={true}
-                  />
-                )}
               </div>
 
               {/* Contact Form */}
@@ -387,6 +378,15 @@ const Contacts: React.FC = () => {
         </section>
 
       </div>
+
+      {/* Brochure Modal - Rendered at top level */}
+      {showBrochureModal && (
+        <FlipbookModal
+          config={FLIPBOOK_CONFIGS.companyBrochure}
+          onClose={() => setShowBrochureModal(false)}
+          showDownload={true}
+        />
+      )}
     </>
   );
 };

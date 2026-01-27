@@ -651,6 +651,19 @@
       "subtitle": "We're Here to Help 24/7"
     },
     "info": {
+      "phone": {
+        "title": "Телефон",
+        "description": "Позвоните нам для немедленной помощи"
+      },
+      "email": {
+        "title": "Электронная почта",
+        "description": "Отправьте нам письмо, и мы ответим в течение 24 часов"
+      },
+      "address": {
+        "title": "Адрес офиса",
+        "description": "Посетите нас в нашей штаб-квартире"
+      },
+      "social": "Следите за нами",
       "office": {
         "title": "Office Address",
         "address": "Meydan Free Zone\nThe Meydan Hotel\nDubai, United Arab Emirпоes"
@@ -658,10 +671,6 @@
       "sales": {
         "title": "Sales & Inquiries",
         "phone": "+971 561 611 002"
-      },
-      "email": {
-        "title": "Email",
-        "address": "info@skytech.ae"
       },
       "hours": {
         "title": "Alternпоive Contact",
@@ -703,12 +712,17 @@
         "messageRequired": "Пожалуйста, введите ваше сообщение",
         "messageMin": "Сообщение должно содержать не менее 10 символов"
       },
-      "fileHint": "Accepted formпоs: PDF, DOC, DOCX, TXT (Max 5MB)",
-      "recaptchaNotice": "This site is protected by reCAPTCHA и the Google Privacy Policy и Terms of Service apply.",
-      "submit": "Send Message",
-      "submitting": "Sending...",
+      "fileHint": "Принимаемые форматы: PDF, DOC, DOCX, TXT (Макс. 5MB)",
+      "recaptchaNotice": "Этот сайт защищен reCAPTCHA и применяются политика конфиденциальности Google и условия обслуживания.",
+      "submit": "Отправить сообщение",
+      "submitting": "Отправка...",
+      "send": "Отправить сообщение",
+      "sending": "Отправка...",
       "success": "Спасибо! Ваше сообщение успешно отправлено. Мы ответим в течение 24 часов.",
-      "error": "Извините, произошла ошибка при отправке вашего сообщения. Пожалуйста, попробуйте еще раз или свяжитесь с нами напрямую."
+      "error": "Извините, произошла ошибка при отправке вашего сообщения. Пожалуйста, попробуйте еще раз или свяжитесь с нами напрямую.",
+      "errors": {
+        "required": "Это поле обязательно"
+      }
     },
     "social": {
       "title": "Следите за нами"

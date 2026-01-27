@@ -651,6 +651,19 @@
       "subtitle": "我们 24/7 为您服务"
     },
     "info": {
+      "phone": {
+        "title": "电话",
+        "description": "致电我们获得即时帮助"
+      },
+      "email": {
+        "title": "电子邮件",
+        "description": "给我们发邮件，我们将在 24 小时内回复"
+      },
+      "address": {
+        "title": "办公地址",
+        "description": "访问我们的总部"
+      },
+      "social": "关注我们",
       "office": {
         "title": "办公地址",
         "address": "梅丹自由区\n梅丹酒店\n迪拜，阿联酋"
@@ -658,10 +671,6 @@
       "sales": {
         "title": "销售与咨询",
         "phone": "+971 561 611 002"
-      },
-      "email": {
-        "title": "电子邮件",
-        "address": "info@skytech.ae"
       },
       "hours": {
         "title": "替代联系",
@@ -707,8 +716,13 @@
       "recaptchaNotice": "此网站受 reCAPTCHA 保护，Google 隐私政策和服务条款适用。",
       "submit": "发送消息",
       "submitting": "发送中...",
+      "send": "发送消息",
+      "sending": "发送中...",
       "success": "谢谢！您的消息已成功发送。我们将在 24 小时内回复。",
-      "error": "抱歉，发送您的消息时出错。请重试或直接与我们联系。"
+      "error": "抱歉，发送您的消息时出错。请重试或直接与我们联系。",
+      "errors": {
+        "required": "此字段为必填项"
+      }
     },
     "social": {
       "title": "与我们联系"

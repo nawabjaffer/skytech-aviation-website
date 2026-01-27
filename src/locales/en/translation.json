@@ -660,6 +660,19 @@
       "subtitle": "Have an AOG, We're Here to Help 24/7"
     },
     "info": {
+      "phone": {
+        "title": "Phone",
+        "description": "Call us for immediate assistance"
+      },
+      "email": {
+        "title": "Email",
+        "description": "Send us an email and we'll respond within 24 hours"
+      },
+      "address": {
+        "title": "Office Address",
+        "description": "Visit us at our headquarters"
+      },
+      "social": "Follow Us",
       "office": {
         "title": "Office Address",
         "address": "Business Centre 1, Meydan Free Zone,\n Nad Al Sheba, Dubai, United Arab Emirates"
@@ -667,10 +680,6 @@
       "sales": {
         "title": "Sales & Inquiries",
         "phone": "+971 561 611 002"
-      },
-      "email": {
-        "title": "Email",
-        "address": "info@skytech.ae"
       },
       "hours": {
         "title": "Alternative Contact",
@@ -716,8 +725,13 @@
       "recaptchaNotice": "This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.",
       "submit": "Send Message",
       "submitting": "Sending...",
+      "send": "Send Message",
+      "sending": "Sending...",
       "success": "Thank you! Your message has been sent successfully. We'll respond within 24 hours.",
-      "error": "Sorry, there was an error sending your message. Please try again or contact us directly."
+      "error": "Sorry, there was an error sending your message. Please try again or contact us directly.",
+      "errors": {
+        "required": "This field is required"
+      }
     },
     "social": {
       "title": "Connect With Us"

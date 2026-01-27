@@ -13,7 +13,8 @@
     "test": "vitest",
     "sync-locales": "node scripts/sync-locales.js",
     "deploy": "npm run build && npx gh-pages -d dist",
-    "deploy:sync-locales": "node scripts/deploy.js -- --sync-locales"
+    "deploy:sync-locales": "node scripts/deploy.js -- --sync-locales",
+    "deploy-vercel": "vercel --prod --yes"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

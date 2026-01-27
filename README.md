@@ -21,6 +21,9 @@ npm run build
 
 # Preview production build
 npm run preview
+
+# Deploy to Vercel (requires Vercel CLI login)
+npm run deploy-vercel
 ```
 
 ## 📁 Project Structure

@@ -18,6 +18,8 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
   const [imagesLoaded, setImagesLoaded] = useState<Set<number>>(new Set());
   const [failedMedia, setFailedMedia] = useState<Set<number>>(new Set());
   const [placeholderMinTimeReached, setPlaceholderMinTimeReached] = useState(false);
+  const [isHoveringContent, setIsHoveringContent] = useState(false);
+  const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
   const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
   
   // Placeholder images to show immediately (no gray screen)
@@ -271,6 +273,20 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
     preloadAdjacentVideos();
   }, [currentIndex, slides, videosLoaded]);
 
+  // Handle hover position tracking for clarity effect
+  const handleContentHover = (e: React.MouseEvent) => {
+    setIsHoveringContent(true);
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    setHoverPosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
+
+  const handleContentLeave = () => {
+    setIsHoveringContent(false);
+  };
+
   if (loading) {
     // Show placeholder images immediately with smooth fade animation
     // Keep showing for at least 5 seconds even if content is ready
@@ -437,10 +453,25 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
         
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black bg-opacity-50 z-20"></div>
+        
+        {/* Blur effect overlay on hover */}
+        {isHoveringContent && (
+          <div 
+            className="absolute inset-0 backdrop-blur-lg z-30 pointer-events-none"
+            style={{
+              background: `radial-gradient(circle 300px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, rgba(0,0,0,0.4) 100%)`
+            }}
+          />
+        )}
       </div>
 
       {/* Content */}
-      <div className="relative z-10 h-full flex items-center">
+      <div 
+        className="relative z-10 h-full flex items-center transition-all duration-300"
+        onMouseEnter={handleContentHover}
+        onMouseMove={handleContentHover}
+        onMouseLeave={handleContentLeave}
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
             {/* Animated Content */}
@@ -453,7 +484,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
             >
               {/* Trust Badge */}
               {currentSlide.trustBadge && (
-                <div className="inline-block mb-4 px-4 py-2 bg-white bg-opacity-20 backdrop-blur-sm rounded-full">
+                <div className="inline-block mb-4 px-4 py-2 bg-white bg-opacity-20 backdrop-blur-sm rounded-full hero-badge transition-all duration-300 hover:bg-opacity-30">
                   <span className="text-white text-sm font-semibold flex items-center">
                     <svg
                       className="w-5 h-5 mr-2 text-yellow-400"
@@ -491,7 +522,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
                 {currentSlide.ctaText1 && currentSlide.ctaLink1 && (
                   <Link
                     to={currentSlide.ctaLink1}
-                    className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
+                    className="hero-button inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
                   >
                     {currentSlide.ctaText1}
                     <svg
@@ -513,7 +544,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
                 {currentSlide.ctaText2 && currentSlide.ctaLink2 && (
                   <Link
                     to={currentSlide.ctaLink2}
-                    className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-blue-600 bg-white hover:bg-gray-100 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
+                    className="hero-button inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-blue-600 bg-white hover:bg-gray-100 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
                   >
                     {currentSlide.ctaText2}
                     <svg

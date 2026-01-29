@@ -366,13 +366,20 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
                 src={mediaFailed ? placeholderImages[0] : slide.mediaUrl}
                 alt={slide.title}
                 loading={index === 0 ? 'eager' : 'lazy'}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
                   isActive && !isTransitioning ? 'opacity-100 z-10' : 'opacity-0 z-0'
                 }`}
                 style={{
-                  willChange: isActive ? 'opacity' : 'auto',
+                  willChange: isActive ? 'filter, opacity' : 'opacity',
                   backfaceVisibility: 'hidden',
-                  WebkitBackfaceVisibility: 'hidden'
+                  WebkitBackfaceVisibility: 'hidden',
+                  filter: isActive && isHoveringContent ? 'blur(20px)' : 'blur(0px)',
+                  maskImage: isActive && isHoveringContent 
+                    ? `radial-gradient(circle 250px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, black 100%)`
+                    : 'none',
+                  WebkitMaskImage: isActive && isHoveringContent 
+                    ? `radial-gradient(circle 250px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, black 100%)`
+                    : 'none'
                 }}
                 onLoad={() => {
                   setImagesLoaded(prev => new Set(prev).add(index));
@@ -398,13 +405,20 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
               ref={(el) => {
                 if (el) videoRefs.current.set(index, el);
               }}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
                 isActive && !isTransitioning ? 'opacity-100 z-10' : 'opacity-0 z-0'
               }`}
               style={{
-                willChange: isActive ? 'opacity' : 'auto',
+                willChange: isActive ? 'filter, opacity' : 'opacity',
                 backfaceVisibility: 'hidden',
-                WebkitBackfaceVisibility: 'hidden'
+                WebkitBackfaceVisibility: 'hidden',
+                filter: isActive && isHoveringContent ? 'blur(20px)' : 'blur(0px)',
+                maskImage: isActive && isHoveringContent 
+                  ? `radial-gradient(circle 250px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, black 100%)`
+                  : 'none',
+                WebkitMaskImage: isActive && isHoveringContent 
+                  ? `radial-gradient(circle 250px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, black 100%)`
+                  : 'none'
               }}
               autoPlay={isActive}
               muted
@@ -453,16 +467,6 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
         
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black bg-opacity-50 z-20"></div>
-        
-        {/* Blur effect overlay on hover */}
-        {isHoveringContent && (
-          <div 
-            className="absolute inset-0 backdrop-blur-lg z-30 pointer-events-none"
-            style={{
-              background: `radial-gradient(circle 300px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, rgba(0,0,0,0.4) 100%)`
-            }}
-          />
-        )}
       </div>
 
       {/* Content */}

@@ -48,15 +48,15 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         onClick={() => setIsOpen(!isOpen)}
         className={
           compact
-            ? 'w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-blue'
+            ? 'w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-blue'
             : 'flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-blue'
         }
         aria-label="Select language"
       >
         {compact ? (
           <span className="flex flex-col items-center justify-center leading-none" aria-hidden="true">
-            <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/90" />
-            <span className="mt-0.5 text-[9px] sm:text-[10px] font-semibold tracking-wide text-white/90">
+            <Globe className="w-3 h-3 sm:w-4 sm:h-4 text-white/90" />
+            <span className="mt-0.5 text-[10px] sm:text-[10px] font-semibold tracking-wide text-white/90">
               {(currentLang?.code || 'EN').toUpperCase()}
             </span>
           </span>

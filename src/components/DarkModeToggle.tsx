@@ -9,7 +9,7 @@ const DarkModeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleDarkMode}
-      className="p-1.5 sm:p-2 rounded-lg bg-white/10 hover:bg-white/20 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-blue"
+      className="p-2 sm:p-2 rounded-lg bg-white/10 hover:bg-white/20 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-blue"
       aria-label={t('theme.toggle')}
       title={isDarkMode ? t('theme.light') : t('theme.dark')}
     >

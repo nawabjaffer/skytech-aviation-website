@@ -15,7 +15,24 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [videosLoaded, setVideosLoaded] = useState<Set<number>>(new Set());
   const [firstVideoReady, setFirstVideoReady] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState<Set<number>>(new Set());
   const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
+  
+  // Placeholder images to show immediately (no gray screen)
+  const placeholderImages = [
+    '/hero-section/SKYTECH1.jpeg.png',
+    '/hero-section/SKYTECH.jpeg'
+  ];
+  const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
+  
+  // Cycle through placeholder images while loading
+  useEffect(() => {
+    if (!loading) return;
+    const interval = setInterval(() => {
+      setCurrentPlaceholder(prev => (prev + 1) % placeholderImages.length);
+    }, 3000); // Change every 3 seconds
+    return () => clearInterval(interval);
+  }, [loading]);
   
   // Static fallback to show instantly while loading (eliminates gray flash)
   const fallbackSlide: HeroSlide = {
@@ -24,7 +41,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
     subtitle: 'Authorized Civil Aircraft Parts Supplier',
     description: 'ASA Member - Trusted by airlines and distributors worldwide',
     mediaType: 'image',
-    mediaUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"%3E%3Cdefs%3E%3ClinearGradient id="g" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%230b6d94;stop-opacity:1" /%3E%3Cstop offset="100%25" style="stop-color:%23073d53;stop-opacity:1" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="1920" height="1080" fill="url(%23g)" /%3E%3C/svg%3E',
+    mediaUrl: placeholderImages[currentPlaceholder],
     active: true,
     ctaText1: 'View Products',
     ctaLink1: '/products',
@@ -75,18 +92,26 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
               firstVideo.muted = true;
               firstVideo.playsInline = true;
               
+              // Optimize for mobile
+              firstVideo.setAttribute('webkit-playsinline', 'true');
+              firstVideo.setAttribute('x5-playsinline', 'true'); // WeChat browser
+              
               firstVideo.load();
               
-              firstVideo.addEventListener('canplay', () => {
+              // Use canplaythrough for smoother mobile playback
+              const handleReady = () => {
                 setVideosLoaded(prev => new Set(prev).add(0));
                 setFirstVideoReady(true);
                 setLoading(false);
-              }, { once: true });
+              };
               
-              // Fallback: show after 2s even if video isn't ready
+              firstVideo.addEventListener('canplaythrough', handleReady, { once: true });
+              firstVideo.addEventListener('canplay', handleReady, { once: true });
+              
+              // Fallback: show after 1.5s even if video isn't ready (reduced from 2s)
               setTimeout(() => {
                 setLoading(false);
-              }, 2000);
+              }, 1500);
             }
           } else {
             // For images, no wait needed
@@ -122,7 +147,14 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
       // Auto-play video when it becomes active
       const videoEl = videoRefs.current.get(nextIndex);
       if (videoEl && slides[nextIndex]?.mediaType === 'video') {
-        videoEl.play().catch(() => { /* Autoplay may be prevented by browser */ });
+        // Better mobile video handling
+        videoEl.currentTime = 0; // Reset to start for smooth playback
+        const playPromise = videoEl.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Silently handle autoplay prevention
+          });
+        }
       }
     }, CAROUSEL_TIMING.transitionDuration);
   }, [slides, currentIndex, videosLoaded]);
@@ -146,7 +178,14 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
       // Auto-play video when it becomes active
       const videoEl = videoRefs.current.get(prevIndex);
       if (videoEl && slides[prevIndex]?.mediaType === 'video') {
-        videoEl.play().catch(() => { /* Autoplay may be prevented by browser */ });
+        // Better mobile video handling
+        videoEl.currentTime = 0; // Reset to start for smooth playback
+        const playPromise = videoEl.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Silently handle autoplay prevention
+          });
+        }
       }
     }, CAROUSEL_TIMING.transitionDuration);
   }, [slides, currentIndex, videosLoaded]);
@@ -170,7 +209,14 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
       // Auto-play video when it becomes active
       const videoEl = videoRefs.current.get(index);
       if (videoEl && slides[index]?.mediaType === 'video') {
-        videoEl.play().catch(() => { /* Autoplay may be prevented by browser */ });
+        // Better mobile video handling
+        videoEl.currentTime = 0; // Reset to start for smooth playback
+        const playPromise = videoEl.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Silently handle autoplay prevention
+          });
+        }
       }
     }, CAROUSEL_TIMING.transitionDuration);
   };
@@ -216,31 +262,47 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
   }, [currentIndex, slides, videosLoaded]);
 
   if (loading) {
-    // Show an engaging skeleton with gradient animation instead of blank screen
+    // Show placeholder images immediately with smooth fade animation
     return (
-      <div className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-sky-900 via-blue-900 to-slate-900">
-        {/* Animated gradient background - no flash, smooth from start */}
-        <div className="absolute inset-0 bg-gradient-to-br from-sky-900/90 via-blue-900/90 to-slate-900/90 animate-pulse"></div>
+      <div className="relative w-full h-screen overflow-hidden">
+        {/* Show actual placeholder images with crossfade */}
+        {placeholderImages.map((imgSrc, idx) => (
+          <img
+            key={imgSrc}
+            src={imgSrc}
+            alt="Skytech Aviation"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              idx === currentPlaceholder ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
         
-        {/* Skeleton content - mirrors actual carousel layout */}
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black bg-opacity-50 z-20"></div>
+        
+        {/* Show content on placeholder */}
         <div className="relative z-10 h-full flex items-center">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl space-y-6">
-              {/* Skeleton title */}
-              <div className="h-16 w-3/4 bg-white/20 rounded-lg animate-pulse"></div>
-              {/* Skeleton subtitle */}
-              <div className="h-10 w-2/3 bg-white/15 rounded-lg animate-pulse"></div>
-              {/* Skeleton description */}
-              <div className="space-y-3">
-                <div className="h-6 w-full bg-white/10 rounded animate-pulse"></div>
-                <div className="h-6 w-5/6 bg-white/10 rounded animate-pulse"></div>
-              </div>
-              {/* Skeleton buttons */}
-              <div className="flex gap-4 pt-4">
-                <div className="h-14 w-40 bg-blue-500/30 rounded-lg animate-pulse"></div>
-                <div className="h-14 w-40 bg-white/20 rounded-lg animate-pulse"></div>
-              </div>
+            <div className="max-w-4xl">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-tight animate-fade-in">
+                Skytech Aviation
+              </h1>
+              <h2 className="text-xl sm:text-2xl md:text-3xl text-blue-100 mb-6 font-light animate-fade-in animation-delay-200">
+                Authorized Civil Aircraft Parts Supplier
+              </h2>
+              <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl leading-relaxed animate-fade-in animation-delay-400">
+                ASA Member - Trusted by airlines and distributors worldwide
+              </p>
             </div>
+          </div>
+        </div>
+        
+        {/* Subtle loading indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30">
+          <div className="flex gap-2">
+            <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-white rounded-full animate-pulse animation-delay-200"></div>
+            <div className="w-2 h-2 bg-white rounded-full animate-pulse animation-delay-400"></div>
           </div>
         </div>
       </div>
@@ -276,15 +338,32 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
                 muted
                 loop
                 playsInline
+                webkit-playsinline="true"
+                x5-playsinline="true"
                 preload={index === 0 ? 'auto' : 'metadata'} // Aggressive preload for first video
+                poster={index < placeholderImages.length ? placeholderImages[index] : undefined} // Show placeholder while loading
                 onLoadedData={() => {
                   setVideosLoaded(prev => new Set(prev).add(index));
                   // Auto-play first video immediately when loaded
                   if (index === currentIndex) {
                     const videoEl = videoRefs.current.get(index);
                     if (videoEl) {
-                      videoEl.play().catch(() => { /* Autoplay may be prevented by browser */ });
+                      // Use play with promise for better mobile support
+                      const playPromise = videoEl.play();
+                      if (playPromise !== undefined) {
+                        playPromise.catch(() => {
+                          // Autoplay was prevented, try again after user interaction
+                          console.log('Autoplay prevented, will retry');
+                        });
+                      }
                     }
+                  }
+                }}
+                onCanPlayThrough={() => {
+                  // Video is fully loaded and ready to play smoothly
+                  if (index === 0 && loading) {
+                    setLoading(false);
+                    setFirstVideoReady(true);
                   }
                 }}
                 onCanPlay={() => {
@@ -293,6 +372,12 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
                     setLoading(false);
                     setFirstVideoReady(true);
                   }
+                }}
+                onWaiting={() => {
+                  // Video is buffering - could add loading indicator here if needed
+                }}
+                onPlaying={() => {
+                  // Video started playing smoothly
                 }}
               >
                 <source src={slide.mediaUrl} type="video/mp4" />
@@ -305,9 +390,12 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
                 src={slide.mediaUrl}
                 alt={slide.title}
                 loading={index === 0 ? 'eager' : 'lazy'} // Eager load first image
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
                   isActive && !isTransitioning ? 'opacity-100 z-10' : 'opacity-0 z-0'
                 }`}
+                onLoad={() => {
+                  setImagesLoaded(prev => new Set(prev).add(index));
+                }}
               />
             );
           }

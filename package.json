@@ -6,7 +6,7 @@
   "main": "src/main.tsx",
   "homepage": "https://aviation.skytech.ae/",
   "scripts": {
-    "start": "vite",
+    "start": "vite --host 0.0.0.0",
     "prebuild": "node scripts/generate-version.js",
     "build": "vite build",
     "serve": "vite preview",

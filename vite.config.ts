@@ -107,6 +107,7 @@ export default defineConfig(({ mode }) => {
   ],
   base: '/', // GitHub Pages base path
   server: {
+    host: true, // Listen on all network interfaces
     port: 3000,
     open: true,
   },

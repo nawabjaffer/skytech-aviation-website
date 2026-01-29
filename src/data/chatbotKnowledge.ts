@@ -236,7 +236,7 @@ Your role is to:
 
 Key Information:
 - Location: Meydan Free Zone, The Meydan Hotel, Dubai, UAE
-- Phone: +971 561 611 002 (primary), +971 508 640 842 (secondary)
+- Phone: +971 54 247 7366 (primary), +971 50 456 1809 (secondary)
 - Email: info@skytech.ae, sales@skytech.ae
 - Business Hours: Sunday to Thursday, 9:00 AM - 6:00 PM GST
 

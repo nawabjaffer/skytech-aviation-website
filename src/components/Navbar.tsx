@@ -100,16 +100,16 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Navbar */}
-        <div className="flex justify-between items-center py-4 desktop:hidden">
+        <div className="flex justify-between items-center py-4 desktop:hidden gap-2">
           <Link
             to="/"
             className="logo-container block transition-transform duration-300 hover:scale-110 flex-shrink-0"
             aria-label="Skytech Aviation"
           >
-            <Logo className="h-10 w-auto" />
+            <Logo className="h-8 sm:h-10 w-auto" />
           </Link>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <LanguageSelector compact />
             <DarkModeToggle />
             <button

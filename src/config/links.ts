@@ -26,8 +26,8 @@ export const EMAIL_LINKS = {
 
 // ==================== PHONE NUMBERS ====================
 export const PHONE_LINKS = {
-  primary: '+971 561 611 002',
-  secondary: '+971 508 640 842',
+  primary: '+971 54 247 7366',
+  secondary: '+971 50 456 1809',
   
   // Tel helper - converts phone to tel: link
   tel: (phone: string) => `tel:${phone.replace(/[\s()-]/g, '')}`

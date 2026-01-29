@@ -9,14 +9,14 @@ const DarkModeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleDarkMode}
-      className="p-2 rounded-lg bg-white/10 hover:bg-white/20 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-blue"
+      className="p-1.5 sm:p-2 rounded-lg bg-white/10 hover:bg-white/20 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-blue"
       aria-label={t('theme.toggle')}
       title={isDarkMode ? t('theme.light') : t('theme.dark')}
     >
       {isDarkMode ? (
         // Sun icon for light mode
         <svg
-          className="w-5 h-5 text-yellow-400"
+          className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -29,7 +29,7 @@ const DarkModeToggle: React.FC = () => {
       ) : (
         // Moon icon for dark mode
         <svg
-          className="w-5 h-5 text-gray-200"
+          className="w-4 h-4 sm:w-5 sm:h-5 text-gray-200"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"

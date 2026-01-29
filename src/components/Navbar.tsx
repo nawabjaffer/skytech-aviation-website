@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
       } ${isVisible ? 'navbar-visible' : 'navbar-hidden'}`}
     >
       {/* Full-width navbar container (keeps existing padding rhythm, removes max-width) */}
-      <div className="w-full px-5 tablet:px-8 desktop:px-12">
+      <div className="w-full px-3 sm:px-5 tablet:px-8 desktop:px-12">
         {/* Desktop Navbar: utilities (left), logo (center), nav links (right) */}
         <div className="hidden desktop:grid grid-cols-[1fr_auto_1fr] items-center py-4">
           {/* Left Utilities */}
@@ -100,25 +100,25 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Navbar */}
-        <div className="flex justify-between items-center py-4 desktop:hidden gap-2">
+        <div className="flex justify-between items-center py-3 desktop:hidden gap-1">
           <Link
             to="/"
-            className="logo-container block transition-transform duration-300 hover:scale-110 flex-shrink-0"
+            className="logo-container block transition-transform duration-300 hover:scale-110 flex-shrink-0 min-w-0"
             aria-label="Skytech Aviation"
           >
-            <Logo className="h-8 sm:h-10 w-auto" />
+            <Logo className="h-7 sm:h-9 w-auto" />
           </Link>
 
-          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
             <LanguageSelector compact />
             <DarkModeToggle />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="menu-button text-white focus:outline-none focus:ring-2 focus:ring-sky-blue rounded-lg p-2"
+              className="menu-button text-white focus:outline-none focus:ring-2 focus:ring-sky-blue rounded-lg p-1.5 sm:p-2"
               aria-label="Toggle menu"
             >
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5 sm:w-6 sm:h-6"
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"

@@ -22,7 +22,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
   
   // Placeholder images to show immediately (no gray screen)
   const placeholderImages = [
-    '/hero-section/SKYTECH1.jpeg.png',
+    '/hero-section/SKYTECH1.png',
     '/hero-section/SKYTECH.jpeg'
   ];
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);

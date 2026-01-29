@@ -375,10 +375,10 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
                   WebkitBackfaceVisibility: 'hidden',
                   filter: isActive && isHoveringContent ? 'blur(20px)' : 'blur(0px)',
                   maskImage: isActive && isHoveringContent 
-                    ? `radial-gradient(circle 250px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, black 100%)`
+                    ? `radial-gradient(circle 150px at ${hoverPosition.x}px ${hoverPosition.y}px, black 0%, transparent 70%)`
                     : 'none',
                   WebkitMaskImage: isActive && isHoveringContent 
-                    ? `radial-gradient(circle 250px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, black 100%)`
+                    ? `radial-gradient(circle 150px at ${hoverPosition.x}px ${hoverPosition.y}px, black 0%, transparent 70%)`
                     : 'none'
                 }}
                 onLoad={() => {
@@ -414,10 +414,10 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
                 WebkitBackfaceVisibility: 'hidden',
                 filter: isActive && isHoveringContent ? 'blur(20px)' : 'blur(0px)',
                 maskImage: isActive && isHoveringContent 
-                  ? `radial-gradient(circle 250px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, black 100%)`
+                  ? `radial-gradient(circle 150px at ${hoverPosition.x}px ${hoverPosition.y}px, black 0%, transparent 70%)`
                   : 'none',
                 WebkitMaskImage: isActive && isHoveringContent 
-                  ? `radial-gradient(circle 250px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, black 100%)`
+                  ? `radial-gradient(circle 150px at ${hoverPosition.x}px ${hoverPosition.y}px, black 0%, transparent 70%)`
                   : 'none'
               }}
               autoPlay={isActive}
@@ -472,9 +472,6 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
       {/* Content */}
       <div 
         className="relative z-10 h-full flex items-center transition-all duration-300"
-        onMouseEnter={handleContentHover}
-        onMouseMove={handleContentHover}
-        onMouseLeave={handleContentLeave}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
@@ -485,6 +482,9 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
                   ? 'translate-y-8 opacity-0'
                   : 'translate-y-0 opacity-100'
               }`}
+              onMouseEnter={handleContentHover}
+              onMouseMove={handleContentHover}
+              onMouseLeave={handleContentLeave}
             >
               {/* Trust Badge */}
               {currentSlide.trustBadge && (

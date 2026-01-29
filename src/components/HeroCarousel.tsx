@@ -16,6 +16,8 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
   const [videosLoaded, setVideosLoaded] = useState<Set<number>>(new Set());
   const [firstVideoReady, setFirstVideoReady] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState<Set<number>>(new Set());
+  const [failedMedia, setFailedMedia] = useState<Set<number>>(new Set());
+  const [placeholderMinTimeReached, setPlaceholderMinTimeReached] = useState(false);
   const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
   
   // Placeholder images to show immediately (no gray screen)
@@ -25,14 +27,22 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
   ];
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
   
+  // Keep placeholders visible for at least 5 seconds
+  useEffect(() => {
+    const minTimer = setTimeout(() => {
+      setPlaceholderMinTimeReached(true);
+    }, 5000); // 5 seconds minimum
+    return () => clearTimeout(minTimer);
+  }, []);
+  
   // Cycle through placeholder images while loading
   useEffect(() => {
-    if (!loading) return;
+    if (loading === false && placeholderMinTimeReached) return;
     const interval = setInterval(() => {
       setCurrentPlaceholder(prev => (prev + 1) % placeholderImages.length);
     }, 3000); // Change every 3 seconds
     return () => clearInterval(interval);
-  }, [loading]);
+  }, [loading, placeholderMinTimeReached]);
   
   // Static fallback to show instantly while loading (eliminates gray flash)
   const fallbackSlide: HeroSlide = {
@@ -108,10 +118,10 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
               firstVideo.addEventListener('canplaythrough', handleReady, { once: true });
               firstVideo.addEventListener('canplay', handleReady, { once: true });
               
-              // Fallback: show after 1.5s even if video isn't ready (reduced from 2s)
+              // Fallback: show after 5s minimum or when video is ready, whichever is later
               setTimeout(() => {
                 setLoading(false);
-              }, 1500);
+              }, 5000); // Increased to 5 seconds for placeholder visibility
             }
           } else {
             // For images, no wait needed
@@ -263,6 +273,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
 
   if (loading) {
     // Show placeholder images immediately with smooth fade animation
+    // Keep showing for at least 5 seconds even if content is ready
     return (
       <div className="relative w-full h-screen overflow-hidden">
         {/* Show actual placeholder images with crossfade */}
@@ -274,6 +285,12 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
               idx === currentPlaceholder ? 'opacity-100' : 'opacity-0'
             }`}
+            style={{
+              willChange: idx === currentPlaceholder ? 'opacity' : 'auto',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden'
+            }}
+            loading="eager"
           />
         ))}
         
@@ -323,82 +340,99 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
       <div className="absolute inset-0 z-0">
         {displaySlides.map((slide, index) => {
           const isActive = index === currentIndex;
+          const mediaFailed = failedMedia.has(index);
           
-          if (slide.mediaType === 'video') {
-            return (
-              <video
-                key={slide.id}
-                ref={(el) => {
-                  if (el) videoRefs.current.set(index, el);
-                }}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                  isActive && !isTransitioning ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                }`}
-                autoPlay={isActive}
-                muted
-                loop
-                playsInline
-                webkit-playsinline="true"
-                x5-playsinline="true"
-                preload={index === 0 ? 'auto' : 'metadata'} // Aggressive preload for first video
-                poster={index < placeholderImages.length ? placeholderImages[index] : undefined} // Show placeholder while loading
-                onLoadedData={() => {
-                  setVideosLoaded(prev => new Set(prev).add(index));
-                  // Auto-play first video immediately when loaded
-                  if (index === currentIndex) {
-                    const videoEl = videoRefs.current.get(index);
-                    if (videoEl) {
-                      // Use play with promise for better mobile support
-                      const playPromise = videoEl.play();
-                      if (playPromise !== undefined) {
-                        playPromise.catch(() => {
-                          // Autoplay was prevented, try again after user interaction
-                          console.log('Autoplay prevented, will retry');
-                        });
-                      }
-                    }
-                  }
-                }}
-                onCanPlayThrough={() => {
-                  // Video is fully loaded and ready to play smoothly
-                  if (index === 0 && loading) {
-                    setLoading(false);
-                    setFirstVideoReady(true);
-                  }
-                }}
-                onCanPlay={() => {
-                  // Hide loading skeleton as soon as video can play
-                  if (index === 0 && loading) {
-                    setLoading(false);
-                    setFirstVideoReady(true);
-                  }
-                }}
-                onWaiting={() => {
-                  // Video is buffering - could add loading indicator here if needed
-                }}
-                onPlaying={() => {
-                  // Video started playing smoothly
-                }}
-              >
-                <source src={slide.mediaUrl} type="video/mp4" />
-              </video>
-            );
-          } else {
+          // If media failed, show placeholder/fallback image instead
+          if (mediaFailed || slide.mediaType === 'image') {
             return (
               <img
                 key={slide.id}
-                src={slide.mediaUrl}
+                src={mediaFailed ? placeholderImages[0] : slide.mediaUrl}
                 alt={slide.title}
-                loading={index === 0 ? 'eager' : 'lazy'} // Eager load first image
+                loading={index === 0 ? 'eager' : 'lazy'}
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
                   isActive && !isTransitioning ? 'opacity-100 z-10' : 'opacity-0 z-0'
                 }`}
+                style={{
+                  willChange: isActive ? 'opacity' : 'auto',
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden'
+                }}
                 onLoad={() => {
                   setImagesLoaded(prev => new Set(prev).add(index));
+                  if (index === 0 && placeholderMinTimeReached) {
+                    setLoading(false);
+                  }
+                }}
+                onError={() => {
+                  // Fallback to placeholder image on load error
+                  if (!failedMedia.has(index)) {
+                    setFailedMedia(prev => new Set(prev).add(index));
+                    console.warn(`Failed to load image at index ${index}, using fallback`);
+                  }
                 }}
               />
             );
           }
+          
+          // Video rendering with fallback support
+          return (
+            <video
+              key={slide.id}
+              ref={(el) => {
+                if (el) videoRefs.current.set(index, el);
+              }}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                isActive && !isTransitioning ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+              style={{
+                willChange: isActive ? 'opacity' : 'auto',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden'
+              }}
+              autoPlay={isActive}
+              muted
+              loop
+              playsInline
+              webkit-playsinline="true"
+              x5-playsinline="true"
+              preload={index === 0 ? 'auto' : 'metadata'}
+              poster={placeholderImages[index % placeholderImages.length]}
+              onLoadedData={() => {
+                setVideosLoaded(prev => new Set(prev).add(index));
+                if (index === currentIndex) {
+                  const videoEl = videoRefs.current.get(index);
+                  if (videoEl) {
+                    const playPromise = videoEl.play();
+                    if (playPromise !== undefined) {
+                      playPromise.catch(() => {
+                        // Autoplay prevented
+                      });
+                    }
+                  }
+                }
+              }}
+              onCanPlayThrough={() => {
+                if (index === currentIndex && placeholderMinTimeReached) {
+                  setLoading(false);
+                  setFirstVideoReady(true);
+                }
+              }}
+              onCanPlay={() => {
+                if (index === currentIndex && placeholderMinTimeReached) {
+                  setLoading(false);
+                  setFirstVideoReady(true);
+                }
+              }}
+              onError={() => {
+                // Mark video as failed and fallback to placeholder image
+                setFailedMedia(prev => new Set(prev).add(index));
+                console.warn(`Failed to load video at index ${index}, will show fallback image`);
+              }}
+            >
+              <source src={slide.mediaUrl} type="video/mp4" />
+            </video>
+          );
         })}
         
         {/* Dark overlay for better text readability */}

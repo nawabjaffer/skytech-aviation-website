@@ -47,6 +47,8 @@ export default defineConfig(({ mode }) => {
         // Skip waiting and claim clients immediately
         skipWaiting: true,
         clientsClaim: true,
+        // Increase limit for hero section images
+        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10 MB instead of 2 MB
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,

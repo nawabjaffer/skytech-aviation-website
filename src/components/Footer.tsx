@@ -89,9 +89,9 @@ const Footer: React.FC = () => {
                 </li>
               ))}
               <li className='pt-2'>
-                <p className='text-sm'>{EMAIL_LINKS.info}</p>
-                <p className='text-sm'>{PHONE_LINKS.primary}</p>
-                <p className='text-sm mt-2'>{COMPANY_INFO.address.full || t('footer.address')}</p>
+                <p className='text-sm'>{t('about.locations.regional.email.address')}</p>
+                <p className='text-sm'>{ t('about.locations.regional.phone.number')}</p>
+                <p className='text-sm mt-2'>{ t('footer.address')}</p>
               </li>
             </ul>
           </div>

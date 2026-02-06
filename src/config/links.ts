@@ -96,10 +96,10 @@ export const COMPANY_INFO = {
   fullName: 'Skytech Aviation LLC',
   tagline: 'Your trusted partner in aircraft parts and services',
   address: {
-    street: 'Meydan Free Zone, The Meydan Hotel',
+    street: 'The Meydan Hotel, Nad Al Sheba',
     city: 'Dubai',
     country: 'United Arab Emirates',
-    full: 'Meydan Free Zone, The Meydan Hotel, Dubai, UAE'
+    full: 'Business Centre - 1,   Meydan Free Zone, Nad Al Sheba, Dubai, UAE'
   },
   asaMemberSince: '2022',
 } as const;

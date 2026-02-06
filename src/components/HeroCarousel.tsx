@@ -375,10 +375,10 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
                   WebkitBackfaceVisibility: 'hidden',
                   filter: isActive && isHoveringContent ? 'blur(20px)' : 'blur(0px)',
                   maskImage: isActive && isHoveringContent 
-                    ? `radial-gradient(circle 150px at ${hoverPosition.x}px ${hoverPosition.y}px, black 0%, transparent 70%)`
+                    ? `radial-gradient(circle 250px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, black 100%)`
                     : 'none',
                   WebkitMaskImage: isActive && isHoveringContent 
-                    ? `radial-gradient(circle 150px at ${hoverPosition.x}px ${hoverPosition.y}px, black 0%, transparent 70%)`
+                    ? `radial-gradient(circle 250px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, black 100%)`
                     : 'none'
                 }}
                 onLoad={() => {
@@ -414,10 +414,10 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval }) => {
                 WebkitBackfaceVisibility: 'hidden',
                 filter: isActive && isHoveringContent ? 'blur(20px)' : 'blur(0px)',
                 maskImage: isActive && isHoveringContent 
-                  ? `radial-gradient(circle 150px at ${hoverPosition.x}px ${hoverPosition.y}px, black 0%, transparent 70%)`
+                  ? `radial-gradient(circle 250px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, black 100%)`
                   : 'none',
                 WebkitMaskImage: isActive && isHoveringContent 
-                  ? `radial-gradient(circle 150px at ${hoverPosition.x}px ${hoverPosition.y}px, black 0%, transparent 70%)`
+                  ? `radial-gradient(circle 250px at ${hoverPosition.x}px ${hoverPosition.y}px, transparent 0%, black 100%)`
                   : 'none'
               }}
               autoPlay={isActive}

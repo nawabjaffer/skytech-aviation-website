@@ -337,7 +337,7 @@
         "hotline": {
           "title": "Phone Support",
           "description": "Call us for inquiries and expert parts consultation",
-          "number": "+971 561 611 002",
+          "number": "+971 50 456 1809",
           "availability": "Business Hours"
         },
         "email": {
@@ -356,7 +356,7 @@
           "title": "Career Opportunities",
           "description": "Join our dynamic team and build your career in aviation industry",
           "button": "View Careers",
-          "availability": "hr@skytech.ae"
+          "availability": "info@skytech.ae"
         }
       }
     },
@@ -590,7 +590,7 @@
         "ceo": {
           "name": "Mohammed Yaseen",
           "position": "Chief Executive Officer Manager",
-          "bio": "With over 20 years in aviation industry, Mr. Mohammed leads Skytech Aviation's strategic vision and global expansion."
+          "bio": "Mr. Mohammed leads Skytech Aviation's strategic vision and global expansion in the aviation industry."
         }
       }
     },

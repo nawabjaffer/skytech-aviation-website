@@ -603,7 +603,7 @@ const Services: React.FC = () => {
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                   {t('services.support.channels.careers.description')}
                 </p>
-                <a href="mailto:hr@skytech.ae" className="px-6 py-2 bg-orange-600 text-white text-sm font-bold rounded-lg hover:bg-orange-700 transition-colors inline-block">
+                <a href="mailto:info@skytech.ae" className="px-6 py-2 bg-orange-600 text-white text-sm font-bold rounded-lg hover:bg-orange-700 transition-colors inline-block">
                   {t('services.support.channels.careers.button')}
                 </a>
                 <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">

@@ -299,7 +299,7 @@ export const DEFAULT_TESTIMONIALS: Testimonial[] = [
     name: 'Mohamed Hassan',
     role: 'Procurement Head',
     company: 'Emirates Aviation Solutions',
-    content: 'Professional service, competitive pricing, and full traceability documentation. Skytech Aviation is our go-to supplier for critical aircraft components.',
+    content: 'Outstanding turnaround times and impeccable documentation. Skytech Aviation consistently delivers genuine parts with full traceability, making our procurement process seamless and reliable.',
     rating: 5,
     active: true,
   },

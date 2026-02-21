@@ -86,6 +86,7 @@ const Footer: React.FC = () => {
                   >
                     {link.label}
                   </Link>
+                  
                 </li>
               ))}
               <li className='pt-2'>
